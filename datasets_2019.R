@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -17,13 +17,13 @@ if (any(!check)) {
 paths <- "V:/Performance/Project files/Metro Monitor/2019v/Output/"
 
 # change in values (ranking)
-growth_change <- read.csv(paste0(paths, "Growth Ranks 2019-03-09.csv"))
-prosperity_change <- read.csv(paste0(paths, "Prosperity Ranks 2019-03-09 .csv"))
-inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))
-racial_inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2017.11.17).csv"))
+growth_change <- read.csv(paste0(paths, "Growth Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+prosperity_change <- read.csv(paste0(paths, "Prosperity Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))%>% janitor::clean_names()
+racial_inclusion_change <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names()
 
 # absolute value in 2016
-growth_value <- read.csv(paste0(paths, "Growth/Growth Values (IS 2017.11.15).csv")) %>%
+growth_value <- read.csv(paste0(paths, "Growth Values 2019-03-09.csv")) %>%
   filter(year == 2016) %>%
   dcast(year + cbsa ~ indicator, var.value = "value")
 
