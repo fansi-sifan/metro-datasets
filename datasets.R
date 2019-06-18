@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -58,20 +58,36 @@ cbsa_value <- prosperity_value %>%
 cbsa_metromonitor <- cbsa_change %>%
   left_join(cbsa_value, by = c("CBSA" = "cbsa")) %>%
   rename(
-    rank_inclusion = rank,
-    rank_prosperity = rank.x,
-    rank_growth = rank.y
+    cbsa_code = CBSA,
+    value_year = year.y,
+    rank_year_range = year.x,
+    inclusion_rank = rank,
+    prosperity_rank = rank.x,
+    growth_rank = rank.y
   )
 
-# check output
-skimr::skim(cbsa_metromonitor)
+# format
+cbsa_metromonitor <- cbsa_metromonitor %>%
+  mutate_at(c("cbsa_code","value_year","rank_year_range"),as.character) %>%
+  mutate_at(vars(contains("_rank")),as.factor) 
 
-# save
+# check output
+skim_with_defaults()
+skim(cbsa_metromonitor)
+
+# save output
 dir.create("metro_monitor")
 save(cbsa_metromonitor,file = "metro_monitor/metro_monitor.rda")
+
 # generate metadata
 sink("metro_monitor/metro_monitor.txt")
-skimr::skim(cbsa_metromonitor)
+skim_with(numeric = list(hist = NULL))
+skim(cbsa_metromonitor)
+sink()
+
+# create README
+sink("metro_monitor/README.md")
+skim(cbsa_metromonitor)%>% kable()
 sink()
 
 # Export Monitor---------------------------------------------------
@@ -83,13 +99,13 @@ county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Delivera
   filter(Year == 2017) %>%
   mutate(FIPS = str_pad(as.character(`(County)`), 5, "left", "0"))
 
-cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
-  filter(gm == msa_FIPS) %>%
-  filter(year == 2017)
-
-county_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by NAICS 4.csv") %>%
-  filter(gc == as.integer(county_FIPS)) %>%
-  filter(year == 2017)
+# cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
+#   filter(gm == msa_FIPS) %>%
+#   filter(year == 2017)
+# 
+# county_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by NAICS 4.csv") %>%
+#   filter(gc == as.integer(county_FIPS)) %>%
+#   filter(year == 2017)
 
 
 # ShiftShare ---------------------------------------------------
@@ -172,9 +188,10 @@ county_OoW <- read.csv("V:/Sifan/Birmingham/County Cluster/source/OutOfWork_coun
   mutate(FIPS = str_pad(fips, 5, "left", "0"))
 
 
-# SAVE OUTPUT ==============================================
+# SAVE ALL OUTPUT ==============================================
 dfs <- objects()
 datafiles <- mget(dfs[grep("cbsa|county|tract", dfs)])
+
 # new <- mget(dfs[grep("export_ind", dfs)])
 # datafiles <- gdata::update.list(datafiles, new)
 
