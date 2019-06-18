@@ -57,7 +57,6 @@ cbsa_change <- prosperity_change %>%
   left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
   select(-contains("score"), -contains("name"))
 
-
 # join all three absolute values
 cbsa_value <- prosperity_value %>%
   filter(year == "2017") %>% #update year
@@ -101,6 +100,22 @@ sink()
 sink("metro_monitor/README.md")
 skim(cbsa_metromonitor)%>% kable()
 sink()
+
+#missing values (prompted by skim results)
+cbsa_change_anti <- prosperity_change %>% #check for missing values
+  filter(year == "2007-2017") %>% #update year
+  anti_join(growth_change, by = c("year", "cbsa")) %>%
+  left_join(inclusion_change, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
+  select(-contains("score"), -contains("name"))
+
+cbsa_change_anti$cbsa
+# The following 6 metro areas lack growth ranks for the 2007-2017 period in the original spreadsheet
+# V:/Performance/Project files/Metro Monitor/2019v/Output/Growth Ranks 2019-03-09 .csv
+# 14460 34980* 39300 44140 48620* 49340
+#*also missing employment 0-5 year (growth indicator)
+
+
 
 # Export Monitor---------------------------------------------------
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
