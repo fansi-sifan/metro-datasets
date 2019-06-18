@@ -63,6 +63,17 @@ cbsa_metromonitor <- cbsa_change %>%
     rank_growth = rank.y
   )
 
+# check output
+skimr::skim(cbsa_metromonitor)
+
+# save
+dir.create("metro_monitor")
+save(cbsa_metromonitor,file = "metro_monitor/metro_monitor.rda")
+# generate metadata
+sink("metro_monitor/metro_monitor.txt")
+skimr::skim(cbsa_metromonitor)
+sink()
+
 # Export Monitor---------------------------------------------------
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
