@@ -77,6 +77,9 @@ cbsa_metromonitor <- cbsa_change %>%
     racial_inclusion_rank = rank.y.y
   )
 
+na_emloyment<-cbsa_metromonitor %>%
+  filter(is.na(employment_at_firms_0_5_years_old))
+
 # format
 cbsa_metromonitor <- cbsa_metromonitor %>%
   mutate_at(c("cbsa_code","value_year","rank_year_range"),as.character) %>%
@@ -87,34 +90,19 @@ skim_with_defaults()
 skim(cbsa_metromonitor)
 
 # save output
-dir.create("metro_monitor")
-save(cbsa_metromonitor,file = "metro_monitor/metro_monitor.rda")
+dir.create("metro_monitor_2019")
+save(cbsa_metromonitor,file = "metro_monitor_2019/metro_monitor_2019.rda")
 
 # generate metadata
-sink("metro_monitor/metro_monitor.txt")
+sink("metro_monitor_2019/metro_monitor_2019.txt")
 skim_with(numeric = list(hist = NULL))
 skim(cbsa_metromonitor)
 sink()
 
 # create README
-sink("metro_monitor/README.md")
+sink("metro_monitor_2019/README.md")
 skim(cbsa_metromonitor)%>% kable()
 sink()
-
-#missing values (prompted by skim results)
-cbsa_change_anti <- prosperity_change %>% #check for missing values
-  filter(year == "2007-2017") %>% #update year
-  anti_join(growth_change, by = c("year", "cbsa")) %>%
-  left_join(inclusion_change, by = c("year", "cbsa")) %>%
-  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
-  select(-contains("score"), -contains("name"))
-
-cbsa_change_anti$cbsa
-# The following 6 metro areas lack growth ranks for the 2007-2017 period in the original spreadsheet
-# V:/Performance/Project files/Metro Monitor/2019v/Output/Growth Ranks 2019-03-09 .csv
-# 14460 34980* 39300 44140 48620* 49340
-#*also missing employment 0-5 year (growth indicator)
-
 
 
 # Export Monitor---------------------------------------------------
