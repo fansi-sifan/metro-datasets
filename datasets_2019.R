@@ -16,55 +16,66 @@ if (any(!check)) {
 
 paths <- "V:/Performance/Project files/Metro Monitor/2019v/Output/"
 
-# change in values (ranking)
+# change in values (ranking) - update to 2019 file paths and add janitor to clean var names
 growth_change <- read.csv(paste0(paths, "Growth Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
 prosperity_change <- read.csv(paste0(paths, "Prosperity Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
 inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))%>% janitor::clean_names()
-racial_inclusion_change <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names()
+racial_inclusion_change <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names() #racial inclusion = new category in 2019
 
-# absolute value in 2016
-growth_value <- read.csv(paste0(paths, "Growth Values 2019-03-09.csv")) %>%
-  filter(year == 2016) %>%
-  dcast(year + cbsa ~ indicator, var.value = "value")
+# absolute value in 2017 (instead of 2016) and clean names
+growth_value <- read.csv(paste0(paths, "Growth Values 2019-03-09 .csv")) %>% 
+  filter(year == 2017) %>%
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
 
-prosperity_value <- read.csv(paste0(paths, "Prosperity/Prosperity Values (IS 2017.11.14).csv")) %>%
-  filter(year == 2016) %>%
-  dcast(year + CBSA ~ indicator, var.value = "value")
+prosperity_value <- read.csv(paste0(paths, "Prosperity Values 2019-03-09 .csv")) %>% 
+  filter(year == 2017) %>%
+  dcast(year + cbsa_code ~ indicator, var.value = "value") %>% #repalce CBSA with cbsa_code 
+  janitor::clean_names()
 
-inclusion_value <- read.csv(paste0(paths, "Inclusion/Inclusion Values (IS 2017.11.17).csv")) %>%
-  filter(year == 2016) %>%
+inclusion_value <- read.csv(paste0(paths, "Inclusion/Inclusion Values (IS 2018.12.11).csv")) %>% 
+  filter(year == 2017) %>%
   filter(race == "Total") %>%
   filter(eduatt == "Total") %>%
-  dcast(year + cbsa ~ indicator, var.value = "value")
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
+
+racial_inclusion_value <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Values (IS 2019.03.06).csv")) %>% #racial inclusion = new category in 2019
+  filter(year == 2017) %>%
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
 
 # inconsistent column names
-names(inclusion_change) <- names(growth_change)
 names(prosperity_value)[[2]] <- "cbsa"
+names(prosperity_change)[[2]] <- "cbsa"
 
 # join all three changes
 cbsa_change <- prosperity_change %>%
-  filter(year == "2006-2016") %>%
-  left_join(growth_change, by = c("year", "CBSA")) %>%
-  left_join(inclusion_change, by = c("year", "CBSA")) %>%
+  filter(year == "2007-2017") %>% #update year
+  left_join(growth_change, by = c("year", "cbsa")) %>%
+  left_join(inclusion_change, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
   select(-contains("score"), -contains("name"))
 
 
 # join all three absolute values
 cbsa_value <- prosperity_value %>%
-  filter(year == "2016") %>%
+  filter(year == "2017") %>% #update year
   left_join(growth_value, by = c("year", "cbsa")) %>%
-  left_join(inclusion_value, by = c("year", "cbsa"))
-
-# join everything
+  left_join(inclusion_value, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_value, by = c("year", "cbsa"))
+  
+# join everything (recoded rank.?.? to the 4 rank categories using Akron as visual sample)
 cbsa_metromonitor <- cbsa_change %>%
-  left_join(cbsa_value, by = c("CBSA" = "cbsa")) %>%
+  left_join(cbsa_value, by = c("cbsa" = "cbsa")) %>%
   rename(
-    cbsa_code = CBSA,
+    cbsa_code = cbsa,
     value_year = year.y,
     rank_year_range = year.x,
-    inclusion_rank = rank,
     prosperity_rank = rank.x,
-    growth_rank = rank.y
+    growth_rank = rank.y,
+    inclusion_rank = rank.x.x,
+    racial_inclusion_rank = rank.y.y
   )
 
 # format
