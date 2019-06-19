@@ -56,6 +56,6 @@ sink("USPTO/county_USPTO.md")
 skim(county_USPTO)%>% kable()
 sink()
 
-# write csv to V drive
-write_csv("V:/Performance/Project files/USPTO/county_USPTO.csv")
-write_csv("V:/Performance/Project files/USPTO/cbsa_USPTO.csv")
+# write csv to github
+write.csv(county_USPTO, "USPTO/county_USPTO.csv")
+write.csv(cbsa_USPTO, "USPTO/cbsa_USPTO.csv")

@@ -137,3 +137,7 @@ Skim summary statistics
 "","x"
 "1","V:/Performance/Project files/USPTO/county_USPTO.csv"
 "","x"
+"1","V:/Performance/Project files/USPTO/cbsa_USPTO.csv"
+"","x"
+"1","USPTO/county_USPTO.csv"
+"","x"
