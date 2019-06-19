@@ -78,6 +78,7 @@ skim(cbsa_metromonitor)
 # save output
 dir.create("metro_monitor")
 save(cbsa_metromonitor,file = "metro_monitor/metro_monitor.rda")
+write.csv(cbsa_metromonitor,"metro_monitor/metro_monitor.csv")
 
 # generate metadata
 sink("metro_monitor/metro_monitor.txt")
@@ -94,6 +95,8 @@ sink()
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
   mutate(cbsa = as.character(`(CBSA)`))
+
+skim(cbsa_export)
 
 county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
@@ -114,11 +117,11 @@ cbsa_shiftshare <- read.csv("V:/Performance/Project files/Metro Monitor/2018v/Ou
   filter(year == 2016)
 
 # Digitalization ---------------------------------------------------
-cbsa_digital <- read.csv("V:/Sifan/Birmingham/County Cluster/source/metro_all_updated.csv") %>%
+cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
   mutate(cbsa = as.character(`AREA`))
 
 # Univ R&D ---------------------------------------------------
-NSF_univRD <- read.csv("V:/Sifan/Birmingham/County Cluster/source/NSF_univ.csv")
+NSF_univRD <- read.csv("source/NSF_univ.csv")
 
 cbsa_univRD <- NSF_univRD %>%
   group_by(cbsacode) %>%
@@ -138,7 +141,7 @@ county_univRD <- NSF_univRD %>%
 
 
 # AUTM ---------------------------------------------------
-AUTM <- read.csv("V:/Sifan/Birmingham/County Cluster/source/AUTM.csv")
+AUTM <- read.csv("source/AUTM.csv")
 
 county_AUTM <- AUTM %>%
   group_by(FIPS) %>%
@@ -161,30 +164,30 @@ cbsa_REGPAT <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/
   filter(`Year Range` == "2008-2012")
 
 # USPTO ---------------------------------------------------
-cbsa_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv") %>%
+cbsa_USPTO <- read.csv("source/USPTO_msa.csv") %>%
   mutate(cbsa = substr(as.character(ID.Code), 2, 6))
 
-county_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>%
+county_USPTO <- read.csv("source/USPTO_county.csv") %>%
   mutate(FIPS = str_pad(as.character(FIPS.Code), 5, "left", "0"))
 
 # Patent Complexity ---------------------------------------------------
-cbsa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>%
+cbsa_patentCOMP <- read.csv("source/Complexity_msa.csv") %>%
   mutate(cbsa = as.character(cbsa))
 
 # VC ---------------------------------------------------
-cbsa_VC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
+cbsa_VC <- read.csv("source/VC.csv") %>%
   filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
   mutate(cbsa = as.character(cbsa13))
 
 # Inc5000 ---------------------------------------------------
-cbsa_I5HGC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
+cbsa_I5HGC <- read.csv("source/I5HGC_density.csv") %>%
   mutate(cbsa = as.character(CBSA))
 
 # Broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")
 
 # out of work ---------------------------------------------------
-county_OoW <- read.csv("V:/Sifan/Birmingham/County Cluster/source/OutOfWork_county.csv") %>%
+county_OoW <- read.csv("source/OutOfWork_county.csv") %>%
   mutate(FIPS = str_pad(fips, 5, "left", "0"))
 
 
@@ -195,6 +198,6 @@ datafiles <- mget(dfs[grep("cbsa|county|tract", dfs)])
 # new <- mget(dfs[grep("export_ind", dfs)])
 # datafiles <- gdata::update.list(datafiles, new)
 
-save(datafiles, file = "V:/Sifan/Birmingham/County Cluster/source/all data.Rdata")
+save(datafiles, file = "source/all data.Rdata")
 
 # writexl::write_xlsx(new, path = paste0("result/",msa_FIPS,"_Market Assessment_new.xlsx"))
