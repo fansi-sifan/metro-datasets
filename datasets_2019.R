@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -14,56 +14,67 @@ if (any(!check)) {
 # TRANSFORM ============================================
 # Metro Monitor ---------------------------------------------------
 
-paths <- "V:/Performance/Project files/Metro Monitor/2018v/Output/"
+paths <- "V:/Performance/Project files/Metro Monitor/2019v/Output/"
 
-# change in values (ranking)
-growth_change <- read.csv(paste0(paths, "Growth/Growth Ranks (IS 2017.11.15).csv"))
-prosperity_change <- read.csv(paste0(paths, "Prosperity/Prosperity Ranks (IS 2017.11.14).csv"))
-inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2017.11.17).csv"))
+# change in values (ranking) - update to 2019 file paths and add janitor to clean var names
+growth_change <- read.csv(paste0(paths, "Growth Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+prosperity_change <- read.csv(paste0(paths, "Prosperity Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+inclusion_change <- read.csv(paste0(paths, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))%>% janitor::clean_names()
+racial_inclusion_change <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names() #racial inclusion = new category in 2019
 
-# absolute value in 2016
-growth_value <- read.csv(paste0(paths, "Growth/Growth Values (IS 2017.11.15).csv")) %>%
-  filter(year == 2016) %>%
-  dcast(year + cbsa ~ indicator, var.value = "value")
+# absolute value in 2017 (instead of 2016) and clean names
+growth_value <- read.csv(paste0(paths, "Growth Values 2019-03-09 .csv")) %>% 
+  filter(year == 2017) %>%
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
 
-prosperity_value <- read.csv(paste0(paths, "Prosperity/Prosperity Values (IS 2017.11.14).csv")) %>%
-  filter(year == 2016) %>%
-  dcast(year + CBSA ~ indicator, var.value = "value")
+prosperity_value <- read.csv(paste0(paths, "Prosperity Values 2019-03-09 .csv")) %>% 
+  filter(year == 2017) %>%
+  dcast(year + cbsa_code ~ indicator, var.value = "value") %>% #repalce CBSA with cbsa_code 
+  janitor::clean_names()
 
-inclusion_value <- read.csv(paste0(paths, "Inclusion/Inclusion Values (IS 2017.11.17).csv")) %>%
-  filter(year == 2016) %>%
+inclusion_value <- read.csv(paste0(paths, "Inclusion/Inclusion Values (IS 2018.12.11).csv")) %>% 
+  filter(year == 2017) %>%
   filter(race == "Total") %>%
   filter(eduatt == "Total") %>%
-  dcast(year + cbsa ~ indicator, var.value = "value")
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
+
+racial_inclusion_value <- read.csv(paste0(paths, "Inclusion/Racial Inclusion Values (IS 2019.03.06).csv")) %>% #racial inclusion = new category in 2019
+  filter(year == 2017) %>%
+  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  janitor::clean_names()
 
 # inconsistent column names
-names(inclusion_change) <- names(growth_change)
 names(prosperity_value)[[2]] <- "cbsa"
+names(prosperity_change)[[2]] <- "cbsa"
 
 # join all three changes
 cbsa_change <- prosperity_change %>%
-  filter(year == "2006-2016") %>%
-  left_join(growth_change, by = c("year", "CBSA")) %>%
-  left_join(inclusion_change, by = c("year", "CBSA")) %>%
+  filter(year == "2007-2017") %>% #update year
+  left_join(growth_change, by = c("year", "cbsa")) %>%
+  left_join(inclusion_change, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
   select(-contains("score"), -contains("name"))
-
 
 # join all three absolute values
 cbsa_value <- prosperity_value %>%
-  filter(year == "2016") %>%
+  filter(year == "2017") %>% #update year
   left_join(growth_value, by = c("year", "cbsa")) %>%
-  left_join(inclusion_value, by = c("year", "cbsa"))
-
-# join everything
+  left_join(inclusion_value, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_value, by = c("year", "cbsa"))
+  
+# join everything (recoded rank.?.? to the 4 rank categories using Akron as visual sample)
 cbsa_metromonitor <- cbsa_change %>%
-  left_join(cbsa_value, by = c("CBSA" = "cbsa")) %>%
+  left_join(cbsa_value, by = c("cbsa" = "cbsa")) %>%
   rename(
-    cbsa_code = CBSA,
+    cbsa_code = cbsa,
     value_year = year.y,
     rank_year_range = year.x,
-    inclusion_rank = rank,
     prosperity_rank = rank.x,
-    growth_rank = rank.y
+    growth_rank = rank.y,
+    inclusion_rank = rank.x.x,
+    racial_inclusion_rank = rank.y.y
   )
 
 # format
@@ -78,7 +89,6 @@ skim(cbsa_metromonitor)
 # save output
 dir.create("metro_monitor")
 save(cbsa_metromonitor,file = "metro_monitor/metro_monitor.rda")
-write.csv(cbsa_metromonitor,"metro_monitor/metro_monitor.csv")
 
 # generate metadata
 sink("metro_monitor/metro_monitor.txt")
@@ -91,12 +101,26 @@ sink("metro_monitor/README.md")
 skim(cbsa_metromonitor)%>% kable()
 sink()
 
+#missing values (prompted by skim results)
+cbsa_change_anti <- prosperity_change %>% #check for missing values
+  filter(year == "2007-2017") %>% #update year
+  anti_join(growth_change, by = c("year", "cbsa")) %>%
+  left_join(inclusion_change, by = c("year", "cbsa")) %>%
+  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
+  select(-contains("score"), -contains("name"))
+
+cbsa_change_anti$cbsa
+# The following 6 metro areas lack growth ranks for the 2007-2017 period in the original spreadsheet
+# V:/Performance/Project files/Metro Monitor/2019v/Output/Growth Ranks 2019-03-09 .csv
+# 14460 34980* 39300 44140 48620* 49340
+#*also missing employment 0-5 year (growth indicator)
+
+
+
 # Export Monitor---------------------------------------------------
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
   mutate(cbsa = as.character(`(CBSA)`))
-
-skim(cbsa_export)
 
 county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
@@ -117,11 +141,11 @@ cbsa_shiftshare <- read.csv("V:/Performance/Project files/Metro Monitor/2018v/Ou
   filter(year == 2016)
 
 # Digitalization ---------------------------------------------------
-cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
+cbsa_digital <- read.csv("V:/Sifan/Birmingham/County Cluster/source/metro_all_updated.csv") %>%
   mutate(cbsa = as.character(`AREA`))
 
 # Univ R&D ---------------------------------------------------
-NSF_univRD <- read.csv("source/NSF_univ.csv")
+NSF_univRD <- read.csv("V:/Sifan/Birmingham/County Cluster/source/NSF_univ.csv")
 
 cbsa_univRD <- NSF_univRD %>%
   group_by(cbsacode) %>%
@@ -141,7 +165,7 @@ county_univRD <- NSF_univRD %>%
 
 
 # AUTM ---------------------------------------------------
-AUTM <- read.csv("source/AUTM.csv")
+AUTM <- read.csv("V:/Sifan/Birmingham/County Cluster/source/AUTM.csv")
 
 county_AUTM <- AUTM %>%
   group_by(FIPS) %>%
@@ -164,30 +188,30 @@ cbsa_REGPAT <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/
   filter(`Year Range` == "2008-2012")
 
 # USPTO ---------------------------------------------------
-cbsa_USPTO <- read.csv("source/USPTO_msa.csv") %>%
+cbsa_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv") %>%
   mutate(cbsa = substr(as.character(ID.Code), 2, 6))
 
-county_USPTO <- read.csv("source/USPTO_county.csv") %>%
+county_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>%
   mutate(FIPS = str_pad(as.character(FIPS.Code), 5, "left", "0"))
 
 # Patent Complexity ---------------------------------------------------
-cbsa_patentCOMP <- read.csv("source/Complexity_msa.csv") %>%
+cbsa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>%
   mutate(cbsa = as.character(cbsa))
 
 # VC ---------------------------------------------------
-cbsa_VC <- read.csv("source/VC.csv") %>%
+cbsa_VC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
   filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
   mutate(cbsa = as.character(cbsa13))
 
 # Inc5000 ---------------------------------------------------
-cbsa_I5HGC <- read.csv("source/I5HGC_density.csv") %>%
+cbsa_I5HGC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
   mutate(cbsa = as.character(CBSA))
 
 # Broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")
 
 # out of work ---------------------------------------------------
-county_OoW <- read.csv("source/OutOfWork_county.csv") %>%
+county_OoW <- read.csv("V:/Sifan/Birmingham/County Cluster/source/OutOfWork_county.csv") %>%
   mutate(FIPS = str_pad(fips, 5, "left", "0"))
 
 
@@ -198,7 +222,7 @@ datafiles <- mget(dfs[grep("cbsa|county|tract", dfs)])
 # new <- mget(dfs[grep("export_ind", dfs)])
 # datafiles <- gdata::update.list(datafiles, new)
 
-save(datafiles, file = "source/all data.Rdata")
+save(datafiles, file = "V:/Sifan/Birmingham/County Cluster/source/all data.Rdata")
 
 # writexl::write_xlsx(new, path = paste0("result/",msa_FIPS,"_Market Assessment_new.xlsx"))
 
