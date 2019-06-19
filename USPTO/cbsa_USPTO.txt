@@ -141,3 +141,34 @@ Skim summary statistics
 "","x"
 "1","USPTO/county_USPTO.csv"
 "","x"
+"1","USPTO/cbsa_USPTO.csv"
+Skim summary statistics
+ n obs: 381 
+ n variables: 3 
+
+-- Variable type:character -----------------------------------------------------
+ variable missing complete   n min max empty n_unique
+     cbsa       0      381 381   5   5     0      381
+
+-- Variable type:factor --------------------------------------------------------
+      variable missing complete   n n_unique                     top_counts ordered
+ cma_cbsa_name       0      381 381      381 Abi: 1, Akr: 1, Alb: 1, Alb: 1   FALSE
+
+-- Variable type:numeric -------------------------------------------------------
+ variable missing complete   n mean   sd      p0  p25 p50  p75 p100     hist
+  complex       0      381 381 0.22 0.13 2.5e-06 0.14 0.2 0.27    1 <U+2583><U+2587><U+2583><U+2581><U+2581><U+2581><U+2581><U+2581>
+Skim summary statistics
+ n obs: 381 
+ n variables: 3 
+
+-- Variable type:character -----------------------------------------------------
+ variable missing complete   n min max empty n_unique
+     cbsa       0      381 381   5   5     0      381
+
+-- Variable type:factor --------------------------------------------------------
+      variable missing complete   n n_unique                     top_counts ordered
+ cma_cbsa_name       0      381 381      381 Abi: 1, Akr: 1, Alb: 1, Alb: 1   FALSE
+
+-- Variable type:numeric -------------------------------------------------------
+ variable missing complete   n mean   sd      p0  p25 p50  p75 p100     hist
+  complex       0      381 381 0.22 0.13 2.5e-06 0.14 0.2 0.27    1 <U+2583><U+2587><U+2583><U+2581><U+2581><U+2581><U+2581><U+2581>
