@@ -1,0 +1,465 @@
+CBSA,Name,Size_Category,I5HGC_Density
+10300,"Adrian, MI",Micro,59.5
+10420,"Akron, OH",Medium,59.7
+10580,"Albany-Schenectady-Troy, NY",Medium,65.4
+10700,"Albertville, AL",Micro,42.6
+10740,"Albuquerque, NM",Medium,32.8
+10820,"Alexandria, MN",Micro,55.0
+10900,"Allentown-Bethlehem-Easton, PA-NJ",Medium,58.4
+11020,"Altoona, PA",Small,7.9
+11100,"Amarillo, TX",Medium,15.5
+11180,"Ames, IA",Small,44.8
+11260,"Anchorage, AK",Medium,10.4
+11460,"Ann Arbor, MI",Medium,120.8
+11540,"Appleton, WI",Small,57.5
+11700,"Asheville, NC",Medium,81.5
+11900,"Athens, OH",Micro,62.2
+12020,"Athens-Clarke County, GA",Small,41.8
+12060,"Atlanta-Sandy Springs-Roswell, GA",Large,193.9
+12100,"Atlantic City-Hammonton, NJ",Medium,14.6
+12180,"Auburn, NY",Micro,12.4
+12220,"Auburn-Opelika, AL",Small,40.7
+12260,"Augusta-Richmond County, GA-SC",Medium,21.2
+12420,"Austin-Round Rock, TX",Large,289.5
+12460,"Bainbridge, GA",Micro,36.5
+12540,"Bakersfield, CA",Medium,28.9
+12580,"Baltimore-Columbia-Towson, MD",Large,124.1
+12700,"Barnstable Town, MA",Small,55.6
+12860,"Batavia, NY",Micro,16.7
+12940,"Baton Rouge, LA",Medium,72.3
+13020,"Bay City, MI",Small,18.7
+13140,"Beaumont-Port Arthur, TX",Medium,12.4
+13180,"Beaver Dam, WI",Micro,33.8
+13220,"Beckley, WV",Small,8.0
+13380,"Bellingham, WA",Small,84.2
+13420,"Bemidji, MN",Micro,88.9
+13460,"Bend-Redmond, OR",Small,99.7
+13740,"Billings, MT",Small,6.1
+13780,"Binghamton, NY",Medium,16.0
+13820,"Birmingham-Hoover, AL",Large,78.0
+13900,"Bismarck, ND",Small,44.0
+13980,"Blacksburg-Christiansburg-Radford, VA",Small,44.9
+14010,"Bloomington, IL",Small,5.4
+14020,"Bloomington, IN",Small,50.1
+14100,"Bloomsburg-Berwick, PA",Small,11.7
+14140,"Bluefield, WV-VA",Micro,18.7
+14260,"Boise City, ID",Medium,64.3
+14380,"Boone, NC",Micro,38.6
+14420,"Borger, TX",Micro,136.0
+14460,"Boston-Cambridge-Newton, MA-NH",Large,183.9
+14500,"Boulder, CO",Medium,367.0
+14540,"Bowling Green, KY",Small,63.3
+14580,"Bozeman, MT",Micro,230.8
+14660,"Brainerd, MN",Micro,54.8
+14720,"Breckenridge, CO",Micro,179.4
+14740,"Bremerton-Silverdale, WA",Small,4.1
+14820,"Brevard, NC",Micro,30.5
+14860,"Bridgeport-Stamford-Norwalk, CT",Medium,121.0
+15180,"Brownsville-Harlingen, TX",Medium,2.5
+15260,"Brunswick, GA",Small,18.1
+15380,"Buffalo-Cheektowaga-Niagara Falls, NY",Large,55.4
+15420,"Burley, ID",Micro,45.9
+15500,"Burlington, NC",Small,26.2
+15540,"Burlington-South Burlington, VT",Small,80.6
+15660,"Calhoun, GA",Micro,90.6
+15680,"California-Lexington Park, MD",Small,86.1
+15940,"Canton-Massillon, OH",Medium,9.9
+15980,"Cape Coral-Fort Myers, FL",Medium,60.1
+16180,"Carson City, NV",Small,55.1
+16300,"Cedar Rapids, IA",Medium,154.7
+16540,"Chambersburg-Waynesboro, PA",Small,40.0
+16580,"Champaign-Urbana, IL",Small,25.9
+16660,"Charleston-Mattoon, IL",Micro,46.3
+16700,"Charleston-North Charleston, SC",Medium,165.2
+16740,"Charlotte-Concord-Gastonia, NC-SC",Large,114.4
+16820,"Charlottesville, VA",Small,150.5
+16860,"Chattanooga, TN-GA",Medium,53.0
+16940,"Cheyenne, WY",Small,31.4
+16980,"Chicago-Naperville-Elgin, IL-IN-WI",Large,118.5
+17020,"Chico, CA",Small,18.3
+17140,"Cincinnati, OH-KY-IN",Large,104.9
+17200,"Claremont-Lebanon, NH-VT",Micro,18.4
+17220,"Clarksburg, WV",Micro,63.8
+17460,"Cleveland-Elyria, OH",Large,110.9
+17660,"Coeur d'Alene, ID",Small,121.9
+17780,"College Station-Bryan, TX",Small,35.4
+17820,"Colorado Springs, CO",Medium,40.5
+17860,"Columbia, MO",Small,164.2
+17900,"Columbia, SC",Medium,43.1
+17980,"Columbus, GA-AL",Medium,20.2
+18020,"Columbus, IN",Small,103.7
+18060,"Columbus, MS",Micro,67.0
+18140,"Columbus, OH",Large,117.2
+18180,"Concord, NH",Micro,20.4
+18260,"Cookeville, TN",Micro,9.6
+18460,"Cornelia, GA",Micro,93.2
+18580,"Corpus Christi, TX",Medium,11.6
+18700,"Corvallis, OR",Small,23.6
+18880,"Crestview-Fort Walton Beach-Destin, FL",Small,116.2
+19100,"Dallas-Fort Worth-Arlington, TX",Large,130.1
+19180,"Danville, IL",Small,12.2
+19300,"Daphne-Fairhope-Foley, AL",Small,42.0
+19340,"Davenport-Moline-Rock Island, IA-IL",Medium,15.8
+19380,"Dayton, OH",Medium,43.7
+19460,"Decatur, AL",Small,32.6
+19660,"Deltona-Daytona Beach-Ormond Beach, FL",Medium,11.8
+19740,"Denver-Aurora-Lakewood, CO",Large,181.1
+19780,"Des Moines-West Des Moines, IA",Medium,69.1
+19820,"Detroit-Warren-Dearborn, MI",Large,82.3
+19860,"Dickinson, ND",Micro,35.2
+20100,"Dover, DE",Small,6.1
+20260,"Duluth, MN-WI",Medium,25.1
+20340,"Duncan, OK",Micro,66.9
+20420,"Durango, CO",Micro,19.6
+20500,"Durham-Chapel Hill, NC",Medium,137.4
+20660,"Easton, MD",Micro,80.4
+20700,"East Stroudsburg, PA",Small,11.8
+20780,"Edwards, CO",Micro,97.3
+20820,"Effingham, IL",Micro,175.2
+20900,"El Campo, TX",Micro,24.3
+20940,"El Centro, CA",Small,29.2
+20980,"El Dorado, AR",Micro,24.6
+21020,"Elizabeth City, NC",Micro,31.7
+21060,"Elizabethtown-Fort Knox, KY",Small,27.7
+21120,"Elk City, OK",Micro,45.3
+21140,"Elkhart-Goshen, IN",Small,80.8
+21340,"El Paso, TX",Medium,8.7
+21460,"Enterprise, AL",Micro,19.9
+21500,"Erie, PA",Medium,7.1
+21660,"Eugene, OR",Medium,48.5
+21780,"Evansville, IN-KY",Medium,25.6
+21820,"Fairbanks, AK",Small,21.1
+21840,"Fairfield, IA",Micro,57.2
+21860,"Fairmont, MN",Micro,97.3
+22020,"Fargo, ND-MN",Small,136.0
+22180,"Fayetteville, NC",Medium,27.0
+22220,"Fayetteville-Springdale-Rogers, AR-MO",Medium,59.5
+22300,"Findlay, OH",Micro,80.0
+22420,"Flint, MI",Medium,9.3
+22500,"Florence, SC",Small,34.2
+22520,"Florence-Muscle Shoals, AL",Small,13.7
+22540,"Fond du Lac, WI",Small,29.6
+22580,"Forest City, NC",Micro,14.8
+22660,"Fort Collins, CO",Medium,126.4
+22700,"Fort Dodge, IA",Micro,26.5
+22900,"Fort Smith, AR-OK",Medium,3.6
+23060,"Fort Wayne, IN",Medium,66.9
+23180,"Frankfort, KY",Micro,14.3
+23420,"Fresno, CA",Medium,31.3
+23460,"Gadsden, AL",Small,9.6
+23540,"Gainesville, FL",Medium,34.1
+23580,"Gainesville, GA",Small,27.0
+23860,"Georgetown, SC",Micro,82.9
+23900,"Gettysburg, PA",Small,9.9
+23940,"Gillette, WY",Micro,41.7
+24020,"Glens Falls, NY",Small,7.8
+24060,"Glenwood Springs, CO",Micro,27.4
+24220,"Grand Forks, ND-MN",Small,20.3
+24260,"Grand Island, NE",Small,12.2
+24300,"Grand Junction, CO",Small,27.3
+24340,"Grand Rapids-Wyoming, MI",Medium,94.2
+24420,"Grants Pass, OR",Small,24.0
+24500,"Great Falls, MT",Small,12.2
+24540,"Greeley, CO",Medium,27.4
+24580,"Green Bay, WI",Medium,13.0
+24620,"Greeneville, TN",Micro,72.8
+24660,"Greensboro-High Point, NC",Medium,66.3
+24780,"Greenville, NC",Small,54.0
+24860,"Greenville-Anderson-Mauldin, SC",Medium,87.9
+24940,"Greenwood, SC",Micro,21.0
+25180,"Hagerstown-Martinsburg, MD-WV",Medium,35.5
+25200,"Hailey, ID",Micro,181.3
+25220,"Hammond, LA",Small,8.6
+25260,"Hanford-Corcoran, CA",Small,6.6
+25420,"Harrisburg-Carlisle, PA",Medium,54.6
+25540,"Hartford-West Hartford-East Hartford, CT",Large,47.2
+25620,"Hattiesburg, MS",Small,27.9
+25720,"Heber, UT",Micro,84.6
+25780,"Henderson, NC",Micro,22.5
+25860,"Hickory-Lenoir-Morganton, NC",Medium,13.7
+25900,"Hilo, HI",Micro,5.3
+25940,"Hilton Head Island-Bluffton-Beaufort, SC",Small,21.3
+26090,"Holland, MI",Micro,26.9
+26300,"Hot Springs, AR",Small,10.6
+26380,"Houma-Thibodaux, LA",Small,9.6
+26420,"Houston-The Woodlands-Sugar Land, TX",Large,89.8
+26580,"Huntington-Ashland, WV-KY-OH",Medium,2.8
+26620,"Huntsville, AL",Medium,296.8
+26740,"Hutchinson, KS",Micro,77.8
+26820,"Idaho Falls, ID",Small,68.6
+26860,"Indiana, PA",Micro,45.1
+26900,"Indianapolis-Carmel-Anderson, IN",Large,111.4
+26960,"Ionia, MI",Micro,46.9
+26980,"Iowa City, IA",Small,71.1
+27060,"Ithaca, NY",Small,39.1
+27100,"Jackson, MI",Small,56.1
+27140,"Jackson, MS",Medium,50.9
+27180,"Jackson, TN",Small,7.7
+27260,"Jacksonville, FL",Large,93.8
+27300,"Jacksonville, IL",Micro,24.2
+27420,"Jamestown, ND",Micro,142.5
+27500,"Janesville-Beloit, WI",Small,62.4
+27600,"Jefferson, GA",Micro,17.4
+27620,"Jefferson City, MO",Small,27.0
+27740,"Johnson City, TN",Small,35.4
+27780,"Johnstown, PA",Small,6.9
+27860,"Jonesboro, AR",Small,8.5
+27900,"Joplin, MO",Small,22.9
+27980,"Kahului-Wailuku-Lahaina, HI",Small,6.5
+28020,"Kalamazoo-Portage, MI",Medium,52.2
+28060,"Kalispell, MT",Micro,65.7
+28140,"Kansas City, MO-KS",Large,99.3
+28180,"Kapaa, HI",Micro,43.7
+28420,"Kennewick-Richland, WA",Medium,11.1
+28500,"Kerrville, TX",Micro,80.5
+28580,"Key West, FL",Micro,13.1
+28660,"Killeen-Temple, TX",Medium,4.8
+28700,"Kingsport-Bristol-Bristol, TN-VA",Medium,3.3
+28740,"Kingston, NY",Small,11.0
+28940,"Knoxville, TN",Medium,62.5
+29060,"Laconia, NH",Micro,99.7
+29100,"La Crosse-Onalaska, WI-MN",Small,67.6
+29180,"Lafayette, LA",Medium,47.2
+29200,"Lafayette-West Lafayette, IN",Small,19.4
+29340,"Lake Charles, LA",Small,24.9
+29420,"Lake Havasu City-Kingman, AZ",Small,10.0
+29460,"Lakeland-Winter Haven, FL",Medium,21.1
+29540,"Lancaster, PA",Medium,53.6
+29620,"Lansing-East Lansing, MI",Medium,34.4
+29660,"Laramie, WY",Micro,55.1
+29700,"Laredo, TX",Medium,35.9
+29820,"Las Vegas-Henderson-Paradise, NV",Large,63.0
+29940,"Lawrence, KS",Small,17.8
+30140,"Lebanon, PA",Small,52.0
+30340,"Lewiston-Auburn, ME",Small,65.0
+30460,"Lexington-Fayette, KY",Medium,31.8
+30620,"Lima, OH",Small,9.4
+30700,"Lincoln, NE",Medium,85.2
+30780,"Little Rock-North Little Rock-Conway, AR",Medium,17.1
+30860,"Logan, UT-ID",Small,114.1
+30940,"London, KY",Micro,39.5
+30980,"Longview, TX",Small,9.3
+31020,"Longview, WA",Small,29.3
+31060,"Los Alamos, NM",Micro,166.2
+31080,"Los Angeles-Long Beach-Anaheim, CA",Large,112.8
+31140,"Louisville/Jefferson County, KY-IN",Large,88.3
+31180,"Lubbock, TX",Medium,30.5
+31420,"Macon-Bibb County, GA",Small,25.9
+31460,"Madera, CA",Small,13.2
+31540,"Madison, WI",Medium,96.5
+31680,"Malvern, AR",Micro,90.8
+31700,"Manchester-Nashua, NH",Medium,94.8
+31740,"Manhattan, KS",Small,66.1
+31820,"Manitowoc, WI",Micro,61.7
+31900,"Mansfield, OH",Small,8.2
+31930,"Marietta, OH",Micro,16.3
+31980,"Marion, IN",Micro,71.3
+32700,"McPherson, KS",Micro,102.6
+32780,"Medford, OR",Small,29.3
+32820,"Memphis, TN-MS-AR",Large,46.7
+32900,"Merced, CA",Medium,3.8
+33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Large,116.8
+33140,"Michigan City-La Porte, IN",Small,44.9
+33220,"Midland, MI",Small,59.8
+33260,"Midland, TX",Small,21.3
+33340,"Milwaukee-Waukesha-West Allis, WI",Large,83.0
+33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Large,128.3
+33540,"Missoula, MT",Small,27.3
+33660,"Mobile, AL",Medium,43.7
+33700,"Modesto, CA",Medium,27.1
+33740,"Monroe, LA",Small,28.3
+33780,"Monroe, MI",Small,33.1
+33860,"Montgomery, AL",Medium,26.9
+33980,"Morehead City, NC",Micro,148.9
+34020,"Morgan City, LA",Micro,18.3
+34060,"Morgantown, WV",Small,53.4
+34100,"Morristown, TN",Small,26.4
+34140,"Moscow, ID",Micro,108.9
+34180,"Moses Lake, WA",Micro,10.9
+34340,"Mount Airy, NC",Micro,13.6
+34380,"Mount Pleasant, MI",Micro,28.4
+34420,"Mount Pleasant, TX",Micro,30.7
+34540,"Mount Vernon, OH",Micro,49.4
+34820,"Myrtle Beach-Conway-North Myrtle Beach, SC-NC",Medium,39.3
+34900,"Napa, CA",Small,28.7
+34940,"Naples-Immokalee-Marco Island, FL",Medium,42.9
+34980,"Nashville-Davidson--Murfreesboro--Franklin, TN",Large,152.5
+35020,"Natchez, MS-LA",Micro,19.0
+35260,"New Castle, PA",Micro,66.4
+35300,"New Haven-Milford, CT",Medium,46.4
+35380,"New Orleans-Metairie, LA",Large,78.1
+35420,"New Philadelphia-Dover, OH",Micro,54.0
+35500,"Newton, IA",Micro,27.2
+35620,"New York-Newark-Jersey City, NY-NJ-PA",Large,100.7
+35660,"Niles-Benton Harbor, MI",Small,6.4
+35740,"Norfolk, NE",Micro,20.9
+35840,"North Port-Sarasota-Bradenton, FL",Medium,108.4
+35980,"Norwich-New London, CT",Medium,25.6
+36100,"Ocala, FL",Medium,42.1
+36140,"Ocean City, NJ",Small,20.8
+36260,"Ogden-Clearfield, UT",Medium,83.5
+36420,"Oklahoma City, OK",Large,84.4
+36500,"Olympia-Tumwater, WA",Medium,15.5
+36540,"Omaha-Council Bluffs, NE-IA",Medium,96.7
+36580,"Oneonta, NY",Micro,16.1
+36740,"Orlando-Kissimmee-Sanford, FL",Large,124.5
+36780,"Oshkosh-Neenah, WI",Small,12.0
+36860,"Ottawa-Peru, IL",Micro,12.9
+36940,"Owatonna, MN",Micro,27.3
+36980,"Owensboro, KY",Small,8.7
+37020,"Owosso, MI",Micro,57.4
+37060,"Oxford, MS",Micro,209.3
+37100,"Oxnard-Thousand Oaks-Ventura, CA",Medium,108.0
+37140,"Paducah, KY-IL",Micro,20.3
+37340,"Palm Bay-Melbourne-Titusville, FL",Medium,18.4
+37420,"Pampa, TX",Micro,44.5
+37460,"Panama City, FL",Small,10.9
+37620,"Parkersburg-Vienna, WV",Small,21.6
+37740,"Payson, AZ",Micro,18.7
+37800,"Pella, IA",Micro,30.1
+37860,"Pensacola-Ferry Pass-Brent, FL",Medium,40.0
+37900,"Peoria, IL",Medium,13.2
+37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD",Large,116.7
+38060,"Phoenix-Mesa-Scottsdale, AZ",Large,118.6
+38240,"Pinehurst-Southern Pines, NC",Micro,80.1
+38300,"Pittsburgh, PA",Large,73.8
+38540,"Pocatello, ID",Small,12.0
+38740,"Poplar Bluff, MO",Micro,47.4
+38860,"Portland-South Portland, ME",Medium,106.5
+38900,"Portland-Vancouver-Hillsboro, OR-WA",Large,127.8
+38920,"Port Lavaca, TX",Micro,46.9
+38940,"Port St. Lucie, FL",Medium,11.8
+39060,"Pottsville, PA",Micro,20.2
+39140,"Prescott, AZ",Small,18.9
+39220,"Price, UT",Micro,46.7
+39300,"Providence-Warwick, RI-MA",Large,60.5
+39340,"Provo-Orem, UT",Medium,341.1
+39380,"Pueblo, CO",Small,37.5
+39420,"Pullman, WA",Micro,21.4
+39460,"Punta Gorda, FL",Small,18.6
+39540,"Racine, WI",Small,15.4
+39580,"Raleigh, NC",Large,171.2
+39660,"Rapid City, SD",Small,7.1
+39740,"Reading, PA",Medium,63.2
+39820,"Redding, CA",Small,22.4
+39860,"Red Wing, MN",Micro,151.9
+39900,"Reno, NV",Medium,63.4
+39940,"Rexburg, ID",Micro,40.3
+40060,"Richmond, VA",Large,101.4
+40140,"Riverside-San Bernardino-Ontario, CA",Large,25.1
+40220,"Roanoke, VA",Medium,38.8
+40340,"Rochester, MN",Small,14.3
+40380,"Rochester, NY",Large,79.7
+40420,"Rockford, IL",Medium,48.9
+40620,"Rolla, MO",Micro,22.6
+40660,"Rome, GA",Small,62.4
+40700,"Roseburg, OR",Micro,9.3
+40820,"Ruston, LA",Micro,106.5
+40900,"Sacramento--Roseville--Arden-Arcade, CA",Large,50.1
+40980,"Saginaw, MI",Small,10.0
+41060,"St. Cloud, MN",Small,58.2
+41100,"St. George, UT",Small,34.3
+41180,"St. Louis, MO-IL",Large,69.3
+41420,"Salem, OR",Medium,25.5
+41460,"Salina, KS",Micro,32.5
+41500,"Salinas, CA",Medium,31.2
+41540,"Salisbury, MD-DE",Medium,34.7
+41620,"Salt Lake City, UT",Large,232.1
+41660,"San Angelo, TX",Small,8.8
+41700,"San Antonio-New Braunfels, TX",Large,52.2
+41740,"San Diego-Carlsbad, CA",Large,177.8
+41760,"Sandpoint, ID",Micro,24.4
+41780,"Sandusky, OH",Micro,26.1
+41820,"Sanford, NC",Micro,34.7
+41860,"San Francisco-Oakland-Hayward, CA",Large,198.6
+41940,"San Jose-Sunnyvale-Santa Clara, CA",Large,151.6
+41980,"San Juan-Carolina-Caguas, PR",Large,3.0
+42020,"San Luis Obispo-Paso Robles-Arroyo Grande, CA",Medium,133.4
+42100,"Santa Cruz-Watsonville, CA",Medium,57.0
+42200,"Santa Maria-Santa Barbara, CA",Medium,129.8
+42220,"Santa Rosa, CA",Medium,76.5
+42340,"Savannah, GA",Medium,40.8
+42540,"Scranton--Wilkes-Barre--Hazleton, PA",Medium,7.1
+42660,"Seattle-Tacoma-Bellevue, WA",Large,154.9
+42680,"Sebastian-Vero Beach, FL",Small,35.9
+42700,"Sebring, FL",Small,20.1
+42780,"Selinsgrove, PA",Micro,75.3
+42940,"Sevierville, TN",Micro,66.1
+43100,"Sheboygan, WI",Small,8.7
+43260,"Sheridan, WY",Micro,33.6
+43320,"Show Low, AZ",Micro,9.3
+43340,"Shreveport-Bossier City, LA",Medium,22.7
+43580,"Sioux City, IA-NE-SD",Small,11.9
+43620,"Sioux Falls, SD",Small,63.2
+43740,"Somerset, PA",Micro,12.9
+43780,"South Bend-Mishawaka, IN-MI",Medium,59.5
+43900,"Spartanburg, SC",Medium,35.0
+43940,"Spearfish, SD",Micro,42.1
+44020,"Spirit Lake, IA",Micro,417.1
+44060,"Spokane-Spokane Valley, WA",Medium,30.3
+44100,"Springfield, IL",Small,19.0
+44140,"Springfield, MA",Medium,27.2
+44180,"Springfield, MO",Medium,79.7
+44220,"Springfield, OH",Small,29.0
+44260,"Starkville, MS",Micro,104.9
+44300,"State College, PA",Small,71.2
+44420,"Staunton-Waynesboro, VA",Small,25.3
+44460,"Steamboat Springs, CO",Micro,87.4
+44620,"Stevens Point, WI",Micro,14.3
+44660,"Stillwater, OK",Micro,78.3
+44700,"Stockton-Lodi, CA",Medium,1.5
+44920,"Summit Park, UT",Micro,372.0
+45060,"Syracuse, NY",Medium,25.7
+45220,"Tallahassee, FL",Medium,37.7
+45300,"Tampa-St. Petersburg-Clearwater, FL",Large,136.9
+45460,"Terre Haute, IN",Small,29.0
+45540,"The Villages, FL",Small,60.8
+45620,"Thomasville, GA",Micro,22.3
+45780,"Toledo, OH",Medium,67.2
+45820,"Topeka, KS",Small,8.5
+45860,"Torrington, CT",Micro,31.7
+45900,"Traverse City, MI",Micro,76.7
+45940,"Trenton, NJ",Medium,158.0
+46020,"Truckee-Grass Valley, CA",Micro,10.2
+46060,"Tucson, AZ",Medium,40.8
+46140,"Tulsa, OK",Medium,57.6
+46220,"Tuscaloosa, AL",Small,4.5
+46300,"Twin Falls, ID",Micro,29.6
+46340,"Tyler, TX",Small,28.3
+46500,"Urbana, OH",Micro,25.3
+46520,"Urban Honolulu, HI",Medium,27.1
+46540,"Utica-Rome, NY",Medium,13.4
+46660,"Valdosta, GA",Small,7.3
+46700,"Vallejo-Fairfield, CA",Medium,9.6
+46980,"Vicksburg, MS",Micro,34.0
+47020,"Victoria, TX",Small,31.6
+47220,"Vineland-Bridgeton, NJ",Small,6.4
+47260,"Virginia Beach-Norfolk-Newport News, VA-NC",Large,80.9
+47300,"Visalia-Porterville, CA",Medium,15.5
+47380,"Waco, TX",Small,4.1
+47460,"Walla Walla, WA",Small,48.9
+47580,"Warner Robins, GA",Small,27.4
+47620,"Warren, PA",Micro,24.4
+47700,"Warsaw, IN",Micro,25.9
+47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Large,328.5
+47940,"Waterloo-Cedar Falls, IA",Small,59.9
+48060,"Watertown-Fort Drum, NY",Small,33.7
+48140,"Wausau, WI",Small,15.0
+48300,"Wenatchee, WA",Small,44.6
+48500,"West Point, MS",Micro,49.2
+48540,"Wheeling, WV-OH",Small,6.7
+48580,"Whitewater-Elkhorn, WI",Micro,19.6
+48620,"Wichita, KS",Medium,57.3
+48660,"Wichita Falls, TX",Small,6.6
+48700,"Williamsport, PA",Small,8.6
+48900,"Wilmington, NC",Medium,128.2
+49020,"Winchester, VA-WV",Small,46.6
+49100,"Winona, MN",Micro,38.9
+49180,"Winston-Salem, NC",Medium,42.3
+49260,"Woodward, OK",Micro,48.9
+49300,"Wooster, OH",Micro,26.1
+49340,"Worcester, MA-CT",Medium,31.7
+49420,"Yakima, WA",Small,20.6
+49620,"York-Hanover, PA",Medium,4.6
+49660,"Youngstown-Warren-Boardman, OH-PA",Medium,15.9
+49740,"Yuma, AZ",Small,26.1
