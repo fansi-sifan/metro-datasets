@@ -201,4 +201,4 @@ save(datafiles, file = "V:/Sifan/Birmingham/County Cluster/source/all data.Rdata
 
 
 
-
+levels(factor(cbsa_VC$geo_type))

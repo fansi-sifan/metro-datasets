@@ -26,3 +26,5 @@ Variable type: numeric
 |   variable    | missing | complete |  n  | mean  |  sd   | p0  | p25  |  p50  |  p75  | p100  |
 |---------------|---------|----------|-----|-------|-------|-----|------|-------|-------|-------|
 | i5hgc_density |    0    |   464    | 464 | 55.54 | 56.52 | 1.5 | 19.6 | 38.15 | 71.55 | 417.1 |
+
+Large, medium and small size categories are all MSAs, micro = micropolitan areas

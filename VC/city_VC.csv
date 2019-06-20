@@ -1,4 +1,4 @@
-"","msa","country","measure","period","round","value","latitude","longitude","rank","cbsa13","cbsa"
+"","msa","country","measure","period","round","value","latitude","longitude","rank","cbsa13","city"
 "1","Akron","United States","Capital Invested ($ M) per 1M Residents","2015-17","Total VC",50.773827,41.08144,-81.519,256,10420,"10420"
 "2","Albany (NY)","United States","Capital Invested ($ M) per 1M Residents","2015-17","Total VC",104.04169,42.6526,-73.7562,195,10580,"10580"
 "3","Albuquerque","United States","Capital Invested ($ M) per 1M Residents","2015-17","Total VC",261.7243,35.08449,-106.6511,104,10740,"10740"

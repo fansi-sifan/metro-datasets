@@ -13,32 +13,36 @@ if (any(!check)) {
 
 # TRANSFORM ============================================
 # VC ---------------------------------------------------
-cbsa_VC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
+city_VC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
   filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
-  mutate(cbsa = as.character(cbsa13)) %>%
+  mutate(geoid = as.character(cbsa13)) %>%
   janitor::clean_names()
 
-cbsa_VC$x <- NULL
+city_VC$x <- NULL
+city_VC$cbsa13 <-NULL
+colnames(city_VC)[which(names(city_VC) == "msa")] <- "city"
 
 # check output
 skim_with_defaults()
-skim(cbsa_VC)
+skim(city_VC)
 
 # save output
 dir.create("VC")
 
-save(county_USPTO,file = "VC/cbsa_VC.rda")
+save(county_USPTO,file = "VC/city_VC.rda")
 
 # generate metadata county
-sink("VC/cbsa_VC.txt")
+sink("VC/city_VC.txt")
+
 skim_with(numeric = list(hist = NULL))
-skim(county_USPTO)
+skim(city_VC)
 sink()
 
-# create README cbsa
-sink("VC/cbsa_VC.md")
-skim(cbsa_USPTO)%>% kable()
+# create README city
+sink("VC/city_VC.md")
+skim(city_VC)%>% kable()
 sink()
 
 # write csv to github
-write.csv(cbsa_VC, "VC/cbsa_VC.csv")
+write.csv(city_VC, "VC/city_VC.csv")
+
