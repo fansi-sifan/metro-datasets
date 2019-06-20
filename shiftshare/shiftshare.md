@@ -1,3 +1,7 @@
+# Shiftshare Metadata
+# *Metro Monitor Report*
+_
+_
 Skim summary statistics  
  n obs: 7800    
  n variables: 16    

@@ -29,7 +29,7 @@ dir.create("shiftshare")
 save(cbsa_shiftshare,file = "shiftshare/shiftshare.rda")
 
 #save metadata in readme
-sink("shiftshare/README.md") 
+sink("shiftshare/shiftshare.md") 
 skim(cbsa_shiftshare) %>%
   kable()
 sink()
