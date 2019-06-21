@@ -37,3 +37,9 @@ Variable type: integer
 |  x2013   |    0    |   1018   | 1018 | 131.24  | 706.24  | 0  |  2  |  7   | 29.75 | 12899  | <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581> |
 |  x2014   |    0    |   1018   | 1018 | 142.08  | 782.99  | 0  |  2  |  7   |  31   | 14894  | <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581> |
 |  x2015   |    0    |   1018   | 1018 | 138.47  | 764.72  | 0  |  2  |  7   |  33   | 14618  | <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581> |
+
+This USPTO data is at these scales: 
+ Metropolitan Statistical Area           Micropolitan Statistical Area 
+               374                                     579 
+Non Metro/Micropolitan Statistical Area           Undetermined Statistical Area 
+               49                                      16
