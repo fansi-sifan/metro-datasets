@@ -28,16 +28,21 @@ county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Delivera
   mutate(FIPS = str_pad(as.character(`(County)`), 5, "left", "0")) %>%
   janitor::clean_names()
 
+state_export <- county_export %>% #aggregate data by state
+  group_by(state_name, state_code) %>%
+  summarise_if(is.numeric,sum)
+
 #create directory
 dir.create("export_monitor")
 save(cbsa_export,file = "export_monitor/export_monitor_cbsa.rda")
 save(county_export,file = "export_monitor/export_monitor_county.rda")
-
+save(state_export,file = "export_monitor/export_monitor_state.rda")
 
 # sink metadata into .md
 sink("export_monitor/export_monitor.md")
 skim(county_export) %>% kable()
 skim(cbsa_export) %>% kable()
+skim(state_export) %>% kable()
 sink()
 
 
@@ -45,11 +50,13 @@ sink()
 sink("export_monitor/export_monitor.txt") 
 skim(county_export)
 skim(cbsa_export)
+skim(state_export)
 sink()
 
 #write csv
 write_csv(county_export,"export_monitor/export_monitor_county.csv")
 write_csv(cbsa_export,"export_monitor/export_monitor_cbsa.csv")
+write_csv(state_export,"export_monitor/export_monitor_state.csv")
 
 # cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
 #   filter(gm == msa_FIPS) %>%
