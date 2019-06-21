@@ -30,7 +30,8 @@ county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Delivera
 
 #create directory
 dir.create("export_monitor")
-save(cbsa_export,file = "export_monitor/export_monitor.rda")
+save(cbsa_export,file = "export_monitor/export_monitor_cbsa.rda")
+save(county_export,file = "export_monitor/export_monitor_county.rda")
 
 
 # sink metadata into .md
