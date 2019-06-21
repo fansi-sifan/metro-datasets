@@ -19,7 +19,8 @@ cbsa_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv"
   filter(geo_type != "ALL AREAS")
 
 county_USPTO <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>% janitor::clean_names() %>%
-  mutate(FIPS = str_pad(as.character(fips_code), 5, "left", "0"))
+  mutate(FIPS = str_pad(as.character(fips_code), 5, "left", "0"))%>%
+  filter(mail_code!="ALL")
 
 county_USPTO$fips_code <- NULL
   
