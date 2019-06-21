@@ -27,8 +27,8 @@ missing_vc_msas<-MSA%>%
 #USPTO - reasonable, likely accurate, check w merge to TIGER file
 Metropolitan Statistical Area  
 374 
-Micropolitan Statistical Area    Non Metro/Micropolitan Statistical Area           Undetermined Statistical Area 
-579                                              49                                      16 
+Micropolitan Statistical Area    Non Metro/Micropolitan Statistical Area    Undetermined Statistical Area 
+579                                              49                                   16 
 
 MSA<-cbsa_USPTO%>%
   select(geo_type,cbsa,us_regional_title)%>%
@@ -36,4 +36,30 @@ MSA<-cbsa_USPTO%>%
   mutate(msa_simple = gsub("^(.*?),.*", "\\1", us_regional_title))
 
 #patents - merge to see which are micro, which are metro
+#they are all metro , need to change patent comp file
 381 obs and no specific enumeration units for cbsa_complete
+
+cbsas<-read.csv("Core_Based_Statistical_Areas.csv")%>%
+  mutate(cbsa = as.character(GEOID))
+
+msas<-cbsas%>%
+  filter(LSAD=="M1")
+
+micros<-cbsas%>%
+  filter(LSAD=="M2")%>%
+  mutate(cbsa2=cbsa)
+
+patent_joing<-cbsas%>%
+  left_join(cbsa_patentCOMP, by="cbsa")%>%
+  filter(!is.na(complex))
+
+merge(cbsa_patentCOMP,cbsas, by="cbsa")
+
+missing_msa_patent<-msas%>%
+  anti_join(msa_patentCOMP, by=c("cbsa"="msa"))
+
+missing_msa_patent <-missing_msa_patent%>%
+  filter(is.na(NAME))
+
+
+                    

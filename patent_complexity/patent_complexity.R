@@ -13,29 +13,32 @@ if (any(!check)) {
 
 # TRANSFORM ============================================
 # Patent Complexity ---------------------------------------------------
-cbsa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
+msa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
   janitor::clean_names() %>%
-  mutate(cbsa = as.character(cbsa))
+  mutate(msa = as.character(cbsa), msa_name = as.character(cma_cbsa_name))
+
+msa_patentCOMP$cbsa <-NULL
+msa_patentCOMP$cma_cbsa_name <- NULL
 
 # check output
 skim_with_defaults()
-skim(cbsa_patentCOMP)
+skim(msa_patentCOMP)
 
 # save output
 dir.create("patent_complexity")
 
-save(county_USPTO,file = "patent_complexity/cbsa_patentCOMP.rda")
+save(county_USPTO,file = "patent_complexity/msa_patentCOMP.rda")
 
 # generate metadata county
-sink("patent_complexity/cbsa_patentCOMP.txt")
+sink("patent_complexity/msa_patentCOMP.txt")
 skim_with(numeric = list(hist = NULL))
-skim(county_USPTO)
+skim(msa_patentCOMP)
 sink()
 
-# create README cbsa
-sink("patent_complexity/cbsa_patentCOMP.md")
-skim(cbsa_USPTO)%>% kable()
+# create README msa
+sink("patent_complexity/msa_patentCOMP.md")
+skim(msa_patentCOMP)%>% kable()
 sink()
 
 # write csv to github
-write.csv(cbsa_patentCOMP, "patent_complexity/cbsa_patentCOMP.csv")
+write.csv(msa_patentCOMP, "patent_complexity/msa_patentCOMP.csv")
