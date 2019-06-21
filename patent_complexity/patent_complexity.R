@@ -15,7 +15,7 @@ if (any(!check)) {
 # Patent Complexity ---------------------------------------------------
 msa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
   janitor::clean_names() %>%
-  mutate(msa = as.character(cbsa), msa_name = as.character(cma_cbsa_name))
+  mutate(msa= as.character(cbsa), msa_name = as.character(cma_cbsa_name))
 
 msa_patentCOMP$cbsa <-NULL
 msa_patentCOMP$cma_cbsa_name <- NULL
