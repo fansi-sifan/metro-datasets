@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -18,7 +18,7 @@ if (any(!check)) {
 
 AUTM <- read.csv("source/AUTM.csv")
 
-county_AUTM <- AUTM %>%
+county_autm <- AUTM %>%
   group_by(FIPS) %>%
   # summarise_if(is.numeric, sum, na.rm = TRUE) %>%
   summarise(
@@ -31,26 +31,51 @@ county_AUTM <- AUTM %>%
     tot_st = sum(St.Ups.Formed, na.rm = TRUE),
     instate_st = sum(St.Ups.in.Home.St, na.rm = TRUE)
   ) %>%
-  mutate(FIPS = str_pad(as.character(FIPS), 5, "left", "0"))
+  mutate(co_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
+  select(-FIPS)
+
+#set variable labels
+labels <- c(
+"total license and option issues",
+"total licenses, large companies",
+"total licenses, small companoes",
+"total licenses, start-ups",
+"gross license income",
+"total investment disclosures received",
+"total start ups formed",
+"start ups in home state",
+"county FIPS code"
+)
+
+set_label(county_autm)<-labels
+
+#correspondance between labels and variable names
+county_autm_key <- get_label(county_autm) %>%
+  data.frame() %>%
+  rename_at(vars(1), funs(paste0('labels'))) %>%
+  mutate(names = colnames(county_autm)) 
+
 
 #create directory
 dir.create("autm")
-save(AUTM,file = "autm/autm.rda")
+save(county_autm,file = "autm/autm.rda")
 
 
 # sink metadata into .md
 sink("autm/autm.md")
-skim(AUTM) %>% kable()
+skim(county_autm) %>% kable()
+county_autm_key %>% kable()
 sink()
 
 
 #txt file with metadata
 sink("autm/autm.txt") 
-skim(AUTM)
+skim(county_autm)
+county_autm_key
 sink()
 
 #write csv
-write_csv(AUTM,"autm/autm.csv")
+write_csv(county_autm,"autm/autm.csv")
 
 
 

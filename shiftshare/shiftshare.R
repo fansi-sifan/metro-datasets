@@ -2,7 +2,7 @@
 # Author: David Whyman
 # Date: Wed Jun 19 15:39:00 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -19,10 +19,41 @@ if (any(!check)) {
 #V:\Performance\Project files\Metro Monitor\2018v/Output/Shift Share\Monitor Shiftshare Cumulative (2-digit NAICS).csv
 #no 2019 version of this dataset found
 
-cbsa_shiftshare <- read_csv("source/shiftshare.csv") %>%
- #filter(cbsa2013_fips == msa_FIPS) %>% (not sure what msa_FIPS refers to... object does not exist)
-  filter(year == 2016) %>%
-  janitor::clean_names() #variable names still not clear to me
+cbsa_shiftshare <- read_csv("source/shiftshare.csv",
+      col_types = cols(cbsa2013_fips = col_character())) %>%
+  filter(year == 2016)
+  
+#use old column names as labels (use View() to see labels)
+  set_label(cbsa_shiftshare)<-colnames(cbsa_shiftshare)
+
+#new names
+colnames(cbsa_shiftshare)<-c("year",
+                             "cbsa_2013_fips",
+                             "cbsa_2013_name",
+                             "naics2_code",
+                             "naics2_name",
+                             "indicator",
+                             "2006_ls_share",
+                             "2006_im_share",
+                             "2006_ns_share",
+                             "2011_ls_share",
+                             "2011_im_share",
+                             "2011_ns_share",
+                             "2015_ls_share",
+                             "2015_im_share",
+                             "2015_ns_share",
+                             "value"
+                             )
+
+#correspondance between old names (labels) and new names
+cbsa_shiftshare_key <- get_label(cbsa_shiftshare) %>%
+  data.frame() %>%
+  rename_at(vars(1), funs(paste0('labels'))) %>%
+  mutate(names = colnames(cbsa_shiftshare)) 
+
+                             
+                        
+                             
 
 #save output
 dir.create("shiftshare")
@@ -32,11 +63,14 @@ save(cbsa_shiftshare,file = "shiftshare/shiftshare.rda")
 sink("shiftshare/shiftshare.md") 
 skim(cbsa_shiftshare) %>%
   kable()
+cbsa_shiftshare_key %>%
+  kable()
 sink()
 
 #txt file with metadata
 sink("shiftshare/shiftshare.txt") 
 skim(cbsa_shiftshare)
+cbsa_shiftshare_key
 sink()
 
 #write csv
