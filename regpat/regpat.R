@@ -18,8 +18,21 @@ if (any(!check)) {
 
 cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx", sheet = "i0") %>%
   filter(`Year Range` == "2008-2012") %>%
+  select(-Total) %>%
   janitor::clean_names()
 
+colnames(cbsa_regpat)<-c(
+"year_range",                                         
+"micro_regions",                                      
+"micro_region",                                       
+"micro_region_country",                               
+"core_macro_region",                                  
+"country",                                            
+"micro_patents_invented",     
+"micro_inventors_per_patent", 
+"micro_patent_applications",  
+"micro_applicants_per_patent"
+)
 
 #create directory
 dir.create("regpat")
