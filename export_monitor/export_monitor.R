@@ -19,7 +19,7 @@ if (any(!check)) {
 
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
-  mutate(cbsa = as.character(`(CBSA)`)) %>%
+  mutate(cbsa_code = as.character(`(CBSA)`)) %>%
   janitor::clean_names()
 
 
