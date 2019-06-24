@@ -204,4 +204,4 @@ save(datafiles, file = "source/all data.Rdata")
 
 
 
-
+levels(factor(cbsa_VC$geo_type))
