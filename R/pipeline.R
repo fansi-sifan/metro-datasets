@@ -1,5 +1,5 @@
 # pipeline to create master datasets
-
+library(tidyverse)
 
 # load all .rda datasets ==============================
 temp = list.files(pattern = ".rda", recursive = T)
@@ -14,14 +14,15 @@ merge_cbsa <- function(list){
 
 merge_county <- function(list){
   plyr::join_all(list,
-                 by = c("stco_fips"),
+                 by = c("stco_code"),
                  type = "full")}
 
 
 # which ones are needed? =============================
 
-cbsa_xxx <- merge_cbsa(c(""))
-county_xxx <- merge_cbsa(c(""))
+cbsa_df <- merge_cbsa(list(cbsa_I5HGC,cbsa_univRD,cbsa_VC))
+
+county_df <- merge_cbsa(c(""))
 
 
 # find cbsa_code ----
@@ -39,5 +40,5 @@ find_cbsa("grand rapids")
 cbsa_codes <- c("19740","24340")
 
 # select data ----
-cbsa_metromonitor %>%
+cbsa_df %>%
   filter(cbsa_code %in% cbsa_codes)
