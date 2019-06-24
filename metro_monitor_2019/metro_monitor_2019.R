@@ -89,6 +89,7 @@ skim(cbsa_metromonitor)
 # save output
 dir.create("metro_monitor_2019")
 save(cbsa_metromonitor,file = "metro_monitor_2019/metro_monitor_2019.rda")
+write.csv(cbsa_metromonitor, "metro_monitor_2019/metro_monitor_2019.csv")
 
 # generate metadata
 sink("metro_monitor_2019/metro_monitor_2019.txt")
@@ -100,25 +101,4 @@ sink()
 sink("metro_monitor_2019/README.md")
 skim(cbsa_metromonitor)%>% kable()
 sink()
-
-
-# Export Monitor---------------------------------------------------
-cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
-  filter(Year == 2017) %>%
-  mutate(cbsa = as.character(`(CBSA)`))
-
-county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
-  filter(Year == 2017) %>%
-  mutate(FIPS = str_pad(as.character(`(County)`), 5, "left", "0"))
-
-# cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
-#   filter(gm == msa_FIPS) %>%
-#   filter(year == 2017)
-# 
-# county_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by NAICS 4.csv") %>%
-#   filter(gc == as.integer(county_FIPS)) %>%
-#   filter(year == 2017)
-
-
-
 
