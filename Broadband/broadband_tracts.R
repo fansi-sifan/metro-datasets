@@ -22,8 +22,6 @@ tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Bro
 tract_broadband$v1<-NULL
 tract_broadband$tractonly_fips<-NULL
 tract_broadband$geotype<-NULL
-#tract_broadband$county<-NULL
-#tract_broadband$countyname<-NULL
 tract_broadband$place<-NULL
 tract_broadband$stplfips<-NULL
 
@@ -37,12 +35,15 @@ names(tract_broadband)[names(tract_broadband) == 'countyname'] <- 'county_name'
 
 
 #change classes
-tract_broadband$cbsa_code<-as.numeric(tract_broadband$cbsa_code)
- 
+tract_broadband$cbsa_code<-as.character(tract_broadband$cbsa_code)
+tract_broadband$state_code<-as.character(tract_broadband$state_code)
+tract_broadband$stcotract_code<-as.character(tract_broadband$stcotract_code)
+tract_broadband$state_code<-as.character(tract_broadband$state_code)
+
 #create a county code for joining
 tract_broadband <- tract_broadband %>%
   mutate(county_code = str_remove(stcotract_code, tract_code))%>%
-  mutate(county_code = as.numeric(county_code))
+  mutate(county_code = as.character(county_code))
 
 # check output
 skim_with_defaults()

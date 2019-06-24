@@ -14,8 +14,13 @@ if (any(!check)) {
 # TRANSFORM ============================================
 # Inc5000 ---------------------------------------------------
 cbsa_I5HGC <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
-  mutate(cbsa = as.character(CBSA)) %>%
+  mutate(CBSA_CODE = as.character(CBSA)) %>%
   janitor::clean_names()
+
+
+cbsa_I5HGC$cbsa<-NULL
+cbsa_I5HGC$cbsa_name<-as.character(cbsa_I5HGC$cbsa_name)
+names(cbsa_I5HGC)[names(cbsa_I5HGC) == 'name'] <- 'cbsa_name'
 
 # check output
 skim_with_defaults()
@@ -24,7 +29,7 @@ skim(cbsa_I5HGC)
 # save output
 dir.create("Inc5000")
 
-save(county_USPTO,file = "Inc5000/cbsa_I5HGC.rda")
+save(cbsa_I5HGC,file = "Inc5000/cbsa_I5HGC.rda")
 
 # generate metadata county
 sink("Inc5000/cbsa_I5HGC.txt")

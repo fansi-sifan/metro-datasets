@@ -29,7 +29,7 @@ skim(city_VC)
 # save output
 dir.create("VC")
 
-save(county_USPTO,file = "VC/city_VC.rda")
+save(city_VC,file = "VC/city_VC.rda")
 
 # generate metadata county
 sink("VC/city_VC.txt")
