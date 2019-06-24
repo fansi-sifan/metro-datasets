@@ -15,10 +15,13 @@ if (any(!check)) {
 # Patent Complexity ---------------------------------------------------
 msa_patentCOMP <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
   janitor::clean_names() %>%
-  mutate(msa= as.character(cbsa), msa_name = as.character(cma_cbsa_name))
+  mutate(msa_code= as.character(cbsa), msa_name = as.character(cma_cbsa_name))
 
 msa_patentCOMP$cbsa <-NULL
 msa_patentCOMP$cma_cbsa_name <- NULL
+
+#rename patent variable
+names(msa_patentCOMP)[names(msa_patentCOMP) == 'complex'] <- 'patent_complexity'
 
 # check output
 skim_with_defaults()
@@ -27,7 +30,7 @@ skim(msa_patentCOMP)
 # save output
 dir.create("patent_complexity")
 
-save(county_USPTO,file = "patent_complexity/msa_patentCOMP.rda")
+save(msa_patentCOMP,file = "patent_complexity/msa_patentCOMP.rda")
 
 # generate metadata county
 sink("patent_complexity/msa_patentCOMP.txt")
