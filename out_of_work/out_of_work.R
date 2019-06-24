@@ -14,7 +14,7 @@ if (any(!check)) {
 # TRANSFORM ============================================
 # out of work ---------------------------------------------------
 county_OoW <- read.csv("V:/Sifan/Birmingham/County Cluster/source/OutOfWork_county.csv") %>%
-  mutate(FIPS = str_pad(fips, 5, "left", "0")) %>%
+  mutate(county_code = str_pad(fips, 5, "left", "0")) %>%
   janitor::clean_names()
 
 county_OoW <- county_OoW %>%
@@ -35,6 +35,7 @@ county_OoW$highly_educated_and_engaged_younger_people<-NULL
 county_OoW$highly_educated_high_income_older_people<-NULL
 county_OoW$x_1<-NULL
 county_OoW$x<-NULL
+county_OoW$fips<-NULL
 
 #change the percentages from "%char" to numeric .xx
 cols.num <- c("young_less_educated_and_diverse_perc","less_educated_prime_age_people_perc",             
@@ -46,6 +47,15 @@ county_OoW[cols.num] <- sapply(county_OoW,function(x) gsub("%","",as.numeric(x))
 county_OoW[cols.num] <- sapply(county_OoW[cols.num],as.numeric)
 
 county_OoW[cols.num]<-county_OoW[cols.num]/100
+
+#rename some columns
+names(county_OoW)[names(county_OoW) == 'jurisdiction'] <- 'county_name'
+names(county_OoW)[names(county_OoW) == 'cbsacode'] <- 'cbsa_code'
+
+#change classes
+county_OoW$county_code<-as.character(county_OoW$county_code)
+county_OoW$county_name<-as.character(county_OoW$county_name)
+county_OoW$cbsa_code<-as.character(county_OoW$cbsa_code)
 
 # check output
 skim_with_defaults()
@@ -69,4 +79,5 @@ sink()
 
 # write csv to github
 write.csv(county_OoW, "out_of_work/county_OoW.csv")
+
 
