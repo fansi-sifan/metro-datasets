@@ -25,7 +25,7 @@ cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverabl
 
 county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
-  mutate(FIPS = str_pad(as.character(`(County)`), 5, "left", "0")) %>%
+  mutate(stcofips_code = str_pad(as.character(`(County)`), 5, "left", "0")) %>%
   janitor::clean_names()
 
 state_export <- county_export %>% #aggregate data by state
