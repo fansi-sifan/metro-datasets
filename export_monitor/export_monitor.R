@@ -22,43 +22,43 @@ cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverabl
 
 #use old column names as labels (use View() to see labels)
 set_label(cbsa_export)<-colnames(cbsa_export)
- 
+
 
 #set new column names
 colnames(cbsa_export)<-c(
-         "year",
-         "cbsa_code",
-         "cbsa_2013_name",
-         "cbsa_2013_short_name",
-         "st_abbr",
-         "st_code",
-         "st_name",
-         "region_abbr",
-         "region_name",
-         "is_top100",
-         "is_top100_label",
-         "is_metro",
-         "is_metro_label",
-         "cbsa_exports_nominal",
-         "cbsa_exports_real",
-         "cbsa_pct_exports_gdp",
-         "cbsa_export_jobs_direct",
-         "cbsa_export_jobs_direct_intensity",
-         "cbsa_export_jobs_total",
-         "cbsa_export_jobs_total_intensity",
-         "cbsa_2003_2014_pct_export_growth",
-         "cbsa_2008_2017_pct_export_growth",
-         "cbsa_2014_2017_pct_export_growth",
-         "cbsa_2003_2017_pct_export_growth",
-         "cbsa_pct_export_growth",
-         "cbsa_gdp_nominal",
-         "cbsa_gdp_real",
-         "cbsa_2003_2014_pct_gdp_growth",
-         "cbsa_2008_2017_pct_gdp_growth",
-         "cbsa_2003_2017_pct_gdp_growth",
-         "cbsa_2014_2017_pct_gdp_growth",
-         "cbsa_pct_gdp_growth",
-         "cbsa_jobs")
+  "year",
+  "cbsa_code",
+  "cbsa_2013_name",
+  "cbsa_2013_short_name",
+  "st_abbr",
+  "st_code",
+  "st_name",
+  "region_abbr",
+  "region_name",
+  "is_top100",
+  "is_top100_label",
+  "is_metro",
+  "is_metro_label",
+  "cbsa_exports_nominal",
+  "cbsa_exports_real",
+  "cbsa_pct_exports_gdp",
+  "cbsa_export_jobs_direct",
+  "cbsa_export_jobs_direct_intensity",
+  "cbsa_export_jobs_total",
+  "cbsa_export_jobs_total_intensity",
+  "cbsa_2003_2014_pct_export_growth",
+  "cbsa_2008_2017_pct_export_growth",
+  "cbsa_2014_2017_pct_export_growth",
+  "cbsa_2003_2017_pct_export_growth",
+  "cbsa_pct_export_growth",
+  "cbsa_gdp_nominal",
+  "cbsa_gdp_real",
+  "cbsa_2003_2014_pct_gdp_growth",
+  "cbsa_2008_2017_pct_gdp_growth",
+  "cbsa_2003_2017_pct_gdp_growth",
+  "cbsa_2014_2017_pct_gdp_growth",
+  "cbsa_pct_gdp_growth",
+  "cbsa_jobs")
 
 #correspondance between old names (labels) and new names
 cbsa_export_key <- get_label(cbsa_export) %>%
@@ -88,34 +88,34 @@ colnames(county_export)<-c("year",
                            "is_top100_label",
                            "is_metro",
                            "is_metro_label",
-                           "st_code",
-                           "st_name", 
                            "st_abbr",
+                           "st_code",
+                           "st_name",
                            "region_abbr",
                            "region_name",
-                           "county_exports_nominal",
-                           "county_exports_real",
-                           "county_pct_exports_gdp",
-                           "county_export_jobs_direct",
-                           "county_export_jobs_direct_intensity",
-                           "county_export_jobs_total",
-                           "county_export_jobs_total_intensity",
-                           "county_2003_2014_pct_export_growth",
-                           "county_2008_2017_pct_export_growth",
-                           "county_2014_2017_pct_export_growth",
-                           "county_2003_2017_pct_export_growth",
-                           "county_pct_export_growth",
-                           "county_gdp_nominal",
-                           "county_gdp_real",
-                           "county_2003_2014_pct_gdp_growth",
-                           "county_2008_2017_pct_gdp_growth",
-                           "county_2003_2017_pct_gdp_growth",
-                           "county_2014_2017_pct_gdp_growth",
-                           "county_pct_gdp_growth",
-                           "county_jobs",
+                           "cbsa_exports_nominal",
+                           "cbsa_exports_real",
+                           "cbsa_pct_exports_gdp",
+                           "cbsa_export_jobs_direct",
+                           "cbsa_export_jobs_direct_intensity",
+                           "cbsa_export_jobs_total",
+                           "cbsa_export_jobs_total_intensity",
+                           "cbsa_2003_2014_pct_export_growth",
+                           "cbsa_2008_2017_pct_export_growth",
+                           "cbsa_2014_2017_pct_export_growth",
+                           "cbsa_2003_2017_pct_export_growth",
+                           "cbsa_pct_export_growth",
+                           "cbsa_gdp_nominal",
+                           "cbsa_gdp_real",
+                           "cbsa_2003_2014_pct_gdp_growth",
+                           "cbsa_2008_2017_pct_gdp_growth",
+                           "cbsa_2003_2017_pct_gdp_growth",
+                           "cbsa_2014_2017_pct_gdp_growth",
+                           "cbsa_pct_gdp_growth",
+                           "cbsa_jobs",
                            "stcofips_code"
-                           )
-  
+)
+
 #correspondance between old names (labels) and new names
 county_export_key <- get_label(county_export) %>%
   data.frame() %>%
@@ -157,5 +157,3 @@ write_csv(cbsa_export,"export_monitor/export_monitor_cbsa.csv")
 # county_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by NAICS 4.csv") %>%
 #   filter(gc == as.integer(county_FIPS)) %>%
 #   filter(year == 2017)
-
-
