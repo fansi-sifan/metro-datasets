@@ -23,11 +23,11 @@ cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/
 
 colnames(cbsa_regpat)<-c(
 "year_range",                                         
-"micro_regions",                                      
-"micro_region",                                       
+"micro_region_name",                                      
+"micro_region_code",                                       
 "micro_region_country",                               
-"core_macro_region",                                  
-"country",                                            
+"core_macro_region_name",                                  
+"country_name",                                            
 "micro_patents_invented",     
 "micro_inventors_per_patent", 
 "micro_patent_applications",  

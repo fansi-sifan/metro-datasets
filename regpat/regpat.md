@@ -4,14 +4,14 @@ Skim summary statistics
 
 Variable type: character
 
-|       variable       | missing | complete |  n   | min | max | empty | n_unique |
-|----------------------|---------|----------|------|-----|-----|-------|----------|
-|  core_macro_region   |    0    |   2707   | 2707 |  3  | 61  |   0   |   626    |
-|       country        |    0    |   2707   | 2707 |  5  | 18  |   0   |    46    |
-|     micro_region     |    0    |   2707   | 2707 |  3  | 78  |   0   |   2660   |
-| micro_region_country |    0    |   2707   | 2707 | 11  | 87  |   0   |   2699   |
-|    micro_regions     |    0    |   2707   | 2707 |  4  |  7  |   0   |   2707   |
-|      year_range      |    0    |   2707   | 2707 |  9  |  9  |   0   |    1     |
+|        variable        | missing | complete |  n   | min | max | empty | n_unique |
+|------------------------|---------|----------|------|-----|-----|-------|----------|
+| core_macro_region_name |    0    |   2707   | 2707 |  3  | 61  |   0   |   626    |
+|      country_name      |    0    |   2707   | 2707 |  5  | 18  |   0   |    46    |
+|   micro_region_code    |    0    |   2707   | 2707 |  3  | 78  |   0   |   2660   |
+|  micro_region_country  |    0    |   2707   | 2707 | 11  | 87  |   0   |   2699   |
+|   micro_region_name    |    0    |   2707   | 2707 |  4  |  7  |   0   |   2707   |
+|       year_range       |    0    |   2707   | 2707 |  9  |  9  |   0   |    1     |
 
 Variable type: numeric
 

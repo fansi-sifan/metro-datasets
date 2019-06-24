@@ -1,4 +1,4 @@
-year_range,micro_regions,micro_region,micro_region_country,core_macro_region,country,micro_patents_invented,micro_inventors_per_patent,micro_patent_applications,micro_applicants_per_patent
+year_range,micro_region_name,micro_region_code,micro_region_country,core_macro_region_name,country_name,micro_patents_invented,micro_inventors_per_patent,micro_patent_applications,micro_applicants_per_patent
 2008-2012,10100,"Aberdeen, SD","Aberdeen, SD (United States)",South Dakota,United States,3.2666666507720947,10,3.0833334922790527,5
 2008-2012,10140,"Aberdeen, WA","Aberdeen, WA (United States)",Washington,United States,9.166666984558105,19,9.5,10
 2008-2012,10180,"Abilene, TX","Abilene, TX (United States)",Texas,United States,10.149999618530273,17,5,5

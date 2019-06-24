@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled") #sjlabelled for column labels
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {

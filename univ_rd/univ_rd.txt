@@ -1,21 +1,10 @@
-# University Research & Development Metadata
-
-### CBSA-Level Metadata
-
-
 Skim summary statistics
  n obs: 327 
- n variables: 4 
+ n variables: 3 
 
 -- Variable type:character -----------------------------------------------------
- variable missing complete   n min max empty n_unique
-     cbsa       1      326 327   5   5     0      326
-
--- Variable type:integer -------------------------------------------------------
- variable missing complete   n     mean       sd    p0   p25   p50   p75  p100
- cbsacode       1      326 327 29736.63 11302.27 10220 19350 30100 39400 49660
-     hist
- <U+2587><U+2587><U+2585><U+2587><U+2587><U+2587><U+2587><U+2586>
+  variable missing complete   n min max empty n_unique
+ cbsa_code       1      326 327   5   5     0      326
 
 -- Variable type:numeric -------------------------------------------------------
      variable missing complete   n     mean         sd     p0      p25       p50
@@ -24,27 +13,36 @@ Skim summary statistics
         p75          p100     hist
  1065054.12       1.9e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
    46371.95 1366653.64    <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-   
-   
-
-### County-Level Metadata
-
+                                         labels        names
+1                            total R&D spending     rd_total
+2 total deflated business financed R&D spending rd_total_biz
+3                                     FIPS code    cbsa_code
 Skim summary statistics
  n obs: 529 
- n variables: 4 
+ n variables: 3 
 
 -- Variable type:character -----------------------------------------------------
  variable missing complete   n min max empty n_unique
-     FIPS       0      529 529   5   5     0      529
-
--- Variable type:integer -------------------------------------------------------
- variable missing complete   n     mean       sd   p0   p25   p50   p75  p100     hist
-   county       0      529 529 31542.64 15990.12 1015 19013 34023 45013 78030 <U+2585><U+2586><U+2587><U+2587><U+2587><U+2583><U+2581><U+2581>
+  co_code       0      529 529   5   5     0      529
 
 -- Variable type:numeric -------------------------------------------------------
-     variable missing complete   n      mean         sd     p0     p25      p50
-     rd_total       0      529 529 645276.37 1553339.29 193.06 9694.44 46811.93
- rd_total_biz       1      528 529  35845.6   110855.18   0      42     1372.45
-       p75          p100     hist
- 528703.78       1.3e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-  23173.47 1355391.92    <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
+     variable missing complete   n      mean         sd     p0     p25      p50       p75
+     rd_total       0      529 529 645276.37 1553339.29 193.06 9694.44 46811.93 528703.78
+ rd_total_biz       1      528 529  35845.6   110855.18   0      42     1372.45  23173.47
+          p100     hist
+       1.3e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
+ 1355391.92    <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
+# A tibble: 529 x 3
+   rd_total rd_total_biz co_code
+      <dbl>        <dbl> <chr>  
+ 1    5860.         101. 01015  
+ 2 2195531.      155157. 01073  
+ 3  657226.       27042. 01081  
+ 4   91853.         845. 01087  
+ 5  568105.        8203. 01089  
+ 6  196633.        6845. 01097  
+ 7   21083.           0  01101  
+ 8  657226.       27042. 01123  
+ 9  263625.       10594. 01125  
+10   90202.        3257. 02020  
+# ... with 519 more rows

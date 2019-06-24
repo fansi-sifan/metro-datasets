@@ -20,6 +20,37 @@ cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
   mutate(cbsa = as.character(`AREA`)) %>%
   janitor::clean_names()
 
+names<-c(
+"x",
+"msa_code",
+"2002_score",
+"2016_socre",
+"2002_pct_high",
+"2002_pct_medium",
+"2002_pct_low",
+"2016_pct_high",
+"2016_pct_medium",
+"2016_pct_low",
+"2002_wage",
+"2016_wage",
+"2002_employ",
+"2016_employ",
+"metro",
+"msa_name",
+"2002_employ",
+"2010_emoloy",
+"2016_employ",
+"2002_gdp",
+"2010_gdp",
+"2016_gdp",
+"2002_wage",
+"2010_wage",
+"2016_wage",
+"2002_prod",
+"2010_prod",
+"2016_prod"
+)
+
 
 #create directory
 dir.create("digitalization")
