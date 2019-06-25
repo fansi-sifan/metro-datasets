@@ -10,9 +10,9 @@ Skim summary statistics
      variable missing complete   n     mean         sd     p0      p25       p50
      rd_total       0      327 327 1e+06    2317291.21 193.06 13903.2  109654.93
  rd_total_biz       1      326 327 58056.68  154399.97   0      177.37   3450.25
-        p75          p100     hist
- 1065054.12       1.9e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-   46371.95 1366653.64    <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
+        p75          p100
+ 1065054.12       1.9e+07
+   46371.95 1366653.64   
                                          labels        names
 1                            total R&D spending     rd_total
 2 total deflated business financed R&D spending rd_total_biz
@@ -29,9 +29,9 @@ Skim summary statistics
      variable missing complete   n      mean         sd     p0     p25      p50       p75
      rd_total       0      529 529 645276.37 1553339.29 193.06 9694.44 46811.93 528703.78
  rd_total_biz       1      528 529  35845.6   110855.18   0      42     1372.45  23173.47
-          p100     hist
-       1.3e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
- 1355391.92    <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
+          p100
+       1.3e+07
+ 1355391.92   
 # A tibble: 529 x 3
    rd_total rd_total_biz co_code
       <dbl>        <dbl> <chr>  

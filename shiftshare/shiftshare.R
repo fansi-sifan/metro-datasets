@@ -24,11 +24,11 @@ cbsa_shiftshare <- read_csv("source/shiftshare.csv",
   filter(year == 2016)
   
 #use old column names as labels (use View() to see labels)
-  set_label(cbsa_shiftshare)<-colnames(cbsa_shiftshare)
+set_label(cbsa_shiftshare)<-colnames(cbsa_shiftshare)
 
 #new names
 colnames(cbsa_shiftshare)<-c("year",
-                             "cbsa_2013_fips",
+                             "cbsa_code",
                              "cbsa_2013_name",
                              "naics2_code",
                              "naics2_name",
@@ -51,26 +51,25 @@ cbsa_shiftshare_key <- get_label(cbsa_shiftshare) %>%
   rename_at(vars(1), funs(paste0('labels'))) %>%
   mutate(names = colnames(cbsa_shiftshare)) 
 
-                             
-                        
-                             
 
 #save output
 dir.create("shiftshare")
 save(cbsa_shiftshare,file = "shiftshare/shiftshare.rda")
 
+skim_with(numeric = list(hist = NULL))
+
 #save metadata in readme
-sink("shiftshare/shiftshare.md") 
-skim(cbsa_shiftshare) %>%
-  kable()
+sink("shiftshare/README.md") 
 cbsa_shiftshare_key %>%
+  kable()
+skim(cbsa_shiftshare) %>%
   kable()
 sink()
 
 #txt file with metadata
 sink("shiftshare/shiftshare.txt") 
-skim(cbsa_shiftshare)
 cbsa_shiftshare_key
+skim(cbsa_shiftshare)
 sink()
 
 #write csv

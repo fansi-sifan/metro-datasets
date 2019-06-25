@@ -23,24 +23,25 @@ cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/
 
 colnames(cbsa_regpat)<-c(
 "year_range",                                         
-"micro_region_name",                                      
-"micro_region_code",                                       
-"micro_region_country",                               
-"core_macro_region_name",                                  
+"cbsa_name",                                      
+"cbsa_fips", #includes outside US                                      
+"cbsa_country",                               
+"st_name",                                  
 "country_name",                                            
-"micro_patents_invented",     
-"micro_inventors_per_patent", 
-"micro_patent_applications",  
-"micro_applicants_per_patent"
+"cbsa_patents_invented",     
+"cbsa_inventors_per_patent", 
+"cbsa_patent_applications",  
+"cbsa_applicants_per_patent"
 )
 
 #create directory
 dir.create("regpat")
 save(cbsa_regpat,file = "regpat/regpat.rda")
 
+skim_with(numeric = list(hist = NULL))
 
 # sink metadata into .md
-sink("regpat/regpat.md")
+sink("regpat/README.md")
 skim(cbsa_regpat) %>% kable()
 sink()
 

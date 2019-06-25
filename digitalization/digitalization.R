@@ -22,7 +22,7 @@ cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
 
 names<-c(
 "x",
-"msa_code",
+"cbsa_code",
 "2002_score",
 "2016_socre",
 "2002_pct_high",
@@ -36,7 +36,7 @@ names<-c(
 "2002_employ",
 "2016_employ",
 "metro",
-"msa_name",
+"cbsa_name",
 "2002_employ",
 "2010_emoloy",
 "2016_employ",
@@ -56,9 +56,10 @@ names<-c(
 dir.create("digitalization")
 save(cbsa_digital,file = "digitalization/digitalization.rda")
 
+skim_with(numeric = list(hist = NULL))
 
 # sink metadata into .md
-sink("digitalization/digitalization.md")
+sink("digitalization/README.md")
 skim(cbsa_digital) %>% kable()
 sink()
 

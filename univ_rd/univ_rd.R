@@ -63,7 +63,7 @@ save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 
 
 # sink metadata into .md
-sink("univ_rd/univ_rd.md")
+sink("univ_rd/README.md")
 skim(cbsa_univRD) %>% kable()
 cbsa_univRD_key %>% kable()
 skim(county_univRD) %>% kable()

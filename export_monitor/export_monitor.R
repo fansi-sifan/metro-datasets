@@ -18,7 +18,7 @@ if (any(!check)) {
 
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
-  select(-c(2,15,16))
+  select(-c(2,13:16))
 
 #use old column names as labels (use View() to see labels)
 set_label(cbsa_export)<-colnames(cbsa_export)
@@ -33,8 +33,6 @@ colnames(cbsa_export)<-c(
   "st_abbr",
   "st_code",
   "st_name",
-  "region_abbr",
-  "region_name",
   "is_top100",
   "is_top100_label",
   "is_metro",
@@ -72,7 +70,7 @@ cbsa_export_key <- get_label(cbsa_export) %>%
 county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
   mutate(stcofips_code = str_pad(as.character(`(County)`), 5, "left", "0")) %>%
-  select(-c(2,3,17,18))
+  select(-c(2,3,5,6,7,15,16,17,18))
 
 
 #use old column names as labels (use View() to see labels)
@@ -81,9 +79,6 @@ set_label(county_export)<-colnames(county_export)
 #set new column names
 colnames(county_export)<-c("year",
                            "co_name", 
-                           "cbsa_code",
-                           "cbsa_2013_name",
-                           "cbsa_2013_short_name",
                            "is_top100",
                            "is_top100_label",
                            "is_metro",
@@ -91,8 +86,6 @@ colnames(county_export)<-c("year",
                            "st_code",
                            "st_name",
                            "st_abbr",
-                           "region_abbr",
-                           "region_name",
                            "county_exports_nominal",
                            "county_exports_real",
                            "county_pct_exports_gdp",
@@ -113,7 +106,7 @@ colnames(county_export)<-c("year",
                            "county_2014_2017_pct_gdp_growth",
                            "county_pct_gdp_growth",
                            "county_jobs",
-                           "stcofips_code"
+                           "stco_code"
 )
 
 #correspondance between old names (labels) and new names
@@ -126,29 +119,29 @@ county_export_key <- get_label(county_export) %>%
 
 #create directory
 dir.create("export_monitor")
-save(cbsa_export,file = "export_monitor/export_monitor_cbsa.rda")
-save(county_export,file = "export_monitor/export_monitor_county.rda")
+save(cbsa_export,file = "export_monitor/cbsa_export_monitor.rda")
+save(county_export,file = "export_monitor/county_export_monitor.rda")
 
 # sink metadata into .md
-sink("export_monitor/export_monitor.md")
-skim(county_export) %>% kable()
+sink("export_monitor/README.md")
 county_export_key %>% kable()
-skim(cbsa_export) %>% kable()
 cbsa_export_key %>% kable()
+skim(county_export) %>% kable()
+skim(cbsa_export) %>% kable()
 sink()
 
 
 #txt file with metadata
 sink("export_monitor/export_monitor.txt") 
-skim(county_export) %>% kable()
 county_export_key
-skim(cbsa_export) %>% kable()
 cbsa_export_key
+skim(county_export) %>% kable()
+skim(cbsa_export) %>% kable()
 sink()
 
 #write csv
-write_csv(county_export,"export_monitor/export_monitor_county.csv")
-write_csv(cbsa_export,"export_monitor/export_monitor_cbsa.csv")
+write_csv(county_export,"export_monitor/county_export_monitor.csv")
+write_csv(cbsa_export,"export_monitor/cbsa_export_monitor.csv")
 
 # cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
 #   filter(gm == msa_FIPS) %>%
