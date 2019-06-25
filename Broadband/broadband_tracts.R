@@ -16,34 +16,10 @@ if (any(!check)) {
 # broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")%>%
   janitor::clean_names()%>%
-  mutate(tract_code = as.character(str_sub(tract,-6,-1)))
+  mutate(stcotract_code = as.character(str_sub(tract,-6,-1)))
 
 #delete or rename columns
-tract_broadband$v1<-NULL
-tract_broadband$tractonly_fips<-NULL
-tract_broadband$geotype<-NULL
-tract_broadband$place<-NULL
-tract_broadband$stplfips<-NULL
-
-names(tract_broadband)[names(tract_broadband) == 'tract'] <- 'stcotract_code'
-names(tract_broadband)[names(tract_broadband) == 'state'] <- 'state_code'
-names(tract_broadband)[names(tract_broadband) == 'statename'] <- 'state_name'
-names(tract_broadband)[names(tract_broadband) == 'cbsa'] <- 'cbsa_code'
-names(tract_broadband)[names(tract_broadband) == 'metro'] <- 'cbsa_name'
-names(tract_broadband)[names(tract_broadband) == 'county'] <- 'county_code'
-names(tract_broadband)[names(tract_broadband) == 'countyname'] <- 'county_name'
-
-
-#change classes
-tract_broadband$cbsa_code<-as.character(tract_broadband$cbsa_code)
-tract_broadband$state_code<-as.character(tract_broadband$state_code)
-tract_broadband$stcotract_code<-as.character(tract_broadband$stcotract_code)
-tract_broadband$state_code<-as.character(tract_broadband$state_code)
-
-#create a county code for joining
-tract_broadband <- tract_broadband %>%
-  mutate(county_code = str_remove(stcotract_code, tract_code))%>%
-  mutate(county_code = as.character(county_code))
+tract_broadband <- tract_broadband[, -c(1:12)]
 
 # check output
 skim_with_defaults()

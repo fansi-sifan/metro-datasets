@@ -1,6 +1,6 @@
 Skim summary statistics
  n obs: 73056 
- n variables: 57 
+ n variables: 50 
 
 -- Variable type:character -----------------------------------------------------
        variable missing complete     n min max empty n_unique
@@ -8,14 +8,7 @@ Skim summary statistics
           atl10       0    73056 73056   8  11     0        3
           atl25       0    73056 73056   8  11     0        3
            atl3       0    73056 73056   8  11     0        3
-      cbsa_code       0    73056 73056   2   5     0      918
-      cbsa_name    5512    67544 73056   7  46     0      915
-    county_code       0    73056 73056   4   5     0     3144
-    county_name       0    73056 73056  10  33     0     1876
-     state_code       0    73056 73056   1   2     0       51
-     state_name       0    73056 73056   4  20     0       51
- stcotract_code       0    73056 73056  10  11     0    73056
-     tract_code       0    73056 73056   6   6     0    23816
+ stcotract_code       0    73056 73056   6   6     0    23816
 
 -- Variable type:numeric -------------------------------------------------------
                      variable missing complete     n     mean       sd    p0   p25   p50   p75
