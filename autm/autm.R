@@ -60,11 +60,11 @@ county_autm_key <- get_label(county_autm) %>%
 dir.create("autm")
 save(county_autm,file = "autm/autm.rda")
 
-skim_with(numeric = list(hist = NULL))
 
 # sink metadata into .md
 sink("autm/README.md")
 county_autm_key %>% kable()
+skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
 skim(county_autm) %>% kable()
 sink()
 

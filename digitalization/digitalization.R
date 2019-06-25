@@ -56,7 +56,7 @@ names<-c(
 dir.create("digitalization")
 save(cbsa_digital,file = "digitalization/digitalization.rda")
 
-skim_with(numeric = list(hist = NULL))
+skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
 
 # sink metadata into .md
 sink("digitalization/README.md")
