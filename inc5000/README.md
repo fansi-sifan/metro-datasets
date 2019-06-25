@@ -6,6 +6,8 @@
 | large/medium/small/non |   cbsa_size   |
 |     i5hgc density      | i5hgc_density |
 |       cbsa geoid       |   cbsa_code   |
+
+
 Skim summary statistics  
  n obs: 464    
  n variables: 4    
