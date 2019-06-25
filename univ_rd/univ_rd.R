@@ -32,7 +32,7 @@ county_univRD <- NSF_univRD %>%
     rd_total = sum(Deflated.Total.R.D.Expenditures.in.All.Fields.Sum.),
     rd_total_biz = sum(as.numeric(as.character(Deflated.Business.Financed.R.D.Expenditures.Sum.)))
   ) %>%
-  mutate(co_code = str_pad(as.character(county), 5, "left", "0")) %>%
+  mutate(stco_code = str_pad(as.character(county), 5, "left", "0")) %>%
   select(-county)
 
 
@@ -55,7 +55,6 @@ cbsa_univRD_key <- get_label(cbsa_univRD) %>%
   rename_at(vars(1), funs(paste0('labels'))) %>%
   mutate(names = colnames(cbsa_univRD)) 
 
-
 #create directory
 dir.create("univ_rd")
 save(cbsa_univRD,file = "univ_rd/univ_rd_cbsa.rda")
@@ -63,22 +62,24 @@ save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 
 
 # sink metadata into .md
-sink("univ_rd/univ_rd.md")
-skim(cbsa_univRD) %>% kable()
+sink("univ_rd/README.md")
 cbsa_univRD_key %>% kable()
-skim(county_univRD) %>% kable()
 county_univRD_key %>% kable()
+skim_with(numeric = list(hist = NULL))
+skim(cbsa_univRD) %>% kable()
+skim(county_univRD) %>% kable()
 sink()
 
 
 #txt file with metadata
 sink("univ_rd/univ_rd.txt")
-skim(cbsa_univRD)
 cbsa_univRD_key
-skim(county_univRD)
 county_univRD
+skim(cbsa_univRD)
+skim(county_univRD)
 sink()
 
 #write csv
 write_csv(cbsa_univRD,"univ_rd/univ_rd_cbsa.csv")
 write_csv(county_univRD,"univ_rd/univ_rd_county.csv")
+
