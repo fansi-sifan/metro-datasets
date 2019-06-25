@@ -1,10 +1,9 @@
 # pipeline to create master datasets
 library(tidyverse)
 
-# load all .rda datasets ==============================
+# load all .rda datasets to the global envior. ==============================
 temp = list.files(pattern = ".rda", recursive = T)
 list(lapply(temp, load, .GlobalEnv))
-dfs <- objects()
 
 # Functions to merge all =============================
 merge_cbsa <- function(list){
@@ -19,6 +18,7 @@ merge_county <- function(list){
 
 
 # Select and merge datasets =============================
+dfs <- objects()
 list_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
 list_county_all <- mget(dfs[grep("county_",dfs)])
 
