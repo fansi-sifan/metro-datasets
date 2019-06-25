@@ -122,6 +122,8 @@ dir.create("export_monitor")
 save(cbsa_export,file = "export_monitor/cbsa_export_monitor.rda")
 save(county_export,file = "export_monitor/county_export_monitor.rda")
 
+skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
+
 # sink metadata into .md
 sink("export_monitor/README.md")
 county_export_key %>% kable()

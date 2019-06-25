@@ -64,19 +64,19 @@ save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 
 # sink metadata into .md
 sink("univ_rd/README.md")
-skim(cbsa_univRD) %>% kable()
 cbsa_univRD_key %>% kable()
-skim(county_univRD) %>% kable()
 county_univRD_key %>% kable()
+skim(cbsa_univRD) %>% kable()
+skim(county_univRD) %>% kable()
 sink()
 
 
 #txt file with metadata
 sink("univ_rd/univ_rd.txt")
-skim(cbsa_univRD)
 cbsa_univRD_key
-skim(county_univRD)
 county_univRD
+skim(cbsa_univRD)
+skim(county_univRD)
 sink()
 
 #write csv
