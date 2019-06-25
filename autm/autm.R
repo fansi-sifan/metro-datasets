@@ -31,7 +31,7 @@ county_autm <- AUTM %>%
     tot_st = sum(St.Ups.Formed, na.rm = TRUE),
     instate_st = sum(St.Ups.in.Home.St, na.rm = TRUE)
   ) %>%
-  mutate(co_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
+  mutate(stco_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
 #set variable labels
@@ -62,16 +62,17 @@ save(county_autm,file = "autm/autm.rda")
 
 
 # sink metadata into .md
-sink("autm/autm.md")
-skim(county_autm) %>% kable()
+sink("autm/README.md")
 county_autm_key %>% kable()
+skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
+skim(county_autm) %>% kable()
 sink()
 
 
 #txt file with metadata
 sink("autm/autm.txt") 
-skim(county_autm)
 county_autm_key
+skim(county_autm)
 sink()
 
 #write csv

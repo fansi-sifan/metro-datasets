@@ -65,7 +65,9 @@ save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 sink("univ_rd/README.md")
 cbsa_univRD_key %>% kable()
 county_univRD_key %>% kable()
+
 skim_with(numeric = list(hist = NULL))
+
 skim(cbsa_univRD) %>% kable()
 skim(county_univRD) %>% kable()
 sink()

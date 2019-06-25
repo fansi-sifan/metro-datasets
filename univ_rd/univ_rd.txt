@@ -31,6 +31,7 @@ Skim summary statistics
         p75          p100
  1065054.12       1.9e+07
    46371.95 1366653.64   
+
 Skim summary statistics
  n obs: 529 
  n variables: 3 
