@@ -32,7 +32,7 @@ county_univRD <- NSF_univRD %>%
     rd_total = sum(Deflated.Total.R.D.Expenditures.in.All.Fields.Sum.),
     rd_total_biz = sum(as.numeric(as.character(Deflated.Business.Financed.R.D.Expenditures.Sum.)))
   ) %>%
-  mutate(co_code = str_pad(as.character(county), 5, "left", "0")) %>%
+  mutate(stco_code = str_pad(as.character(county), 5, "left", "0")) %>%
   select(-county)
 
 
