@@ -17,7 +17,7 @@ if (any(!check)) {
 
 #data up to 2016 exists (read source data)
 cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
-  mutate(cbsa = as.character(`AREA`)) %>%
+  mutate(cbsa_code = as.character(`AREA`)) %>%
   janitor::clean_names()
 
 names<-c(

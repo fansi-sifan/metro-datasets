@@ -4,9 +4,9 @@ Skim summary statistics
 
 Variable type: character
 
-| variable | missing | complete |  n  | min | max | empty | n_unique |
-|----------|---------|----------|-----|-----|-----|-------|----------|
-|   cbsa   |    0    |   381    | 381 |  5  |  5  |   0   |   381    |
+| variable  | missing | complete |  n  | min | max | empty | n_unique |
+|-----------|---------|----------|-----|-----|-----|-------|----------|
+| cbsa_code |    0    |   381    | 381 |  5  |  5  |   0   |   381    |
 
 Variable type: factor
 
