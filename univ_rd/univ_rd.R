@@ -55,7 +55,6 @@ cbsa_univRD_key <- get_label(cbsa_univRD) %>%
   rename_at(vars(1), funs(paste0('labels'))) %>%
   mutate(names = colnames(cbsa_univRD)) 
 
-
 #create directory
 dir.create("univ_rd")
 save(cbsa_univRD,file = "univ_rd/univ_rd_cbsa.rda")
@@ -66,6 +65,9 @@ save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 sink("univ_rd/README.md")
 cbsa_univRD_key %>% kable()
 county_univRD_key %>% kable()
+
+skim_with(numeric = list(hist = NULL))
+
 skim(cbsa_univRD) %>% kable()
 skim(county_univRD) %>% kable()
 sink()
@@ -82,3 +84,4 @@ sink()
 #write csv
 write_csv(cbsa_univRD,"univ_rd/univ_rd_cbsa.csv")
 write_csv(county_univRD,"univ_rd/univ_rd_county.csv")
+

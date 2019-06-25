@@ -25,12 +25,13 @@ Skim summary statistics
  cbsa_code       1      326 327   5   5     0      326
 
 -- Variable type:numeric -------------------------------------------------------
-     variable missing complete   n     mean         sd     p0      p25
-     rd_total       0      327 327 1e+06    2317291.21 193.06 13903.2 
- rd_total_biz       1      326 327 58056.68  154399.97   0      177.37
-       p50        p75          p100
- 109654.93 1065054.12       1.9e+07
-   3450.25   46371.95 1366653.64   
+     variable missing complete   n     mean         sd     p0      p25       p50
+     rd_total       0      327 327 1e+06    2317291.21 193.06 13903.2  109654.93
+ rd_total_biz       1      326 327 58056.68  154399.97   0      177.37   3450.25
+        p75          p100
+ 1065054.12       1.9e+07
+   46371.95 1366653.64   
+
 Skim summary statistics
  n obs: 529 
  n variables: 3 
