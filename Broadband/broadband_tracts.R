@@ -13,7 +13,7 @@ if (any(!check)) {
 
 # TRANSFORM ============================================
 # Patent Complexity ---------------------------------------------------
-# Broadband ---------------------------------------------------
+# broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")%>%
   janitor::clean_names()%>%
   mutate(tract_code = as.character(str_sub(tract,-6,-1)))
@@ -50,20 +50,20 @@ skim_with_defaults()
 skim(tract_broadband)
 
 # save output
-dir.create("Broadband")
+dir.create("broadband")
 
-save(tract_broadband,file = "Broadband/tract_broadband.rda")
+save(tract_broadband,file = "broadband/tract_broadband.rda")
 
 # generate metadata county
-sink("Broadband/tract_broadband.txt")
+sink("broadband/tract_broadband.txt")
 skim_with(numeric = list(hist = NULL))
 skim(tract_broadband)
 sink()
 
 # create README msa
-sink("Broadband/tract_broadband.md")
+sink("broadband/README.md")
 skim(tract_broadband)%>% kable()
 sink()
 
 # write csv to github
-write.csv(tract_broadband, "Broadband/tract_broadband.csv")
+write.csv(tract_broadband, "broadband/tract_broadband.csv")
