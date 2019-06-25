@@ -3,8 +3,8 @@ library(tidyverse)
 
 # load all .rda datasets ==============================
 temp = list.files(pattern = ".rda", recursive = T)
-lapply(temp, load, .GlobalEnv)
-
+list(lapply(temp, load, .GlobalEnv))
+dfs <- objects()
 
 # Functions to merge all =============================
 merge_cbsa <- function(list){
@@ -18,13 +18,14 @@ merge_county <- function(list){
                  type = "full")}
 
 
-# which ones are needed? =============================
+# Select and merge datasets =============================
+list_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
+list_county_all <- mget(dfs[grep("county_",dfs)])
 
-cbsa_df <- merge_cbsa(list(cbsa_I5HGC,cbsa_univRD,cbsa_VC))
+county_df <- merge_cbsa()
+cbsa_df <- merge_cbsa(list_cbsa_all)
 
-county_df <- merge_cbsa(c(""))
-
-
+# Data for which places =============================
 # find cbsa_code ----
 
 find_cbsa <- function(msa){
