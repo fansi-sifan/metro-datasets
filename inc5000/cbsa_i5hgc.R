@@ -44,15 +44,15 @@ save(cbsa_i5hgc,file = "inc5000/cbsa_i5hgc.rda")
 
 # generate metadata 
 sink("inc5000/cbsa_i5hgc.txt")
+cbsa_i5hgc_key
 skim_with(numeric = list(hist = NULL))
-cbsa_i5hgc_key 
 skim(cbsa_i5hgc)
 sink()
 
 # create README cbsa
 sink("inc5000/README.md")
-skim(cbsa_i5hgc)%>% kable()
 kable(cbsa_i5hgc_key)
+skim(cbsa_i5hgc)%>% kable()
 sink()
 
 # write csv to github

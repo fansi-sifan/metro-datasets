@@ -1,3 +1,11 @@
+
+
+|         labels         |     names     |
+|------------------------|---------------|
+|       cbsa name        |   cbsa_name   |
+| large/medium/small/non |   cbsa_size   |
+|     i5hgc density      | i5hgc_density |
+|       cbsa geoid       |   cbsa_code   |
 Skim summary statistics  
  n obs: 464    
  n variables: 4    
@@ -20,11 +28,3 @@ Variable type: numeric
 |   variable    | missing | complete |  n  | mean  |  sd   | p0  | p25  |  p50  |  p75  | p100  |
 |---------------|---------|----------|-----|-------|-------|-----|------|-------|-------|-------|
 | i5hgc_density |    0    |   464    | 464 | 55.54 | 56.52 | 1.5 | 19.6 | 38.15 | 71.55 | 417.1 |
-
-
-|         labels         |     names     |
-|------------------------|---------------|
-|       cbsa name        |   cbsa_name   |
-| large/medium/small/non |   cbsa_size   |
-|     i5hgc density      | i5hgc_density |
-|       cbsa geoid       |   cbsa_code   |
