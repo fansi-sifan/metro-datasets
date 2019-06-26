@@ -1,3 +1,5 @@
+Data from: http://startupsusa.org/global-startup-cities/
+
                                              labels     names
 1                                         cbsa name cbsa_name
 2                         time period of investment    period
