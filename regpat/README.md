@@ -1,12 +1,11 @@
 Skim summary statistics  
  n obs: 2707    
- n variables: 10    
+ n variables: 9    
 
 Variable type: character
 
 |   variable   | missing | complete |  n   | min | max | empty | n_unique |
 |--------------|---------|----------|------|-----|-----|-------|----------|
-| cbsa_country |    0    |   2707   | 2707 | 11  | 87  |   0   |   2699   |
 |  cbsa_fips   |    0    |   2707   | 2707 |  3  | 78  |   0   |   2660   |
 |  cbsa_name   |    0    |   2707   | 2707 |  4  |  7  |   0   |   2707   |
 | country_name |    0    |   2707   | 2707 |  5  | 18  |   0   |    46    |

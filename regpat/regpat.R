@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2","skimr","janitor")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -18,20 +18,17 @@ if (any(!check)) {
 
 cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx", sheet = "i0") %>%
   filter(`Year Range` == "2008-2012") %>%
-  select(-Total) %>%
-  janitor::clean_names()
-
-colnames(cbsa_regpat)<-c(
-"year_range",                                         
-"cbsa_name",                                      
-"cbsa_fips", #includes outside US                                      
-"cbsa_country",                               
-"st_name",                                  
-"country_name",                                            
-"cbsa_patents_invented",     
-"cbsa_inventors_per_patent", 
-"cbsa_patent_applications",  
-"cbsa_applicants_per_patent"
+  janitor::clean_names() %>%
+  select(
+year_range,                                         
+cbsa_name = "micro_regions",                                      
+cbsa_fips = "micro_region",                                  
+st_name = "core_macro_region",                               
+country_name = "country",
+cbsa_patents_invented = "number_of_patents_invented_total_micro_regions",     
+cbsa_inventors_per_patent = "number_of_inventors_per_patent_total_micro_regions" , 
+cbsa_patent_applications = "number_of_patent_applications_total_micro_regions",  
+cbsa_applicants_per_patent = "number_of_applicants_per_patent_total_micro_regions"
 )
 
 #create directory
