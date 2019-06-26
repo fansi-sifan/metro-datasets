@@ -1,6 +1,8 @@
 Skim summary statistics  
  n obs: 73056    
  n variables: 50    
+ 
+ geographic variable: stcotract_code -> census tract geoid for joining
 
 Variable type: character
 

@@ -37,7 +37,6 @@ stco_oow$x_1<-NULL
 stco_oow$x<-NULL
 stco_oow$fips<-NULL
 stco_oow$cbsacode<-NULL
-stco_oow$county_code<-NULL
 stco_oow$county_name<-NULL
 
 #change the percentages from "%char" to numeric .xx
@@ -54,8 +53,8 @@ names(stco_oow)[names(stco_oow) == 'jurisdiction'] <- 'co_name'
 names(stco_oow)[names(stco_oow) == 'county_code'] <- 'stco_code'
 
 #change classes
-stco_oow$county_code<-as.character(stco_oow$stco_code)
-stco_oow$county_name<-as.character(stco_oow$co_name)
+stco_oow$stco_code<-as.character(stco_oow$stco_code)
+stco_oow$co_name<-as.character(stco_oow$co_name)
 
 #labels for metadata
 labels<-c("county name","fips code","young_less_educated_and_diverse_perc",
@@ -92,7 +91,7 @@ skim(stco_oow)
 sink()
 
 # create README county
-sink("out_of_work/stco_oow.md")
+sink("out_of_work/README.md")
 kable(stco_oow_key)
 skim(stco_oow)%>% kable()
 sink()

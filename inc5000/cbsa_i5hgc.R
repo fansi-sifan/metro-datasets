@@ -22,6 +22,9 @@ cbsa_i5hgc$cbsa<-NULL
 names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'name'] <- 'cbsa_name'
 names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'size_category'] <- 'cbsa_size'
 
+cbsa_i5hgc$cbsa_name<-as.character(cbsa_i5hgc$cbsa_name)
+cbsa_i5hgc$cbsa_size<-as.character(cbsa_i5hgc$cbsa_size)
+
 #labels for metadata
 labels<-c("cbsa name","large/medium/small/non","i5hgc density","cbsa geoid")
 

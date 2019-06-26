@@ -3,6 +3,7 @@
 2 large/medium/small/non     cbsa_size
 3          i5hgc density i5hgc_density
 4             cbsa geoid     cbsa_code
+
 Skim summary statistics
  n obs: 464 
  n variables: 4 
@@ -10,11 +11,8 @@ Skim summary statistics
 -- Variable type:character -----------------------------------------------------
   variable missing complete   n min max empty n_unique
  cbsa_code       0      464 464   5   5     0      464
-
--- Variable type:factor --------------------------------------------------------
-  variable missing complete   n n_unique                            top_counts ordered
- cbsa_name       0      464 464      464        Adr: 1, Akr: 1, Alb: 1, Alb: 1   FALSE
- cbsa_size       0      464 464        4 Sma: 150, Mic: 134, Med: 128, Lar: 52   FALSE
+ cbsa_name       0      464 464   8  46     0      464
+ cbsa_size       0      464 464   5   6     0        4
 
 -- Variable type:numeric -------------------------------------------------------
       variable missing complete   n  mean    sd  p0  p25   p50   p75  p100
