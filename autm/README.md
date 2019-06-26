@@ -10,7 +10,7 @@
 | total investment disclosures received |   tot_IP   |
 |        total start ups formed         |   tot_st   |
 |        start ups in home state        | instate_st |
-|           county FIPS code            | stco_fips  |
+|           county FIPS code            | stco_code  |
 Skim summary statistics  
  n obs: 177    
  n variables: 9    
@@ -19,7 +19,7 @@ Variable type: character
 
 | variable  | missing | complete |  n  | min | max | empty | n_unique |
 |-----------|---------|----------|-----|-----|-----|-------|----------|
-| stco_fips |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
+| stco_code |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
 
 Variable type: integer
 

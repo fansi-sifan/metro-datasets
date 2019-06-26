@@ -1,6 +1,6 @@
 Skim summary statistics  
  n obs: 381    
- n variables: 29    
+ n variables: 28    
 
 Variable type: character
 
@@ -21,7 +21,6 @@ Variable type: integer
 |   area   |    0    |   381    | 381 | 29694.57  | 11387.92 | 10180 | 19740 | 29420 | 39740 |  49740  |
 |  emp16   |    0    |   381    | 381 | 274706.77 | 664053.4 |   0   | 43520 | 83000 | 2e+05 | 8229570 |
 |  metro   |    2    |   379    | 381 |     1     |    0     |   1   |   1   |   1   |   1   |    1    |
-|    x     |    0    |   381    | 381 |    191    |  110.13  |   1   |  96   |  191  |  286  |   381   |
 
 Variable type: numeric
 

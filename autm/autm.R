@@ -31,7 +31,7 @@ county_autm <- AUTM %>%
     tot_st = sum(St.Ups.Formed, na.rm = TRUE),
     instate_st = sum(St.Ups.in.Home.St, na.rm = TRUE)
   ) %>%
-  mutate(stco_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
+  mutate(stco_code = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
 #set variable labels

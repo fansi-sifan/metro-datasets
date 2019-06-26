@@ -23,8 +23,8 @@ cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/
 
 colnames(cbsa_regpat)<-c(
 "year_range",                                         
+"cbsa_code", #includes outside US                                      
 "cbsa_name",                                      
-"cbsa_fips", #includes outside US                                      
 "cbsa_country",                               
 "st_name",                                  
 "country_name",                                            
