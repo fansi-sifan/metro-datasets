@@ -18,7 +18,7 @@ if (any(!check)) {
 
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
-  select(-c(2,13:16))
+  select(-c(2,9,10,15,16))
 
 #use old column names as labels (use View() to see labels)
 set_label(cbsa_export)<-colnames(cbsa_export)
@@ -119,8 +119,8 @@ county_export_key <- get_label(county_export) %>%
 
 #create directory
 dir.create("export_monitor")
-save(cbsa_export,file = "export_monitor/cbsa_export_monitor.rda")
-save(county_export,file = "export_monitor/county_export_monitor.rda")
+save(cbsa_export,file = "export_monitor/export_monitor_cbsa.rda")
+save(county_export,file = "export_monitor/export_monitor_county.rda")
 
 skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
 
@@ -142,8 +142,8 @@ skim(cbsa_export) %>% kable()
 sink()
 
 #write csv
-write_csv(county_export,"export_monitor/county_export_monitor.csv")
-write_csv(cbsa_export,"export_monitor/cbsa_export_monitor.csv")
+write_csv(county_export,"export_monitor/export_monitor_county.csv")
+write_csv(cbsa_export,"export_monitor/export_monitor_cbsa.csv")
 
 # cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
 #   filter(gm == msa_FIPS) %>%

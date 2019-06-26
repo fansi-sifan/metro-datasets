@@ -17,11 +17,10 @@ if (any(!check)) {
 
 #data up to 2016 exists (read source data)
 cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
-  mutate(cbsa_code = as.character(`AREA`)) %>%
   janitor::clean_names() %>%
   select(-x)
 
-names<-c(
+colnames(cbsa_digital)<-c(
 "cbsa_code",
 "2002_score",
 "2016_socre",
@@ -35,7 +34,7 @@ names<-c(
 "2016_wage",
 "2002_employ",
 "2016_employ",
-"metro",
+"cbsa_is_metro",
 "cbsa_name",
 "2002_employ",
 "2010_emoloy",

@@ -76,7 +76,7 @@ sink()
 #txt file with metadata
 sink("univ_rd/univ_rd.txt")
 cbsa_univRD_key
-county_univRD
+county_univRD_key
 skim(cbsa_univRD)
 skim(county_univRD)
 sink()
