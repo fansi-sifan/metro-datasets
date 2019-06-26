@@ -40,13 +40,10 @@
 |                         CBSA FIPS (2013)                         |             cbsa_code             |
 |                         CBSA Name (2013)                         |          cbsa_2013_name           |
 |                      CBSA Short Name (2013)                      |       cbsa_2013_short_name        |
-|                     Core State Code of CBSA                      |              st_abbr              |
-|                     Core State FIPS of CBSA                      |              st_code              |
-|                        Core State of CBSA                        |              st_name              |
-|                     Core Region Code of CBSA                     |             is_top100             |
-|                       Core Region of CBSA                        |          is_top100_label          |
-|                        Largest 100 Metro                         |             is_metro              |
-|                     Largest 100 Metro Label                      |          is_metro_label           |
+|                        Largest 100 Metro                         |             is_top100             |
+|                     Largest 100 Metro Label                      |          is_top100_label          |
+|                              Metro                               |             is_metro              |
+|                           Metro Label                            |          is_metro_label           |
 |        Nominal Exports ( mil.), by All-Industries (CBSA)         |       cbsa_exports_nominal        |
 |          Real Exports (mil.), by All-Industries (CBSA)           |         cbsa_exports_real         |
 |        Export Share of GDP (%), by All-Industries (CBSA)         |       cbsa_pct_exports_gdp        |
@@ -112,7 +109,7 @@ Variable type: numeric
 |                year                 |    0    |   3113   | 3113 |   2017   |     0     |  2017  |   2017   |  2017   |  2017   |   2017    |
 Skim summary statistics  
  n obs: 962    
- n variables: 31    
+ n variables: 28    
 
 Variable type: character
 
@@ -121,11 +118,8 @@ Variable type: character
 |    cbsa_2013_name    |    0    |   962    | 962 |  7  | 45  |   0   |   962    |
 | cbsa_2013_short_name |    0    |   962    | 962 |  7  | 26  |   0   |   962    |
 |      cbsa_code       |    0    |   962    | 962 |  5  |  5  |   0   |   962    |
-|    is_metro_label    |    0    |   962    | 962 | 17  | 21  |   0   |    2     |
-|      is_top100       |    0    |   962    | 962 |  1  |  1  |   0   |    4     |
-|   is_top100_label    |    0    |   962    | 962 |  4  |  9  |   0   |    4     |
-|       st_abbr        |    0    |   962    | 962 |  2  |  2  |   0   |    51    |
-|       st_name        |    0    |   962    | 962 |  4  | 20  |   0   |    51    |
+|    is_metro_label    |    0    |   962    | 962 |  5  |  9  |   0   |    2     |
+|   is_top100_label    |    0    |   962    | 962 | 17  | 21  |   0   |    2     |
 
 Variable type: numeric
 
@@ -151,6 +145,6 @@ Variable type: numeric
 |      cbsa_pct_export_growth       |    0    |   962    | 962 |   0.044   |   0.096   | -0.16  | -0.0013 |  0.025  |   0.06   |   1.09    |
 |       cbsa_pct_exports_gdp        |    0    |   962    | 962 |   0.12    |   0.063   | 0.013  |  0.079  |  0.11   |   0.16   |   0.46    |
 |        cbsa_pct_gdp_growth        |    0    |   962    | 962 |   0.021   |   0.02    | -0.062 |  0.012  |  0.02   |  0.029   |   0.18    |
-|             is_metro              |    0    |   962    | 962 |    0.1    |   0.31    |   0    |    0    |    0    |    0     |     1     |
-|              st_code              |    0    |   962    | 962 |   29.93   |   15.37   |   1    |   18    |   30    |    42    |    56     |
+|             is_metro              |    0    |   962    | 962 |    0.4    |   0.49    |   0    |    0    |    0    |    1     |     1     |
+|             is_top100             |    0    |   962    | 962 |    0.1    |   0.31    |   0    |    0    |    0    |    0     |     1     |
 |               year                |    0    |   962    | 962 |   2017    |     0     |  2017  |  2017   |  2017   |   2017   |   2017    |

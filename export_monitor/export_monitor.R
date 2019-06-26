@@ -17,46 +17,44 @@ if (any(!check)) {
 #data up to 2017 exists
 
 cbsa_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx", sheet = "Total") %>%
-  filter(Year == 2017) %>%
-  select(-c(2,13:16))
+  filter(Year == 2017)
+
 
 #use old column names as labels (use View() to see labels)
 set_label(cbsa_export)<-colnames(cbsa_export)
 
 
-#set new column names
-colnames(cbsa_export)<-c(
-  "year",
-  "cbsa_code",
-  "cbsa_2013_name",
-  "cbsa_2013_short_name",
-  "st_abbr",
-  "st_code",
-  "st_name",
-  "is_top100",
-  "is_top100_label",
-  "is_metro",
-  "is_metro_label",
-  "cbsa_exports_nominal",
-  "cbsa_exports_real",
-  "cbsa_pct_exports_gdp",
-  "cbsa_export_jobs_direct",
-  "cbsa_export_jobs_direct_intensity",
-  "cbsa_export_jobs_total",
-  "cbsa_export_jobs_total_intensity",
-  "cbsa_2003_2014_pct_export_growth",
-  "cbsa_2008_2017_pct_export_growth",
-  "cbsa_2014_2017_pct_export_growth",
-  "cbsa_2003_2017_pct_export_growth",
-  "cbsa_pct_export_growth",
-  "cbsa_gdp_nominal",
-  "cbsa_gdp_real",
-  "cbsa_2003_2014_pct_gdp_growth",
-  "cbsa_2008_2017_pct_gdp_growth",
-  "cbsa_2003_2017_pct_gdp_growth",
-  "cbsa_2014_2017_pct_gdp_growth",
-  "cbsa_pct_gdp_growth",
-  "cbsa_jobs")
+
+cbsa_export<-select(cbsa_export, 
+       year = "Year",
+       cbsa_code = "CBSA FIPS (2013)",
+       cbsa_2013_name = "CBSA Name (2013)",
+       cbsa_2013_short_name = "CBSA Short Name (2013)",      
+       is_top100 = "Largest 100 Metro",
+       is_top100_label = "Largest 100 Metro Label",
+       is_metro = "Metro",
+       is_metro_label = "Metro Label",
+       cbsa_exports_nominal = "Nominal Exports ( mil.), by All-Industries (CBSA)",
+       cbsa_exports_real = "Real Exports (mil.), by All-Industries (CBSA)",
+       cbsa_pct_exports_gdp = "Export Share of GDP (%), by All-Industries (CBSA)",
+       cbsa_export_jobs_direct = "Direct Export-supported Jobs, by All-Industries (CBSA)",
+       cbsa_export_jobs_direct_intensity = "Direct Export Jobs Intensity, by All-Industries (CBSA)",
+       cbsa_export_jobs_total = "Total Export-supported Jobs, by All-Industries (CBSA)",
+       cbsa_export_jobs_total_intensity = "Total Export Jobs Intensity, by All-Industries (CBSA)",
+       cbsa_2003_2014_pct_export_growth = "Annualized Export Growth 2003-2014 (%), by All-Industries (CBSA)",
+       cbsa_2008_2017_pct_export_growth = "Annualized Export Growth 2008-2017 (%), by All-Industries (CBSA)",
+       cbsa_2014_2017_pct_export_growth = "Annualized Export Growth 2014-2017 (%), by All-Industries (CBSA)",
+       cbsa_2003_2017_pct_export_growth = "Annualized Export Growth 2003-2017 (%), by All-Industries (CBSA)",
+       cbsa_pct_export_growth = "Year-to-Year Export Growth (%), by All-Industries (CBSA)",
+       cbsa_gdp_nominal = "Nominal GDP (mil.), by All-Industries (CBSA)",
+       cbsa_gdp_real = "Real GDP (mil.), by All-Industries (CBSA)",
+       cbsa_2003_2014_pct_gdp_growth = "Annualized GDP Growth 2003-2014 (%), by All-Industries (CBSA)",
+       cbsa_2008_2017_pct_gdp_growth = "Annualized GDP Growth 2008-2017 (%), by All-Industries (CBSA)",
+       cbsa_2003_2017_pct_gdp_growth = "Annualized GDP Growth 2003-2017 (%), by All-Industries (CBSA)",
+       cbsa_2014_2017_pct_gdp_growth = "Annualized GDP Growth 2014-2017 (%), by All-Industries (CBSA)",
+       cbsa_pct_gdp_growth = "Year-to-Year GDP Growth (%), by All-Industries (CBSA)",
+       cbsa_jobs = "Total Jobs, by All-Industries (CBSA)"
+)
 
 #correspondance between old names (labels) and new names
 cbsa_export_key <- get_label(cbsa_export) %>%
@@ -69,45 +67,60 @@ cbsa_export_key <- get_label(cbsa_export) %>%
 #load data
 county_export <- readxl::read_xlsx("V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx", sheet = "Total") %>%
   filter(Year == 2017) %>%
-  mutate(stcofips_code = str_pad(as.character(`(County)`), 5, "left", "0")) %>%
-  select(-c(2,3,5,6,7,15,16,17,18))
+  mutate(stcofips_code = str_pad(as.character(`(County)`), 5, "left", "0"))
 
 
 #use old column names as labels (use View() to see labels)
 set_label(county_export)<-colnames(county_export)
 
 #set new column names
-colnames(county_export)<-c("year",
-                           "co_name", 
-                           "is_top100",
-                           "is_top100_label",
-                           "is_metro",
-                           "is_metro_label",
-                           "st_code",
-                           "st_name",
-                           "st_abbr",
-                           "county_exports_nominal",
-                           "county_exports_real",
-                           "county_pct_exports_gdp",
-                           "county_export_jobs_direct",
-                           "county_export_jobs_direct_intensity",
-                           "county_export_jobs_total",
-                           "county_export_jobs_total_intensity",
-                           "county_2003_2014_pct_export_growth",
-                           "county_2008_2017_pct_export_growth",
-                           "county_2014_2017_pct_export_growth",
-                           "county_2003_2017_pct_export_growth",
-                           "county_pct_export_growth",
-                           "county_gdp_nominal",
-                           "county_gdp_real",
-                           "county_2003_2014_pct_gdp_growth",
-                           "county_2008_2017_pct_gdp_growth",
-                           "county_2003_2017_pct_gdp_growth",
-                           "county_2014_2017_pct_gdp_growth",
-                           "county_pct_gdp_growth",
-                           "county_jobs",
-                           "stco_code"
+county_export<-select(county_export, 
+       year = Year,
+       co_name = "County Name (BEA)",
+       is_top100 = "Largest 100 Metro",
+       is_top100_label = "Largest 100 Metro Label",
+       is_metro = Metro,
+       is_metro_label = "Metro Label",
+       st_code = "State FIPS",
+       st_name = "State Name",
+       st_abbr = "State Code",
+       county_exports_nominal = "Nominal Exports ( mil.), by All-Industries (County)",
+       county_exports_real = "Real Exports (mil.), by All-Industries (County)",
+       county_pct_exports_gdp = "Export Share of GDP (%), by All-Industries (County)",
+       county_export_jobs_direct = "Direct Export-supported Jobs, by All-Industries (County)",
+       county_export_jobs_direct_intensity = "Direct Export Jobs Intensity, by All-Industries (County)",
+       county_export_jobs_total = "Total Export-supported Jobs, by All-Industries (County)",
+       county_export_jobs_total_intensity = "Total Export Jobs Intensity, by All-Industries (County)",
+       county_2003_2014_pct_export_growth = "Annualized Export Growth 2003-2014 (%), by All-Industries (County)",
+       
+       county_2008_2017_pct_export_growth = "Annualized Export Growth 2008-2017 (%), by All-Industries (County)",
+       county_2014_2017_pct_export_growth = "Annualized Export Growth 2014-2017 (%), by All-Industries (County)",
+       
+       county_2003_2017_pct_export_growth = "Annualized Export Growth 2003-2017 (%), by All-Industries (County)",
+       county_pct_export_growth = "Year-to-Year Export Growth (%), by All-Industries (County)",
+       county_gdp_nominal = "Nominal GDP (mil.), by All-Industries (County)",
+       county_gdp_real = "Real GDP (mil.), by All-Industries (County)",
+       county_2003_2014_pct_gdp_growth = "Annualized GDP Growth 2003-2014 (%), by All-Industries (County)",
+       county_2008_2017_pct_gdp_growth = "Annualized GDP Growth 2008-2017 (%), by All-Industries (County)",
+       county_2003_2017_pct_gdp_growth = "Annualized GDP Growth 2003-2017 (%), by All-Industries (County)",
+       county_2014_2017_pct_gdp_growth = "Annualized GDP Growth 2014-2017 (%), by All-Industries (County)",
+       county_pct_gdp_growth = "Year-to-Year GDP Growth (%), by All-Industries (County)",
+       county_jobs = "Total Jobs, by All-Industries (County)",
+       stco_code = "stcofips_code"
 )
+
+
+
+
+
+
+
+
+
+
+
+       
+       
 
 #correspondance between old names (labels) and new names
 county_export_key <- get_label(county_export) %>%
@@ -117,10 +130,11 @@ county_export_key <- get_label(county_export) %>%
 
 
 
+
 #create directory
 dir.create("export_monitor")
-save(cbsa_export,file = "export_monitor/cbsa_export_monitor.rda")
-save(county_export,file = "export_monitor/county_export_monitor.rda")
+save(cbsa_export,file = "export_monitor/export_monitor_cbsa.rda")
+save(county_export,file = "export_monitor/export_monitor_county.rda")
 
 skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
 
@@ -140,10 +154,6 @@ cbsa_export_key
 skim(county_export) %>% kable()
 skim(cbsa_export) %>% kable()
 sink()
-
-#write csv
-write_csv(county_export,"export_monitor/county_export_monitor.csv")
-write_csv(cbsa_export,"export_monitor/cbsa_export_monitor.csv")
 
 # cbsa_naics4_export <- read.csv("V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros  by NAICS 4.csv") %>%
 #   filter(gm == msa_FIPS) %>%
