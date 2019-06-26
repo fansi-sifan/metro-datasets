@@ -2,7 +2,7 @@
 # Author: David Whyman
 # Date: Wed Jun 19 14:55:00 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "janitor","skimr")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -11,45 +11,21 @@ if (any(!check)) {
   check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
 }
 
-
-
 # Digitalization ---------------------------------------------------
 
 #data up to 2016 exists (read source data)
 cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
   janitor::clean_names() %>%
-  select(-x)
-
-colnames(cbsa_digital)<-c(
-"cbsa_code",
-"2002_score",
-"2016_socre",
-"2002_pct_high",
-"2002_pct_medium",
-"2002_pct_low",
-"2016_pct_high",
-"2016_pct_medium",
-"2016_pct_low",
-"2002_wage",
-"2016_wage",
-"2002_employ",
-"2016_employ",
-"cbsa_is_metro",
-"cbsa_name",
-"2002_employ",
-"2010_emoloy",
-"2016_employ",
-"2002_gdp",
-"2010_gdp",
-"2016_gdp",
-"2002_wage",
-"2010_wage",
-"2016_wage",
-"2002_prod",
-"2010_prod",
-"2016_prod"
-)
-
+  select(cbsa_code = area,
+         cbsa_name = geography,
+         cbsa_score_02 = score02,
+         cbsa_score_16 = score16,
+         cbsa_pct_high_02 = high02,
+         cbsa_pct_medium_02 = medium02,
+         cbsa_pct_low_02 = low02,
+         cbsa_pct_high_16 = high16,
+         cbsa_pct_medium_16 = medium16,
+         cbsa_pct_low_16 = low16)
 
 #create directory
 dir.create("digitalization")
