@@ -1,4 +1,4 @@
-"","cbsa_name","period","round","capital_invested_(in_millions)_per_1M_residents","latitude","longitude","rank","cbsa_code"
+"","cbsa_name","period","round","value","latitude","longitude","rank","cbsa_code"
 "1","Akron","2015-17","Total VC",50.773827,41.08144,-81.519,256,"10420"
 "2","Albany (NY)","2015-17","Total VC",104.04169,42.6526,-73.7562,195,"10580"
 "3","Albuquerque","2015-17","Total VC",261.7243,35.08449,-106.6511,104,"10740"
