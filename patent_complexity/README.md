@@ -1,10 +1,3 @@
-
-
-|         labels          |       names       |
-|-------------------------|-------------------|
-| patent complexity score | patent_complexity |
-|        cbsa code        |     cbsa_code     |
-|        cbsa name        |     cbsa_name     |
 Skim summary statistics  
  n obs: 381    
  n variables: 3    
@@ -18,6 +11,6 @@ Variable type: character
 
 Variable type: numeric
 
-|     variable      | missing | complete |  n  | mean |  sd  |   p0    | p25  | p50 | p75  | p100 |
-|-------------------|---------|----------|-----|------|------|---------|------|-----|------|------|
-| patent_complexity |    0    |   381    | 381 | 0.22 | 0.13 | 2.5e-06 | 0.14 | 0.2 | 0.27 |  1   |
+|        variable        | missing | complete |  n  | mean |  sd  |   p0    | p25  | p50 | p75  | p100 |
+|------------------------|---------|----------|-----|------|------|---------|------|-----|------|------|
+| cbsa_patent_complexity |    0    |   381    | 381 | 0.22 | 0.13 | 2.5e-06 | 0.14 | 0.2 | 0.27 |  1   |
