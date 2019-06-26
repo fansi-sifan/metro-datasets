@@ -20,9 +20,9 @@ merge_county <- function(list){
 # Select and merge datasets =============================
 dfs <- objects()
 list_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
-list_county_all <- mget(dfs[grep("county_",dfs)])
+list_county_all <- mget(dfs[grep("county_|co_",dfs)])
 
-county_df <- merge_cbsa()
+county_df <- merge_county(list_county_all)
 cbsa_df <- merge_cbsa(list_cbsa_all)
 
 # Data for which places =============================
