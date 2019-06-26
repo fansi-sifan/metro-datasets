@@ -16,11 +16,20 @@ if (any(!check)) {
 # broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")%>%
   janitor::clean_names()%>%
-  mutate(stcotract_code = as.character(str_sub(tract,-6,-1)))
-
-#delete or rename columns
-tract_broadband <- tract_broadband[, -c(1:12)]
-
+  mutate(stcotract_code = as.character(str_sub(tract,-6,-1)))%>%
+  select(-v1,
+         -tract,
+         -tractonly_fips,
+         -state,
+         -county,
+         -statename, 
+         -countyname, 
+         -cbsa,
+         -metro,
+         -stplyfips,
+         -place,
+         -geotype)
+  
 # check output
 skim_with_defaults()
 skim(tract_broadband)
