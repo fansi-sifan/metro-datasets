@@ -1,11 +1,11 @@
 
-
 |         labels         |     names     |
 |------------------------|---------------|
-|       cbsa name        |   cbsa_name   |
-| large/medium/small/non |   cbsa_size   |
 |     i5hgc density      | i5hgc_density |
 |       cbsa geoid       |   cbsa_code   |
+|       cbsa name        |   cbsa_name   |
+| large/medium/small/non |   cbsa_size   |
+
 
 Skim summary statistics  
  n obs: 464    

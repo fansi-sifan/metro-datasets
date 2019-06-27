@@ -15,18 +15,15 @@ if (any(!check)) {
 # inc5000 ---------------------------------------------------
 cbsa_i5hgc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
   mutate(CBSA_CODE = as.character(CBSA)) %>%
-  janitor::clean_names()
-
-cbsa_i5hgc$cbsa<-NULL
-
-names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'name'] <- 'cbsa_name'
-names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'size_category'] <- 'cbsa_size'
-
-cbsa_i5hgc$cbsa_name<-as.character(cbsa_i5hgc$cbsa_name)
-cbsa_i5hgc$cbsa_size<-as.character(cbsa_i5hgc$cbsa_size)
+  janitor::clean_names()%>%
+  mutate(cbsa_name = as.character(name), 
+         cbsa_size = as.character(size_category))%>%
+  select(-cbsa,
+         -name,
+         -size_category)
 
 #labels for metadata
-labels<-c("cbsa name","large/medium/small/non","i5hgc density","cbsa geoid")
+labels<-c("i5hgc density","cbsa geoid","cbsa name", "large/medium/small/non")
 
 set_label(cbsa_i5hgc)<-labels
 
