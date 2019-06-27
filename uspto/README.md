@@ -1,6 +1,4 @@
 
-Patents issued by CBSA 2000-2015
-
 
 |                  labels                   |     names      |
 |-------------------------------------------|----------------|
@@ -9,6 +7,7 @@ Patents issued by CBSA 2000-2015
 |                cbsa geoid                 |   cbsa_code    |
 |            year patent issued             |      year      |
 |           total patents issued            | patents_issued |
+
 Skim summary statistics  
  n obs: 16288    
  n variables: 5    
@@ -29,15 +28,10 @@ Variable type: numeric
 |      year      |    0    |  16288   | 16288 | 2007.5 | 4.61  | 2000 | 2003.75 | 2007.5 | 2011.25 | 2015  |
 
 
-
-
-Patents issued by county 2000-2015
-
-
 |             labels             |     names      |
 |--------------------------------|----------------|
-|          county name           |    co_name     |
-|          county code           |   stco_code    |
+|          county name           |   stco_code    |
+|          county code           |    co_name     |
 | year of patent data collection |      year      |
 |      total patents issued      | patents_issued |
 Skim summary statistics  

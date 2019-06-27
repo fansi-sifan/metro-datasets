@@ -16,48 +16,36 @@ if (any(!check)) {
 cbsa_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv") %>% janitor::clean_names() %>%
   mutate(cbsa_code = substr(as.character(id_code), 2, 6)) %>%
   filter(id_code != "") %>%
-  filter(geo_type != "ALL AREAS")
-
-#changing cbsa uspto names and classes
-names(cbsa_uspto)[names(cbsa_uspto) == 'geo_type'] <- 'cbsa_type'
-names(cbsa_uspto)[names(cbsa_uspto) == 'us_regional_title'] <- 'cbsa_name'
-cbsa_uspto$id_code<-NULL
-cbsa_uspto$total<-NULL
-
-cbsa_uspto$cbsa_type<-as.character(cbsa_uspto$cbsa_type)
-cbsa_uspto$cbsa_name<-as.character(cbsa_uspto$cbsa_name)
-cbsa_uspto$patents_issued<-as.numeric(cbsa_uspto$patents_issued)
+  filter(geo_type != "ALL AREAS")%>%
+  mutate(cbsa_type = as.character(geo_type), 
+         cbsa_name = as.character(us_regional_title))%>%
+  select(-geo_type,
+         -us_regional_title,
+         -id_code,
+         -total)
 
 #gathering into long instead of wide data
-cbsa_uspto<-gather(cbsa_uspto,"year","patents_issued",3:18)
+cbsa_uspto<-gather(cbsa_uspto,"year","patents_issued",x2000:x2015)
 cbsa_uspto<-cbsa_uspto%>%
-  mutate(year=as.numeric(substring(year, 2)))
-
-cbsa_uspto$patents_issued<-as.numeric(cbsa_uspto$patents_issued)
+  mutate(year=as.numeric(substring(year, 2)),
+         patents_issued = as.numeric(patents_issued))
 
 # uspto County---------------------------------------------------
 co_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>% janitor::clean_names() %>%
   mutate(stco_code = str_pad(as.character(fips_code), 5, "left", "0"))%>%
-  filter(mail_code!="ALL")
-
-#changing county uspto names and classes and deleting unnecessary variables
-co_uspto$fips_code <- NULL
-co_uspto$mail_code <- NULL
-co_uspto$total <- NULL
-names(co_uspto)[names(co_uspto) == 'state_or_territory'] <- 'st_name'
-names(co_uspto)[names(co_uspto) == 'regional_area_component'] <- 'co_name'
-
-co_uspto$st_name<-as.character(co_uspto$st_name)
-co_uspto$st_name<-NULL
-co_uspto$co_name<-as.character(co_uspto$co_name)
-co_uspto$patents_issued<-as.numeric(co_uspto$patents_issued)
+  filter(mail_code!="ALL")%>%
+  mutate(co_name = as.character(regional_area_component))%>%
+  select(-fips_code,
+         -mail_code,
+         -total,
+         -state_or_territory,
+         -regional_area_component)
 
 #gathering into long instead of wide data
-co_uspto<-gather(co_uspto,"year","patents_issued",2:17)
+co_uspto<-gather(co_uspto,"year","patents_issued",x2000:x2015)
 co_uspto<-co_uspto%>%
-  mutate(year=as.numeric(substring(year, 2)))
-
-co_uspto$patents_issued<-as.numeric(co_uspto$patents_issued)
+  mutate(year=as.numeric(substring(year, 2)),
+         patents_issued = as.numeric(patents_issued))
 
 # save output
 dir.create("uspto")
@@ -109,6 +97,7 @@ save(co_uspto,file = "uspto/co_uspto.rda")
 
 # generate metadata cbsa 
 sink("uspto/cbsa_uspto.txt")
+cbsa_i5hgc_key
 skim_with(numeric = list(hist = NULL))
 skim(cbsa_uspto)
 sink()

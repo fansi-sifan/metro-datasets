@@ -1,8 +1,10 @@
                           labels          names
-1                    county name        co_name
-2                    county code      stco_code
+1                    county name      stco_code
+2                    county code        co_name
 3 year of patent data collection           year
 4           total patents issued patents_issued
+
+
 Skim summary statistics
  n obs: 48304 
  n variables: 4 
