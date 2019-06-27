@@ -16,22 +16,20 @@ if (any(!check)) {
 cbsa_vc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
   filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
   mutate(cbsa_code = as.character(cbsa13)) %>%
-  janitor::clean_names()
-
-# changing variable names, classes, getting rid of unnecessary variables
-cbsa_vc$x <- NULL
-cbsa_vc$cbsa13 <-NULL
-cbsa_vc$country<-NULL
-cbsa_vc$measure <- NULL
-
-colnames(cbsa_vc)[which(names(cbsa_vc) == "msa")] <- "cbsa_name"
-
-cbsa_vc$cbsa_name<-as.character(cbsa_vc$cbsa_name)
-cbsa_vc$rank<-as.numeric(cbsa_vc$rank)
+  janitor::clean_names()%>%
+  mutate(cbsa_name = as.character(msa),
+         rank = as.numeric(rank))%>%
+  select(-x, 
+         -cbsa13, 
+         -country, 
+         -measure, 
+         -msa
+         )
 
 #labels for metadata
-labels<-c("cbsa name","time period of investment","total venture capital","
-capital invested (in_millions) per 1M residents","latitude","longitude","cbsa ranking ","cbsa code")
+labels<-c("time period of investment","total venture capital","
+capital invested (in_millions) per 1M residents","latitude","longitude",
+          "cbsa ranking ","cbsa code","cbsa name")
 
 set_label(cbsa_vc)<-labels
 
@@ -40,6 +38,12 @@ cbsa_vc_key <- get_label(cbsa_vc) %>%
   data.frame() %>%
   rename_at(vars(1), funs(paste0('labels'))) %>%
   mutate(names = colnames(cbsa_vc))
+
+# create README cbsa
+sink("vc/README.md")
+kable(cbsa_vc_key)
+skim(cbsa_vc)%>% kable()
+sink()
 
 # check output
 skim_with_defaults()
@@ -57,11 +61,6 @@ skim_with(numeric = list(hist = NULL))
 skim(cbsa_vc)
 sink()
 
-# create README cbsa
-sink("vc/README.md")
-kable(cbsa_vc_key)
-skim(cbsa_vc)%>% kable()
-sink()
 
 # write csv to github
 write.csv(cbsa_vc, "vc/cbsa_vc.csv")

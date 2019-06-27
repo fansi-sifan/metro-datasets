@@ -1,8 +1,7 @@
-Data from: http://startupsusa.org/global-startup-cities/
+
 
 |                     labels                      |   names   |
 |-------------------------------------------------|-----------|
-|                    cbsa name                    | cbsa_name |
 |            time period of investment            |  period   |
 |              total venture capital              |   round   |
 | capital invested (in_millions) per 1M residents |   value   |
@@ -10,6 +9,8 @@ Data from: http://startupsusa.org/global-startup-cities/
 |                    longitude                    | longitude |
 |                  cbsa ranking                   |   rank    |
 |                    cbsa code                    | cbsa_code |
+|                    cbsa name                    | cbsa_name |
+
 Skim summary statistics  
  n obs: 113    
  n variables: 8    
