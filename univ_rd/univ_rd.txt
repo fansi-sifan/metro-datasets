@@ -2,20 +2,10 @@
 1                            total R&D spending     rd_total
 2 total deflated business financed R&D spending rd_total_biz
 3                                     FIPS code    cbsa_code
-# A tibble: 529 x 3
-   rd_total rd_total_biz stco_code
-      <dbl>        <dbl> <chr>    
- 1    5860.         101. 01015    
- 2 2195531.      155157. 01073    
- 3  657226.       27042. 01081    
- 4   91853.         845. 01087    
- 5  568105.        8203. 01089    
- 6  196633.        6845. 01097    
- 7   21083.           0  01101    
- 8  657226.       27042. 01123    
- 9  263625.       10594. 01125    
-10   90202.        3257. 02020    
-# ... with 519 more rows
+                                         labels        names
+1                            total R&D spending     rd_total
+2 total deflated business financed R&D spending rd_total_biz
+3                                     FIPS code    stco_code
 Skim summary statistics
  n obs: 327 
  n variables: 3 

@@ -61,6 +61,7 @@ dir.create("univ_rd")
 save(cbsa_univRD,file = "univ_rd/univ_rd_cbsa.rda")
 save(county_univRD,file = "univ_rd/univ_rd_county.rda")
 
+skim_with(numeric = list(hist = NULL))
 
 # sink metadata into .md
 sink("univ_rd/README.md")
@@ -74,7 +75,7 @@ sink()
 #txt file with metadata
 sink("univ_rd/univ_rd.txt")
 cbsa_univRD_key
-county_univRD
+county_univRD_key
 skim(cbsa_univRD)
 skim(county_univRD)
 sink()
