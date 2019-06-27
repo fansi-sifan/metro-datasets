@@ -2,7 +2,7 @@
 # Author: David Whyman
 # Date: Wed Jun 19 14:55:00 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled") #sjlabelled for column labels
+pkgs <- c("tidyverse", "reshape2","skimr","sjlabelled") #sjlabelled for column labels
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -92,10 +92,8 @@ county_export<-select(county_export,
        county_export_jobs_total = "Total Export-supported Jobs, by All-Industries (County)",
        county_export_jobs_total_intensity = "Total Export Jobs Intensity, by All-Industries (County)",
        county_2003_2014_pct_export_growth = "Annualized Export Growth 2003-2014 (%), by All-Industries (County)",
-       
        county_2008_2017_pct_export_growth = "Annualized Export Growth 2008-2017 (%), by All-Industries (County)",
        county_2014_2017_pct_export_growth = "Annualized Export Growth 2014-2017 (%), by All-Industries (County)",
-       
        county_2003_2017_pct_export_growth = "Annualized Export Growth 2003-2017 (%), by All-Industries (County)",
        county_pct_export_growth = "Year-to-Year Export Growth (%), by All-Industries (County)",
        county_gdp_nominal = "Nominal GDP (mil.), by All-Industries (County)",
@@ -108,14 +106,6 @@ county_export<-select(county_export,
        county_jobs = "Total Jobs, by All-Industries (County)",
        stco_code = "stcofips_code"
 )
-
-
-
-
-
-
-
-
 
 
 
