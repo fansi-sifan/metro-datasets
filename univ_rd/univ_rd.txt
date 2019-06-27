@@ -30,9 +30,9 @@ Skim summary statistics
  stco_code       0      529 529   5   5     0      529
 
 -- Variable type:numeric -------------------------------------------------------
-     variable missing complete   n      mean         sd     p0     p25      p50
-     rd_total       0      529 529 645276.37 1553339.29 193.06 9694.44 46811.93
- rd_total_biz       1      528 529  35845.6   110855.18   0      42     1372.45
-       p75          p100
- 528703.78       1.3e+07
-  23173.47 1355391.92   
+     variable missing complete   n      mean         sd     p0     p25
+     rd_total       0      529 529 645276.37 1553339.29 193.06 9694.44
+ rd_total_biz       1      528 529  35845.6   110855.18   0      42   
+      p50       p75          p100
+ 46811.93 528703.78       1.3e+07
+  1372.45  23173.47 1355391.92   

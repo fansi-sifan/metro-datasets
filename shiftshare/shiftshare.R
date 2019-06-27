@@ -2,7 +2,7 @@
 # Author: David Whyman
 # Date: Wed Jun 19 15:39:00 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled")
+pkgs <- c("tidyverse", "reshape2","skimr","sjlabelled")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -26,6 +26,7 @@ cbsa_shiftshare <- read_csv("source/shiftshare.csv",
 #use old column names as labels (use View() to see labels)
 set_label(cbsa_shiftshare)<-colnames(cbsa_shiftshare)
 
+
 #new names
 select(cbsa_shiftshare,      year,
                              cbsa_code = "cbsa2013_fips" ,
@@ -44,7 +45,7 @@ select(cbsa_shiftshare,      year,
                              "sector_ns_15" = "nsshare2015",
                              value
                              )
-colnames(cbsa_shiftshare)
+
 #correspondance between old names (labels) and new names
 cbsa_shiftshare_key <- get_label(cbsa_shiftshare) %>%
   data.frame() %>%
@@ -74,8 +75,6 @@ sink()
 
 #write csv
 write_csv(cbsa_shiftshare, "shiftshare/shiftshare.csv")
-
-
 
 
 

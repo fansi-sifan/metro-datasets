@@ -2,7 +2,7 @@
 # Author: David Whyman
 # Date: Fri June 21 10:00:12 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled") #sjlabelled for column labels
+pkgs <- c("tidyverse", "reshape2", "Hmisc","skimr","sjlabelled") #sjlabelled for column labels
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -36,12 +36,14 @@ county_univRD <- NSF_univRD %>%
   select(-county)
 
 
-labels<-c("total R&D spending",
-          "total deflated business financed R&D spending",
-          "FIPS code")
+labels<-c(rd_total_biz = "total deflated business financed R&D spending",
+          rd_total =  "total R&D spending",
+          stco_code = "FIPS code",
+          cbsa_code = "FIPS code")
 
-set_label(cbsa_univRD)<-labels
-set_label(county_univRD)<-labels
+label(county_univRD) = as.list(labels[match(names(county_univRD), names(labels))])
+label(cbsa_univRD) = as.list(labels[match(names(cbsa_univRD), names(labels))])
+
 
 #correspondance between labels and variable names
 county_univRD_key <- get_label(county_univRD) %>%

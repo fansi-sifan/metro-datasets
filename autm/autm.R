@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled") #sjlabelled for column labels
+pkgs <- c("tidyverse", "reshape2","Hmisc","skimr","sjlabelled") #sjlabelled for column labels
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -35,16 +35,16 @@ county_autm <- AUTM %>%
   select(-FIPS)
 
 #set variable labels
-labels <- c(
-"total license and option issues",
-"total licenses, large companies",
-"total licenses, small companoes",
-"total licenses, start-ups",
-"gross license income",
-"total investment disclosures received",
-"total start ups formed",
-"start ups in home state",
-"county FIPS code"
+labels<-c(
+  tot_lic = "total license and option issues",
+  lg_lic = "total licenses, large companies",
+  sm_lic = "total licenses, small companies",
+  st_lic = "total licenses, start-ups",
+  inc_lic = "gross license income",
+  tot_IP = "total investment disclosures received",
+  tot_st = "total start ups formed",
+  instate_st = "start ups in home state",
+  stco_fips = "county FIPS code"
 )
 
 set_label(county_autm)<-labels
