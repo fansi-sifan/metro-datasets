@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor","stringr", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor","stringr", "sjlabelled", "expss")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -28,7 +28,19 @@ tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Bro
          -metro,
          -stplfips,
          -place,
-         -geotype)
+         -geotype)%>%
+  apply_labels(atl3 = "at least 3 Mbps",
+               atl10 = "at least 10 Mbps",
+               atl25 = "at least 10 Mbps",
+               above1g = "at least 1 Gbps",
+               stcotract_code = "tract geoid")
+
+#correspondance between labels and variable names
+tract_broadband_key <- get_label(tract_broadband) %>%
+  data.frame() %>%
+  mutate(names = colnames(tract_broadband)) %>%
+  rename("label" = ".")
+
   
 # check output
 skim_with_defaults()
@@ -41,12 +53,14 @@ save(tract_broadband,file = "broadband/tract_broadband.rda")
 
 # generate metadata county
 sink("broadband/tract_broadband.txt")
+tract_broadband_key
 skim_with(numeric = list(hist = NULL))
 skim(tract_broadband)
 sink()
 
 # create README msa
 sink("broadband/README.md")
+kable(tract_broadband_key)
 skim(tract_broadband)%>% kable()
 sink()
 
