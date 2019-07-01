@@ -49,25 +49,6 @@ stco_oow[cols.num] <- sapply(stco_oow,function(x) gsub("%","",as.numeric(x)))
 stco_oow[cols.num] <- sapply(stco_oow[cols.num],as.numeric)
 stco_oow[cols.num]<-stco_oow[cols.num]/100
 
-#labels for metadata
-labels<-c("young_less_educated_and_diverse_perc",
-          "less_educated_prime_age_people_perc",
-          "diverse_less_educated_and_eyeing_retirement_perc",
-          "moderately_educated_older_people_perc",
-          "highly_educated_and_engaged_younger_people_perc",
-          "highly_educated_high_income_older_people_perc",
-          "fips code","county name"
-          )
-
-set_label(stco_oow)<-labels
-
-#correspondance between labels and variable names
-stco_oow_key <- get_label(stco_oow) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(stco_oow))
-
-
 # check output
 skim_with_defaults()
 skim(stco_oow)
@@ -79,14 +60,12 @@ save(stco_oow,file = "out_of_work/stco_oow.rda")
 
 # generate metadata county
 sink("out_of_work/stco_oow.txt")
-stco_oow_key
 skim_with(numeric = list(hist = NULL))
 skim(stco_oow)
 sink()
 
 # create README county
 sink("out_of_work/README.md")
-kable(stco_oow_key)
 skim(stco_oow)%>% kable()
 sink()
 

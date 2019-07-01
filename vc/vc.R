@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "sjlabelled", "expss")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -23,21 +23,21 @@ cbsa_vc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
          -cbsa13, 
          -country, 
          -measure, 
-         -msa
-         )
-
-#labels for metadata
-labels<-c("time period of investment","total venture capital","
-capital invested (in_millions) per 1M residents","latitude","longitude",
-          "cbsa ranking ","cbsa code","cbsa name")
-
-set_label(cbsa_vc)<-labels
+         -msa)%>%
+  apply_labels(period = "time period of investment",
+               round = "total venture capital", 
+               value = "capital invested (in_millions) per 1M residents", 
+               latitude = "latitude", 
+               longitude = "longitude", 
+               rank = "cbsa ranking", 
+               cbsa_code = "cbsa code", 
+               cbsa_name = "cbsa name")
 
 #correspondance between labels and variable names
 cbsa_vc_key <- get_label(cbsa_vc) %>%
   data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_vc))
+  mutate(names = colnames(cbsa_vc)) %>%
+  rename("label" = ".")
 
 # create README cbsa
 sink("vc/README.md")

@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "expss", "httr","skimr", "janitor", "sjlabelled")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -20,7 +20,6 @@ cbsa_patent_complexity <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Co
   select(-cbsa, 
          -cma_cbsa_name,
          cbsa_patent_complexity = complex)
-
 
 # check output
 skim_with_defaults()

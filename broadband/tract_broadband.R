@@ -26,7 +26,7 @@ tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Bro
          -countyname, 
          -cbsa,
          -metro,
-         -stplyfips,
+         -stplfips,
          -place,
          -geotype)
   

@@ -22,17 +22,6 @@ cbsa_i5hgc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.
          -name,
          -size_category)
 
-#labels for metadata
-labels<-c("i5hgc density","cbsa geoid","cbsa name", "large/medium/small/non")
-
-set_label(cbsa_i5hgc)<-labels
-
-#correspondance between labels and variable names
-cbsa_i5hgc_key <- get_label(cbsa_i5hgc) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_i5hgc))
-
 # check output
 skim_with_defaults()
 skim(cbsa_i5hgc)
@@ -44,14 +33,12 @@ save(cbsa_i5hgc,file = "inc5000/cbsa_i5hgc.rda")
 
 # generate metadata 
 sink("inc5000/cbsa_i5hgc.txt")
-cbsa_i5hgc_key
 skim_with(numeric = list(hist = NULL))
 skim(cbsa_i5hgc)
 sink()
 
 # create README cbsa
 sink("inc5000/README.md")
-kable(cbsa_i5hgc_key)
 skim(cbsa_i5hgc)%>% kable()
 sink()
 

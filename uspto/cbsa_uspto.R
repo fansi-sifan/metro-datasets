@@ -51,37 +51,12 @@ co_uspto<-co_uspto%>%
 dir.create("uspto")
 
 #metadata-------------------------------------------
-#set labels county 
-labels<-c("county name","county code","year of patent data collection","total patents issued")
-set_label(co_uspto)<-labels
-
-#correspondance between labels and variable names county 
-co_uspto_key <- get_label(co_uspto) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(co_uspto))
-
-#set labels
-labels<-c("cbsa type: metro, mico, non, undetermined",
-          "cbsa name","cbsa geoid","year patent issued","total patents issued")
-
-set_label(cbsa_uspto)<-labels
-
-#correspondance between labels and variable names
-cbsa_uspto_key <- get_label(cbsa_uspto) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_uspto))
 
 # create README 
 sink("uspto/README.md")
-kable(cbsa_uspto_key)
 skim(cbsa_uspto)%>% kable()
-kable(co_uspto_key)
-skim(cbsa_uspto)%>% kable()
+skim(co_uspto)%>% kable()
 sink()
-
-#cbsa metadata-------------------------------------------
 
 #check output
 skim_with_defaults()
@@ -97,14 +72,12 @@ save(co_uspto,file = "uspto/co_uspto.rda")
 
 # generate metadata cbsa 
 sink("uspto/cbsa_uspto.txt")
-cbsa_i5hgc_key
 skim_with(numeric = list(hist = NULL))
 skim(cbsa_uspto)
 sink()
 
 # generate metadata county
 sink("uspto/co_uspto.txt")
-co_uspto_key
 skim_with(numeric = list(hist = NULL))
 skim(co_uspto)
 sink()
