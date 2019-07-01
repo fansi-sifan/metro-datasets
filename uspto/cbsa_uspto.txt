@@ -1,3 +1,10 @@
+                  labels         names
+1          i5hgc density i5hgc_density
+2             cbsa geoid     cbsa_code
+3              cbsa name     cbsa_name
+4 large/medium/small/non     cbsa_size
+
+
 Skim summary statistics
  n obs: 16288 
  n variables: 5 

@@ -15,26 +15,12 @@ if (any(!check)) {
 # inc5000 ---------------------------------------------------
 cbsa_i5hgc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
   mutate(CBSA_CODE = as.character(CBSA)) %>%
-  janitor::clean_names()
-
-cbsa_i5hgc$cbsa<-NULL
-
-names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'name'] <- 'cbsa_name'
-names(cbsa_i5hgc)[names(cbsa_i5hgc) == 'size_category'] <- 'cbsa_size'
-
-cbsa_i5hgc$cbsa_name<-as.character(cbsa_i5hgc$cbsa_name)
-cbsa_i5hgc$cbsa_size<-as.character(cbsa_i5hgc$cbsa_size)
-
-#labels for metadata
-labels<-c("cbsa name","large/medium/small/non","i5hgc density","cbsa geoid")
-
-set_label(cbsa_i5hgc)<-labels
-
-#correspondance between labels and variable names
-cbsa_i5hgc_key <- get_label(cbsa_i5hgc) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_i5hgc))
+  janitor::clean_names()%>%
+  mutate(cbsa_name = as.character(name), 
+         cbsa_size = as.character(size_category))%>%
+  select(-cbsa,
+         -name,
+         -size_category)
 
 # check output
 skim_with_defaults()
@@ -47,14 +33,12 @@ save(cbsa_i5hgc,file = "inc5000/cbsa_i5hgc.rda")
 
 # generate metadata 
 sink("inc5000/cbsa_i5hgc.txt")
-cbsa_i5hgc_key
 skim_with(numeric = list(hist = NULL))
 skim(cbsa_i5hgc)
 sink()
 
 # create README cbsa
 sink("inc5000/README.md")
-kable(cbsa_i5hgc_key)
 skim(cbsa_i5hgc)%>% kable()
 sink()
 

@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "stringr", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "stringr", "sjlabelled", "expss")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -16,84 +16,71 @@ if (any(!check)) {
 cbsa_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv") %>% janitor::clean_names() %>%
   mutate(cbsa_code = substr(as.character(id_code), 2, 6)) %>%
   filter(id_code != "") %>%
-  filter(geo_type != "ALL AREAS")
-
-#changing cbsa uspto names and classes
-names(cbsa_uspto)[names(cbsa_uspto) == 'geo_type'] <- 'cbsa_type'
-names(cbsa_uspto)[names(cbsa_uspto) == 'us_regional_title'] <- 'cbsa_name'
-cbsa_uspto$id_code<-NULL
-cbsa_uspto$total<-NULL
-
-cbsa_uspto$cbsa_type<-as.character(cbsa_uspto$cbsa_type)
-cbsa_uspto$cbsa_name<-as.character(cbsa_uspto$cbsa_name)
-cbsa_uspto$patents_issued<-as.numeric(cbsa_uspto$patents_issued)
+  filter(geo_type != "ALL AREAS")%>%
+  mutate(cbsa_type = as.character(geo_type), 
+         cbsa_name = as.character(us_regional_title))%>%
+  select(-geo_type,
+         -us_regional_title,
+         -id_code,
+         -total)
 
 #gathering into long instead of wide data
-cbsa_uspto<-gather(cbsa_uspto,"year","patents_issued",3:18)
+cbsa_uspto<-gather(cbsa_uspto,"year","patents_issued",x2000:x2015)
 cbsa_uspto<-cbsa_uspto%>%
-  mutate(year=as.numeric(substring(year, 2)))
+  mutate(year=as.numeric(substring(year, 2)),
+         patents_issued = as.numeric(patents_issued))%>%
+  apply_labels(cbsa_code= "cbsa geoid",
+               cbsa_type="cbsa type: metro, mico, non, undetermined",
+               cbsa_name="cbsa names",
+               year = "year patent was issued",
+               patents_issued = "total patents issued")
 
-cbsa_uspto$patents_issued<-as.numeric(cbsa_uspto$patents_issued)
+#correspondance between labels and variable names
+cbsa_uspto_key <- get_label(cbsa_uspto) %>%
+  data.frame() %>%
+  mutate(names = colnames(cbsa_uspto)) %>%
+  rename("label" = ".")
 
 # uspto County---------------------------------------------------
 co_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>% janitor::clean_names() %>%
   mutate(stco_code = str_pad(as.character(fips_code), 5, "left", "0"))%>%
-  filter(mail_code!="ALL")
-
-#changing county uspto names and classes and deleting unnecessary variables
-co_uspto$fips_code <- NULL
-co_uspto$mail_code <- NULL
-co_uspto$total <- NULL
-names(co_uspto)[names(co_uspto) == 'state_or_territory'] <- 'st_name'
-names(co_uspto)[names(co_uspto) == 'regional_area_component'] <- 'co_name'
-
-co_uspto$st_name<-as.character(co_uspto$st_name)
-co_uspto$st_name<-NULL
-co_uspto$co_name<-as.character(co_uspto$co_name)
-co_uspto$patents_issued<-as.numeric(co_uspto$patents_issued)
+  filter(mail_code!="ALL")%>%
+  mutate(co_name = as.character(regional_area_component))%>%
+  select(-fips_code,
+         -mail_code,
+         -total,
+         -state_or_territory,
+         -regional_area_component)
 
 #gathering into long instead of wide data
-co_uspto<-gather(co_uspto,"year","patents_issued",2:17)
+co_uspto<-gather(co_uspto,"year","patents_issued",x2000:x2015)
 co_uspto<-co_uspto%>%
-  mutate(year=as.numeric(substring(year, 2)))
+  mutate(year=as.numeric(substring(year, 2)),
+         patents_issued = as.numeric(patents_issued))%>%
+  apply_labels(stco_code= "county code",
+               co_name="county names",
+               year = "year patent was issued",
+               patents_issued = "total patents issued")
 
-co_uspto$patents_issued<-as.numeric(co_uspto$patents_issued)
+#correspondance between labels and variable names
+co_uspto_key <- get_label(co_uspto) %>%
+  data.frame() %>%
+  mutate(names = colnames(co_uspto)) %>%
+  rename("label" = ".")
+
 
 # save output
 dir.create("uspto")
 
 #metadata-------------------------------------------
-#set labels county 
-labels<-c("county name","county code","year of patent data collection","total patents issued")
-set_label(co_uspto)<-labels
-
-#correspondance between labels and variable names county 
-co_uspto_key <- get_label(co_uspto) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(co_uspto))
-
-#set labels
-labels<-c("cbsa type: metro, mico, non, undetermined",
-          "cbsa name","cbsa geoid","year patent issued","total patents issued")
-
-set_label(cbsa_uspto)<-labels
-
-#correspondance between labels and variable names
-cbsa_uspto_key <- get_label(cbsa_uspto) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_uspto))
 
 # create README 
 sink("uspto/README.md")
 kable(cbsa_uspto_key)
 skim(cbsa_uspto)%>% kable()
 kable(co_uspto_key)
-skim(cbsa_uspto)%>% kable()
+skim(co_uspto)%>% kable()
 sink()
-
-#cbsa metadata-------------------------------------------
 
 #check output
 skim_with_defaults()
@@ -115,7 +102,6 @@ sink()
 
 # generate metadata county
 sink("uspto/co_uspto.txt")
-co_uspto_key
 skim_with(numeric = list(hist = NULL))
 skim(co_uspto)
 sink()

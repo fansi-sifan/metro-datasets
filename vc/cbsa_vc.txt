@@ -1,12 +1,13 @@
                                              labels     names
-1                                         cbsa name cbsa_name
-2                         time period of investment    period
-3                             total venture capital     round
-4 \ncapital invested (in_millions) per 1M residents     value
-5                                          latitude  latitude
-6                                         longitude longitude
-7                                     cbsa ranking       rank
-8                                         cbsa code cbsa_code
+1                         time period of investment    period
+2                             total venture capital     round
+3 \ncapital invested (in_millions) per 1M residents     value
+4                                          latitude  latitude
+5                                         longitude longitude
+6                                     cbsa ranking       rank
+7                                         cbsa code cbsa_code
+8                                         cbsa name cbsa_name
+
 Skim summary statistics
  n obs: 113 
  n variables: 8 
