@@ -1,4 +1,7 @@
+Report: Meet the out-of-work Local profiles of jobless adults and strategies to connect them to employment
+https://www.brookings.edu/research/meet-the-out-of-work/
 
+Authors: Martha Ross and Natalie HolmesThursday, June 22, 2017
 
 |                      labels                      |                      names                       |
 |--------------------------------------------------|--------------------------------------------------|

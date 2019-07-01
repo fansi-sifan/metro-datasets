@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "expss", "httr","skimr", "janitor", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "expss", "httr","skimr", "janitor", "sjlabelled", "expss")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -16,10 +16,14 @@ if (any(!check)) {
 cbsa_patent_complexity <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
   janitor::clean_names() %>%
   mutate(cbsa_code = as.character(cbsa), 
-         cbsa_name = as.character(cma_cbsa_name)) %>%
+         cbsa_name = as.character(cma_cbsa_name),
+         patent_complexity = complex) %>%
   select(-cbsa, 
-         -cma_cbsa_name,
-         cbsa_patent_complexity = complex)
+         -cma_cbsa_name, 
+         -complex)%>%
+  apply_labels(cbsa_code = "cbsa code",
+  cbsa_name = "cbsa name",
+  patent_complexity = "patent complexity score")
 
 # check output
 skim_with_defaults()

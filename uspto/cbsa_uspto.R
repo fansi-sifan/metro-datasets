@@ -2,7 +2,7 @@
 # Author: Eleanor Noble
 # Date: 6/19/2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "stringr", "sjlabelled")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "stringr", "sjlabelled", "expss")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -28,7 +28,18 @@ cbsa_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_msa.csv"
 cbsa_uspto<-gather(cbsa_uspto,"year","patents_issued",x2000:x2015)
 cbsa_uspto<-cbsa_uspto%>%
   mutate(year=as.numeric(substring(year, 2)),
-         patents_issued = as.numeric(patents_issued))
+         patents_issued = as.numeric(patents_issued))%>%
+  apply_labels(cbsa_code= "cbsa geoid",
+               cbsa_type="cbsa type: metro, mico, non, undetermined",
+               cbsa_name="cbsa names",
+               year = "year patent was issued",
+               patents_issued = "total patents issued")
+
+#correspondance between labels and variable names
+cbsa_uspto_key <- get_label(cbsa_uspto) %>%
+  data.frame() %>%
+  mutate(names = colnames(cbsa_uspto)) %>%
+  rename("label" = ".")
 
 # uspto County---------------------------------------------------
 co_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv") %>% janitor::clean_names() %>%
@@ -45,7 +56,18 @@ co_uspto <- read.csv("V:/Sifan/Birmingham/County Cluster/source/USPTO_county.csv
 co_uspto<-gather(co_uspto,"year","patents_issued",x2000:x2015)
 co_uspto<-co_uspto%>%
   mutate(year=as.numeric(substring(year, 2)),
-         patents_issued = as.numeric(patents_issued))
+         patents_issued = as.numeric(patents_issued))%>%
+  apply_labels(stco_code= "county code",
+               co_name="county names",
+               year = "year patent was issued",
+               patents_issued = "total patents issued")
+
+#correspondance between labels and variable names
+co_uspto_key <- get_label(co_uspto) %>%
+  data.frame() %>%
+  mutate(names = colnames(co_uspto)) %>%
+  rename("label" = ".")
+
 
 # save output
 dir.create("uspto")
@@ -54,7 +76,9 @@ dir.create("uspto")
 
 # create README 
 sink("uspto/README.md")
+kable(cbsa_uspto_key)
 skim(cbsa_uspto)%>% kable()
+kable(co_uspto_key)
 skim(co_uspto)%>% kable()
 sink()
 
