@@ -1,15 +1,56 @@
-Report: "Digitial Distress: mapping broadband availability and subscription" 
-https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
-
-Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram 
-
+Report: Digitial Distress: mapping broadband availability and subscriptionhttps://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
+Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram
               label                        names
 1   at least 3 Mbps                         atl3
 2  at least 10 Mbps                        atl10
 3  at least 10 Mbps                        atl25
 4   at least 1 Gbps                      above1g
+5                                      pcat_10x1
+6                                       pop_1115
+7                                    native_1115
+8                                   foreign_1115
+9                                      male_1115
+10                                   female_1115
+11                                 white_nh_1115
+12                                 black_nh_1115
+13                                     ainh_1115
+14                                 asian_nh_1115
+15                                 other_nh_1115
+16                                     hisp_1115
+17                                      u18_1115
+18                                  x18to64_1115
+19                                       x65plus
+20                            language_univ_1115
+21                                   loweng_1115
+22                            edattain_univ_1115
+23                                   lesshs_1115
+24                                       hs_1115
+25                                 somecoll_1115
+26                                       aa_1115
+27                                   baplus_1115
+28                                 emp_univ_1115
+29                               unemployed_1115
+30                                 notin_lf_1115
+31                             commute_univ_1115
+32                             commute_home_1115
+33                                       hh_1115
+34                                family_hh_1115
+35                          singleparent_hh_1115
+36                              disabled_hh_1115
+37                                hh_medinc_1115
+38                             publicinc_hh_1115
+39                                  snap_hh_1115
+40                                 occunits_1115
+41                                   ownocc_1115
+42                                  rentocc_1115
+43                  hcostunder30pct_rentocc_1115
+44                   hcost30to50pct_rentocc_1115
+45                   hcost50pctplus_rentocc_1115
+46                                       povuniv
+47                                         inpov
+48                                     medincbmk
+49                                       inc_cat
 50      tract geoid               stcotract_code
-
 Skim summary statistics
  n obs: 73056 
  n variables: 50 
