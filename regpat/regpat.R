@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr")
+pkgs <- c("tidyverse", "reshape2", "writexl", "httr", "skimr")
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -14,29 +14,29 @@ if (any(!check)) {
 # TRANSFORM ============================================
 # REGPAT ---------------------------------------------------
 
-#data exists up to 2012
+# data exists up to 2012
 
 cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx", sheet = "i0") %>%
   filter(`Year Range` == "2008-2012") %>%
   select(-Total) %>%
   janitor::clean_names()
 
-colnames(cbsa_regpat)<-c(
-"year_range",                                         
-"cbsa_code", #includes outside US                                      
-"cbsa_name",                                      
-"cbsa_country",                               
-"st_name",                                  
-"country_name",                                            
-"cbsa_patents_invented",     
-"cbsa_inventors_per_patent", 
-"cbsa_patent_applications",  
-"cbsa_applicants_per_patent"
+colnames(cbsa_regpat) <- c(
+  "year_range",
+  "cbsa_code", # includes outside US
+  "cbsa_name",
+  "cbsa_country",
+  "st_name",
+  "country_name",
+  "cbsa_patents_invented",
+  "cbsa_inventors_per_patent",
+  "cbsa_patent_applications",
+  "cbsa_applicants_per_patent"
 )
 
-#create directory
+# create directory
 dir.create("regpat")
-save(cbsa_regpat,file = "regpat/regpat.rda")
+save(cbsa_regpat, file = "regpat/regpat.rda")
 
 skim_with(numeric = list(hist = NULL))
 
@@ -46,11 +46,10 @@ skim(cbsa_regpat) %>% kable()
 sink()
 
 
-#txt file with metadata
-sink("regpat/regpat.txt") 
+# txt file with metadata
+sink("regpat/regpat.txt")
 skim(cbsa_regpat)
 sink()
 
-#write csv
-write_csv(cbsa_regpat,"regpat/regpat.csv")
-
+# write csv
+write_csv(cbsa_regpat, "regpat/regpat.csv")
