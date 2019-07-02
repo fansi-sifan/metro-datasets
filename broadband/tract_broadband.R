@@ -12,7 +12,6 @@ if (any(!check)) {
 }
 
 # TRANSFORM ============================================
-# Patent Complexity ---------------------------------------------------
 # broadband ---------------------------------------------------
 tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx")%>%
   janitor::clean_names()%>%
