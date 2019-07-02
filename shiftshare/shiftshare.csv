@@ -1,4 +1,4 @@
-year,cbsa_code,cbsa_2013_name,naics2_code,naics2_name,indicator,2006_ls_share,2006_im_share,2006_ns_share,2011_ls_share,2011_im_share,2011_ns_share,2015_ls_share,2015_im_share,2015_ns_share,value
+year,cbsa2013_fips,cbsa2013_name,naics2,industryname_naics2,indicator,lsshare2006,imshare2006,nsshare2006,lsshare2011,imshare2011,nsshare2011,lsshare2015,imshare2015,nsshare2015,value
 2016,10420,Akron; OH Metropolitan Statistical Area,21,"Mining, quarrying, and oil and gas extraction",Aggregate Wage,-0.4616216,0.0657177,0.1082674,-0.0152165,-0.2738257,0.1401297,0.0301219,-0.2268927,0.0167614,21700000
 2016,10420,Akron; OH Metropolitan Statistical Area,21,"Mining, quarrying, and oil and gas extraction",Employment,-0.5411034,0.1093109,0.0233206,0.1397908,-0.1790485,0.0988783,0.0495907,-0.1553785,0.0172098,391
 2016,10420,Akron; OH Metropolitan Statistical Area,21,"Mining, quarrying, and oil and gas extraction",GDP,4.900665,0.4313695,0.1729697,8.818469,0.4808823,0.25761,0.6856394,-0.0174226,0.0172899,1320000000
