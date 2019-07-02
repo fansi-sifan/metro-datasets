@@ -2,7 +2,7 @@
 # Author: Sifan Liu
 # Date: Fri Aug 03 14:00:12 2018
 # SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr", "skimr", "sjlabelled") # sjlabelled for column labels
+pkgs <- c("tidyverse", "reshape2", "Hmisc", "skimr", "sjlabelled") # sjlabelled for column labels
 
 check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
 if (any(!check)) {
@@ -31,20 +31,20 @@ county_autm <- AUTM %>%
     tot_st = sum(St.Ups.Formed, na.rm = TRUE),
     instate_st = sum(St.Ups.in.Home.St, na.rm = TRUE)
   ) %>%
-  mutate(stco_code = str_pad(as.character(FIPS), 5, "left", "0")) %>%
+  mutate(stco_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
 # set variable labels
 labels <- c(
-  "total license and option issues",
-  "total licenses, large companies",
-  "total licenses, small companoes",
-  "total licenses, start-ups",
-  "gross license income",
-  "total investment disclosures received",
-  "total start ups formed",
-  "start ups in home state",
-  "county FIPS code"
+  tot_lic = "total license and option issues",
+  lg_lic = "total licenses, large companies",
+  sm_lic = "total licenses, small companies",
+  st_lic = "total licenses, start-ups",
+  inc_lic = "gross license income",
+  tot_IP = "total investment disclosures received",
+  tot_st = "total start ups formed",
+  instate_st = "start ups in home state",
+  stco_fips = "county FIPS code"
 )
 
 set_label(county_autm) <- labels
@@ -52,7 +52,7 @@ set_label(county_autm) <- labels
 # correspondance between labels and variable names
 county_autm_key <- get_label(county_autm) %>%
   data.frame() %>%
-  rename_at(vars(1), funs(paste0("labels"))) %>%
+  # rename_at(vars(1), funs(paste0("labels"))) %>%
   mutate(names = colnames(county_autm))
 
 
@@ -77,3 +77,4 @@ sink()
 
 # write csv
 write_csv(county_autm, "autm/autm.csv")
+

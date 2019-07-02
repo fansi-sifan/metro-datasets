@@ -1,16 +1,16 @@
 
 
-|                labels                 |   names    |
+|                   .                   |   names    |
 |---------------------------------------|------------|
 |    total license and option issues    |  tot_lic   |
 |    total licenses, large companies    |   lg_lic   |
-|    total licenses, small companoes    |   sm_lic   |
+|    total licenses, small companies    |   sm_lic   |
 |       total licenses, start-ups       |   st_lic   |
 |         gross license income          |  inc_lic   |
 | total investment disclosures received |   tot_IP   |
 |        total start ups formed         |   tot_st   |
 |        start ups in home state        | instate_st |
-|           county FIPS code            | stco_code  |
+|           county FIPS code            | stco_fips  |
 Skim summary statistics  
  n obs: 177    
  n variables: 9    
@@ -19,7 +19,7 @@ Variable type: character
 
 | variable  | missing | complete |  n  | min | max | empty | n_unique |
 |-----------|---------|----------|-----|-----|-----|-------|----------|
-| stco_code |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
+| stco_fips |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
 
 Variable type: integer
 

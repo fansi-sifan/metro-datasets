@@ -1,20 +1,20 @@
-                                 labels      names
+                                      .      names
 1       total license and option issues    tot_lic
 2       total licenses, large companies     lg_lic
-3       total licenses, small companoes     sm_lic
+3       total licenses, small companies     sm_lic
 4             total licenses, start-ups     st_lic
 5                  gross license income    inc_lic
 6 total investment disclosures received     tot_IP
 7                total start ups formed     tot_st
 8               start ups in home state instate_st
-9                      county FIPS code  stco_code
+9                      county FIPS code  stco_fips
 Skim summary statistics
  n obs: 177 
  n variables: 9 
 
 -- Variable type:character -----------------------------------------------------
   variable missing complete   n min max empty n_unique
- stco_code       1      176 177   5   5     0      176
+ stco_fips       1      176 177   5   5     0      176
 
 -- Variable type:integer -------------------------------------------------------
    variable missing complete   n    mean       sd p0 p25 p50  p75  p100
