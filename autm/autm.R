@@ -1,24 +1,24 @@
-# Get Raw Data and save to 'source' folder
-# Author: Sifan Liu
-# Date: Fri Aug 03 14:00:12 2018
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "Hmisc", "skimr", "sjlabelled") # sjlabelled for column labels
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "source/AUTM.csv"
+folder_name <- "autm"
+file_name <- "county_autm"
 
-# TRANSFORM ============================================
-# AUTM ---------------------------------------------------
+# metadata
+dt_title <- "University licensing activity and income"
+dt_src <- "The Statistics Access for Technology Transfer (STATT) Database, 2017"
+dt_contact <- "Sifan Liu"
+df_notes <- ""
+
+# FUNCTION load
+df <- read_csv(source_dir)
 
 # data available up to 2017
-
-AUTM <- read.csv("source/AUTM.csv")
-
-county_autm <- AUTM %>%
+df <- df %>%
   group_by(FIPS) %>%
   # summarise_if(is.numeric, sum, na.rm = TRUE) %>%
   summarise(
@@ -34,6 +34,7 @@ county_autm <- AUTM %>%
   mutate(stco_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
+# labels =========
 # set variable labels
 labels <- c(
   tot_lic = "total license and option issues",
@@ -47,34 +48,12 @@ labels <- c(
   stco_fips = "county FIPS code"
 )
 
-set_label(county_autm) <- labels
-
-# correspondance between labels and variable names
-county_autm_key <- get_label(county_autm) %>%
+df_labels <- labels %>%
   data.frame() %>%
-  # rename_at(vars(1), funs(paste0("labels"))) %>%
-  mutate(names = colnames(county_autm))
+  mutate(names = colnames(df)) %>%
+  rename("label" = ".")
 
+# FUNCTION save output
+save_output(df,df_labels, folder_name, file_name, dt_title, dt_contact, dt_src)
 
-# create directory
-dir.create("autm")
-save(county_autm, file = "autm/autm.rda")
-
-
-# sink metadata into .md
-sink("autm/README.md")
-county_autm_key %>% kable()
-skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
-skim(county_autm) %>% kable()
-sink()
-
-
-# txt file with metadata
-sink("autm/autm.txt")
-county_autm_key
-skim(county_autm)
-sink()
-
-# write csv
-write_csv(county_autm, "autm/autm.csv")
 
