@@ -13,7 +13,7 @@ if (any(!check)) {
 }
 # API setup ============================================
 
-census_api_key("08481c4dfc3883be489eadb48bc5e5a525083674", install = TRUE)
+census_api_key("insert census api key here", install = TRUE)
 # First time, reload your environment so you can use the key without restarting R.
 readRenviron("~/.Renviron")
 
