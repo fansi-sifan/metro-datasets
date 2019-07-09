@@ -21,7 +21,7 @@ if (any(!check)) {
            character.only = TRUE)
 }
 
-census_api_key("e5ae735f65e6b93f5c2f9bc16bea67b72fa202da")
+
 
 # FUNCTION: CLEAN_ACS ==============================================
 
@@ -94,44 +94,10 @@ clean_acs <- function(geography, variables, year, span) {
 # VARIABLE CODES =================================================
 
 #variable codes for poverty rate by race (manual lookup & test)
-pov_race_codes<-c("S1701_C03_013",
-                  "S1701_C03_014",
-                  "S1701_C03_015", 
-                  "S1701_C03_016", 
-                  "S1701_C03_017",
-                  "S1701_C03_018", 
-                  "S1701_C03_019", 
-                  "S1701_C03_020",
-                  "S1701_C03_021")
+pov_race_codes<-purrr::map_chr(seq(13,21),function(x)paste0("S1701_C03_0",x))
 
 #variable codes for educational attainment by race (manual lookup & test)
-ed_race_codes<-c("S1501_C02_028",
-                 "S1501_C02_029",
-                 "S1501_C02_030", 
-                 "S1501_C02_031",
-                 "S1501_C02_032", 
-                 "S1501_C02_033", 
-                 "S1501_C02_034", 
-                 "S1501_C02_035", 
-                 "S1501_C02_036", 
-                 "S1501_C02_037", 
-                 "S1501_C02_038", 
-                 "S1501_C02_039", 
-                 "S1501_C02_040", 
-                 "S1501_C02_041", 
-                 "S1501_C02_042", 
-                 "S1501_C02_043", 
-                 "S1501_C02_044", 
-                 "S1501_C02_045", 
-                 "S1501_C02_046", 
-                 "S1501_C02_047", 
-                 "S1501_C02_048",
-                 "S1501_C02_049", 
-                 "S1501_C02_050", 
-                 "S1501_C02_051", 
-                 "S1501_C02_052", 
-                 "S1501_C02_053", 
-                 "S1501_C02_054") 
+ed_race_codes<-purrr::map_chr(seq(28,54),function(x)paste0("S1501_C02_0",x))
 
 
 # for a less hard-coded way to find variable codes...(double)
