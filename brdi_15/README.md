@@ -1,6 +1,18 @@
 Title:  Domestic R&D performed by companies, Millions USD
 Contact:  Sifan Liu
-Source:  Business R&D and Innovation Survey, 2015 
+Source:  Business R&D and Innovation Survey, 2015
+Last updated:  Tue Jul 09 16:21:19 2019 
+
+
+
+|                       label                        |        names        |
+|----------------------------------------------------|---------------------|
+|                    metro names                     |      cbsa_name      |
+|                     CBSA code                      |      cbsa_code      |
+| Total Domestic R&D paid by companies, millions USD |        total        |
+|              Paid for by the company               | total_paidbycompany |
+|                 Paid for by others                 | total_paidbyothers  |
+
 
 Skim summary statistics  
  n obs: 103    
