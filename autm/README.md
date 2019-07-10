@@ -1,7 +1,7 @@
 Title:  University licensing activity and income
 Contact:  Sifan Liu
 Source:  The Statistics Access for Technology Transfer (STATT) Database, 2017
-Last updated:  Tue Jul 09 16:21:41 2019 
+Last updated:  Wed Jul 10 13:40:46 2019 
 
 
 
@@ -15,7 +15,7 @@ Last updated:  Tue Jul 09 16:21:41 2019
 | total investment disclosures received |   tot_IP   |
 |        total start ups formed         |   tot_st   |
 |        start ups in home state        | instate_st |
-|           county FIPS code            | stco_fips  |
+|           county FIPS code            | stco_code  |
 
 
 Skim summary statistics  
@@ -26,7 +26,7 @@ Variable type: character
 
 | variable  | missing | complete |  n  | min | max | empty | n_unique |
 |-----------|---------|----------|-----|-----|-----|-------|----------|
-| stco_fips |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
+| stco_code |    1    |   176    | 177 |  5  |  5  |   0   |   176    |
 
 Variable type: numeric
 

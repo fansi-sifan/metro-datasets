@@ -31,7 +31,7 @@ df <- df %>%
     tot_st = sum(St.Ups.Formed, na.rm = TRUE),
     instate_st = sum(St.Ups.in.Home.St, na.rm = TRUE)
   ) %>%
-  mutate(stco_fips = str_pad(as.character(FIPS), 5, "left", "0")) %>%
+  mutate(stco_code = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
 # labels =========
@@ -45,7 +45,7 @@ labels <- c(
   tot_IP = "total investment disclosures received",
   tot_st = "total start ups formed",
   instate_st = "start ups in home state",
-  stco_fips = "county FIPS code"
+  stco_code = "county FIPS code"
 )
 
 df_labels <- labels %>%
@@ -54,6 +54,9 @@ df_labels <- labels %>%
   rename("label" = ".")
 
 # FUNCTION save output
+df <- df %>%
+  select(stco_code,everything())
+
 save_output(df,df_labels, folder_name, file_name, dt_title, dt_contact, dt_src)
 
 
