@@ -31,31 +31,20 @@ if (any(!check)) {
 # third argument = endyear of survey (yyyy)
 # fourth argument = number of years survey spans (either 1, 3, or 5)
 
+key <- Sys.getenv("CENSUS_API_KEY")
 
+clean_acs <- function(geography, variables, year, span, key) {
+  
+  geogr_name <- paste0(enquo(geography),"_name")
 
-clean_acs <- function(geography, variables, year, span) {
-  
-  geogr <- geography
-  vari <- variables
-  ye <- year
-  spann <- span
-  
-  geogr_name <- paste0(enquo(geogr),"_name")
-  varkey <- c("0")
-  x <- c("0")
-  
-  # load libraries
-  library(tidycensus)  
-  library(tidyverse)  
-  
-  
   # pull data with get acs
-  x <- get_acs(
-    geography = geogr,
-    variables = vari,
+  df <- get_acs(
+    geography = geography,
+    variables = variables,
     cache_table = TRUE,
-    year = ye,
-    survey = paste0("acs", enquo(spann))[2]
+    year = year,
+    key = key,
+    survey = paste0("acs", span)
   )
   
   # load descriptive labels for subject tables OR detailed tables
@@ -70,9 +59,9 @@ clean_acs <- function(geography, variables, year, span) {
   )
   
   # clean pulled data and rename columns to descriptive labels 
-  final <- varkey %>%
-    filter(name %in% x$variable) %>%
-    left_join(x, by = c("name" = "variable")) %>%
+  output <- varkey %>%
+    filter(name %in% df$variable) %>%
+    left_join(df, by = c("name" = "variable")) %>%
     select(-concept) %>%
     gather(key = "measure", value = "values", estimate, moe) %>%
     mutate(label = tolower(str_replace_all(label, "[[:punct:]]", " "))) %>%
@@ -81,12 +70,12 @@ clean_acs <- function(geography, variables, year, span) {
     unite(label, label, measure, sep = "_") %>%
     unite(label, name, label, sep = "_") %>%
     spread(key = label, value = values) %>%
-    rename("geoid" = GEOID,
-           geography_name = "NAME") %>%
+    rename(stco_code = GEOID,
+           stco_name = NAME) %>%
     select_if(~sum(!is.na(.)) > 0)
   
   
-  return(final)
+  return(output)
   
 }
 
@@ -112,8 +101,6 @@ ed_race_codes_soft<-load_variables(2017,"acs1/subject", cache = "TRUE") %>%
   filter(grepl("alone", label) | grepl("Hispanic", label))
 
 #ed_race_codes_soft$name == ed_race_codes #difference caused by empty columns ending in 49,40,51
-
-
 
 
 # RUN =================================================
