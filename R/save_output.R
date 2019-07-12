@@ -1,4 +1,4 @@
-save_output <- function(df,labels,folder, file, title, contact, source){
+save_output <- function(df,labels,folder, file, title, contact, source, apd=F){
   
   # create folder
   if (!dir.exists(folder)){dir.create(folder)}
@@ -9,7 +9,7 @@ save_output <- function(df,labels,folder, file, title, contact, source){
   write_csv(df,paste0(folder,"\\/",file,".csv"))
   
   # generate metadata
-  sink(paste0(folder,"\\/",file,".txt"),append = F)
+  sink(paste0(folder,"\\/",file,".txt"),append = apd)
   cat("Title: ",title)
   cat("\nContact: ", contact)
   cat("\nSource: ", source)
@@ -24,7 +24,7 @@ save_output <- function(df,labels,folder, file, title, contact, source){
   sink()
   
   # create README
-  sink(paste0(folder,"\\/README.md"),append = F)
+  sink(paste0(folder,"\\/README.md"),append = apd)
   
   cat("Title: ",title)
   cat("\nContact: ", contact)
