@@ -38,3 +38,11 @@ save_output <- function(df,labels,folder, file, title, contact, source){
   sink()
   
 }
+
+
+create_labels <- function(df){
+  sjlabelled::get_label(df) %>%
+    data.frame() %>%
+    mutate(names = colnames(df)) %>%
+    rename("label" = ".")
+  }
