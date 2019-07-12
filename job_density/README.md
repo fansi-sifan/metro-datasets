@@ -1,8 +1,10 @@
-July 2019
+Title:  Job density
 
-BI Metropolitan Policy Program
-Bass Center for Transformative Placemaking
-Joanne Kim
+Contact: Joanne Kim 
+
+Source:  https://www.brookings.edu/research/where-jobs-are-concentrating-why-it-matters-to-cities-and-regions/
+
+Last updated:  Fri Jul 12 10:21:49 2019 
 
 
 1. DATA SOURCES
@@ -29,17 +31,7 @@ Joanne Kim
         metro area. 
 
 
-Title:  
-Contact:  
-Source:  
-Last updated:  Fri Jul 12 10:21:49 2019 
 
-
-
-| c..var....lab.. |
-|-----------------|
-|       var       |
-|       lab       |
 
 
 Skim summary statistics  
@@ -73,17 +65,7 @@ Variable type: numeric
 | year2013 |    0    |   1843   | 1843 | 9713.13  | 21960.13 | 47.23  | 2168.32 | 3890.69 | 7876.35 |   3e+05   |
 | year2014 |    0    |   1843   | 1843 | 9772.27  | 22191.02 | 56.18  | 2159.3  | 3879.04 | 7879.44 | 311028.81 |
 | year2015 |    0    |   1843   | 1843 | 10016.87 | 23370.01 | 34.35  | 2210.97 | 3913.72 | 8415.86 | 318399.94 |
-Title:  
-Contact:  
-Source:  
-Last updated:  Fri Jul 12 10:21:53 2019 
 
-
-
-| c..var....lab.. |
-|-----------------|
-|       var       |
-|       lab       |
 
 
 Skim summary statistics  
