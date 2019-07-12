@@ -2,19 +2,29 @@
 # Author: David Whyman
 # Date: Wed Jun 19 14:55:00 2019
 # SET UP ==============================================
-pkgs <- c("tidyverse", "janitor","skimr")
+library(tidyverse)
+library(skimr)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+source_dir <- "source/metro_all_updated.csv"
+folder_name <- "digitalization"
+file_name <- "digitalization"
+
+# metadata
+dt_title <- "Average digitalization score, 2002 and 2016"
+dt_src <- "https://www.brookings.edu/research/digitalization-and-the-american-workforce/"
+dt_contact <- "Sifan Liu"
+df_notes <- ""
+
+# FUNCTION load
+df <- read_csv(source_dir)
+assign(file_name,df)
+
 
 # Digitalization ---------------------------------------------------
 
 #data up to 2016 exists (read source data)
-cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
+df <- df %>%
   janitor::clean_names() %>%
   select(cbsa_code = area,
          cbsa_name = geography,
@@ -27,23 +37,13 @@ cbsa_digital <- read.csv("source/metro_all_updated.csv") %>%
          cbsa_pct_medium_16 = medium16,
          cbsa_pct_low_16 = low16)
 
-#create directory
-dir.create("digitalization")
-save(cbsa_digital,file = "digitalization/digitalization.rda")
+df_labels <- data.frame(c("variable","label"))
 
-skim_with(integer = list(hist = NULL), numeric = list(hist = NULL))
+# FUNCTION save output
+skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
 
-# sink metadata into .md
-sink("digitalization/README.md")
-skim(cbsa_digital) %>% kable()
-sink()
+save_output(df = df, labels = df_labels,
+            folder = folder_name, file = file_name, 
+            title = dt_title, contact = dt_contact, source = dt_src)
 
-
-#txt file with metadata
-sink("digitalization/digitalization.txt") 
-skim(cbsa_digital)
-sink()
-
-#write csv
-write_csv(cbsa_digital,"digitalization/digitalization.csv")
 
