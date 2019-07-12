@@ -1,4 +1,7 @@
-Report: Digitial Distress: mapping broadband availability and subscriptionhttps://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
+Report: Digitial Distress: mapping broadband availability and subscription
+
+https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
+
 Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram
 
 
