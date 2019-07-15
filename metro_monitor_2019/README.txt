@@ -13,7 +13,7 @@ Providence-New Bedford-Fall River, RI-MA
 Nashville-Davidson--Murfreesboro, TN 
 Boston-Cambridge-Quincy, MA-NH (Metro Area) 
 
-Last updated:  Mon Jul 15 19:08:43 2019 
+Last updated:  Mon Jul 15 19:08:42 2019 
 
 
 
