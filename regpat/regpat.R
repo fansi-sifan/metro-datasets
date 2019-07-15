@@ -1,52 +1,51 @@
-# Get Raw Data and save to 'source' folder
-# Author: Sifan Liu
-# Date: Fri Aug 03 14:00:12 2018
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "skimr", "janitor")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx"
+folder_name <- "regpat"
+file_name <- "regpat"
 
-# TRANSFORM ============================================
-# REGPAT ---------------------------------------------------
+# metadata
+dt_title <- "OECD patents, 2008 - 2012"
+dt_src <- "http://www.oecd.org/sti/inno/intellectual-property-statistics-and-analysis.htm"
+dt_contact <- "Sifan"
+df_notes <- ""
 
-# data exists up to 2012
-
-cbsa_regpat <- readxl::read_xlsx("V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx", sheet = "i0") %>%
+# FUNCTION load
+df <- readxl::read_xlsx(source_dir, sheet = "i0") %>%
   filter(`Year Range` == "2008-2012") %>%
+  filter(Country == "United States") %>%
   janitor::clean_names() %>%
   select(
     year_range,
     cbsa_name = "micro_regions",
-    cbsa_fips = "micro_region",
+    cbsa_code = "micro_region",
     st_name = "core_macro_region",
-    country_name = "country",
     cbsa_patents_invented = "number_of_patents_invented_total_micro_regions",
     cbsa_inventors_per_patent = "number_of_inventors_per_patent_total_micro_regions",
     cbsa_patent_applications = "number_of_patent_applications_total_micro_regions",
     cbsa_applicants_per_patent = "number_of_applicants_per_patent_total_micro_regions"
   )
 
-# create directory
-dir.create("regpat")
-save(cbsa_regpat, file = "regpat/regpat.rda")
+df <- df %>% apply_labels(
+  cbsa_patents_invented = "number_of_patents_invented_total_micro_regions",
+  cbsa_inventors_per_patent = "number_of_inventors_per_patent_total_micro_regions",
+  cbsa_patent_applications = "number_of_patent_applications_total_micro_regions",
+  cbsa_applicants_per_patent = "number_of_applicants_per_patent_total_micro_regions"
+)
+df_labels <- create_labels(df)
 
-skim_with(numeric = list(hist = NULL))
+# SAVE OUTPUT
+df <- df %>%
+select(cbsa_code, everything()) # make sure unique identifier is the left most column
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-# sink metadata into .md
-sink("regpat/README.md")
-skim(cbsa_regpat) %>% kable()
-sink()
-
-
-# txt file with metadata
-sink("regpat/regpat.txt")
-skim(cbsa_regpat)
-sink()
-
-# write csv
-write_csv(cbsa_regpat, "regpat/regpat.csv")
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+)
