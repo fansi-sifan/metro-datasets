@@ -8,15 +8,18 @@ source_dir <- "source/AUTM.csv"
 folder_name <- "autm"
 file_name <- "autm"
 
-# metadata
+# metadata -----------
 dt_title <- "University licensing activity and income"
 dt_src <- "The Statistics Access for Technology Transfer (STATT) Database, 2017"
 dt_contact <- "Sifan Liu"
 df_notes <- ""
 
-# FUNCTION load
+# read datasets
 df <- read_csv(source_dir)
 
+# TRANSFORM =================================
+
+# Data ---------------------------
 # data available up to 2017
 df <- df %>%
   group_by(FIPS) %>%
@@ -34,7 +37,7 @@ df <- df %>%
   mutate(stco_code = str_pad(as.character(FIPS), 5, "left", "0")) %>%
   select(-FIPS)
 
-# labels =========
+# labels --------------------------
 # set variable labels
 df <- df %>% apply_labels (
   tot_lic = "total license and option issues",
@@ -50,12 +53,14 @@ df <- df %>% apply_labels (
 
 df_labels <- create_labels(df)
 
-
+# SAVE OUTPUT
 df <- df %>%
-  select(stco_code, everything())
+  select(stco_code, everything()) # make sure unique identifier is the left most column
 
-# FUNCTION save output
+# datasets
 save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
 save_meta(df,
   labels = df_labels, folder = folder_name, file = file_name,
   title = dt_title, contact = dt_contact, source = dt_src
