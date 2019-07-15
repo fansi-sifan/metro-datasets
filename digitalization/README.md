@@ -1,14 +1,22 @@
 Title:  Average digitalization score, 2002 and 2016
 Contact:  Sifan Liu
 Source:  https://www.brookings.edu/research/digitalization-and-the-american-workforce/
-Last updated:  Fri Jul 12 09:18:32 2019 
+Last updated:  Mon Jul 15 17:55:48 2019 
 
 
 
-| c..variable....label.. |
-|------------------------|
-|        variable        |
-|         label          |
+|                    label                    |       names        |
+|---------------------------------------------|--------------------|
+|                                             |     cbsa_code      |
+|                                             |     cbsa_name      |
+|          Mean digital score, 2002           |   cbsa_score_02    |
+|          Mean digital score, 2016           |   cbsa_score_16    |
+|  Share of jobs that are high digital, 2002  |  cbsa_pct_high_02  |
+| Share of jobs that are medium digital, 2002 | cbsa_pct_medium_02 |
+|  Share of jobs that are low digital, 2002   |  cbsa_pct_low_02   |
+|  Share of jobs that are high digital, 2016  |  cbsa_pct_high_16  |
+| Share of jobs that are medium digital, 2016 | cbsa_pct_medium_16 |
+|  Share of jobs that are low digital, 2016   |  cbsa_pct_low_16   |
 
 
 Skim summary statistics  
