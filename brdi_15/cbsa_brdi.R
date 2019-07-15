@@ -15,26 +15,27 @@ df_notes <- ""
 
 # FUNCTION load
 df <- read_csv(source_dir)
-assign(file_name,df)
 
 # labels
-labels <- c(
- cbsa_name <- "metro names",
- cbsa_code <- "CBSA code",
- total <- "Total Domestic R&D paid by companies, millions USD",
- total_paidbycompany <-"Paid for by the company",
- total_paidbyothers <- "Paid for by others"
+df <- df %>% apply_labels(
+ cbsa_name = "metro names",
+ cbsa_code = "CBSA code",
+ total = "Total Domestic R&D paid by companies, millions USD",
+ total_paidbycompany ="Paid for by the company",
+ total_paidbyothers = "Paid for by others"
 )
 
-df_labels <- labels %>%
-  data.frame() %>%
-  mutate(names = colnames(df)) %>%
-  rename("label" = ".")
+df_labels <- create_labels(df)
 
-# FUNCTION save output
-skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
+# SAVE OUTPUT
+df <- df %>%
+  select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
-save_output(df = df, labels = df_labels,
-            folder = folder_name, file = file_name, 
-            title = dt_title, contact = dt_contact, source = dt_src)
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
+# meta file
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = dt_title, contact = dt_contact, source = dt_src
+)
