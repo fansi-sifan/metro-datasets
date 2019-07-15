@@ -6,7 +6,7 @@ source("R/save_output.R")
 # SET UP ====================================
 source_dir <- "source/AUTM.csv"
 folder_name <- "autm"
-file_name <- "county_autm"
+file_name <- "autm"
 
 # metadata
 dt_title <- "University licensing activity and income"
@@ -36,7 +36,7 @@ df <- df %>%
 
 # labels =========
 # set variable labels
-labels <- c(
+df <- df %>% apply_labels (
   tot_lic = "total license and option issues",
   lg_lic = "total licenses, large companies",
   sm_lic = "total licenses, small companies",
@@ -48,15 +48,15 @@ labels <- c(
   stco_code = "county FIPS code"
 )
 
-df_labels <- labels %>%
-  data.frame() %>%
-  mutate(names = colnames(df)) %>%
-  rename("label" = ".")
+df_labels <- create_labels(df)
+
+
+df <- df %>%
+  select(stco_code, everything())
 
 # FUNCTION save output
-df <- df %>%
-  select(stco_code,everything())
-
-save_output(df,df_labels, folder_name, file_name, dt_title, dt_contact, dt_src)
-
-
+save_datasets(df, folder = folder_name, file = file_name)
+save_meta(df,
+  labels = df_labels, folder = folder_name, file = file_name,
+  title = dt_title, contact = dt_contact, source = dt_src
+)

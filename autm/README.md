@@ -1,7 +1,7 @@
 Title:  University licensing activity and income
 Contact:  Sifan Liu
 Source:  The Statistics Access for Technology Transfer (STATT) Database, 2017
-Last updated:  Wed Jul 10 13:40:46 2019 
+Last updated:  Mon Jul 15 10:04:26 2019 
 
 
 
