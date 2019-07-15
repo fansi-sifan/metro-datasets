@@ -1,8 +1,8 @@
-Report: Digitial Distress: mapping broadband availability and subscription
+Title:  Digitial Distress: mapping broadband availability and subscription
+Contact:  Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram
+Source:  https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
+Last updated:  Mon Jul 15 17:50:04 2019 
 
-https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf
-
-Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram
 
 
 |      label       |            names             |
@@ -57,6 +57,8 @@ Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram
 |                  |          medincbmk           |
 |                  |           inc_cat            |
 |   tract geoid    |        stcotract_code        |
+
+
 Skim summary statistics  
  n obs: 73056    
  n variables: 50    

@@ -1,19 +1,21 @@
-# Get Raw Data and save to 'source' folder
-# Author: Eleanor Noble
-# Date: 6/19/2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr", "skimr", "janitor", "stringr", "sjlabelled", "expss")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx"
+folder_name <- "broadband"
+file_name <- "tract_broadband"
 
-# TRANSFORM ============================================
-# broadband ---------------------------------------------------
-tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Broadband/Final Layout/Masterfile_Final.xlsx") %>%
+# metadata
+dt_title <- "Digitial Distress: mapping broadband availability and subscription"
+dt_src <- "https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf"
+dt_contact <- "Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram"
+df_notes <- ""
+
+# FUNCTION load
+df <- readxl::read_xlsx(source_dir)%>%
   janitor::clean_names() %>%
   mutate(stcotract_code = as.character(str_sub(tract, -6, -1))) %>%
   select(
@@ -29,52 +31,26 @@ tract_broadband <- readxl::read_xlsx("V:/Infrastructure/2 Long Form Projects/Bro
     -stplfips,
     -place,
     -geotype
-  ) %>%
-  apply_labels(
-    atl3 = "at least 3 Mbps",
-    atl10 = "at least 10 Mbps",
-    atl25 = "at least 10 Mbps",
-    above1g = "at least 1 Gbps",
-    stcotract_code = "tract geoid"
   )
 
-# correspondance between labels and variable names
-tract_broadband_key <- get_label(tract_broadband) %>%
-  data.frame() %>%
-  mutate(names = colnames(tract_broadband)) %>%
-  rename("label" = ".")
+df <- df %>% apply_labels(
+  atl3 = "at least 3 Mbps",
+  atl10 = "at least 10 Mbps",
+  atl25 = "at least 10 Mbps",
+  above1g = "at least 1 Gbps",
+  stcotract_code = "tract geoid"
+)
+df_labels <- create_labels(df)
 
+# SAVE OUTPUT
+df <- df %>%
+select(stcotract_code, everything()) # make sure unique identifier is the left most column
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-# check output
-skim_with_defaults()
-skim(tract_broadband)
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src
+)
 
-# save output
-dir.create("broadband")
-
-save(tract_broadband, file = "broadband/tract_broadband.rda")
-
-# generate metadata county
-sink("broadband/tract_broadband.txt")
-
-cat("Report: Digitial Distress: mapping broadband availability and subscription")
-cat("https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf\n")
-cat("Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram\n")
-
-tract_broadband_key
-skim_with(numeric = list(hist = NULL))
-skim(tract_broadband)
-sink()
-
-# create README msa
-sink("broadband/README.md")
-cat("Report: Digitial Distress: mapping broadband availability and subscription")
-cat("https://www.brookings.edu/wp-content/uploads/2017/09/broadbandreport_september2017.pdf\n")
-cat("Authors: Adie tomer, Elizabeth Kneeboth, Ranjitha Shivaram\n")
-
-kable(tract_broadband_key)
-skim(tract_broadband) %>% kable()
-sink()
-
-# write csv to github
-write.csv(tract_broadband, "broadband/tract_broadband.csv")
