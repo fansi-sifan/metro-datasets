@@ -40,3 +40,45 @@ Variable type: numeric
 |  county_exports_real   |    0    |   3113   | 3113 | 640.5 | 2690.18 | 0.85  | 43.12 | 131.26 | 379.72 | 73784.62 |
 | county_pct_exports_gdp |    0    |   3113   | 3113 | 0.13  |  0.07   | 0.009 | 0.083 |  0.12  |  0.17  |   0.68   |
 |          year          |    0    |   3113   | 3113 | 2017  |    0    | 2017  | 2017  |  2017  |  2017  |   2017   |
+Title:  Export Monitor, 2017, all MSAs
+Contact:  Sifan Liu
+Source:  https://www.brookings.edu/research/export-monitor-2018/
+Last updated:  Mon Jul 15 17:58:14 2019 
+
+
+
+|                        label                        |         names          |
+|-----------------------------------------------------|------------------------|
+|                        Year                         |          year          |
+|                      FIPS code                      |       stco_code        |
+|                  County Name (BEA)                  |        co_name         |
+|                     State FIPS                      |        st_code         |
+|                     State Name                      |        st_name         |
+|                     State Code                      |        st_abbr         |
+| Nominal Exports ( mil.), by All-Industries (County) | county_exports_nominal |
+|   Real Exports (mil.), by All-Industries (County)   |  county_exports_real   |
+| Export Share of GDP (%), by All-Industries (County) | county_pct_exports_gdp |
+
+
+Skim summary statistics  
+ n obs: 3113    
+ n variables: 9    
+
+Variable type: character
+
+| variable  | missing | complete |  n   | min | max | empty | n_unique |
+|-----------|---------|----------|------|-----|-----|-------|----------|
+|  co_name  |    0    |   3113   | 3113 | 15  | 45  |   0   |   3113   |
+|  st_abbr  |    0    |   3113   | 3113 |  2  |  2  |   0   |    51    |
+|  st_code  |    0    |   3113   | 3113 |  2  |  2  |   0   |    51    |
+|  st_name  |    0    |   3113   | 3113 |  4  | 20  |   0   |    51    |
+| stco_code |    0    |   3113   | 3113 |  5  |  5  |   0   |   3113   |
+
+Variable type: numeric
+
+|        variable        | missing | complete |  n   | mean  |   sd    |  p0   |  p25  |  p50   |  p75   |   p100   |
+|------------------------|---------|----------|------|-------|---------|-------|-------|--------|--------|----------|
+| county_exports_nominal |    0    |   3113   | 3113 | 640.5 | 2690.18 | 0.85  | 43.12 | 131.26 | 379.72 | 73784.62 |
+|  county_exports_real   |    0    |   3113   | 3113 | 640.5 | 2690.18 | 0.85  | 43.12 | 131.26 | 379.72 | 73784.62 |
+| county_pct_exports_gdp |    0    |   3113   | 3113 | 0.13  |  0.07   | 0.009 | 0.083 |  0.12  |  0.17  |   0.68   |
+|          year          |    0    |   3113   | 3113 | 2017  |    0    | 2017  | 2017  |  2017  |  2017  |   2017   |
