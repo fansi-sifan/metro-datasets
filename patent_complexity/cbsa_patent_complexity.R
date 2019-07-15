@@ -1,48 +1,46 @@
-# Get Raw Data and save to 'source' folder
-# Author: Eleanor Noble
-# Date: 6/19/2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "expss", "httr","skimr", "janitor", "sjlabelled", "expss")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv"
+folder_name <- "patent_complexity"
+file_name <- "cbsa_patentcomplex"
 
-# TRANSFORM ============================================
-# Patent Complexity ---------------------------------------------------
-cbsa_patent_complexity <- read.csv("V:/Sifan/Birmingham/County Cluster/source/Complexity_msa.csv") %>% 
+# metadata
+dt_title <- "Patent complexity score"
+dt_src <- "https://www.media.mit.edu/publications/the-geography-of-complex-knowledge/"
+dt_contact <- "Sifan Liu"
+df_notes <- ""
+
+# FUNCTION load
+df <- read_csv(source_dir) %>% 
   janitor::clean_names() %>%
   mutate(cbsa_code = as.character(cbsa), 
          cbsa_name = as.character(cma_cbsa_name),
          patent_complexity = complex) %>%
   select(-cbsa, 
          -cma_cbsa_name, 
-         -complex)%>%
-  apply_labels(cbsa_code = "cbsa code",
-  cbsa_name = "cbsa name",
-  patent_complexity = "patent complexity score")
+         -complex)
 
-# check output
-skim_with_defaults()
-skim(cbsa_patent_complexity)
 
-# save output
-dir.create("patent_complexity")
-save(cbsa_patent_complexity,file = "patent_complexity/cbsa_patent_complexity.rda")
+# SAVE OUTPUT
+df <- df %>%
+  select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
-# generate metadata county
-sink("patent_complexity/cbsa_patent_complexity.txt")
-skim_with(numeric = list(hist = NULL))
-skim(cbsa_patent_complexity)
-sink()
+df <- df %>% apply_labels(
+patent_complexity = "patent complexity score (0-1)"
+)
+df_labels <- create_labels(df)
 
-# create README cbsa
-sink("patent_complexity/README.md")
-skim(cbsa_patent_complexity)%>% kable()
-sink()
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-# write csv to github
-write.csv(cbsa_patent_complexity, "patent_complexity/cbsa_patent_complexity.csv")
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+)
+
+
