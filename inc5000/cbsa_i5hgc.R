@@ -1,46 +1,44 @@
-# Get Raw Data and save to 'source' folder
-# Author: Eleanor Noble
-# Date: 6/19/2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "sjlabelled")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv"
+folder_name <- "inc5000"
+file_name <- "cbsa_i5hgc"
 
-# TRANSFORM ============================================
-# inc5000 ---------------------------------------------------
-cbsa_i5hgc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv") %>%
-  mutate(CBSA_CODE = as.character(CBSA)) %>%
+# metadata
+dt_title <- "High growth firms by metros, 2011-2017"
+dt_src <- "https://www.brookings.edu/research/high-growth-firms-and-cities-in-the-us-an-analysis-of-the-inc-5000/"
+dt_contact <- "Ian hathaway"
+df_notes <- "High growth firms refer to firms made the Inc.5000 list"
+
+# FUNCTION load
+df <- read_csv(source_dir)%>%
   janitor::clean_names()%>%
-  mutate(cbsa_name = as.character(name), 
-         cbsa_size = as.character(size_category))%>%
+  mutate(cbsa_code = as.character(cbsa))%>%
   select(-cbsa,
-         -name,
+         cbsa_name = name,
          -size_category)
+df <- df %>%
+  select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
-# check output
-skim_with_defaults()
-skim(cbsa_i5hgc)
+# Labels
+df <- df %>% 
+  apply_labels(
+    i5hgc_density = "High-growth Inc.5000 companies per 1 million residents"
+)
+df_labels <- create_labels(df)
 
-# save output
-dir.create("inc5000")
+# SAVE OUTPUT
 
-save(cbsa_i5hgc,file = "inc5000/cbsa_i5hgc.rda")
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-# generate metadata 
-sink("inc5000/cbsa_i5hgc.txt")
-skim_with(numeric = list(hist = NULL))
-skim(cbsa_i5hgc)
-sink()
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+)
 
-# create README cbsa
-sink("inc5000/README.md")
-skim(cbsa_i5hgc)%>% kable()
-sink()
-
-# write csv to github
-write.csv(cbsa_i5hgc, "inc5000/cbsa_i5hgc.csv")
