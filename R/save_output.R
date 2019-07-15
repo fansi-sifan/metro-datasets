@@ -9,7 +9,7 @@ save_datasets <- function(..., folder, file) {
   names(x) <- file
   save(list = names(x), file = paste0(folder, "\\/", file, ".rda"), envir = list2env(x))
 
-  write_csv(df, paste0(folder, "\\/", file, ".csv"))
+  write_csv(..., paste0(folder, "\\/", file, ".csv"))
 }
 
 
