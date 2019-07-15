@@ -20,10 +20,10 @@ save_meta <- function(df, labels, folder, file, title, contact, source, note, ap
   for (type in c(".txt",".md")) {
     sink(paste0(folder, "\\/README",type), append = apd)
     
-    cat("Title: ", title)
-    cat("\nContact: ", contact)
-    cat("\nSource: ", source)
-    cat("\nNote: ", note)
+    cat("\nTitle: ", title, "\n")
+    cat("\nContact: ", contact, "\n")
+    cat("\nSource: ", source, "\n")
+    cat("\nNote: ", note, "\n")
     cat("\nLast updated: ", date(), "\n\n")
     
     print(labels %>% kable())
