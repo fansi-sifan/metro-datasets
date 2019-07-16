@@ -1,4 +1,4 @@
-clean_acs <- function(geography, variables, year, span, key) {
+clean_acs <- function(geography, variables, year, span, key, ...) {
   
   # pull data with get_acs function
   df <- get_acs(
@@ -7,7 +7,7 @@ clean_acs <- function(geography, variables, year, span, key) {
     cache_table = TRUE,
     year = year,
     key = key,
-    survey = paste0("acs", span)
+    survey = paste0("acs", span), ...
   )
   
   # load descriptive labels for subject tables OR detailed tables
