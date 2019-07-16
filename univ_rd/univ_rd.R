@@ -1,87 +1,60 @@
-# Get Raw Data and save to 'source' folder
-# Author: David Whyman
-# Date: Fri June 21 10:00:12 2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr","sjlabelled") #sjlabelled for column labels
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "source/NSF_univ.csv"
+folder_name <- "univ_rd"
+file_name <- "cbsa_univ_rd"
 
-# TRANSFORM ============================================
-# Univ R&D ---------------------------------------------------
-NSF_univRD <- read.csv("source/NSF_univ.csv")
+# metadata
+dt_title <- "Higher education R&D survey "
+dt_src <- "https://ncsesdata.nsf.gov/ids/?utm_source=WebCaspar&utm_medium=WebCaspar&utm_campaign=WebCaspar"
+dt_contact <- "Sifan"
+df_notes <- ""
 
-cbsa_univRD <- NSF_univRD %>%
+# FUNCTION load
+df <- read_csv(source_dir) %>%
   group_by(cbsacode) %>%
   summarise(
     rd_total = sum(Deflated.Total.R.D.Expenditures.in.All.Fields.Sum.),
     rd_total_biz = sum(as.numeric(as.character(Deflated.Business.Financed.R.D.Expenditures.Sum.)))
   ) %>%
   mutate(cbsa_code = as.character(cbsacode)) %>%
-  select(-cbsacode) %>%
-  janitor::clean_names()
+  select(cbsa_code, everything(),-cbsacode) 
 
+df <- df %>% apply_labels(
+  rd_total = "total R&D spending",
+  rd_total_biz = "total deflated business financed R&D spending"
+)
+df_labels <- create_labels(df)
 
-county_univRD <- NSF_univRD %>%
+# SAVE OUTPUT
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src
+)
+
+# county -------------------------------
+file_name <- "county_univ_rd"
+
+df <- read_csv(source_dir)  %>%
   group_by(county) %>%
   summarise(
     rd_total = sum(Deflated.Total.R.D.Expenditures.in.All.Fields.Sum.),
     rd_total_biz = sum(as.numeric(as.character(Deflated.Business.Financed.R.D.Expenditures.Sum.)))
   ) %>%
   mutate(stco_code = str_pad(as.character(county), 5, "left", "0")) %>%
-  select(-county)
+  select(stco_code, everything(), -county)
 
+save_datasets(df, folder = folder_name, file = file_name)
 
-labels<-c("total R&D spending",
-          "total deflated business financed R&D spending",
-          "FIPS code")
-
-set_label(cbsa_univRD)<-labels
-set_label(county_univRD)<-labels
-
-#correspondance between labels and variable names
-county_univRD_key <- get_label(county_univRD) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(county_univRD)) 
-
-
-cbsa_univRD_key <- get_label(cbsa_univRD) %>%
-  data.frame() %>%
-  rename_at(vars(1), funs(paste0('labels'))) %>%
-  mutate(names = colnames(cbsa_univRD)) 
-
-#create directory
-dir.create("univ_rd")
-save(cbsa_univRD,file = "univ_rd/univ_rd_cbsa.rda")
-save(county_univRD,file = "univ_rd/univ_rd_county.rda")
-
-
-# sink metadata into .md
-sink("univ_rd/README.md")
-cbsa_univRD_key %>% kable()
-county_univRD_key %>% kable()
-
-skim_with(numeric = list(hist = NULL))
-
-skim(cbsa_univRD) %>% kable()
-skim(county_univRD) %>% kable()
-sink()
-
-
-#txt file with metadata
-sink("univ_rd/univ_rd.txt")
-cbsa_univRD_key
-county_univRD_key
-skim(cbsa_univRD)
-skim(county_univRD)
-sink()
-
-#write csv
-write_csv(cbsa_univRD,"univ_rd/univ_rd_cbsa.csv")
-write_csv(county_univRD,"univ_rd/univ_rd_county.csv")
-
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = dt_title, contact = dt_contact, source = dt_src, apd = T
+)

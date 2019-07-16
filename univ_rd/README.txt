@@ -37,6 +37,7 @@ Variable type: numeric
 
 
 
+
 Skim summary statistics  
  n obs: 532    
  n variables: 3    
