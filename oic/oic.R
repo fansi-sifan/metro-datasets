@@ -18,10 +18,16 @@ df_notes <- ""
 
 # read datasets
 df <- read_csv(source_dir)
-df_labels <- read_csv("source/oic_labels.csv", skip = 1) #existing appendix with variable labels
-set_label(df)<-df_labels$Description
 
-df <- df %>% rename(stco_code = stcofips)
+df_labels <- read_csv("source/oic_labels.csv", #existing appendix with variable labels
+                      skip = 2, 
+                      col_names = c("variable_name","label","source","notes"))
+
+df_labels$variable_name<-str_replace(df_labels$variable_name,"stcofips","stco_code")
+df <- df %>% rename(stco_code = stcofips)                      
+
+set_label(df)<-df_labels$label
+
 
 
 # datasets

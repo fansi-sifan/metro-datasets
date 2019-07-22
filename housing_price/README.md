@@ -1,20 +1,23 @@
-Title:  Housing Price to Income Ratios Across Metro Areas
-Contact:  Sifan Liu
-Source:  Brookings Institution analysis of 2012-16 American Community Survey data
-Last updated:  Tue Jul 16 09:42:52 2019 
+Title:  Housing Price to Income Ratios Across Metro Areas  
+Contact:  Sifan Liu  
+Source:  Brookings Institution analysis of 2012-16 American Community Survey data  
+Last updated:  Mon Jul 22 13:51:57 2019 
 
-                          label      names
-1                          CBSA  cbsa_code
-2                    Metro Name  cbsa_name
-3                      # Tracts     tracts
-4                  # Households households
-5                 Average price      price
-6                Average income     income
-7     Average price-income rato         pi
-8                  Map category     pi_map
-9         Under 10th percentile      pi_10
-10    Above the 90th percentile      pi_90
-11 Between 10th-90th percentile   pi_10_90
+
+
+|            label             |   names    |
+|------------------------------|------------|
+|             CBSA             | cbsa_code  |
+|          Metro Name          | cbsa_name  |
+|           # Tracts           |   tracts   |
+|         # Households         | households |
+|        Average price         |   price    |
+|        Average income        |   income   |
+|  Average price-income rato   |     pi     |
+|         Map category         |   pi_map   |
+|    Under 10th percentile     |   pi_10    |
+|  Above the 90th percentile   |   pi_90    |
+| Between 10th-90th percentile |  pi_10_90  |
 
 
 Skim summary statistics  
@@ -25,6 +28,7 @@ Variable type: character
 
 | variable  | missing | complete |  n  | min | max | empty | n_unique |
 |-----------|---------|----------|-----|-----|-----|-------|----------|
+| cbsa_code |    0    |   381    | 381 |  5  |  5  |   0   |   381    |
 | cbsa_name |    0    |   381    | 381 |  8  | 46  |   0   |   381    |
 |  income   |    0    |   381    | 381 |  7  |  8  |   0   |   380    |
 |   pi_10   |    0    |   381    | 381 |  2  |  3  |   0   |    45    |
@@ -37,7 +41,6 @@ Variable type: numeric
 
 |  variable  | missing | complete |  n  |   mean    |    sd    |  p0   |  p25  |  p50  |  p75   |  p100   |
 |------------|---------|----------|-----|-----------|----------|-------|-------|-------|--------|---------|
-| cbsa_code  |    0    |   381    | 381 | 29694.57  | 11387.92 | 10180 | 19740 | 29420 | 39740  |  49740  |
 | households |    0    |   381    | 381 | 254664.43 | 538250.8 | 21802 | 52539 | 89955 | 211470 | 6300000 |
 |     pi     |    0    |   381    | 381 |   3.34    |   1.17   | 1.68  | 2.59  | 3.07  |  3.71  |  8.56   |
 |   tracts   |    0    |   381    | 381 |  152.58   |  339.12  |  12   |  30   |  51   |  120   |  4153   |

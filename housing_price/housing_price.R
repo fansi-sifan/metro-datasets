@@ -17,7 +17,7 @@ df_notes <- "Figures include only tracts where at least 10% of homes are owner-o
  percentile columns contain % of tracts where the price-income ratio is in the given percentile range"
  
 # read datasets
-df <- read_csv(source_dir, skip = 5)
+df <- read_csv(source_dir, skip = 5, col_types = cols(CBSA = col_character()))
 
 # variable labels
 set_label(df)<-colnames(df)
