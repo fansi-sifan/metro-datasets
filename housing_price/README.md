@@ -1,7 +1,7 @@
 Title:  Housing Price to Income Ratios Across Metro Areas  
 Contact:  Sifan Liu  
 Source:  Brookings Institution analysis of 2012-16 American Community Survey data  
-Last updated:  Mon Jul 22 13:51:57 2019 
+Last updated:  Wed Jul 24 11:42:44 2019 
 
 
 

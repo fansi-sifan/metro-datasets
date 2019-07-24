@@ -1,7 +1,7 @@
 Title:  Economic Trajectory of Old Industrial Cities  
 Contact:  Sifan Liu  
 Source:  Brookings Institution analysis of American Community Survey, Census, and Moody's data  
-Last updated:  Mon Jul 22 13:52:59 2019 
+Last updated:  Wed Jul 24 11:42:07 2019 
 
 
 
