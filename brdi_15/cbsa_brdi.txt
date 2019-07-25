@@ -1,7 +1,7 @@
 Title:  Domestic R&D performed by companies, Millions USD
 Contact:  Sifan Liu
 Source:  Business R&D and Innovation Survey, 2015
-Last updated:  Tue Jul 09 16:21:19 2019 
+Last updated:  Mon Jul 15 17:41:25 2019 
 
 
 

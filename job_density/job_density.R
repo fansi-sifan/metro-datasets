@@ -1,36 +1,70 @@
 library(tidyverse)
 library(skimr)
+library(expss)
 source("R/save_output.R")
 
 # SET UP ====================================
 # cbsa -------------------
 
-source_dir <- "../../metro_data_warehouse/data_final/job_density/lodes_jobdensity_94cbsa2018.xlsx"
+source_dir <- "source/job_density/lodes_jobdensity_94cbsa2018.xlsx"
 folder_name <- "job_density"
-file_name <- "job_density_cbsa"
+file_name <- "jobdensity_cbsa"
 
 # metadata
-dt_title <- ""
-dt_src <- ""
-dt_contact <- ""
-df_notes <- ""
-df_labels <- data.frame(c("var","lab"))
+dt_title <- "Job density"
+dt_src <- "https://www.brookings.edu/research/where-jobs-are-concentrating-why-it-matters-to-cities-and-regions/"
+dt_contact <- "Joanne Kim"
+df_notes <- readLines("job_density/README.md",n = 18)
 
 # FUNCTION load
 df <- readxl::read_xlsx(source_dir)%>%
-  mutate(cbsa_code = as.character(cbsa))
+  mutate(cbsa_code = as.character(cbsa))%>%
+  gather(year, cbsa_jobdensity,year2004:year2015)%>%
+  mutate(year = as.integer(gsub("year","",year)))%>%
+  select(cbsa_code, cbsa_name = cbsaname, 
+         naics2_code = naics, naics2_name = sector,
+         everything(),-cbsa, -measure) 
 
-# FUNCTION save output
-save_output(df = df, labels = df_labels,folder = folder_name, file = file_name, title = dt_title, contact = dt_contact, source = dt_src,apd = T)
+df <- df %>% apply_labels(
+  cbsa_jobdensity = "Weighted (perceived) actual job density, jobs per sq mile"
+)
+df_labels <- create_labels(df)
+
+# SAVE OUTPUT
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+)
 
 # county -------------------
-source_dir <- "../../metro_data_warehouse/data_final/job_density/lodes_jobdensity_county_94cbsa2018.xlsx"
-file_name <- "job_density_county"
+source_dir <- "source/job_density/lodes_jobdensity_county_94cbsa2018.xlsx"
+file_name <- "jobdensity_county"
 
 df <- readxl::read_xlsx(source_dir)%>%
   mutate(cbsa_code = as.character(cbsa))%>%
-  rename(stco_code = cntyfips)
+  gather(year, county_jobdensity,year2004:year2015)%>%
+  mutate(year = as.integer(gsub("year","",year)))%>%
+  select(cbsa_code, cbsa_name = cbsaname, 
+         stco_code = cntyfips, stco_name = county, 
+         naics2_code = naics, naics2_name = sector,
+         everything(),-cbsa, -measure) 
 
+df <- df %>% apply_labels(
+  county_jobdensity = "Weighted (perceived) actual job density, jobs per sq mile",
+  type = "UC(Urban COre);ES(Emerging Suburban);MS(Mature Suburban)"
+)
+df_labels <- create_labels(df)
 
-# FUNCTION save output
-save_output(df = df, labels = df_labels,folder = folder_name, file = file_name, title = dt_title, contact = dt_contact, source = dt_src,apd = T)
+# SAVE OUTPUT
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = "", contact = "", source = "", note = "", apd = T # add to cbsa meta
+)

@@ -1,3 +1,46 @@
+
+Title:  Metro monitor, 2007 - 2017 
+
+Contact:  Isha Shah 
+
+Source:  https://www.brookings.edu/research/metro-monitor-2019-inclusion-remains-elusive-amid-widespread-metro-growth-and-rising-prosperity/ 
+
+Note:  The 6 missing growth rank factors were due to LEHD and EMSI job data gaps for the following MSAs:
+Wichita, KS, 
+Worcester, MA
+Springfield, MA
+Providence-New Bedford-Fall River, RI-MA
+Nashville-Davidson--Murfreesboro, TN 
+Boston-Cambridge-Quincy, MA-NH (Metro Area) 
+
+Last updated:  Mon Jul 15 19:08:43 2019 
+
+
+
+|                              label                              |                 names                 |
+|-----------------------------------------------------------------|---------------------------------------|
+|                                                                 |            rank_year_range            |
+|                                                                 |               cbsa_code               |
+|                                                                 |                 count                 |
+|                                                                 |            prosperity_rank            |
+|                                                                 |              growth_rank              |
+|                                                                 |            inclusion_rank             |
+|                                                                 |         racial_inclusion_rank         |
+|                                                                 |              value_year               |
+|                                                                 |          average_annual_wage          |
+|                                                                 |            output_per_job             |
+|                                                                 |           output_per_person           |
+|                                                                 |   employment_at_firms_0_5_years_old   |
+|                                                                 |                 jobs                  |
+|                                                                 |               real_gdp                |
+|                                                                 |    employment_to_population_ratio     |
+|                                                                 |             median_income             |
+| share of people earning less than half of the local median wage |        relative_income_poverty        |
+|                                                                 | gap_in_employment_to_population_ratio |
+|                                                                 |         gap_in_median_income          |
+|                                                                 |    gap_in_relative_income_poverty     |
+
+
 Skim summary statistics  
  n obs: 100    
  n variables: 20    
@@ -10,29 +53,15 @@ Variable type: character
 | rank_year_range |    0    |   100    | 100 |  9  |  9  |   0   |    1     |
 |   value_year    |    0    |   100    | 100 |  4  |  4  |   0   |    1     |
 
-
-Variable type: factor
-*The 6 missing growth rank factors were due to LEHD and EMSI job data gaps for the following MSAs:
-Wichita, KS, 
-Worcester, MA
-Springfield, MA
-Providence-New Bedford-Fall River, RI-MA
-Nashville-Davidson--Murfreesboro, TN 
-Boston-Cambridge-Quincy, MA-NH (Metro Area)
-
-
-|       variable        | missing | complete |  n  | n_unique |       top_counts        | ordered |
-|-----------------------|---------|----------|-----|----------|-------------------------|---------|
-|      growth_rank      |    6    |    94    | 100 |    94    | NA: 6, 1: 1, 2: 1, 3: 1 |  FALSE  |
-|    inclusion_rank     |    0    |   100    | 100 |   100    | 1: 1, 2: 1, 3: 1, 4: 1  |  FALSE  |
-|    prosperity_rank    |    0    |   100    | 100 |   100    | 1: 1, 2: 1, 3: 1, 4: 1  |  FALSE  |
-| racial_inclusion_rank |    0    |   100    | 100 |   100    | 1: 1, 2: 1, 3: 1, 4: 1  |  FALSE  |
-
 Variable type: integer
 
-| variable | missing | complete |  n  | mean | sd | p0 | p25 | p50 | p75 | p100 |   hist   |
-|----------|---------|----------|-----|------|----|----|-----|-----|-----|------|----------|
-|  count   |    0    |   100    | 100 |  3   | 0  | 3  |  3  |  3  |  3  |  3   | <U+2581><U+2581><U+2581><U+2587><U+2581><U+2581><U+2581><U+2581> |
+|       variable        | missing | complete |  n  | mean |  sd   | p0 |  p25  | p50  |  p75  | p100 |
+|-----------------------|---------|----------|-----|------|-------|----|-------|------|-------|------|
+|         count         |    0    |   100    | 100 |  3   |   0   | 3  |   3   |  3   |   3   |  3   |
+|      growth_rank      |    6    |    94    | 100 | 47.5 | 27.28 | 1  | 24.25 | 47.5 | 70.75 |  94  |
+|    inclusion_rank     |    0    |   100    | 100 | 50.5 | 29.01 | 1  | 25.75 | 50.5 | 75.25 | 100  |
+|    prosperity_rank    |    0    |   100    | 100 | 50.5 | 29.01 | 1  | 25.75 | 50.5 | 75.25 | 100  |
+| racial_inclusion_rank |    0    |   100    | 100 | 50.5 | 29.01 | 1  | 25.75 | 50.5 | 75.25 | 100  |
 
 Variable type: numeric
 

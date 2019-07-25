@@ -1,26 +1,29 @@
-# Get Raw Data and save to 'source' folder
-# Author: Eleanor Noble
-# Date: 6/19/2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "sjlabelled", "expss")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "V:/Sifan/Birmingham/County Cluster/source/VC.csv"
+folder_name <- "vc"
+file_name <- "cbsa_vc"
 
-# TRANSFORM ============================================
-# vc ---------------------------------------------------
-cbsa_vc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
+# metadata
+dt_title <- "VC investment per 1M residents, 2015-2017"
+dt_src <- "http://startupsusa.org/global-startup-cities/"
+dt_contact <- "Ian Hathaway"
+df_notes <- ""
+
+# FUNCTION load
+df <- read_csv(source_dir)
+
+df <- df %>%
   filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
   mutate(cbsa_code = as.character(cbsa13)) %>%
   janitor::clean_names()%>%
   mutate(cbsa_name = as.character(msa),
          rank = as.numeric(rank))%>%
-  select(-x, 
-         -cbsa13, 
+  select(-x1,-cbsa13, 
          -country, 
          -measure, 
          -msa)%>%
@@ -33,35 +36,16 @@ cbsa_vc <- read.csv("V:/Sifan/Birmingham/County Cluster/source/VC.csv") %>%
                cbsa_code = "cbsa code", 
                cbsa_name = "cbsa name")
 
-#correspondance between labels and variable names
-cbsa_vc_key <- get_label(cbsa_vc) %>%
-  data.frame() %>%
-  mutate(names = colnames(cbsa_vc)) %>%
-  rename("label" = ".")
+df_labels <- create_labels(df)
 
-# create README cbsa
-sink("vc/README.md")
-kable(cbsa_vc_key)
-skim(cbsa_vc)%>% kable()
-sink()
+# SAVE OUTPUT
+df <- df %>%
+select(cbsa_code, everything()) # make sure unique identifier is the left most column
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-# check output
-skim_with_defaults()
-skim(cbsa_vc)
-
-# save output
-dir.create("vc")
-
-save(cbsa_vc,file = "vc/cbsa_vc.rda")
-
-# generate metadata county
-sink("vc/cbsa_vc.txt")
-cbsa_vc_key
-skim_with(numeric = list(hist = NULL))
-skim(cbsa_vc)
-sink()
-
-
-# write csv to github
-write.csv(cbsa_vc, "vc/cbsa_vc.csv")
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes)
 

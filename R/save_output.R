@@ -13,46 +13,30 @@ save_datasets <- function(..., folder, file) {
 }
 
 
-save_meta <- function(df, labels, folder, file, title, contact, source, notes, apd = F) {
 
-  # generate metadata
-  sink(paste0(folder, "\\/", file, ".txt"), append = apd)
-  cat("Title: ", title)
-  cat("\nContact: ", contact)
-  cat("\nSource: ", source)
-  cat("\nLast updated: ", date(), "\n\n")
-
-  print(labels %>% kable())
-  cat("\n\n")
-
+save_meta <- function(df, labels, folder, file, title, contact, source, note="", apd = F) {
+  
   skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
-  skimr::skim(df) %>% kable()
   
-  cat("\n\n")  
-  cat("Notes: ", df_notes)
-  
-  sink()
+  for (type in c(".txt",".md")) {
+    sink(paste0(folder, "\\/README",type), append = apd)
+    
+    cat("\nTitle: ", title, "\n")
+    cat("\nContact: ", contact, "\n")
+    cat("\nSource: ", source, "\n")
+    cat("\nNote: ", note, "\n")
+    cat("\nLast updated: ", date(), "\n\n")
+    
+    print(labels %>% kable())
+    cat("\n\n")
+    
+    skimr::skim(df) %>% kable()
+    sink()
+  }
 
-  # create README
-  sink(paste0(folder, "\\/README.md"), append = apd)
-
-  cat("Title: ",title,"\ ")
-  cat("\nContact: ", contact,"\ ")
-  cat("\nSource: ", source,"\ ")
-  cat("\nLast updated: ", date(), "\n\n")
-
-  print(labels %>% kable())
-  cat("\n\n")
-
-  skimr::skim(df) %>% kable()
-  
-  cat("\n\n")  
-  cat("Notes: ", df_notes)
-  
-  sink()
   
 }
-
+  
 
 create_labels <- function(df) {
   sjlabelled::get_label(df) %>%

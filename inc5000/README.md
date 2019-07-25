@@ -1,15 +1,21 @@
+Title:  High growth firms by metros, 2011-2017
+Contact:  Ian hathaway
+Source:  https://www.brookings.edu/research/high-growth-firms-and-cities-in-the-us-an-analysis-of-the-inc-5000/
+Note:  High growth firms refer to firms made the Inc.5000 list
+Last updated:  Mon Jul 15 18:12:38 2019 
 
-|         labels         |     names     |
-|------------------------|---------------|
-|     i5hgc density      | i5hgc_density |
-|       cbsa geoid       |   cbsa_code   |
-|       cbsa name        |   cbsa_name   |
-| large/medium/small/non |   cbsa_size   |
+
+
+|                         label                          |     names     |
+|--------------------------------------------------------|---------------|
+|                                                        |   cbsa_code   |
+|                                                        |   cbsa_name   |
+| High-growth Inc.5000 companies per 1 million residents | i5hgc_density |
 
 
 Skim summary statistics  
  n obs: 464    
- n variables: 4    
+ n variables: 3    
 
 Variable type: character
 
@@ -17,7 +23,6 @@ Variable type: character
 |-----------|---------|----------|-----|-----|-----|-------|----------|
 | cbsa_code |    0    |   464    | 464 |  5  |  5  |   0   |   464    |
 | cbsa_name |    0    |   464    | 464 |  8  | 46  |   0   |   464    |
-| cbsa_size |    0    |   464    | 464 |  5  |  6  |   0   |    4     |
 
 Variable type: numeric
 

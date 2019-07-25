@@ -1,9 +1,6 @@
-# Get Raw Data and save to 'source' folder
-# Author: David Whyman
-# Date: Wed Jun 19 14:55:00 2019
-
 library(tidyverse)
 library(skimr)
+library(expss)
 source("R/save_output.R")
 
 # SET UP ====================================
@@ -39,10 +36,21 @@ df <- df %>%
 
 df_labels <- create_labels(df)
 
-# FUNCTION save output
-save_output(df = df, labels = df_labels,
-            folder = folder_name, file = file_name, 
-            title = dt_title, contact = dt_contact, source = dt_src)
+df_labels <- create_labels(df)
+
+# SAVE OUTPUT
+df <- df %>%
+  select(cbsa_code, everything()) # make sure unique identifier is the left most column
+
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = dt_title, contact = dt_contact, source = dt_src
+)
+
 
 
 # COUNTY LEVEL   -------------
@@ -81,9 +89,19 @@ df <- df %>%
   
 df_labels <- create_labels(df)
 
-# FUNCTION save output
-save_output(df = df, labels = df_labels,
-            folder = folder_name, file = file_name, 
-            title = dt_title, contact = dt_contact, source = dt_src)
+df_labels <- create_labels(df)
+
+# SAVE OUTPUT
+df <- df %>%
+  select(stco_code, everything()) # make sure unique identifier is the left most column
+
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = dt_title, contact = dt_contact, source = dt_src, apd = T
+)
 
 
