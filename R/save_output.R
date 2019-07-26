@@ -13,28 +13,30 @@ save_datasets <- function(..., folder, file) {
 }
 
 
-
-save_meta <- function(df, labels, folder, file, title, contact, source, note="", apd = F) {
-  
+save_meta <- function(df, labels, folder, file, title, contact, source, note = "", apd = F) {
   skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
-  
-  for (type in c(".txt",".md")) {
-    sink(paste0(folder, "\\/README",type), append = apd)
-    
-    cat("\nTitle: ", title, "\n")
-    cat("\nContact: ", contact, "\n")
-    cat("\nSource: ", source, "\n")
-    cat("\nNote: ", note, "\n")
-    cat("\nLast updated: ", date(), "\n\n")
-    
+
+  for (type in c(".txt", ".md")) {
+    sink(paste0(folder, "\\/README", type), append = apd)
+
+    cat("\nTitle: ", title, "\ \n")
+
+    if (apd) {
+      cat("\nContact: ", contact, "\ \n")
+      cat("\nSource: ", source, "\ \n")
+      cat("\nNote: ", note, "\ \n")
+      cat("\nLast updated: ", date(), "\n\n")
+    } else {
+      cat("\n\n")
+    }
+
+
     print(labels %>% kable())
     cat("\n\n")
-    
+
     skimr::skim(df) %>% kable()
     sink()
   }
-
-  
 }
   
 
