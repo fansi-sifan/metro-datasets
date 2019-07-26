@@ -48,13 +48,13 @@ df <- clean_acs(state = st, county = co,
               year = yr, span = span,
               key = key)
 
-# ... set variables to NULL and use table to get a whole table
+# set variables to NULL and use table to get a whole table -----
 df <- clean_acs(state = st, county = co, 
                 geography = geo, variables = NULL, 
                 year = yr, span = span,
                 key = key, table = tabl)
 
-# ... shorten names with argument short = TRUE
+# shorten names with argument short = TRUE -----
 df <- clean_acs(state = st, county = co, 
                 geography = geo, variables = var, 
                 year = yr, span = span,

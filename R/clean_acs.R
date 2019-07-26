@@ -1,5 +1,5 @@
 clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...) {
-  
+
   # pull data with get_acs function
   df <- get_acs(
     geography = geography,
@@ -9,7 +9,7 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
     key = key,
     survey = paste0("acs", span), ...
   )
-  
+
   # load descriptive labels for subject tables OR detailed tables
   suppressWarnings(
     if (str_detect(df$variable[1], "S")) {
@@ -20,9 +20,9 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
         load_variables(year, paste0("acs", span), cache = TRUE)
     }
   )
-  
-  
-  # clean pulled data and rename columns to descriptive labels 
+
+
+  # clean pulled data and rename columns to descriptive labels
   output <- varkey %>%
     filter(name %in% df$variable) %>%
     left_join(df, by = c("name" = "variable")) %>%
@@ -34,24 +34,22 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
     unite(label, label, measure, sep = "_") %>%
     unite(label, name, label, sep = "_") %>%
     spread(key = label, value = values) %>%
-    rename(stco_code = GEOID,
-           stco_name = NAME) %>%
-    select_if(~sum(!is.na(.)) > 0)
-  
-  set_label(output)<-names(output)
-  
+    rename(
+      stco_code = GEOID,
+      stco_name = NAME
+    ) %>%
+    select_if(~ sum(!is.na(.)) > 0)
+
+  set_label(output) <- names(output)
+
   if (short == TRUE) {
-    
-    names(output)<-stringr::str_replace(names(output),"__moe$","_moe")
-    names(output)<-stringr::str_replace(names(output),"__estimate$","_estimate")
-  
-    names(output)<-gsub(".*__{1}","\\1",names(output))
-  
-    names(output)<-make.unique(names(output), sep = "_")
-  
-                 }
-  
+    names(output) <- stringr::str_replace(names(output), "__moe$", "_moe")
+    names(output) <- stringr::str_replace(names(output), "__estimate$", "_estimate")
+
+    names(output) <- gsub(".*__{1}", "\\1", names(output))
+
+    names(output) <- make.unique(names(output), sep = "_")
+  }
+
   return(output)
-  
 }
- 
