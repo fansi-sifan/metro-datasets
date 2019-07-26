@@ -19,12 +19,25 @@ merge_county <- function(list){
 
 
 # Select and merge datasets =============================
-# dfs <- objects()
+dfs <- objects()
 # list_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
 # list_county_all <- mget(dfs[grep("county_|co_",dfs)])
-# 
-# county_df <- merge_county(list_county_all)
-# cbsa_df <- merge_cbsa(list_cbsa_all)
+
+# keep latest year
+keep_latest <- function(df){
+  if ("year" %in% names(df)){
+    df <- filter(df,year==max(year))
+    return(df)
+  } else{return(df)}
+  
+}
+
+# supply datasets of interests
+list_county_all <- list(co_uspto, county_univ_rd, export_monitor_county)
+county_df <- merge_county(lapply(list_county_all, keep_latest)) 
+
+list_cbsa_all <- list(cbsa_uspto, cbsa_i5hgc, cbsa_metromonitor, cbsa_patentcomplex)
+cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest)) 
 
 # Data for which places =============================
 # find cbsa_code by short name and all counties within the CBSA ------
@@ -42,13 +55,13 @@ find_cbsa_counties("grand rapids")
 
 # specify places of interests
 cbsa_codes <- c("19740","24340")
-county_codes <- c("01073", "08014")
+stco_codes <- c("01073", "08014")
 
-# select data ----
+# Get indicators for selected places -----------
+# find cbsa data
 cbsa_df %>%
   filter(cbsa_code %in% cbsa_codes)
 
-
-
-
 # find county data
+county_df %>%
+  filter(stco_code %in% stco_codes)
