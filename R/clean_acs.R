@@ -1,4 +1,4 @@
-clean_acs <- function(geography, variables, year, span, key, ...) {
+clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...) {
   
   # pull data with get_acs function
   df <- get_acs(
@@ -12,7 +12,7 @@ clean_acs <- function(geography, variables, year, span, key, ...) {
   
   # load descriptive labels for subject tables OR detailed tables
   suppressWarnings(
-    if (str_detect(variables, "S")) {
+    if (str_detect(df$variable[1], "S")) {
       varkey <-
         load_variables(year, paste0("acs", span, "/subject"), cache = TRUE)
     } else {
@@ -20,6 +20,7 @@ clean_acs <- function(geography, variables, year, span, key, ...) {
         load_variables(year, paste0("acs", span), cache = TRUE)
     }
   )
+  
   
   # clean pulled data and rename columns to descriptive labels 
   output <- varkey %>%
@@ -37,7 +38,20 @@ clean_acs <- function(geography, variables, year, span, key, ...) {
            stco_name = NAME) %>%
     select_if(~sum(!is.na(.)) > 0)
   
+  set_label(output)<-names(output)
+  
+  if (short == TRUE) {
+    
+    names(output)<-stringr::str_replace(names(output),"__moe$","_moe")
+    names(output)<-stringr::str_replace(names(output),"__estimate$","_estimate")
+  
+    names(output)<-gsub(".*__{1}","\\1",names(output))
+  
+    names(output)<-make.unique(names(output), sep = "_")
+  
+                 }
   
   return(output)
   
 }
+ 

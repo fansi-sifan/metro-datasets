@@ -2,6 +2,7 @@
 # SET UP =========================
 library(tidycensus)
 library(tidyverse)
+library(sjlabelled)
 
 source("R/clean_acs.R")
 source("R/acs_var.R")
@@ -23,6 +24,7 @@ var <- earnings_edu_codes # or search for variables below
 st <- "AL"
 co <- "073"
 map <- TRUE # if needs corresponding geographic shapefiles
+tabl <- "S1701" #if pulling entire table, set variables to NULL
 
 # Get data =======================
 
@@ -43,5 +45,18 @@ df %>%
 # use clean_acs to get data with descriptive labels -------
 df <- clean_acs(state = st, county = co, 
               geography = geo, variables = var, 
-              year = yr,
+              year = yr, span = span,
               key = key)
+
+# ... set variables to NULL and use table to get a whole table
+df <- clean_acs(state = st, county = co, 
+                geography = geo, variables = NULL, 
+                year = yr, span = span,
+                key = key, table = tabl)
+
+# ... shorten names with argument short = TRUE
+df <- clean_acs(state = st, county = co, 
+                geography = geo, variables = var, 
+                year = yr, span = span,
+                key = key, short = TRUE)
+
