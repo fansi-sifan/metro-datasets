@@ -54,3 +54,9 @@ df <- clean_acs(state = st, county = co,
                 year = yr, span = span,
                 key = key, table = tabl)
 
+# ... shorten names with argument short = TRUE
+df <- clean_acs(state = st, county = co, 
+                geography = geo, variables = var, 
+                year = yr, span = span,
+                key = key, short = TRUE)
+

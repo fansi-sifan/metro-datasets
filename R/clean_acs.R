@@ -1,4 +1,4 @@
-clean_acs <- function(geography, variables, year, span, key, ...) {
+clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...) {
   
   # pull data with get_acs function
   df <- get_acs(
@@ -40,6 +40,18 @@ clean_acs <- function(geography, variables, year, span, key, ...) {
   
   set_label(output)<-names(output)
   
+  if (short == TRUE) {
+    
+    names(output)<-stringr::str_replace(names(output),"__moe$","_moe")
+    names(output)<-stringr::str_replace(names(output),"__estimate$","_estimate")
+  
+    names(output)<-gsub(".*__{1}","\\1",names(output))
+  
+    names(output)<-make.unique(names(output), sep = "_")
+  
+                 }
+  
   return(output)
   
 }
+ 
