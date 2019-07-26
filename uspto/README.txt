@@ -10,13 +10,11 @@ Note:  Patenting in technology classes, breakout by origin
 Last updated:  Fri Jul 26 15:20:04 2019 
 
 
+Source:  
+Last updated:  Fri Jul 26 15:22:40 2019 
 
-|         label          |     names      |
-|------------------------|----------------|
-|       cbsa geoid       |   cbsa_code    |
-|       cbsa names       |   cbsa_name    |
-| year patent was issued |      year      |
-|  total patents issued  | patents_issued |
+
+
 
 
 Skim summary statistics  
@@ -35,6 +33,8 @@ Variable type: numeric
 |    variable    | missing | complete |   n   |  mean  |  sd   |  p0  |   p25   |  p50   |   p75   | p100  |
 |----------------|---------|----------|-------|--------|-------|------|---------|--------|---------|-------|
 | patents_issued |    0    |  16288   | 16288 | 97.77  | 520.7 |  0   |    2    |   6    |   24    | 14894 |
+|      year      |    0    |  16288   | 16288 | 2007.5 | 4.61  | 2000 | 2003.75 | 2007.5 | 2011.25 | 2015  |
+ts_issued |    0    |  16288   | 16288 | 97.77  | 520.7 |  0   |    2    |   6    |   24    | 14894 |
 |      year      |    0    |  16288   | 16288 | 2007.5 | 4.61  | 2000 | 2003.75 | 2007.5 | 2011.25 | 2015  |
 
 Title:  Utility patent grants, 2000 - 2015, by county  
