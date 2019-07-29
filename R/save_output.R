@@ -21,7 +21,7 @@ save_meta <- function(df, labels, folder, file, title, contact, source, note = "
 
     cat("\nTitle: ", title, "\ \n")
 
-    if (apd) {
+    if (apd == F) {
       cat("\nContact: ", contact, "\ \n")
       cat("\nSource: ", source, "\ \n")
       cat("\nNote: ", note, "\ \n")
