@@ -35,7 +35,7 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
     unite(label, name, label, sep = "_") %>%
     spread(key = label, value = values) %>%
     select_if(~ sum(!is.na(.)) > 0)
-
+  
   set_label(output) <- names(output)
 
   if (short == TRUE) {
@@ -45,6 +45,8 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
     names(output) <- gsub(".*__{1}", "\\1", names(output))
 
     names(output) <- make.unique(names(output), sep = "_")
+  } else {
+    names(output) <- gsub("___.*(_moe|_estimate)", "\\1", names(output)) # use original labels 
   }
   
   if (geography == "tract") {
