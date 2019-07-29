@@ -34,10 +34,6 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
     unite(label, label, measure, sep = "_") %>%
     unite(label, name, label, sep = "_") %>%
     spread(key = label, value = values) %>%
-    rename(
-      stco_code = GEOID,
-      stco_name = NAME
-    ) %>%
     select_if(~ sum(!is.na(.)) > 0)
 
   set_label(output) <- names(output)
@@ -50,6 +46,15 @@ clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...)
 
     names(output) <- make.unique(names(output), sep = "_")
   }
+  
+  if (geography == "tract") {
+    output <- output %>% rename(stcotr_code = GEOID,stcotr_name = NAME)}  else if (geo == "county"){
+      output <- output%>% rename(stco_code = GEOID,stco_name = NAME)}else if (geo == "metropolitan statistical area/micropolitan statistical area"){
+        output <- output %>% rename(cbsa_code = GEOID, cbsa_name = NAME)} else {
+          output <- output
+        }
 
   return(output)
 }
+
+
