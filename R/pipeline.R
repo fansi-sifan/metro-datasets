@@ -1,6 +1,6 @@
 # pipeline to create master datasets
 library(tidyverse)
-library(metro.data)
+# library(metro.data)
 
 # load all .rda datasets to the global envior. ==============================
 temp = list.files(pattern = ".rda", recursive = T)
@@ -41,9 +41,11 @@ cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
 
 # Data for which places =============================
 # find cbsa_code by short name and all counties within the CBSA ------
+load("../metro.data/data/county_cbsa_st.rda")
 
 find_cbsa_counties <- function(msa){
-  metro.data::county_cbsa_st %>%
+    county_cbsa_st %>%
+    # metro.data::county_cbsa_st %>%
     filter(grepl(!!msa,cbsa_name,ignore.case = T)) %>%
     select(cbsa_code, cbsa_name, stco_code, co_name) %>%
     unique()
