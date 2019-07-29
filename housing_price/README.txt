@@ -1,7 +1,14 @@
-Title:  Housing Price to Income Ratios Across Metro Areas
-Contact:  Sifan Liu
-Source:  Brookings Institution analysis of 2012-16 American Community Survey data
-Last updated:  Wed Jul 24 11:42:44 2019 
+
+Title:  Housing Price to Income Ratios Across Metro Areas  
+
+Contact:  Jenny Schuetz  
+
+Source:  https://www.brookings.edu/research/housing-in-the-u-s-is-too-expensive-too-cheap-and-just-right-it-depends-on-where-you-live/  
+
+Note:  Figures include only tracts where at least 10% of homes are owner-occupied;
+ percentile columns contain % of tracts where the price-income ratio is in the given percentile range  
+
+Last updated:  Mon Jul 29 12:07:21 2019 
 
 
 
@@ -44,7 +51,3 @@ Variable type: numeric
 | households |    0    |   381    | 381 | 254664.43 | 538250.8 | 21802 | 52539 | 89955 | 211470 | 6300000 |
 |     pi     |    0    |   381    | 381 |   3.34    |   1.17   | 1.68  | 2.59  | 3.07  |  3.71  |  8.56   |
 |   tracts   |    0    |   381    | 381 |  152.58   |  339.12  |  12   |  30   |  51   |  120   |  4153   |
-
-
-Notes:  Figures include only tracts where at least 10% of homes are owner-occupied;
- percentile columns contain % of tracts where the price-income ratio is in the given percentile range
