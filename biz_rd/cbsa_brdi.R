@@ -23,7 +23,7 @@ df <- df %>%
   apply_labels(
  cbsa_name = "metro names",
  cbsa_code = "CBSA code",
- total = "Total Domestic R&D paid by companies, millions USD")
+ biz_rd = "Total Domestic R&D paid by companies, millions USD")
 
 df_labels <- create_labels(df)
 
