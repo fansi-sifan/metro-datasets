@@ -1,0 +1,178 @@
+stco_code,co_name,tot_lic,lg_lic,sm_lic,st_lic,inc_lic,tot_IP,tot_st,instate_st
+01073,"Jefferson County, Alabama",309,130,144,35,59181199,1093,32,24
+01081,"Lee County, Alabama",206,50,131,25,10169302,947,15,8
+01089,"Madison County, Alabama",26,4,4,18,10399375,263,35,35
+01097,"Mobile County, Alabama",25,5,9,14,23162288,183,9,9
+01125,"Tuscaloosa County, Alabama",49,5,15,29,588647,487,22,16
+02020,"Anchorage Municipality, Alaska",26,0,3,9,66000,73,4,3
+04005,"Coconino County, Arizona",9,0,3,6,208934,220,5,1
+04013,"Maricopa County, Arizona",779,305,356,117,32846980,2540,101,83
+04019,"Pima County, Arizona",734,237,299,167,17532078,1898,93,71
+05119,"Pulaski County, Arkansas",68,19,27,22,12485622,376,21,19
+05143,"Washington County, Arkansas",373,118,225,30,9738011,419,23,18
+06001,"Alameda County, California",3057,1462,862,733,1604827738,18636,771,648
+06037,"Los Angeles County, California",1048,289,455,304,377288353,7608,227,144
+06065,"Riverside County, California",0,0,0,0,0,4,0,0
+06073,"San Diego County, California",106,16,41,25,5457866,314,13,12
+06079,"San Luis Obispo County, California",2,0,2,0,20000,7,0,0
+06085,"Santa Clara County, California",1370,154,275,96,878535113,5693,145,129
+08031,"Denver County, Colorado",4,0,0,2,769803,48,2,1
+08041,"El Paso County, Colorado",683,131,336,216,127657935,2747,118,96
+08059,"Jefferson County, Colorado",81,30,36,15,719456,283,7,6
+08069,"Larimer County, Colorado",354,98,203,57,23083938,1191,57,54
+09013,"Tolland County, Connecticut",162,42,69,51,11728925,897,43,38
+10003,"New Castle County, Delaware",72,9,34,29,3232998,503,28,11
+11001,"District of Columbia, District of Columbia",165,47,83,35,93615990,685,22,0
+12009,"Brevard County, Florida",2,1,0,0,136250,8,0,0
+12031,"Duval County, Florida",1,1,0,0,11903,13,0,0
+12033,"Escambia County, Florida",7,1,6,0,9072,19,0,0
+12057,"Hillsborough County, Florida",737,289,328,120,35309062,1837,88,71
+12071,"Lee County, Florida",0,0,0,0,0,2,0,0
+12073,"Leon County, Florida",139,37,59,43,12714171,693,32,26
+12083,"Marion County, Florida",1787,242,1296,249,469794611,3828,154,97
+12086,"Miami-Dade County, Florida",195,26,96,70,35227385,1088,43,39
+12095,"Orange County, Florida",224,55,100,66,13797794,1246,60,41
+12099,"Palm Beach County, Florida",16,4,6,6,502131,115,4,3
+12127,"Volusia County, Florida",0,0,0,0,0,20,0,0
+13059,"Clarke County, Georgia",1768,290,1395,83,146394989,1802,45,34
+13089,"DeKalb County, Georgia",469,179,237,53,165996665,2405,53,30
+13121,"Fulton County, Georgia",614,272,182,160,25716668,4093,106,90
+13245,"Richmond County, Georgia",94,46,25,23,4979003,430,10,10
+15003,"Honolulu County, Hawaii",82,16,37,29,4156001,586,20,22
+16001,"Ada County, Idaho",178,109,58,11,199706,154,5,5
+16005,"Bannock County, Idaho",1,0,0,0,0,14,0,0
+16019,"Bonneville County, Idaho",80,9,64,7,6243959,277,7,4
+17019,"Champaign County, Illinois",970,211,566,192,239485371,4246,135,94
+17031,"Cook County, Illinois",737,243,298,192,2900079245,3718,141,91
+17037,"DeKalb County, Illinois",4,1,3,0,211953,72,0,0
+17097,"Lake County, Illinois",1,0,1,1,0,6,0,0
+17113,"McLean County, Illinois",3,1,0,2,2100,14,0,0
+17163,"St. Clair County, Illinois",29,2,15,13,5297377,150,8,5
+18035,"Delaware County, Indiana",7,3,4,0,503699,102,2,2
+18105,"Monroe County, Indiana",472,165,222,85,86632489,2258,85,73
+18141,"St. Joseph County, Indiana",121,27,35,40,3342743,634,22,12
+18157,"Tippecanoe County, Indiana",1236,261,368,74,61558978,3512,171,128
+19013,"Black Hawk County, Iowa",23,11,9,3,525319,88,6,6
+19169,"Story County, Iowa",1374,235,995,144,247850193,2530,94,83
+20045,"Douglas County, Kansas",230,90,89,37,67371631,876,30,19
+20125,"Montgomery County, Kansas",0,0,0,0,0,0,0,0
+20161,"Riley County, Kansas",155,51,83,21,23228429,539,15,8
+20173,"Sedgwick County, Kansas",12,1,5,2,19250,69,3,3
+20209,"Wyandotte County, Kansas",5,4,1,0,108272,22,0,0
+21067,"Fayette County, Kentucky",145,27,23,95,31219382,823,78,68
+21111,"Jefferson County, Kentucky",157,10,57,44,7335602,975,25,18
+22033,"East Baton Rouge Parish, Louisiana",293,39,196,51,101683893,1585,47,36
+22055,"Lafayette Parish, Louisiana",9,0,0,0,104900,59,4,0
+22061,"Lincoln Parish, Louisiana",47,8,19,14,1325136,225,13,11
+22071,"Orleans Parish, Louisiana",65,9,25,36,61068538,437,26,18
+23019,"Penobscot County, Maine",16,0,0,0,369982,19,1,0
+24005,"Baltimore County, Maryland",4,1,3,0,343839,82,0,0
+24027,"Howard County, Maryland",301,135,141,25,11926461,2382,25,18
+24031,"Montgomery County, Maryland",26,8,12,6,469722,81,0,0
+24033,"Prince George's County, Maryland",496,115,230,144,22858782,3098,116,95
+24510,"Baltimore city, Maryland",1509,633,718,157,219664343,5283,143,110
+25017,"Middlesex County, Massachusetts",2420,754,708,523,1092486073,13091,409,267
+25021,"Norfolk County, Massachusetts",160,31,63,63,32916816,992,39,25
+25025,"Suffolk County, Massachusetts",41,8,2,15,2175994,197,7,2
+25027,"Worcester County, Massachusetts",498,207,211,80,455426043,2066,50,41
+26061,"Houghton County, Michigan",147,79,30,38,4007822,508,23,15
+26065,"Ingham County, Michigan",552,114,384,54,55942015,1589,27,23
+26077,"Kalamazoo County, Michigan",3,1,1,1,2000,50,1,0
+26161,"Washtenaw County, Michigan",1444,386,735,323,295641491,4380,135,99
+26163,"Wayne County, Michigan",94,23,28,34,37143361,647,23,19
+27053,"Hennepin County, Minnesota",1456,730,600,126,589791675,3546,120,93
+28035,"Forrest County, Mississippi",13,0,2,0,451306,18,0,0
+28071,"Lafayette County, Mississippi",54,2,19,33,17466088,140,16,11
+28105,"Oktibbeha County, Mississippi",104,11,68,25,3529666,550,27,25
+29019,"Boone County, Missouri",719,220,438,61,99759776,1857,61,42
+29189,"St. Louis County, Missouri",81,30,9,7,23592765,219,7,5
+30031,"Gallatin County, Montana",517,150,212,155,3802313,283,18,17
+30047,"Lake County, Montana",0,0,0,0,0,0,0,0
+30063,"Missoula County, Montana",11,0,7,4,34776,24,1,1
+31055,"Douglas County, Nebraska",10,4,4,3,445396,40,2,1
+31109,"Lancaster County, Nebraska",516,117,304,95,68684808,2130,79,62
+32003,"Clark County, Nevada",15,8,1,6,597835,139,5,3
+32031,"Washoe County, Nevada",30,13,13,2,1547038,231,7,7
+33009,"Grafton County, New Hampshire",108,13,73,22,48228397,720,17,10
+33017,"Strafford County, New Hampshire",652,376,258,10,5352552,429,7,7
+34013,"Essex County, New Jersey",427,312,83,32,3189415,794,10,8
+34015,"Gloucester County, New Jersey",2,1,0,1,156000,21,0,0
+34017,"Hudson County, New Jersey",52,13,25,14,6181781,316,31,30
+34021,"Mercer County, New Jersey",112,18,58,36,864392000,710,20,8
+34023,"Middlesex County, New Jersey",824,83,655,86,133194189,1683,53,34
+35001,"Bernalillo County, New Mexico",499,38,169,288,19813172,1360,97,55
+35013,"Doña Ana County, New Mexico",24,5,8,11,560132,127,12,7
+36001,"Albany County, New York",621,177,265,179,150836784,3409,117,91
+36005,"Bronx County, New York",173,62,61,35,42878907,570,30,10
+36055,"Monroe County, New York",307,69,159,77,444303665,1774,45,34
+36061,"New York County, New York",1930,813,632,366,4714799471,6922,317,111
+36083,"Rensselaer County, New York",71,16,36,19,5758181,503,12,10
+36109,"Tompkins County, New York",1066,155,781,130,104301997,4046,105,68
+37037,"Chatham County, North Carolina",7,0,1,6,148000,21,3,3
+37063,"Durham County, North Carolina",1275,650,471,154,300891492,2627,77,51
+37067,"Forsyth County, North Carolina",123,19,6,17,451752667,569,27,19
+37081,"Guilford County, North Carolina",51,18,17,16,949622,195,11,11
+37119,"Mecklenburg County, North Carolina",96,61,14,19,870141,517,41,39
+37129,"New Hanover County, North Carolina",13,0,0,0,289,16,2,0
+37135,"Orange County, North Carolina",708,158,283,267,39917520,1686,82,74
+37147,"Pitt County, North Carolina",39,12,16,11,4280836,161,8,6
+37183,"Wake County, North Carolina",1280,427,679,174,51872716,2579,88,82
+38017,"Cass County, North Dakota",902,59,836,8,20982296,541,8,6
+38035,"Grand Forks County, North Dakota",4,0,3,1,492254,84,1,0
+39009,"Athens County, Ohio",17,2,7,8,71091161,314,11,10
+39017,"Butler County, Ohio",4,0,3,1,5820246,80,2,2
+39035,"Cuyahoga County, Ohio",500,188,144,100,86116911,2422,57,43
+39049,"Franklin County, Ohio",519,171,249,98,24158478,3061,92,65
+39057,"Greene County, Ohio",18,5,10,3,186479,110,2,2
+39061,"Hamilton County, Ohio",248,83,131,34,6295821,1303,34,18
+39095,"Lucas County, Ohio",171,50,83,38,13982258,755,26,20
+39113,"Montgomery County, Ohio",36,2,17,4,1084485,171,3,1
+39133,"Portage County, Ohio",32,6,11,15,2443432,103,6,4
+39153,"Summit County, Ohio",72,20,22,30,11400827,766,40,39
+39173,"Wood County, Ohio",8,3,0,5,41125,61,2,2
+40027,"Cleveland County, Oklahoma",96,26,27,43,18379043,730,31,27
+40109,"Oklahoma County, Oklahoma",113,16,72,25,22413470,574,25,22
+40143,"Tulsa County, Oklahoma",0,0,0,0,0,0,0,0
+41003,"Benton County, Oregon",795,53,685,57,48334534,787,35,33
+41039,"Lane County, Oregon",477,115,325,36,87404919,412,19,16
+41051,"Multnomah County, Oregon",975,167,736,72,21470048,1694,50,41
+42003,"Allegheny County, Pennsylvania",1888,865,731,291,945097926,5620,219,155
+42027,"Centre County, Pennsylvania",292,101,99,92,28971077,1676,67,53
+42095,"Northampton County, Pennsylvania",14,4,2,8,1660421,210,4,4
+42101,"Philadelphia County, Pennsylvania",1629,433,906,290,344251714,7053,224,182
+44007,"Providence County, Rhode Island",48,3,34,11,9551543,368,9,5
+44009,"Washington County, Rhode Island",32,20,11,2,3222908,155,0,0
+45035,"Dorchester County, South Carolina",121,33,25,63,8312650,994,44,40
+45077,"Pickens County, South Carolina",134,49,36,49,17094382,1002,34,28
+45079,"Richland County, South Carolina",109,14,52,43,5538403,689,33,33
+46011,"Brookings County, South Dakota",63,24,13,25,16342132,365,3,3
+46027,"Clay County, South Dakota",2,0,2,0,189506,57,5,5
+47037,"Davidson County, Tennessee",977,236,624,117,130911435,3321,90,73
+47157,"Shelby County, Tennessee",8,0,5,3,180996,93,2,2
+48029,"Bexar County, Texas",12,4,8,0,4097982,59,0,0
+48113,"Dallas County, Texas",0,0,0,0,1792,2,0,0
+48121,"Denton County, Texas",6,4,2,0,42118,32,0,0
+48167,"Galveston County, Texas",50,21,22,7,3018397,212,6,6
+48201,"Harris County, Texas",982,251,581,141,312926423,3450,110,84
+48303,"Lubbock County, Texas",74,8,19,47,2535007,504,29,24
+48309,"McLennan County, Texas",1,0,0,1,0,12,1,1
+48439,"Tarrant County, Texas",62,16,28,18,955215,333,9,7
+48453,"Travis County, Texas",1842,740,756,369,665881675,7684,262,220
+48463,"Uvalde County, Texas",736,173,490,73,112953814,2478,63,56
+49005,"Cache County, Utah",146,29,89,28,8268900,797,36,35
+49035,"Salt Lake County, Utah",827,176,449,202,367180995,2251,190,158
+49049,"Utah County, Utah",334,51,126,157,33529988,1220,100,93
+50019,"Orleans County, Vermont",78,14,28,36,4227192,488,34,22
+51059,"Fairfax County, Virginia",40,13,9,18,833370,357,15,8
+51121,"Montgomery County, Virginia",327,159,127,41,23969391,1687,42,26
+51540,"Charlottesville city, Virginia",726,360,229,137,56580025,2064,61,49
+51660,"Harrisonburg city, Virginia",2,0,0,2,31878,6,1,0
+51710,"Norfolk city, Virginia",35,13,13,9,5647598,89,9,2
+51760,"Richmond city, Virginia",185,68,84,33,25863915,1222,32,30
+51830,"Williamsburg city, Virginia",2,0,0,2,2000,15,1,1
+53001,"Adams County, Washington",491,118,319,54,12513966,964,53,40
+53005,"Benton County, Washington",2973,1388,1345,240,763982309,4421,151,124
+54061,"Monongalia County, West Virginia",64,15,36,13,2388828,355,11,9
+55025,"Dane County, Wisconsin",975,375,450,154,580463422,5458,94,58
+55079,"Milwaukee County, Wisconsin",55,11,16,19,3106014,342,10,8
+NA,NA,85353,27114,38695,13376,41024014618,303183,9963,7278

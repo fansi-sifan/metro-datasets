@@ -5,11 +5,11 @@ source("R/save_output.R")
 
 # SET UP ====================================
 source_dir <- "V:/Global Profiles/Data/REGPAT/Analysis Files/_g4.xlsx"
-folder_name <- "regpat"
-file_name <- "regpat"
+folder_name <- "oecd_patent"
+file_name <- "cbsa_regpat"
 
 # metadata
-dt_title <- "OECD patents, 2008 - 2012"
+dt_title <- "OECD patents, 2008 - 2012, metro"
 dt_src <- "http://www.oecd.org/sti/inno/intellectual-property-statistics-and-analysis.htm"
 dt_contact <- "Sifan"
 df_notes <- ""

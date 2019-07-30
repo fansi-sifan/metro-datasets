@@ -1,7 +1,13 @@
-Title:  Economic Trajectory of Old Industrial Cities
-Contact:  Sifan Liu
-Source:  Brookings Institution analysis of American Community Survey, Census, and Moody's data
-Last updated:  Wed Jul 24 11:42:06 2019 
+
+Title:  Economic Trajectory of Old Industrial Cities  
+
+Contact:  Alan Berube  
+
+Source:  https://www.brookings.edu/research/older-industrial-cities  
+
+Note:  Brookings Institution analysis of American Community Survey, Census, and Moody's data  
+
+Last updated:  Tue Jul 30 14:32:57 2019 
 
 
 
@@ -83,10 +89,10 @@ Skim summary statistics
 
 Variable type: character
 
-|  variable   | missing | complete |  n  | min | max | empty | n_unique |
-|-------------|---------|----------|-----|-----|-----|-------|----------|
-| county_name |    0    |   365    | 365 |  4  | 29  |   0   |   320    |
-|  stco_code  |    0    |   365    | 365 |  5  |  5  |   0   |   365    |
+| variable  | missing | complete |  n  | min | max | empty | n_unique |
+|-----------|---------|----------|-----|-----|-----|-------|----------|
+|  co_name  |    0    |   365    | 365 |  4  | 29  |   0   |   320    |
+| stco_code |    0    |   365    | 365 |  5  |  5  |   0   |   365    |
 
 Variable type: numeric
 
@@ -158,6 +164,3 @@ Variable type: numeric
 |    yf_jobs_2000     |   12    |   353    | 365 |  28940.78  |  52554.98  |   2802    |   8317    |   14621   |   29968   |  716392   |
 |    yf_jobs_2010     |    5    |   360    | 365 |  25252.86  |  47411.01  |   2529    |  6779.25  |  12799.5  |   25440   |  657043   |
 |    yf_jobs_2016     |    6    |   359    | 365 |  26335.74  |  47669.94  |   2544    |  6720.5   |   12869   |   25819   |  615314   |
-
-
-Notes:  
