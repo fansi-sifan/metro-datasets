@@ -373,7 +373,7 @@ summary {
 
 <div id="get-a-list-of-places-you-are-interested-in" class="section level2">
 <h2>Get a list of places you are interested in</h2>
-<p>You can type in the metro names and find the corresponding cbsa_codes, as well as the counties within each metro</p>
+<p><font color="red">[CHANGE INPUTS HERE]</font> You can type in the metro names and find the corresponding cbsa_codes, as well as the counties within each metro</p>
 <pre class="r"><code>find_cbsa_counties(&quot;Birmingham&quot;)</code></pre>
 <pre><code>## # A tibble: 6 x 15
 ##   stco_code co_name co_pop co_emp co_pcturban co_type st_fips st_name
@@ -422,18 +422,13 @@ summary {
 <h2>Use data from ACS summary table</h2>
 <div id="specify-acs-summary-table-details" class="section level3">
 <h3>Specify ACS summary table details</h3>
-<ol style="list-style-type: decimal">
-<li>geo: The geography of your data. Ex: “state”, “county”, “tract”, “metropolitan statistical area/micropolitan statistical area”</li>
-<li>yr: The endyear of the ACS sample, 2010 through 2017 are available</li>
-<li>span: Choose from 1 (ACS 1-year) or 5 (ACS 5-year)</li>
-<li>var: Character string of variable IDs</li>
-</ol>
+<p><font color="red">[CHANGE INPUTS HERE]</font> 1. geo: The geography of your data. Ex: “state”, “county”, “tract”, “metropolitan statistical area/micropolitan statistical area” 2. yr: The endyear of the ACS sample, 2010 through 2017 are available 3. span: Choose from 1 (ACS 1-year) or 5 (ACS 5-year) 4. var: Character string of variable IDs</p>
 <pre class="r"><code>geo &lt;- &quot;county&quot; # &quot;state&quot;, &quot;county&quot;, &quot;tract&quot;, &quot;metropolitan statistical area/micropolitan statistical area&quot;
 yr &lt;- 2017 # ACS year
 span &lt;- 5 # 1-year or 5-year
 var &lt;- c(pov_race_codes,ed_race_codes) # or search for variables below
 
-# look up other variables 
+# look up other variables ------
 # tmp &lt;- load_variables(yr,paste0(&quot;acs&quot;,span),cache = TRUE)
 # view(tmp)
 # var &lt;- &#39;S2301_C01_001&#39;
@@ -503,9 +498,30 @@ var &lt;- c(pov_race_codes,ed_race_codes) # or search for variables below
 ## #   S1701_C03_019_estimate &lt;dbl&gt;, S1701_C03_019_moe &lt;dbl&gt;,
 ## #   S1701_C03_020_estimate &lt;dbl&gt;, S1701_C03_020_moe &lt;dbl&gt;,
 ## #   S1701_C03_021_estimate &lt;dbl&gt;, S1701_C03_021_moe &lt;dbl&gt;</code></pre>
-<pre class="r"><code># get_label(co_acs)</code></pre>
+<pre class="r"><code># get_label(co_acs)
+
+var &lt;- drive_codes
+# metro.data::acs_var$
+geo &lt;- &quot;metropolitan statistical area/micropolitan statistical area&quot;
+cbsa_acs &lt;- clean_acs(geography = geo, variables = var, 
+                      year = yr, span = span,
+                      key = key, short = FALSE)</code></pre>
+<pre><code>## Getting data from the 2013-2017 5-year ACS
+## Using the ACS Subject Tables</code></pre>
+<pre class="r"><code>head(cbsa_acs)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   cbsa_code cbsa_name S0802_C01_001_e~ S0802_C01_001_m~ S0802_C02_001_e~
+##   &lt;chr&gt;     &lt;chr&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 10100     Aberdeen~            22465              468            18541
+## 2 10140     Aberdeen~            26590              756            20441
+## 3 10180     Abilene,~            75679             1321            61365
+## 4 10220     Ada, OK ~            16951              410            14808
+## 5 10260     Adjuntas~             3697              309             3252
+## 6 10300     Adrian, ~            43557              757            36141
+## # ... with 1 more variable: S0802_C02_001_moe &lt;dbl&gt;</code></pre>
 <div id="calculate-customized-variables-based-on-acs-data" class="section level4">
 <h4>calculate customized variables based on ACS data</h4>
+<p><font color="red">[OPTIONAL: CUSTOMIZE YOUR ANALYSIS]</font></p>
 <pre class="r"><code>calculate_race &lt;-  function(df) {
   df %&gt;%
     mutate(pct_ba_above_wh = S1501_C01_030_estimate/S1501_C01_028_estimate,
@@ -527,20 +543,6 @@ head(co_race)</code></pre>
 ## 5 01009     Blount C~           0.132          0.0567           0.155 
 ## 6 01011     Bullock ~           0.268          0.0910           0.0560
 ## # ... with 1 more variable: pct_belowpoverty_bk &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<div id="get-data-from-cbsa" class="section level3">
-<h3>get data from cbsa</h3>
-<pre class="r"><code>var &lt;- drive_codes
-# metro.data::acs_var$
-geo &lt;- &quot;metropolitan statistical area/micropolitan statistical area&quot;
-cbsa_acs &lt;- clean_acs(geography = geo, variables = var, 
-                      year = yr, span = span,
-                      key = key, short = FALSE)</code></pre>
-<pre><code>## Getting data from the 2013-2017 5-year ACS</code></pre>
-<pre><code>## Using the ACS Subject Tables</code></pre>
-<div id="calculate-customized-variables-based-on-acs-data-1" class="section level4">
-<h4>calculate customized variables based on ACS data</h4>
 <pre class="r"><code>cbsa_commute &lt;- cbsa_acs %&gt;%
   mutate(pct_drivealone = S0802_C02_001_estimate/S0802_C01_001_estimate)%&gt;%
   select(-contains(&quot;estimate&quot;),-contains(&quot;moe&quot;))
@@ -559,17 +561,17 @@ head(cbsa_commute)</code></pre>
 </div>
 <div id="get-data-from-all-datasets-for-places-of-interests" class="section level2">
 <h2>get data from all datasets for places of interests</h2>
-<p>You can select the datasets you need, including the ACS summary tables you just downloaded and customized, for the places you selected</p>
+<p><font color="red">[CHANGE INPUTS HERE]</font> You can select the datasets you need, including the ACS summary tables you just downloaded and customized, for the places you selected</p>
 <pre class="r"><code># supply datasets of interests 
 list_county_all &lt;- list(co_uspto, county_univ_rd, export_monitor_county, co_race)
-list_cbsa_all &lt;- list(cbsa_uspto, cbsa_i5hgc, cbsa_metromonitor, cbsa_patentcomplex,cbsa_univ_rd)
-
-# merge all datasets and keep the latest year only
-cbsa_df &lt;- merge_cbsa(lapply(list_cbsa_all, keep_latest)) 
-county_df &lt;- merge_county(lapply(list_county_all, keep_latest)) </code></pre>
+list_cbsa_all &lt;- list(cbsa_uspto, cbsa_i5hgc, cbsa_metromonitor, cbsa_patentcomplex,cbsa_univ_rd)</code></pre>
 <div id="show-data" class="section level3">
 <h3>show data</h3>
-<pre class="r"><code># find cbsa data 
+<pre class="r"><code># merge all datasets and keep the latest year only
+cbsa_df &lt;- merge_cbsa(lapply(list_cbsa_all, keep_latest)) 
+county_df &lt;- merge_county(lapply(list_county_all, keep_latest)) 
+
+# find cbsa data 
 cbsa_output &lt;- cbsa_df %&gt;%
   filter(cbsa_code %in% places$cbsa_code)
 
@@ -607,101 +609,44 @@ head(cbsa_output)</code></pre>
 ## 2   136980      5191.48
 ## 3  2195531    155157.28</code></pre>
 <pre class="r"><code># find county data
-county_df %&gt;%
-  filter(stco_code %in% places$stco_code)</code></pre>
-<pre><code>##    stco_code            co_name year patents_issued   rd_total
-## 1      08059   Jefferson County 2015            421  274551.78
-## 2      26081        Kent County 2015            196   85923.69
-## 3      26139      Ottawa County 2015            166   51056.33
-## 4      08005    Arapahoe County 2015            252         NA
-## 5      08035     Douglas County 2015            195         NA
-## 6      08001       Adams County 2015            141     408.14
-## 7      08014  Broomfield County 2015            101         NA
-## 8      08031      Denver County 2015             88 1947781.49
-## 9      08031      Denver County 2015             88   83640.69
-## 10     01073   Jefferson County 2015             58 2195530.85
-## 11     01117      Shelby County 2015             46         NA
-## 12     26117    Montcalm County 2015              9         NA
-## 13     26067       Ionia County 2015              3         NA
-## 14     01115   St. Clair County 2015              7         NA
-## 15     08039      Elbert County 2015              1         NA
-## 16     08093        Park County 2015              2         NA
-## 17     01021     Chilton County 2015              0         NA
-## 18     01009      Blount County 2015              0         NA
-## 19     08019 Clear Creek County 2015              1         NA
-## 20     08047      Gilpin County 2015              0         NA
-## 21     01007        Bibb County 2015              0         NA
-##    rd_total_biz st_code  st_name st_abbr county_exports_nominal
-## 1      75689.58      08 Colorado      CO             2750.35498
-## 2       5093.84      26 Michigan      MI             5668.90527
-## 3         97.64      26 Michigan      MI             2700.70581
-## 4            NA      08 Colorado      CO             2552.51660
-## 5            NA      08 Colorado      CO              877.45728
-## 6        223.31      08 Colorado      CO             1531.60596
-## 7            NA      08 Colorado      CO              578.19379
-## 8     172011.78      08 Colorado      CO             5209.81641
-## 9       4860.12      08 Colorado      CO             5209.81641
-## 10    155157.28      01  Alabama      AL             3009.57031
-## 11           NA      01  Alabama      AL              552.51788
-## 12           NA      26 Michigan      MI              243.95256
-## 13           NA      26 Michigan      MI              432.23636
-## 14           NA      01  Alabama      AL              269.85541
-## 15           NA      08 Colorado      CO               57.69262
-## 16           NA      08 Colorado      CO               20.60172
-## 17           NA      01  Alabama      AL              162.13467
-## 18           NA      01  Alabama      AL              104.74407
-## 19           NA      08 Colorado      CO               88.18383
-## 20           NA      08 Colorado      CO               83.63448
-## 21           NA      01  Alabama      AL               28.82970
-##    county_exports_real county_pct_exports_gdp                    stco_name
-## 1           2750.35498             0.09534139   Jefferson County, Colorado
-## 2           5668.90527             0.12661126        Kent County, Michigan
-## 3           2700.70581             0.18708688      Ottawa County, Michigan
-## 4           2552.51660             0.05962388    Arapahoe County, Colorado
-## 5            877.45728             0.06131922     Douglas County, Colorado
-## 6           1531.60596             0.06420719       Adams County, Colorado
-## 7            578.19379             0.09951820  Broomfield County, Colorado
-## 8           5209.81641             0.07071057      Denver County, Colorado
-## 9           5209.81641             0.07071057      Denver County, Colorado
-## 10          3009.57031             0.07292829    Jefferson County, Alabama
-## 11           552.51788             0.05026266       Shelby County, Alabama
-## 12           243.95256             0.14169613    Montcalm County, Michigan
-## 13           432.23636             0.18186025       Ionia County, Michigan
-## 14           269.85541             0.13860062    St. Clair County, Alabama
-## 15            57.69262             0.11939450      Elbert County, Colorado
-## 16            20.60172             0.07091569        Park County, Colorado
-## 17           162.13467             0.16614543      Chilton County, Alabama
-## 18           104.74407             0.12267843       Blount County, Alabama
-## 19            88.18383             0.18989584 Clear Creek County, Colorado
-## 20            83.63448             0.20575805      Gilpin County, Colorado
-## 21            28.82970             0.06787452         Bibb County, Alabama
-##    pct_ba_above_wh pct_ba_above_bk pct_belowpoverty_wh pct_belowpoverty_bk
-## 1        0.4371036      0.34849975               0.074               0.141
-## 2        0.3729862      0.17295358               0.103               0.282
-## 3        0.3341180      0.15792350               0.089               0.319
-## 4        0.4546761      0.25790796               0.078               0.145
-## 5        0.5774600      0.46898760               0.034               0.104
-## 6        0.2362884      0.21001720               0.115               0.219
-## 7        0.5387255      0.40740741               0.050               0.070
-## 8        0.5125389      0.22999552               0.133               0.267
-## 9        0.5125389      0.22999552               0.133               0.267
-## 10       0.4112008      0.19035456               0.100               0.259
-## 11       0.4367900      0.38241206               0.067               0.117
-## 12       0.1289250      0.01974334               0.171               0.049
-## 13       0.1689298      0.03593381               0.131               0.061
-## 14       0.1616555      0.14146158               0.133               0.185
-## 15       0.3485732      0.37931034               0.049               0.000
-## 16       0.2876186      0.24242424               0.068               0.000
-## 17       0.1568573      0.08962963               0.176               0.310
-## 18       0.1321391      0.05666667               0.155               0.087
-## 19       0.4688272      0.00000000               0.054               0.794
-## 20       0.3777830      0.16666667               0.052               0.000
-## 21       0.1479275      0.08181818               0.136               0.228</code></pre>
+county_output &lt;- county_df %&gt;%
+  filter(stco_code %in% places$stco_code)
+
+head(county_output)</code></pre>
+<pre><code>##   stco_code          co_name year patents_issued  rd_total rd_total_biz
+## 1     08059 Jefferson County 2015            421 274551.78     75689.58
+## 2     26081      Kent County 2015            196  85923.69      5093.84
+## 3     26139    Ottawa County 2015            166  51056.33        97.64
+## 4     08005  Arapahoe County 2015            252        NA           NA
+## 5     08035   Douglas County 2015            195        NA           NA
+## 6     08001     Adams County 2015            141    408.14       223.31
+##   st_code  st_name st_abbr county_exports_nominal county_exports_real
+## 1      08 Colorado      CO              2750.3550           2750.3550
+## 2      26 Michigan      MI              5668.9053           5668.9053
+## 3      26 Michigan      MI              2700.7058           2700.7058
+## 4      08 Colorado      CO              2552.5166           2552.5166
+## 5      08 Colorado      CO               877.4573            877.4573
+## 6      08 Colorado      CO              1531.6060           1531.6060
+##   county_pct_exports_gdp                  stco_name pct_ba_above_wh
+## 1             0.09534139 Jefferson County, Colorado       0.4371036
+## 2             0.12661126      Kent County, Michigan       0.3729862
+## 3             0.18708688    Ottawa County, Michigan       0.3341180
+## 4             0.05962388  Arapahoe County, Colorado       0.4546761
+## 5             0.06131922   Douglas County, Colorado       0.5774600
+## 6             0.06420719     Adams County, Colorado       0.2362884
+##   pct_ba_above_bk pct_belowpoverty_wh pct_belowpoverty_bk
+## 1       0.3484998               0.074               0.141
+## 2       0.1729536               0.103               0.282
+## 3       0.1579235               0.089               0.319
+## 4       0.2579080               0.078               0.145
+## 5       0.4689876               0.034               0.104
+## 6       0.2100172               0.115               0.219</code></pre>
 </div>
 </div>
 <div id="plot" class="section level2">
 <h2>Plot</h2>
 <p>Create quick bar plots to compare across peer groups</p>
+<p><font color="red">[CHANGE INPUTS HERE]</font></p>
 <pre><code>## Warning: mutate_() is deprecated. 
 ## Please use mutate() instead
 ## 
