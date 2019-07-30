@@ -1,4 +1,4 @@
-clean_acs <- function(geography, variables, year, span, key, short = FALSE, ...) {
+clean_acs <- function(geography, variables, year=2017, span=5, key, short = FALSE, ...) {
 
   # pull data with get_acs function
   df <- get_acs(
