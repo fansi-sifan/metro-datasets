@@ -1,5 +1,6 @@
 library(tidyverse)
 library(skimr)
+library(expss)
 source("R/save_output.R")
 
 # SET UP ====================================
@@ -17,19 +18,15 @@ df_notes <- "Data downloaded from NSF InfoBriefs, using 2015 Business R&D and In
 df <- read_csv(source_dir)
 
 # labels
-df <- df %>% apply_labels(
+df <- df %>%
+  select(cbsa_code, cbsa_name, biz_rd = total)%>% 
+  apply_labels(
  cbsa_name = "metro names",
  cbsa_code = "CBSA code",
- total = "Total Domestic R&D paid by companies, millions USD",
- total_paidbycompany ="Paid for by the company",
- total_paidbyothers = "Paid for by others"
-)
+ total = "Total Domestic R&D paid by companies, millions USD")
 
 df_labels <- create_labels(df)
 
-# SAVE OUTPUT
-df <- df %>%
-  select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
