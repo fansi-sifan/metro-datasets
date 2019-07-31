@@ -1,53 +1,41 @@
-# Get Raw Data and save to 'source' folder
-# Author: Eleanor Noble
-# Date: 6/19/2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr","skimr", "janitor", "stringr","sjlabelled")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "source/OutOfWork_county.csv"
+folder_name <- "out_of_work"
+file_name <- "co_oow"
 
-# TRANSFORM ============================================
-# out of work ---------------------------------------------------
-stco_oow <- read.csv("V:/Sifan/Birmingham/County Cluster/source/OutOfWork_county.csv") %>%
-  mutate(county_code = str_pad(fips, 5, "left", "0")) %>%
-  janitor::clean_names()
+# metadata
+dt_title <- "Out of work population by group"
+dt_src <- "https://www.brookings.edu/research/meet-the-out-of-work/"
+dt_contact <- "Martha Ross"
+df_notes <- "130 large cities and counties across the United States, note that LA, Seattle, Chicago, Detroit, etc. are treated separately from their counties"
 
-stco_oow <- stco_oow %>%
-  mutate(young_less_educated_and_diverse_perc = young_less_educated_and_diverse,
-         less_educated_prime_age_people_perc = less_educated_prime_age_people, 
-         diverse_less_educated_and_eyeing_retirement_perc = diverse_less_educated_and_eyeing_retirement, 
-         moderately_educated_older_people_perc = moderately_educated_older_people, 
-         highly_educated_and_engaged_younger_people_perc = highly_educated_and_engaged_younger_people, 
-         highly_educated_high_income_older_people_perc = highly_educated_high_income_older_people,
-         stco_code = as.character(county_code),
-         co_name = as.character(jurisdiction))%>%
-  select(-young_less_educated_and_diverse,
-         -less_educated_prime_age_people,
-         -diverse_less_educated_and_eyeing_retirement,
-         -motivated_and_moderately_educated_younger_people,
-         -moderately_educated_older_people,
-         -highly_educated_and_engaged_younger_people,
-         -highly_educated_high_income_older_people,
-         -x_1,
-         -x,
-         -fips,
-         -cbsacode,
-         -jurisdiction,
-         -county_code)
+# FUNCTION load
+df <- read_csv(source_dir) %>%
+  mutate(stco_code = str_pad(fips, 5, "left", "0")) %>%
+  janitor::clean_names() %>%
+  select(stco_code, everything(),-cbsacode, -fips) %>%
+  apply_labels(jurisdiction = "cities and counties",
+               stco_code = "counties and its core cities might be sharing the same fips code")
 
-#change the percentages from "%char" to numeric .xx
-cols.num <- c("young_less_educated_and_diverse_perc","less_educated_prime_age_people_perc",             
-              "diverse_less_educated_and_eyeing_retirement_perc","moderately_educated_older_people_perc",           
-              "highly_educated_and_engaged_younger_people_perc","highly_educated_high_income_older_people_perc")
+df_labels <- create_labels(df)
 
-stco_oow[cols.num] <- sapply(stco_oow,function(x) gsub("%","",as.numeric(x)))
-stco_oow[cols.num] <- sapply(stco_oow[cols.num],as.numeric)
-stco_oow[cols.num]<-stco_oow[cols.num]/100
+# SAVE OUTPUT
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+)
+
+
+
 
 # check output
 skim_with_defaults()
