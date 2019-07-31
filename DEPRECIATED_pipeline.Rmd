@@ -1,0 +1,136 @@
+---
+title: "pipeline"
+author: "Sifan"
+date: "July 29, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("R/pip.R")
+# library(metro.data)
+library(tidycensus)
+library(tidyverse)
+library(sjlabelled)
+
+source("R/clean_acs.R")
+source("R/acs_var.R")
+
+key <- Sys.getenv("CENSUS_API_KEY")
+
+```
+
+## Get a list of places you are interested in
+<font color = "red">[CHANGE INPUTS HERE]</font>
+You can type in the metro names and find the corresponding cbsa_codes, as well as the counties within each metro
+
+```{r input places}
+
+places <- purrr::map_df(c("Birmingham", "grand rapids-kentwood", "denver"), find_cbsa_counties)
+list_cbsa_all <- list(cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd)
+
+```
+
+#### calculate customized variables based on ACS data
+<font color = "red">[OPTIONAL: CUSTOMIZE YOUR ANALYSIS]</font>
+```{r calculate pct race}
+
+co_acs <- df %>%
+  
+  # customized calculations
+  calculate_pop_race %>%
+  calculate_income_race %>%
+  calculate_pov_race %>%
+  calculate_edu_race %>%
+  calculate_emp_race %>%
+  calculate_commute_race %>%
+  calculate_migration %>%
+  calculate_zerocar %>%
+  calculate_income_edu %>%
+  
+  # keep only the calculated outputs
+  select(-contains("E",ignore.case = F), -contains("M", ignore.case = F))
+
+```
+
+## get data from all datasets for places of interests
+
+### show data
+
+```{r data table}
+
+# merge all datasets and keep the latest year only
+cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
+cbsa_output <- cbsa_df %>%
+  filter(cbsa_code %in% places$cbsa_code)
+
+head(cbsa_output)
+
+# find county data
+county_df <- merge_county(lapply(list_county_all, keep_latest)) 
+
+county_output <- county_df %>%
+  filter(stco_code %in% places$stco_code)
+
+head(county_output)
+```
+
+
+
+## Plot
+
+Create quick bar plots to compare across peer groups
+
+```{r, include=FALSE}
+quick_bar = function(df, var,wt = F, scale = 1, acc = 0.1){
+  df <- df %>% mutate_(value = var) %>%
+    mutate(value = value*scale)
+  
+  if (wt) {df <- df %>% mutate(value = value/cbsa_emp)}
+  
+  ggplot(df,aes(x = reorder(cbsa_name,value), y = value, fill = cbsa_name))+
+  geom_bar(stat = "identity")+
+  geom_text(aes(label = scales::comma(value,acc)), position = "identity")+
+  coord_flip()+
+  ggtitle(var)
+  
+  # return(df)
+}
+
+```
+
+
+<font color = "red">[CHANGE INPUTS HERE]</font>
+
+```{r plot, echo = FALSE}
+quick_bar(cbsa_output, "rd_total",wt = T)
+quick_bar(cbsa_output, "biz_rd", wt = T,scale = 1000)
+
+quick_bar(cbsa_output, "patents_issued", wt = T, scale = 1000)
+quick_bar(cbsa_output, "patent_complexity")
+
+quick_bar(cbsa_output, "i5hgc_density")
+quick_bar(cbsa_output, "employment_at_firms_0_5_years_old", wt = T, acc = 0.01)
+
+quick_bar(cbsa_output, "movein_pct_ba_above",acc = 0.01)
+quick_bar(cbsa_output, "pct_movein",acc = 0.01)
+
+```
+
+
+
+### Create correlation matrix
+```{r corrplot}
+library(corrplot)
+
+cbsa_cor <- cbsa_df %>% 
+  select(-contains("from"),-year)%>%
+  select_if(is.numeric)
+
+M <- cor(cbsa_cor, use = "pairwise.complete.obs")
+
+corrplot(M, method = "color", type ="upper",
+         addCoef.col = "black", tl.col = "black",tl.srt=45)
+
+```
+

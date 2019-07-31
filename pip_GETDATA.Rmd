@@ -1,0 +1,51 @@
+---
+title: "pipeline"
+author: "Sifan"
+date: "July 29, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+source("R/pip.R")
+source("R/acs_var.R")
+
+cbsa_acs <- calculate_acs(cbsa_acs)
+co_acs <- calculate_acs(co_acs)
+```
+
+## Get a list of places you are interested in
+<font color = "red">[CHANGE INPUTS HERE]</font>
+You can type in the metro names and find the corresponding cbsa_codes, as well as the counties within each metro
+
+```{r input places and datasets}
+
+places <- purrr::map_df(c("Atlanta", "grand rapids-kentwood", "denver"), find_cbsa_counties)
+list_cbsa_all <- list(cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd)
+
+```
+
+### show data
+
+```{r data table, echo=FALSE}
+
+# merge all datasets and keep the latest year only
+cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
+cbsa_df %>%
+  filter(cbsa_code %in% places$cbsa_code)%>%knitr::kable()
+
+
+```
+
+```{r optional, include=FALSE}
+
+# find county data
+# county_df <- merge_county(lapply(list_county_all, keep_latest)) 
+# 
+# county_output <- county_df %>%
+#   filter(stco_code %in% places$stco_code)
+# 
+# head(county_output)
+```
+
