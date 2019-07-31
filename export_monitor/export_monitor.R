@@ -6,7 +6,7 @@ source("R/save_output.R")
 # SET UP ====================================
 source_dir <- "V:/Export Monitor/2018/Deliverables/Deliverables/Metros Data/Metros by Total, NAICS 2 3.xlsx"
 folder_name <- "export_monitor"
-file_name <- "export_monitor_cbsa"
+file_name <- "cbsa_export"
 
 # metadata
 dt_title <- "Export Monitor, 2017, all MSAs"
@@ -55,7 +55,7 @@ save_meta(df,
 
 # COUNTY LEVEL   -------------
 source_dir <- "V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx"
-file_name <- "export_monitor_county"
+file_name <- "co_export"
 
 
 # load data

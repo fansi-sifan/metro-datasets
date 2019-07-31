@@ -8,7 +8,7 @@ source("R/save_output.R")
 
 source_dir <- "source/job_density/lodes_jobdensity_94cbsa2018.xlsx"
 folder_name <- "job_density"
-file_name <- "jobdensity_cbsa"
+file_name <- "cbsa_jobdensity"
 
 # metadata
 dt_title <- "Job density"
@@ -42,7 +42,7 @@ title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 
 # county -------------------
 source_dir <- "source/job_density/lodes_jobdensity_county_94cbsa2018.xlsx"
-file_name <- "jobdensity_county"
+file_name <- "co_jobdensity"
 
 df <- readxl::read_xlsx(source_dir)%>%
   mutate(cbsa_code = as.character(cbsa))%>%

@@ -7,7 +7,7 @@ source("R/save_output.R")
 
 source_dir <- "source/metro_all_updated.csv"
 folder_name <- "digitalization"
-file_name <- "digitalization"
+file_name <- "cbsa_digitalization"
 
 # metadata
 dt_title <- "Average digitalization score, 2002 and 2016"
