@@ -46,7 +46,9 @@ clean_acs <- function(geography, variables, year=2017, span=5, key, short = FALS
 
     names(output) <- make.unique(names(output), sep = "_")
   } else {
-    names(output) <- gsub("___.*(_moe|_estimate)", "\\1", names(output)) # use original labels 
+    names(output) <- gsub("___.*(_moe|_estimate)", "\\1", names(output)) # use original labels
+    names(output) <- gsub("_moe","M",names(output))
+    names(output) <- gsub("_estimate","E", names(output))
   }
   
   if (geography == "tract") {
