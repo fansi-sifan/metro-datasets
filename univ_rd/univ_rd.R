@@ -41,7 +41,7 @@ title = dt_title, contact = dt_contact, source = dt_src
 )
 
 # county -------------------------------
-file_name <- "county_univ_rd"
+file_name <- "co_univ_rd"
 
 df <- read_csv(source_dir)  %>%
   group_by(county) %>%
