@@ -57,12 +57,29 @@ calculate_emp_race <-  function(df) {
     )
 }
 
-edu_race_codes <- map_chr(seq(28,54),function(x)paste0("S1501_C01_0",x)) # education attainment
+edu_codes <- map_chr(str_pad(seq(9,13),width = 2,side = "left","0"),function(x)paste0("S1501_C02_0",x))
+
+calculate_edu <- function(df){
+  df %>%
+    mutate(
+      pct_hs = S1501_C02_009E,
+      pct_somecollege = S1501_C02_010E,
+      pct_associate = S1501_C02_011E,
+      pct_ba = S1501_C02_012E,
+      pct_grad = S1501_C02_013E,
+      pct_babeyond = pct_ba + pct_grad,
+      pct_hsbeyond = pct_hs + pct_babeyond
+     )
+}
+
+edu_race_codes <- c(map_chr(seq(28,54),function(x)paste0("S1501_C01_0",x)))# education attainment
 
 calculate_edu_race <-  function(df) {
   df %>%
-    mutate(pct_hs_above_wh = S1501_C01_029E/S1501_C01_028E,
+    mutate(
+           pct_hs_above_wh = S1501_C01_029E/S1501_C01_028E,
            pct_hs_above_bk = S1501_C01_035E/S1501_C01_034E,
+          
            pct_ba_above_wh = S1501_C01_030E/S1501_C01_028E,
            pct_ba_above_bk = S1501_C01_036E/S1501_C01_034E)}
 
@@ -124,6 +141,7 @@ calculate_acs <- function(df){
     calculate_pop_race %>%
     calculate_income_race %>%
     calculate_pov_race %>%
+    calculate_edu %>%
     calculate_edu_race %>%
     calculate_emp_race %>%
     calculate_commute_race %>%
