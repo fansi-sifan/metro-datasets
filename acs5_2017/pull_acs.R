@@ -18,7 +18,7 @@ source("R/save_output.R")
 
 # SET UP ====================================
 folder_name <- "acs5_2017"
-file_name <- "cbsa_acs"
+file_name <- "cbsa_acs_raw"
 
 # metadata
 dt_title <- "Selected statistics from 2017 5 year ACS summary tables"
@@ -46,8 +46,13 @@ labels = df_labels, folder = folder_name, file = file_name,
 title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
 
+# CALCULATE -------------------
+file_name <- "cbsa_acs"
+df <- df %>% calculate_acs()
+save_datasets(df, folder = folder_name, file = file_name)
+
 # county ----------------------------
-file_name <- "co_acs"
+file_name <- "co_acs_raw"
 geo <- "county"
 
 df <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, key = key, short = FALSE, cache = T))%>%
@@ -55,6 +60,10 @@ df <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, key = ke
 
 save_datasets(df, folder = folder_name, file = file_name)
 
+# CALCULATE -------------------
+file_name <- "co_acs"
+df <- df %>% calculate_acs()
+save_datasets(df, folder = folder_name, file = file_name)
 
 
 ######### CUSTOMIZE ########################
