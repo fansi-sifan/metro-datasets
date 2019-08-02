@@ -13,28 +13,41 @@ source("R/acs_var.R")
 
 cbsa_acs <- calculate_acs(cbsa_acs)
 co_acs <- calculate_acs(co_acs)
+cbsa_st <- county_cbsa_st %>% select(contains("cbsa_")) %>% unique()
 ```
 
-## Get a list of places you are interested in
+## Data Inputs
 <font color = "red">[CHANGE INPUTS HERE]</font>
-You can type in the metro names and find the corresponding cbsa_codes, as well as the counties within each metro
+1. Type in the metro names
+2. Specify the datasets you want to use
 
-```{r input places and datasets}
-
+```{r choose places}
+# change the names of the metros
 places <- purrr::map_df(c("Atlanta", "grand rapids-kentwood", "denver"), find_cbsa_counties)
-list_cbsa_all <- list(cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd)
+
+# or, if you have a list of codes:
+codes <- c("28140", "41740", "34980", "33460", "17460", "13820", "16980", "31080", "45060", "19820", "19740", "26900")
+places <- county_cbsa_st %>%
+  filter(cbsa_code %in% codes)
+```
+
+```{r choose datasets}
+# choose the datasets from the environment
+
+list_cbsa_all <- list(cbsa_st,cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd,cbsa_biz_rd)
 
 ```
 
-### show data
+## Show data
 
 ```{r data table, echo=FALSE}
 
 # merge all datasets and keep the latest year only
 cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
-cbsa_df %>%
-  filter(cbsa_code %in% places$cbsa_code)%>%knitr::kable()
+cbsa_output <- cbsa_df %>%
+  filter(cbsa_code %in% places$cbsa_code)
 
+cbsa_output %>% knitr::kable()
 
 ```
 

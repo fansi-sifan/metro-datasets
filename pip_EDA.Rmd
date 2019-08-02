@@ -17,20 +17,26 @@ library(corrplot)
 Create quick bar plots to compare across peer groups
 
 ```{r, include=FALSE}
-quick_bar = function(df, var,wt = F, scale = 1, acc = 0.1){
-  df <- df %>% mutate_(value = var) %>%
-    mutate(value = value*scale)
+quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
+  df <- df %>% 
+    mutate_(value = var) %>%
+    mutate(value = value*scale) %>%
+    mutate(highlight = (cbsa_code == HL))
   
   if (wt) {df <- df %>% mutate(value = value/cbsa_emp)}
   
-  ggplot(df,aes(x = reorder(cbsa_name,value), y = value, fill = cbsa_name))+
+  ggplot(df,aes(x = reorder(cbsa_name,value), y = value, 
+                label = scales::comma(value,acc), fill = highlight))+
   geom_bar(stat = "identity")+
-  geom_text(aes(label = scales::comma(value,acc)), position = "identity")+
+  geom_text()+
+  scale_fill_discrete(guide = F)+
   coord_flip()+
   ggtitle(var)
   
   # return(df)
 }
+
+
 
 ```
 
@@ -38,17 +44,17 @@ quick_bar = function(df, var,wt = F, scale = 1, acc = 0.1){
 <font color = "red">[CHANGE INPUTS HERE]</font>
 
 ```{r plot, echo = FALSE}
-quick_bar(cbsa_output, "rd_total",wt = T)
-quick_bar(cbsa_output, "biz_rd", wt = T,scale = 1000)
+quick_bar(cbsa_output, "rd_total",HL ="13820",wt = T)
+# quick_bar(cbsa_output, "biz_rd", HL ="13820",wt = T,scale = 1000)
 
 quick_bar(cbsa_output, "patents_issued", wt = T, scale = 1000)
-quick_bar(cbsa_output, "patent_complexity")
+quick_bar(cbsa_output, "patent_complexity",HL ="13820")
 
-quick_bar(cbsa_output, "i5hgc_density")
+quick_bar(cbsa_output, "i5hgc_density",HL ="13820")
 quick_bar(cbsa_output, "employment_at_firms_0_5_years_old", wt = T, acc = 0.01)
 
-quick_bar(cbsa_output, "movein_pct_ba_above",acc = 0.01)
-quick_bar(cbsa_output, "pct_movein",acc = 0.01)
+quick_bar(cbsa_output, "movein_pct_ba_above",acc = 0.01, HL ="13820")
+quick_bar(cbsa_output, "pct_movein",acc = 0.01, HL ="13820")
 
 ```
 
