@@ -1,79 +1,46 @@
-# Get Raw Data and save to 'source' folder
-# Author: David Whyman
-# Date: Wed Jun 19 15:39:00 2019
-# SET UP ==============================================
-pkgs <- c("tidyverse", "reshape2", "writexl", "httr", "skimr", "sjlabelled")
+library(tidyverse)
+library(skimr)
+library(expss)
+source("R/save_output.R")
 
-check <- sapply(pkgs, require, warn.conflicts = TRUE, character.only = TRUE)
-if (any(!check)) {
-  pkgs.missing <- pkgs[!check]
-  install.packages(pkgs.missing)
-  check <- sapply(pkgs.missing, require, warn.conflicts = TRUE, character.only = TRUE)
-}
+# SET UP ====================================
+source_dir <- "source/shiftshare.csv"
+folder_name <- "shiftshare"
+file_name <- "cbsa_shiftshare"
 
+# metadata
+dt_title <- "Shiftshare analysis using EMSI data"
+dt_src <- "V:/Performance/Project files/Metro Monitor/2018v/Output/Shift Share/Monitor Shiftshare Cumulative (2-digit NAICS).csv"
+dt_contact <- "Isha"
+df_notes <- ""
 
-# ShiftShare ---------------------------------------------------
+# FUNCTION load
+df <- read_csv(source_dir,col_types = cols(cbsa2013_fips = col_character())) %>%
+  filter(year == 2016) %>%
+  select(cbsa_code = cbsa2013_fips, cbsa_name = cbsa2013_name, naics2_code = naics2, naics2_name = industryname_naics2, everything())%>%
+  apply_labels(
+         indicator = "Aggregate wage, Employment, GDP",
+         "lsshare2006" = "local shift 2006",
+         "imshare2006" = "industry mix 2006",
+         "nsshare2006" = "national share 2006",
+         "lsshare2011" = "local shift 2011",
+         "imshare2011" = "industry mix 2011",
+         "nsshare2011" = "national share 2011",
+         "lsshare2015" = "local shift 2015",
+         "imshare2015" = "industry mix 2015",
+         "nsshare2015" = "national share 2015"
+  )
 
+df_labels <- create_labels(df)
 
-# original location of source/shiftshare.csv is:
-# V:\Performance\Project files\Metro Monitor\2018v/Output/Shift Share\Monitor Shiftshare Cumulative (2-digit NAICS).csv
-# no 2019 version of this dataset found
+# SAVE OUTPUT
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
 
-cbsa_shiftshare <- read_csv("source/shiftshare.csv",
-  col_types = cols(cbsa2013_fips = col_character())
-) %>%
-  filter(year == 2016)
-
-# use old column names as labels (use View() to see labels)
-set_label(cbsa_shiftshare) <- colnames(cbsa_shiftshare)
-
-# new names
-select(cbsa_shiftshare, year,
-  cbsa_code = "cbsa2013_fips",
-  "cbsa_2013_name" = "cbsa2013_name",
-  "naics2_code" = "naics2",
-  "naics2_name" = "industryname_naics2",
-  indicator,
-  "sector_ls_06" = "lsshare2006",
-  "sector_im_06" = "imshare2006",
-  "sector_ns_06" = "nsshare2006",
-  "sector_ls_11" = "lsshare2011",
-  "sector_im_11" = "imshare2011",
-  "sector_ns_11" = "nsshare2011",
-  "sector_ls_15" = "lsshare2015",
-  "sector_im_15" = "imshare2015",
-  "sector_ns_15" = "nsshare2015",
-  value
+# meta file
+save_meta(df,
+labels = df_labels, folder = folder_name, file = file_name,
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
-colnames(cbsa_shiftshare)
 
-# correspondance between old names (labels) and new names
-cbsa_shiftshare_key <- get_label(cbsa_shiftshare) %>%
-  data.frame() %>%
-  # rename_at(vars(), funs(paste0("labels"))) %>%
-  mutate(names = colnames(cbsa_shiftshare))
-
-
-# save output
-dir.create("shiftshare")
-save(cbsa_shiftshare, file = "shiftshare/shiftshare.rda")
-
-skim_with(numeric = list(hist = NULL))
-
-# save metadata in readme
-sink("shiftshare/README.md")
-cbsa_shiftshare_key %>%
-  kable()
-skim(cbsa_shiftshare) %>%
-  kable()
-sink()
-
-# txt file with metadata
-sink("shiftshare/shiftshare.txt")
-cbsa_shiftshare_key
-skim(cbsa_shiftshare)
-sink()
-
-# write csv
-write_csv(cbsa_shiftshare, "shiftshare/shiftshare.csv")
 
