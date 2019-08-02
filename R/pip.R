@@ -4,7 +4,7 @@ library(tidyverse)
 
 # load all .rda datasets to the global envior. ==============================
 temp = list.files(pattern = ".rda", recursive = T)
-load("../metro.data/data/county_cbsa_st.rda")
+
 
 # temp[grep("cbsa_",temp)]
 # temp[grep("co_",temp)]
@@ -39,21 +39,23 @@ dfs <- objects()
 df_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
 df_co_all <- mget(dfs[grep("county_|co_",dfs)])
 
-list_cbsa_all <- map_depth(df_cbsa_all,names,.depth = 1)
-list_co_all <- map_depth(df_co_all,names,.depth = 1)
-
-save(list_cbsa_all,file = "list_cbsa_all.rda")
-save(list_co_all,file = "list_co_all.rda")
-
-cbsa_all <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
-co_all <- merge_co(lapply(list_co_all, keep_latest))
+cbsa_all <- merge_cbsa(lapply(df_cbsa_all, keep_latest))
+co_all <- merge_co(lapply(df_co_all, keep_latest))
 
 # save(cbsa_all,file = "cbsa_all.rda")
 # save(co_all,file = "co_all.rda")
 
-cbsa_all %>%
-  select(c(names(cbsa_univ_rd),names(cbsa_st)))%>%
-  filter(cbsa_code == "13820")
+# column names --------------------
+list_all_cbsa <- map_depth(df_cbsa_all,names,.depth = 1)
+list_all_co <- map_depth(df_co_all,names,.depth = 1)
+
+save(list_all_cbsa,file = "list_all_cbsa.rda")
+save(list_all_co,file = "list_all_co.rda")
+
+
+# cbsa_all %>%
+#   select(c(names(cbsa_univ_rd),names(cbsa_st)))%>%
+#   filter(cbsa_code == "13820")
 
 
 # find cbsa_code by short name and all counties within the CBSA ------
