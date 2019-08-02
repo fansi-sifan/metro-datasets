@@ -2,7 +2,6 @@
 # SET UP =========================
 library(tidycensus)
 library(tidyverse)
-library(sjlabelled)
 
 source("R/clean_acs.R")
 source("R/acs_var.R")
@@ -67,11 +66,11 @@ save_datasets(df, folder = folder_name, file = file_name)
 
 
 ######### CUSTOMIZE ########################
-# update data fields HERE ========##########
+########## update data fields HERE #########
 ############################################
 
+# Change geography ----------
 geo <- "county" # "state", "county", "tract", "metropolitan statistical area/micropolitan statistical area"
-var <- c(pov_race_codes,ed_race_codes, epop_race_codes, lfp_race_codes,unemp_race_codes) # or search for variables below
 
 # look up other variables ------
 # tmp <- load_variables(yr,paste0("acs",span),cache = TRUE)
@@ -82,11 +81,11 @@ var <- c(pov_race_codes,ed_race_codes, epop_race_codes, lfp_race_codes,unemp_rac
 # set variables to NULL and use table to get a whole table
 # tabl <- "S1701" #if pulling entire table, set variables to NULL
 
-# set year and span, default is 2017 5-year ACS data
+# set year and span -------------
 yr <- 2017 # ACS year
 # span <- 5 # 1-year or 5-year
 
-# set boundary, instead of pulling data for all counties
+# set boundary, instead of pulling data for all counties ---
 # st  ="AL"
 # co = "Jefferson"
 # co_acs <- clean_acs(state = st, county = co, 
@@ -95,37 +94,37 @@ yr <- 2017 # ACS year
 #                       key = key, table = tabl)
 
 
-# Get data =======================
+# Alternative functions to get data =======================
 
 # use base get_acs to get data ---------------
-df <- get_acs(geography = geo, variables = var, 
-              year = yr,
-              key = key, 
-              output = "wide")
-
+# df <- get_acs(geography = geo, variables = var, 
+#               year = yr,
+#               key = key, 
+#               output = "wide")
+# 
 
 # quick visualization
-df %>%
-  ggplot(aes(fill = B20004_001E)) + 
-  geom_sf(color = NA) + 
-  coord_sf() + 
-  scale_fill_viridis_c(option = "magma") 
+# df %>%
+#   ggplot(aes(fill = B20004_001E)) + 
+#   geom_sf(color = NA) + 
+#   coord_sf() + 
+#   scale_fill_viridis_c(option = "magma") 
 
 # use clean_acs to get data with descriptive labels -------
-df <- clean_acs(state = st, county = co, 
-              geography = geo, variables = var, 
-              year = yr, span = span,
-              key = key)
+# df <- clean_acs(state = st, county = co, 
+#               geography = geo, variables = var, 
+#               year = yr, span = span,
+#               key = key)
 
 # set variables to NULL and use table to get a whole table -----
-df <- clean_acs(state = st, county = co, 
-                geography = geo, variables = NULL, 
-                year = yr, span = span,
-                key = key, table = tabl)
+# df <- clean_acs(state = st, county = co, 
+#                 geography = geo, variables = NULL, 
+#                 year = yr, span = span,
+#                 key = key, table = tabl)
 
 # shorten names with argument short = TRUE -----
-df <- clean_acs(state = st, county = co, 
-                geography = geo, variables = var, 
-                year = yr, span = span,
-                key = key, short = TRUE)
+# df <- clean_acs(state = st, county = co, 
+#                 geography = geo, variables = var, 
+#                 year = yr, span = span,
+#                 key = key, short = TRUE)
 
