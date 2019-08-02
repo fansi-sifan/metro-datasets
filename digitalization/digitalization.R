@@ -44,15 +44,12 @@ df <- df %>%
 df_labels <- create_labels(df)
 
 
-# SAVE OUTPUT
-df <- df %>%
-select(cbsa_code, everything()) # make sure unique identifier is the left most column
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
 
 # meta file
 save_meta(df,
 labels = df_labels, folder = folder_name, file = file_name,
-title = dt_title, contact = dt_contact, source = dt_src
+title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
 

@@ -7,7 +7,7 @@ Source:  http://www.oecd.org/sti/inno/intellectual-property-statistics-and-analy
 
 Note:    
 
-Last updated:  Tue Jul 30 14:35:48 2019 
+Last updated:  Thu Aug 01 16:24:53 2019 
 
 
 

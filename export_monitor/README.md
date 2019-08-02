@@ -1,7 +1,13 @@
-Title:  Export Monitor, 2017, all MSAs
-Contact:  Sifan Liu
-Source:  https://www.brookings.edu/research/export-monitor-2018/
-Last updated:  Mon Jul 15 17:58:10 2019 
+
+Title:  Export Monitor, 2017, all MSAs  
+
+Contact:  Sifan Liu  
+
+Source:  https://www.brookings.edu/research/export-monitor-2018/  
+
+Note:    
+
+Last updated:  Thu Aug 01 16:13:09 2019 
 
 
 
@@ -35,10 +41,8 @@ Variable type: numeric
 | cbsa_pct_exports_gdp |    0    |   962    | 962 |  0.12   |  0.063  | 0.013 | 0.079  | 0.11  |  0.16  |   0.46    |
 |         year         |    0    |   962    | 962 |  2017   |    0    | 2017  |  2017  | 2017  |  2017  |   2017    |
 
-Title:  Export Monitor, 2017, all MSAs
-Contact:  Sifan Liu
-Source:  https://www.brookings.edu/research/export-monitor-2018/
-Last updated:  Mon Jul 15 17:58:14 2019 
+Title:  Export Monitor, 2017, all counties  
+
 
 
 

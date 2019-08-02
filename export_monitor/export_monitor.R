@@ -36,8 +36,6 @@ df <- df %>%
 
 df_labels <- create_labels(df)
 
-df_labels <- create_labels(df)
-
 # SAVE OUTPUT
 df <- df %>%
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
@@ -48,7 +46,7 @@ save_datasets(df, folder = folder_name, file = file_name)
 # meta file
 save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
-          title = dt_title, contact = dt_contact, source = dt_src
+          title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
 
 
@@ -56,7 +54,7 @@ save_meta(df,
 # COUNTY LEVEL   -------------
 source_dir <- "V:/Export Monitor/2018/Deliverables/Deliverables/Counties Data/Counties by Total, NAICS 2.xlsx"
 file_name <- "co_export"
-
+dt_title <- "Export Monitor, 2017, all counties"
 
 # load data
 df <- readxl::read_xlsx(source_dir,sheet = "Total") %>% 
@@ -89,7 +87,6 @@ df <- df %>%
   
 df_labels <- create_labels(df)
 
-df_labels <- create_labels(df)
 
 # SAVE OUTPUT
 df <- df %>%
@@ -101,7 +98,7 @@ save_datasets(df, folder = folder_name, file = file_name)
 # meta file
 save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
-          title = dt_title, contact = dt_contact, source = dt_src, apd = T
+          title = dt_title, contact = dt_contact, source = dt_src, note = df_notes,apd = T
 )
 
 

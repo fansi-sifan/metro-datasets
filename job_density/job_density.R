@@ -14,7 +14,7 @@ file_name <- "cbsa_jobdensity"
 dt_title <- "Job density"
 dt_src <- "https://www.brookings.edu/research/where-jobs-are-concentrating-why-it-matters-to-cities-and-regions/"
 dt_contact <- "Joanne Kim"
-df_notes <- readLines("job_density/README.md",n = 18)
+
 
 # FUNCTION load
 df <- readxl::read_xlsx(source_dir)%>%
@@ -28,6 +28,7 @@ df <- readxl::read_xlsx(source_dir)%>%
 df <- df %>% apply_labels(
   cbsa_jobdensity = "Weighted (perceived) actual job density, jobs per sq mile"
 )
+
 df_labels <- create_labels(df)
 
 # SAVE OUTPUT

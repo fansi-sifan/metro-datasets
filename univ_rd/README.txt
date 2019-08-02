@@ -1,13 +1,13 @@
 
-Title:  Higher education R&D survey  
+Title:  Higher education R&D survey   
 
-Contact:  Sifan 
+Contact:  Sifan  
 
-Source:  https://ncsesdata.nsf.gov/ids/?utm_source=WebCaspar&utm_medium=WebCaspar&utm_campaign=WebCaspar 
+Source:  https://ncsesdata.nsf.gov/ids/?utm_source=WebCaspar&utm_medium=WebCaspar&utm_campaign=WebCaspar  
 
-Note:   
+Note:    
 
-Last updated:  Tue Jul 16 09:39:56 2019 
+Last updated:  Thu Aug 01 16:20:34 2019 
 
 
 
@@ -35,7 +35,16 @@ Variable type: numeric
 |   rd_total   |    0    |   327    | 327 |  1e+06   | 2317291.21 | 193.06 | 13903.2 | 109654.93 | 1065054.12 |  1.9e+07   |
 | rd_total_biz |    1    |   326    | 327 | 58056.68 | 154399.97  |   0    | 177.37  |  3450.25  |  46371.95  | 1366653.64 |
 
+Title:  Higher education R&D survey   
 
+
+
+
+|                     label                     |    names     |
+|-----------------------------------------------|--------------|
+|                                               |  cbsa_code   |
+|              total R&D spending               |   rd_total   |
+| total deflated business financed R&D spending | rd_total_biz |
 
 
 Skim summary statistics  

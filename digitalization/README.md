@@ -1,7 +1,13 @@
-Title:  Average digitalization score, 2002 and 2016
-Contact:  Sifan Liu
-Source:  https://www.brookings.edu/research/digitalization-and-the-american-workforce/
-Last updated:  Mon Jul 15 17:55:48 2019 
+
+Title:  Average digitalization score, 2002 and 2016  
+
+Contact:  Sifan Liu  
+
+Source:  https://www.brookings.edu/research/digitalization-and-the-american-workforce/  
+
+Note:    
+
+Last updated:  Thu Aug 01 16:15:34 2019 
 
 
 
