@@ -1,4 +1,8 @@
-source("../R/pip.R")
+source("R/pip.R")
+rm(county_cbsa_st)
+rm(co_all)
+rm(cbsa_all)
+rm(find_cbsa_counties)
 
 # Select and merge datasets =============================
 dfs <- objects()
