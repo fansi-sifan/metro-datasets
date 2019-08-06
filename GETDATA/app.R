@@ -13,12 +13,14 @@
 
 library(dplyr)
 library(shiny)
-load("../co_all.rda")
-load("../cbsa_all.rda")
-load("../list_all_co.rda")
-load("../list_all_cbsa.rda")
+library(markdown)
 
-load("../xwalk/county_cbsa_st.rda")
+load("data/co_all.rda")
+load("data/cbsa_all.rda")
+load("data/list_all_co.rda")
+load("data/list_all_cbsa.rda")
+
+load("data/county_cbsa_st.rda")
 
 # temp = list.files(path = "../", pattern = ".rda", recursive = T)
 
@@ -31,6 +33,7 @@ ui <- navbarPage(
   "Metro Data Warehouse",
   tabPanel(
     "County",
+    helpText("If you have any questions or comments, please contact Sifan Liu (sliu@brookings.edu)"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
@@ -56,6 +59,8 @@ ui <- navbarPage(
   ),
   tabPanel(
     "Metro",
+    helpText("If you have any questions or comments, please contact Sifan Liu (sliu@brookings.edu)"),
+    
     # Sidebar with a slider input for number of bins
     sidebarLayout(
       sidebarPanel(
@@ -78,7 +83,9 @@ ui <- navbarPage(
         DT::dataTableOutput("table_cbsa")
       )
     )
-  )
+  ),
+  tabPanel('README',
+           includeMarkdown("README.md"))
 )
 
 
@@ -92,7 +99,9 @@ server <- function(input, output) {
     co_df <- co_all %>%
       filter(stco_code %in% co_codes) %>%
       select(co_columns)%>%
-      unique()
+      unique() %>% 
+      mutate_if(is.numeric, ~round(., 2))
+    
 
   })
   
@@ -102,7 +111,8 @@ server <- function(input, output) {
     cbsa_df <- cbsa_all %>%
       filter(cbsa_code %in% cbsa_codes) %>%
       select(cbsa_columns) %>%
-      unique()
+      unique() %>% 
+      mutate_if(is.numeric, ~round(., 2))
     
   })
 
