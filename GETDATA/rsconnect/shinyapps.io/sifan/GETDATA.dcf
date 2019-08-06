@@ -1,0 +1,12 @@
+name: GETDATA
+title: GETDATA
+username:
+account: sifan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1065694
+bundleId: 2295231
+url: https://sifan.shinyapps.io/GETDATA/
+when: 1565103688.07252
+asMultiple: FALSE
+asStatic: FALSE
