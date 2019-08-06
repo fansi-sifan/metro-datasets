@@ -7,8 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 # TO DO
-# ( ) SWITCH BETWEEN COUNTY/CBSA
-# ( ) DOWNLOAD DATASETS
+# (/) SWITCH BETWEEN COUNTY/CBSA
+# (/) DOWNLOAD DATASETS
+# ( ) Add README
 
 library(dplyr)
 library(shiny)
@@ -42,9 +43,11 @@ ui <- navbarPage(
           "co_datasets", "2. Search and select the datasets:",
           choices = names(list_all_co), multiple = TRUE
         ),
-        actionButton("update_co", "Show county data")
+        actionButton("update_co", "Show county data"),
+        downloadButton("download_co",label = "Download csv")
+        
       ),
-
+ 
       # Show a plot of the generated distribution
       mainPanel(
         DT::dataTableOutput("table_co")
@@ -64,8 +67,11 @@ ui <- navbarPage(
           "cbsa_datasets", "2. Search and select the datasets:",
           choices = names(list_all_cbsa), multiple = TRUE
         ),
-        actionButton("update_cbsa", "Show metro data")
+        actionButton("update_cbsa", "Show metro data"),
+        downloadButton("download_cbsa",label = "Download csv")
+        
       ),
+      
 
       # Show a plot of the generated distribution
       mainPanel(
@@ -79,6 +85,7 @@ ui <- navbarPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
+  # update input variables
   info_co <- eventReactive(input$update_co, {
     co_codes <- (county_cbsa_st %>% filter(co_name %in% input$co_places))$stco_code
     co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
@@ -99,6 +106,7 @@ server <- function(input, output) {
     
   })
 
+  # show output table
   output$table_co <- DT::renderDataTable({
     co_df <- info_co()
 
@@ -122,6 +130,25 @@ server <- function(input, output) {
       )
     )
   })
+  
+  # get download link
+  output$download_co <- downloadHandler(
+    filename = function(){
+      paste('co_',Sys.Date(),'.csv')
+    },
+    content = function(filename){
+      write.csv(info_co(),filename)
+    }
+  )
+  
+  output$download_cbsa <- downloadHandler(
+    filename = function(){
+      paste('cbsa_',Sys.Date(),'.csv')
+    },
+    content = function(filename){
+      write.csv(info_cbsa(),filename)
+    }
+  )
 }
 
 # Run the application
