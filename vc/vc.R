@@ -18,21 +18,18 @@ df_notes <- ""
 df <- read_csv(source_dir)
 
 df <- df %>%
-  filter(round == "Total VC" & measure == "Capital Invested ($ M) per 1M Residents") %>%
+  filter(round == "Total VC" ) %>%
+  filter(measure == "Capital Invested ($ M) per 1M Residents") %>%
+  filter(period == "2015-17") %>%
   mutate(cbsa_code = as.character(cbsa13)) %>%
   janitor::clean_names()%>%
   mutate(cbsa_name = as.character(msa),
          rank = as.numeric(rank))%>%
-  select(-x1,-cbsa13, 
-         -country, 
-         -measure, 
-         -msa)%>%
-  apply_labels(period = "time period of investment",
-               round = "total venture capital", 
-               value = "capital invested (in_millions) per 1M residents", 
-               latitude = "latitude", 
-               longitude = "longitude", 
-               rank = "cbsa ranking", 
+  select(cbsa_code, cbsa_name,
+         year_range = period,
+         vc_per_m_pop = value)%>%
+  apply_labels(year_range = "time period of investment",
+               vc_per_m_pop = "capital invested (in_millions) per 1M residents", 
                cbsa_code = "cbsa code", 
                cbsa_name = "cbsa name")
 
