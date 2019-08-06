@@ -39,8 +39,12 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         selectizeInput(
-          "co_places", "1. Search and select the places:",
+          "co_places", "1. Search for the counties:",
           choices = county_cbsa_st$co_name, multiple = TRUE
+        ),
+        selectizeInput(
+          "cbsa_co_places", " Or, select all the counties within the metros:",
+          choices = county_cbsa_st$cbsa_name, multiple = TRUE
         ),
         selectizeInput(
           "co_datasets", "2. Search and select the datasets:",
@@ -65,7 +69,7 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         selectizeInput(
-          "cbsa_places", "1. Search and select the places:",
+          "cbsa_places", "1. Search and select the metros:",
           choices = county_cbsa_st$cbsa_name, multiple = TRUE
         ),
         selectizeInput(
@@ -94,7 +98,10 @@ ui <- navbarPage(
 server <- function(input, output) {
   # update input variables
   info_co <- eventReactive(input$update_co, {
-    co_codes <- (county_cbsa_st %>% filter(co_name %in% input$co_places))$stco_code
+    co_codes <- c(
+      (county_cbsa_st %>% filter(co_name %in% input$co_places))$stco_code,
+      (county_cbsa_st %>% filter(cbsa_name %in% input$cbsa_co_places))$stco_code
+      )
     co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
     co_df <- co_all %>%
       filter(stco_code %in% co_codes) %>%
