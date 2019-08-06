@@ -36,7 +36,7 @@ clean_acs <- function(geography, variables, year=2017, span=5, key, short = FALS
     spread(key = label, value = values) %>%
     select_if(~ sum(!is.na(.)) > 0)
   
-  set_label(output) <- names(output)
+  sjlabelled::set_label(output) <- names(output)
 
   if (short == TRUE) {
     names(output) <- stringr::str_replace(names(output), "__moe$", "_moe")

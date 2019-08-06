@@ -1,14 +1,13 @@
 # acs variables list ===============================
-
 # RACE ---------------
+pop_race_codes <- c("B01003_001",map_chr(seq(1,3),function(x)paste0("B02001_00",x))) # total population
 
-pop_race_codes <- c("S2301_C01_001",map_chr(seq(12,20),function(x)paste0("S2301_C01_0",x))) # total population
 calculate_pop_race <-  function(df) {
   df %>%
     mutate(
-      pop_total = S2301_C01_001E/100,
-      pop_wh = S2301_C01_012E/100,
-      pop_bk = S2301_C01_013E/100)
+      pop_tot = B02001_001E,
+      pop_wh = B02001_002E,
+      pop_bk = B02001_003E)
 }
       
 pov_race_codes <- map_chr(seq(13,21),function(x)paste0("S1701_C03_0",x))  # poverty status
@@ -33,7 +32,8 @@ calculate_commute_race <- function(df){
            pct_drivealone_bk = S0802_C02_013E*S0802_C02_001E/commuter_bk,
            pct_publictrans_total = S0802_C04_001E/S0802_C01_001E,
            pct_publictrans_wh = S0802_C04_012E*S0802_C04_001E/commuter_wh,
-           pct_publictrans_bk = S0802_C04_013E*S0802_C04_001E/commuter_wh)
+           pct_publictrans_bk = S0802_C04_013E*S0802_C04_001E/commuter_wh)%>%
+    select(-contains("commuter"))
 }
 
 emp_race_codes <- c("S2301_C02_001",map_chr(seq(12,20),function(x)paste0("S2301_C02_0",x)), # labor force participation rate
@@ -62,13 +62,13 @@ edu_codes <- map_chr(str_pad(seq(9,13),width = 2,side = "left","0"),function(x)p
 calculate_edu <- function(df){
   df %>%
     mutate(
-      pct_hs = S1501_C02_009E,
-      pct_somecollege = S1501_C02_010E,
-      pct_associate = S1501_C02_011E,
-      pct_ba = S1501_C02_012E,
-      pct_grad = S1501_C02_013E,
+      pct_hs = S1501_C02_009E/100,
+      pct_somecollege = S1501_C02_010E/100,
+      pct_associate = S1501_C02_011E/100,
+      pct_ba = S1501_C02_012E/100,
+      pct_grad = S1501_C02_013E/100,
       pct_babeyond = pct_ba + pct_grad,
-      pct_hsbeyond = pct_hs + pct_babeyond
+      pct_hsbeyond = pct_hs + pct_somecollege + pct_associate + pct_babeyond
      )
 }
 
@@ -120,8 +120,9 @@ calculate_migration <- function(df){
            fromabroad_total = B07009_031E,
            movein_ba_above = fromabroad_ba_above+fromdiffstate_ba_above+frominstate_ba_above,
            movein_total = fromabroad_total+fromdiffstate_total+frominstate_total,
-           pct_movein = movein_total/B07009_001E,
-           movein_pct_ba_above = movein_ba_above/movein_total)
+           pct_newcomer = movein_total/B07009_001E,
+           newcomer_pct_ba_above = movein_ba_above/movein_total) %>%
+    select(-contains("from"))
 }
 
 
