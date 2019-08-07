@@ -7,7 +7,7 @@ Source:  http://www.oecd.org/sti/inno/intellectual-property-statistics-and-analy
 
 Note:    
 
-Last updated:  Thu Aug 01 16:24:53 2019 
+Last updated:  Wed Aug 07 09:41:55 2019 
 
 
 
@@ -31,8 +31,8 @@ Variable type: character
 
 |  variable  | missing | complete |  n  | min | max | empty | n_unique |
 |------------|---------|----------|-----|-----|-----|-------|----------|
-| cbsa_code  |    0    |   924    | 924 |  7  | 45  |   0   |   924    |
-| cbsa_name  |    0    |   924    | 924 |  5  |  5  |   0   |   924    |
+| cbsa_code  |    0    |   924    | 924 |  5  |  5  |   0   |   924    |
+| cbsa_name  |    0    |   924    | 924 |  7  | 45  |   0   |   924    |
 |  st_name   |    0    |   924    | 924 |  4  | 20  |   0   |    52    |
 | year_range |    0    |   924    | 924 |  9  |  9  |   0   |    1     |
 

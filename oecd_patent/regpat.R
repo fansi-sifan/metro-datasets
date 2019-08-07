@@ -21,8 +21,8 @@ df <- readxl::read_xlsx(source_dir, sheet = "i0") %>%
   janitor::clean_names() %>%
   select(
     year_range,
-    cbsa_name = "micro_regions",
-    cbsa_code = "micro_region",
+    cbsa_name = "micro_region",
+    cbsa_code = "micro_regions",
     st_name = "core_macro_region",
     cbsa_patents_invented = "number_of_patents_invented_total_micro_regions",
     cbsa_inventors_per_patent = "number_of_inventors_per_patent_total_micro_regions",
