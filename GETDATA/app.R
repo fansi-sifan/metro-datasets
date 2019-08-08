@@ -32,6 +32,12 @@ load("data/county_cbsa_st.rda")
 # Define UI for application that draws a histogram
 ui <- navbarPage(
   "Metro Data Warehouse",
+  
+  tabPanel(
+    "README",
+    includeMarkdown("README.md")
+  ),
+  
   tabPanel(
     "County",
     helpText("If you have any questions or comments, please contact Sifan Liu (sliu@brookings.edu)"),
@@ -86,10 +92,6 @@ ui <- navbarPage(
         DT::dataTableOutput("table_cbsa")
       )
     )
-  ),
-  tabPanel(
-    "README",
-    includeMarkdown("README.md")
   )
 )
 
