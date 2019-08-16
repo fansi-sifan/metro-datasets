@@ -1,11 +1,4 @@
 #
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 # TO DO
 # (/) SWITCH BETWEEN COUNTY/CBSA
 # (/) DOWNLOAD DATASETS
@@ -23,13 +16,7 @@ load("data/list_all_cbsa.rda")
 
 load("data/county_cbsa_st.rda")
 
-# temp = list.files(path = "../", pattern = ".rda", recursive = T)
-
-# list_cbsa_all <- gsub("\\/(.*)\\.rda","",temp[grep("cbsa_",temp)])
-# list_co_all <- gsub("\\/co_(.*)\\.rda","",temp[grep("county_|co_",temp)])
-
-
-# Define UI for application that draws a histogram
+# UI design, three tabs, README + County + Metro
 ui <- navbarPage(
   "Metro Data Warehouse",
   
@@ -42,7 +29,7 @@ ui <- navbarPage(
     "County",
     helpText("If you have any questions or comments, please contact Sifan Liu (sliu@brookings.edu)"),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar
     sidebarLayout(
       sidebarPanel(
         selectizeInput(
@@ -61,7 +48,7 @@ ui <- navbarPage(
         downloadButton("download_co", label = "Download csv")
       ),
 
-      # Show a plot of the generated distribution
+      # Show data table
       mainPanel(
         DT::dataTableOutput("table_co")
       )
@@ -71,7 +58,7 @@ ui <- navbarPage(
     "Metro",
     helpText("If you have any questions or comments, please contact Sifan Liu (sliu@brookings.edu)"),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar
     sidebarLayout(
       sidebarPanel(
         selectizeInput(
@@ -87,7 +74,7 @@ ui <- navbarPage(
       ),
 
 
-      # Show a plot of the generated distribution
+      # Show data table
       mainPanel(
         DT::dataTableOutput("table_cbsa")
       )
@@ -97,11 +84,11 @@ ui <- navbarPage(
 
 
 
-# Define server logic required to draw a histogram
+# Define server logic
 server <- function(input, output) {
   # update input variables
   info_co <- eventReactive(input$update_co, {
-    if (is.null(input$co_places)) {
+    if (is.null(input$co_places) & is.null(input$cbsa_co_places)) {
       co_codes <- county_cbsa_st$stco_code
     } else {
       co_codes <- c(
