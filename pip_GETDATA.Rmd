@@ -1,5 +1,5 @@
 ---
-title: "pipeline"
+title: "Define new geography and get summary"
 author: "Sifan"
 date: "July 29, 2019"
 output: html_document
@@ -8,10 +8,16 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-source("R/pip.R")
+# run helper.R to update cbsa_all, co_all
 source("R/acs_var.R")
+source("R/pip.R")
+
+# load("GETDATA/data/co_all.rda")
+# load("GETDATA/data/cbsa_all.rda")
 load("../metro.data/data/county_cbsa_st.rda")
-cbsa_st <- county_cbsa_st %>% select(contains("cbsa_")) %>% unique()
+cbsa_st <- county_cbsa_st %>%
+  select(contains("cbsa_")) %>%
+  unique()
 ```
 
 ## Data Inputs
@@ -21,49 +27,136 @@ cbsa_st <- county_cbsa_st %>% select(contains("cbsa_")) %>% unique()
 
 ```{r OPTIONAL choose places}
 # change the names of the metros
-places <- purrr::map_df(c("Atlanta", "grand rapids-kentwood", "denver"), find_cbsa_counties)
+# places <- purrr::map_df(c("Atlanta", "grand rapids-kentwood", "denver"), find_cbsa_counties)
 
 # or, if you have a list of codes:
-codes <- c("28140", "41740", "34980", "33460", "17460", "13820", "16980", "31080", "45060", "19820", "19740", "26900")
+MetroDenver_cbsa <- c("22660", "19740", "14500", "24540")
 
-places <- county_cbsa_st %>%
-  filter(cbsa_code %in% codes)
+MetroDenvr_approx <- (county_cbsa_st %>%
+  filter(cbsa_code %in% MetroDenver_cbsa))$stco_code
+
+MetroDenvr_actual <- (county_cbsa_st %>%
+  filter(cbsa_code %in% MetroDenver_cbsa) %>%
+  filter(!stco_code %in% c("08039", "08093", "08019", "08047")))$stco_code
+
+
+Denver_cbsa <- c("19740")
+Denver_co <- (county_cbsa_st %>%
+  filter(cbsa_code == Denver_cbsa))$stco_code
+
+cbsa_list <- list(MetroDenver_cbsa, Denver_cbsa)
+co_list <- list(MetroDenvr_actual, MetroDenvr_approx, Denver_co)
+
+cbsa_list
+co_list
 ```
 
 ```{r choose datasets}
 # choose the datasets from the environment
 
-list_cbsa_all <- list(cbsa_st,cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd,cbsa_biz_rd)
-list_cbsa_all <- list(cbsa_metromonitor,cbsa_acs)
+# list_cbsa_all <- list(cbsa_st,cbsa_acs,cbsa_uspto, cbsa_i5hgc, cbsa_patentcomplex,cbsa_univ_rd,cbsa_biz_rd)
+list_cbsa_all <- list(cbsa_metromonitor, cbsa_digitalization, cbsa_i5hgc, cbsa_patentcomplex, cbsa_jobdensity, cbsa_vc, cbsa_univ_rd)
 ```
 
 ## Show data
 
-```{r data table, echo=FALSE}
+```{r collapse total, echo=FALSE}
 
-# merge all datasets and keep the latest year only
-cbsa_df <- merge_cbsa(lapply(list_cbsa_all, keep_latest))
+acs_collapse <- function(type, x) {
+  if (type == "cbsa") {
+    cbsa_acs_raw %>%
+      filter(cbsa_code %in% x) %>%
+      summarise_if(is.numeric, sum) %>%
+      calculate_num_acs()
+  } else if (type == "county") {
+    co_acs_raw %>%
+      filter(stco_code %in% x) %>%
+      summarise_if(is.numeric, sum) %>%
+      calculate_num_acs()
+  }
+}
+
+out <- bind_rows(map_df(co_list, acs_collapse, type = "county"))
+out <- bind_rows(map_df(cbsa_list, acs_collapse, type = "cbsa"))
+out
+```
+
+```{r collapse by total}
+tot_collapse <- function(df, var, codes){
+  var <- rlang::enquo(var)
+  name <- rlang::ensym(var)
+  
+  tmp <- df %>%
+      filter(cbsa_code %in% codes) %>%
+      left_join(cbsa_st, by = "cbsa_code")%>%
+      mutate(var_mean = !!var/cbsa_pop)
+  
+  bind_rows(
+    tmp,
+    tmp %>%
+      mutate(var_tot = !!var) %>%
+      summarise(!!name:= sum(var_tot),
+                cbsa_pop = sum(cbsa_pop))%>%
+      mutate(var_mean = !!var/cbsa_pop)
+  )
+}
+
+tot_collapse(cbsa_univ_rd, rd_total, MetroDenver_cbsa)
+
+
 
 ```
 
-```{r}
-cbsa_output <- cbsa_df %>%
-  # filter(cbsa_code %in% places$cbsa_code)%>%
-  select(cbsa_code,cbsa_name,output_per_person,pct_babeyond)%>%
-  filter(!is.na(output_per_person))
 
-cbsa_output %>% knitr::kable()
+```{r collapse by population}
+pop_collapse <- function(df, var, codes){
+ var <- rlang::enquo(var)
+  name <- rlang::ensym(var)
+  
+  tmp <- df %>%
+      filter(cbsa_code %in% codes) %>%
+      left_join(cbsa_st, by = "cbsa_code")%>%
+      mutate(var_tot = !!var*cbsa_pop) 
+  
+  bind_rows(
+    tmp,
+    tmp %>%
+      summarise(var_tot = sum(var_tot),
+                cbsa_pop = sum(cbsa_pop))%>%
+      mutate(!!name:= var_tot/cbsa_pop)
+  )
+}
+
+pop_collapse(cbsa_vc,vc_per_m_pop,MetroDenver_cbsa)
+pop_collapse(cbsa_i5hgc, i5hgc_density, MetroDenver_cbsa)
+
 ```
 
+```{r others}
+cbsa_digitalization %>%
+  filter(cbsa_code %in% MetroDenver_cbsa)
 
-```{r optional, include=FALSE}
+co_jobdensity %>%
+  filter(cbsa_code %in% MetroDenver_cbsa)%>%
+  filter(naics2_code =="00")%>%
+  filter(year==2015)
 
-# find county data
-# county_df <- merge_county(lapply(list_county_all, keep_latest)) 
-# 
-# county_output <- county_df %>%
-#   filter(stco_code %in% places$stco_code)
-# 
-# head(county_output)
+cbsa_patentcomplex %>%
+  filter(cbsa_code %in% MetroDenver_cbsa)
+
+co_oow %>%
+  filter(stco_code %in% MetroDenvr_co)
+
+cbsa_low_wage_worker %>%
+  filter(cbsa_code %in% MetroDenver_cbsa) %>%
+  filter(population==1)
+
+cbsa_univ_licensing %>%
+
+  filter(year == 2017)
+
+cbsa_biz_rd %>%
+    filter(cbsa_code %in% MetroDenver_cbsa)
+
 ```
 
