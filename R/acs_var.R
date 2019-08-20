@@ -32,7 +32,7 @@ calculate_commute_race <- function(df){
            pct_drivealone_bk = S0802_C02_013E*S0802_C02_001E/commuter_bk,
            pct_publictrans_total = S0802_C04_001E/S0802_C01_001E,
            pct_publictrans_wh = S0802_C04_012E*S0802_C04_001E/commuter_wh,
-           pct_publictrans_bk = S0802_C04_013E*S0802_C04_001E/commuter_wh)%>%
+           pct_publictrans_bk = S0802_C04_013E*S0802_C04_001E/commuter_bk)%>%
     select(-contains("commuter"))
 }
 
@@ -135,21 +135,38 @@ calculate_zerocar <- function(df){
 
 
 # FUNCTIONS =====
-calculate_acs <- function(df){
+
+
+calculate_num_acs <- function(df){
   df %>%
     
     # customized calculations
     calculate_pop_race %>%
-    calculate_income_race %>%
-    calculate_pov_race %>%
-    calculate_edu %>%
     calculate_edu_race %>%
-    calculate_emp_race %>%
-    calculate_commute_race %>%
     calculate_migration %>%
     calculate_zerocar %>%
-    calculate_income_edu %>%
     
     # keep only the calculated outputs
     select(-contains("E",ignore.case = F), -contains("M", ignore.case = F))
 }
+
+calculate_pct_acs <- function(df){
+  df %>%
+    
+    # customized calculations
+    calculate_income_race %>%
+    calculate_pov_race %>%
+    calculate_edu %>%
+    calculate_emp_race %>%
+    calculate_income_edu %>%
+    calculate_commute_race %>%
+
+    # keep only the calculated outputs
+    select(-contains("E",ignore.case = F), -contains("M", ignore.case = F))
+}
+
+calculate_acs <- function(df){
+  df %>%
+    calculate_num_acs()%>%
+    calculate_pct_acs()
+  }
