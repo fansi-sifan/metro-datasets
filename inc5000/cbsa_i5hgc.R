@@ -3,6 +3,12 @@ library(skimr)
 library(expss)
 source("R/save_output.R")
 
+# updates ==================================
+#Inc 5000 2019
+# source_dir <- "https://query.data.world/s/3uevl2njr3dxpqfresky7en3owoub2"
+# df <- read_csv(source_dir)
+# summary(as.factor(df$`_ - metro`))
+
 # SET UP ====================================
 source_dir <- "V:/Sifan/Birmingham/County Cluster/source/I5HGC_density.csv"
 folder_name <- "inc5000"
