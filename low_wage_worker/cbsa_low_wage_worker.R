@@ -48,7 +48,11 @@ Those clusters are defined as follows:
 "
 
 # read datasets
-df <- read_csv(source_dir, col_types = cols(CBSA = col_character()))
+rm_zero <- function(df){df[,!is.na(colSums(df != 0)) & colSums(df != 0) > 0]}
+
+df <- read_csv(source_dir, col_types = cols(CBSA = col_character())) 
+
+df <- rm_zero(df)
 
 # variable labels
 set_label(df) <- colnames(df)
