@@ -32,6 +32,8 @@ keep_latest <- function(df){
   
 }
 
+load("../metro.data/data/county_cbsa_st.rda")
+save(county_cbsa_st,file = "GETDATA/data/county_cbsa_st.rda")
 
 # find cbsa_code by short name and all counties within the CBSA ------
 find_cbsa_counties <- function(msa){

@@ -9,6 +9,7 @@ library(dplyr)
 library(shiny)
 library(markdown)
 
+
 load("data/co_all.rda")
 load("data/cbsa_all.rda")
 load("data/list_all_co.rda")
@@ -34,7 +35,7 @@ ui <- navbarPage(
       sidebarPanel(
         selectizeInput(
           "co_places", "1. Search for the counties:",
-          choices = county_cbsa_st$co_name, multiple = TRUE
+          choices = county_cbsa_st$stco_name, multiple = TRUE
         ),
         selectizeInput(
           "cbsa_co_places", " Or, select all the counties within the metros:",
@@ -42,7 +43,7 @@ ui <- navbarPage(
         ),
         selectizeInput(
           "co_datasets", "2. Search and select the datasets:",
-          choices = names(list_all_co), multiple = TRUE
+          choices = names(list_all_co), multiple = TRUE, selected = "co_acs"
         ),
         actionButton("update_co", "Show county data"),
         downloadButton("download_co", label = "Download csv")
@@ -67,7 +68,7 @@ ui <- navbarPage(
         ),
         selectizeInput(
           "cbsa_datasets", "2. Search and select the datasets:",
-          choices = names(list_all_cbsa), multiple = TRUE
+          choices = names(list_all_cbsa), multiple = TRUE, selected = "cbsa_acs"
         ),
         actionButton("update_cbsa", "Show metro data"),
         downloadButton("download_cbsa", label = "Download csv")
@@ -92,7 +93,7 @@ server <- function(input, output) {
       co_codes <- county_cbsa_st$stco_code
     } else {
       co_codes <- c(
-        (county_cbsa_st %>% filter(co_name %in% input$co_places))$stco_code,
+        (county_cbsa_st %>% filter(stco_name %in% input$co_places))$stco_code,
         (county_cbsa_st %>% filter(cbsa_name %in% input$cbsa_co_places))$stco_code
       )
     }
@@ -119,7 +120,7 @@ server <- function(input, output) {
       filter(cbsa_code %in% cbsa_codes) %>%
       select(cbsa_columns) %>%
       unique() %>%
-      left_join(county_cbsa_st %>% select(contains("cbsa_")) %>% unique(), by = "cbsa_code") %>%
+      left_join(county_cbsa_st %>% select(contains("cbsa_"),-cbsa_name) %>% unique(), by = "cbsa_code") %>%
       mutate_if(is.numeric, ~ round(., 2))
   })
 
