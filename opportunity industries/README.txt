@@ -9,7 +9,7 @@ Note:  Good jobs provide stable employment, middle-class wages and benefits
 Promising jobs are entry-level positions from which most workers can reach a good job within 10 years
 Other jobs do not provide decent pay, benefits, or pathways to good jobs   
 
-Last updated:  Fri Sep 13 16:16:15 2019 
+Last updated:  Fri Sep 13 17:51:09 2019 
 
 
 
