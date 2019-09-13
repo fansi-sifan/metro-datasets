@@ -1,8 +1,13 @@
 source("R/pip.R")
-rm(county_cbsa_st)
-rm(co_all)
-rm(cbsa_all)
-rm(find_cbsa_counties)
+
+irrelevant <- c("county_cbsa_st","cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
+not.include<- c("cbsa_shiftshare", "cbsa_low_wage_worker")
+rm(list = not.include)
+rm(list = irrelevant)
+
+# modify job density
+cbsa_jobdensity <- cbsa_jobdensity %>%
+  filter(naics2_code == "00")
 
 # Select and merge datasets =============================
 dfs <- objects()

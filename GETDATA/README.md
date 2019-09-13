@@ -1,5 +1,5 @@
 # Metro Data Warehouse BETA
-This is a tool to fetch data from the Metro Data Warehouse. The current release is a beta version which is still undergoing data checks and testing before its official release. Please do [let me know](mailto:sliu@brookings.edu) if you catch any errors, omissions or inaccuracies!
+This is a tool to look up data from the Metro Data Warehouse. It only includes summary statistics for the latest year, and industry total. For complete datasets, please go to the raw data files, located on V:/metro_data_warehouse/data_final
 
 ## How to fetch data
 
@@ -12,8 +12,7 @@ This is a tool to fetch data from the Metro Data Warehouse. The current release 
 
 County&nbsp;&nbsp;&nbsp; | file name | descriptions
 -------|-----------|-------------
-1 | co_acs | Selected indicators calculated from ACS summary tables
-2 | co_acs_raw | Original columns fetched from ACS summary tables
+1 | co_acs | Selected indicators calculated from ACS 2017-5 year summary tables
 3 | co_export | Export volume and intensity from Export Monitor
 4 | co_jobdensity | Weighted actual job density, (jobs per sq mile)
 5 | co_oic | Indicators from old industrial cities report
@@ -22,15 +21,13 @@ County&nbsp;&nbsp;&nbsp; | file name | descriptions
 8 | co_univ_rd | University R&D investment, 2017
 9 | co_uspto | Utility patent grants, 2015
 
-
+&nbsp;
 
 
 CBSA&nbsp; &nbsp;&nbsp;| file name | descriptions
 -----|-----------|---------------------------------------------------
-1 | cbsa_acs | Selected indicators calculated from ACS summary tables
-2 | cbsa_acs_raw | Original columns fetched from ACS summary tables
+1 | cbsa_acs | Selected indicators calculated from ACS 2017-5 year summary tables
 3 | cbsa_export | Export volume and intensity from Export Monitor
-4 | cbsa_jobdensity | Weighted actual job density, (jobs per sq mile)
 5 | cbsa_digitalization | Digitalization scores and share of jobs by digital level
 6 | cbsa_housing_price | Housing-income ratio
 7 | cbsa_univ_licensing | University licensing activity and income
@@ -42,8 +39,8 @@ CBSA&nbsp; &nbsp;&nbsp;| file name | descriptions
 13| cbsa_biz_rd | Domestic R&D performed by companies for selected metros, 2015
 14| cbsa_i5hgc | Inc 5000 high growth firms by metro, 2017
 15| cbsa_metromonitor | Rankings and values from metro monitor report, 2019
-16| cbsa_low_wage_worker | Nine major low-wage-worker groups
 
+&nbsp;
 
 ## Codebook
 Please use this [Github page](https://github.com/fansi-sifan/metro-datasets) for codebook, organized by dataset names. 
