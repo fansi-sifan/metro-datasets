@@ -7,7 +7,7 @@ source("R/save_output.R")
 # SET UP ====================================
 source_dir <- "source/opp_ind.csv"
 folder_name <- "opportunity industries"
-file_name <- "cbsa_oppind"
+file_name <- "cbsa_oppind_race"
 
 # metadata
 dt_title <- "Opportunity industries"
@@ -20,15 +20,19 @@ Other jobs do not provide decent pay, benefits, or pathways to good jobs "
 
 # TRANSFORM ============================================
 df <- read.csv(source_dir) %>%
-  mutate(cbsa_code = cbsa_code_alt)
+  mutate(cbsa_code = as.character(cbsa_code_alt),
+         cbsa_name = cbsa_title)
 
 
 # SAVE OUTPUT
 df <- df %>%
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
+
+
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
 
+df_labels <- create_labels(df)
 # meta file
 save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
@@ -36,4 +40,27 @@ save_meta(df,
 )
 
 
+# summary ------
+source_dir <- "source/goodjobs.csv"
+file_name <- "cbsa_oppind"
+
+# TRANSFORM ============================================
+df <- read.csv(source_dir) %>%
+  mutate(cbsa_code = as.character(CBSA),
+         cbsa_name = CBSA.Title)
+
+
+# SAVE OUTPUT
+df <- df %>%
+  select(cbsa_code, everything()) # make sure unique identifier is the left most column
+
+df_labels <- create_labels(df)
+# datasets
+save_datasets(df, folder = folder_name, file = file_name)
+
+# meta file
+save_meta(df,
+          labels = df_labels, folder = folder_name, file = file_name,
+          title = dt_title, contact = dt_contact, source = dt_src, note = dt_notes, apd = T
+)
 
