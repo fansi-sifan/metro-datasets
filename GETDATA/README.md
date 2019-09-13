@@ -13,13 +13,13 @@ This is a tool to look up data from the Metro Data Warehouse. It only includes s
 County&nbsp;&nbsp;&nbsp; | file name | descriptions
 -------|-----------|-------------
 1 | co_acs | Selected indicators calculated from ACS 2017-5 year summary tables
-3 | co_export | Export volume and intensity from Export Monitor
-4 | co_jobdensity | Weighted actual job density, (jobs per sq mile)
-5 | co_oic | Indicators from old industrial cities report
-6 | co_oow | Seven major Out-of-work groups
+2 | co_export | Export volume and intensity from Export Monitor
+3 | co_jobdensity | Weighted actual job density, (jobs per sq mile)
+4 | co_oic | Indicators from old industrial cities report
 7 | co_univ_licensing | University licensing activity and income
 8 | co_univ_rd | University R&D investment, 2017
 9 | co_uspto | Utility patent grants, 2015
+
 
 &nbsp;
 
@@ -27,6 +27,7 @@ County&nbsp;&nbsp;&nbsp; | file name | descriptions
 CBSA&nbsp; &nbsp;&nbsp;| file name | descriptions
 -----|-----------|---------------------------------------------------
 1 | cbsa_acs | Selected indicators calculated from ACS 2017-5 year summary tables
+2 | cbsa_oppind | Opportunity industries share, 2017
 3 | cbsa_export | Export volume and intensity from Export Monitor
 5 | cbsa_digitalization | Digitalization scores and share of jobs by digital level
 6 | cbsa_housing_price | Housing-income ratio

@@ -1,14 +1,15 @@
 source("R/pip.R")
 
-irrelevant <- c("county_cbsa_st","cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
-not.include<- c("cbsa_shiftshare", "cbsa_low_wage_worker")
+irrelevant <- c("county_cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
+not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "co_oow", "co_oow_young")
 rm(list = not.include)
 rm(list = irrelevant)
 
-# modify job density
+# modify datasets to keep industry total
 cbsa_jobdensity <- cbsa_jobdensity %>%
   filter(naics2_code == "00")
 
+  
 # Select and merge datasets =============================
 dfs <- objects()
 
@@ -29,6 +30,3 @@ save(list_all_cbsa,file = "GETDATA/data/list_all_cbsa.rda")
 save(list_all_co,file = "GETDATA/data/list_all_co.rda")
 
 
-# cbsa_all %>%
-#   select(c(names(cbsa_univ_rd),names(cbsa_st)))%>%
-#   filter(cbsa_code == "13820")
