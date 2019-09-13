@@ -7,7 +7,7 @@ Source:  https://www.brookings.edu/research/meet-the-out-of-work/
 
 Note:  130 large cities and counties across the United States, note that LA, Seattle, Chicago, Detroit, etc. are treated separately from their counties  
 
-Last updated:  Fri Sep 13 13:08:24 2019 
+Last updated:  Fri Sep 13 14:19:28 2019 
 
 
 
@@ -23,11 +23,11 @@ Last updated:  Fri Sep 13 13:08:24 2019
 |                     Percent currently employed                     |     pemployed      |
 |                    Percent currently unemployed                    |    punemployed     |
 |                Percent currently not in labor force                |       pnilf        |
-|                                plw1                                |        plw1        |
-|                                plw5                                |        plw5        |
+|                Percent last worked in the past year                |        plw1        |
+|              Percent last worked in the last 1-5 year              |        plw5        |
 |                            Percent male                            |       pmale        |
-|                              pfemale                               |      pfemale       |
-|                              med_age                               |      med_age       |
+|                           Percent female                           |      pfemale       |
+|                             Median age                             |      med_age       |
 |                         Percent age 25-34                          |       pa2534       |
 |                         Percent age 35-44                          |       pa3544       |
 |                         Percent age 45-54                          |       pa4554       |
@@ -44,22 +44,22 @@ Last updated:  Fri Sep 13 13:08:24 2019
 |                  Percent with an associate degree                  |        paa         |
 |             Percent with a bachelor's degree or higher             |      pbaplus       |
 |                   Percent reports any disability                   |        pdis        |
-|                               pdisv                                |       pdisv        |
-|                               pdish                                |       pdish        |
-|                               pdisc                                |       pdisc        |
-|                               pdisa                                |       pdisa        |
+|               Percent reports any disability, vision               |       pdisv        |
+|              Percent reports any disability, hearing               |       pdish        |
+|             Percent reports any disability, cognitive              |       pdisc        |
+|             Percent reports any disability, ambulatory             |       pdisa        |
 |                               pdisi                                |       pdisi        |
 |                               pdiss                                |       pdiss        |
 |                        Percent foreign born                        |        pfb         |
-|                                fb1                                 |        fb1         |
-|                                pfb1                                |        pfb1        |
+|                       Most common fb country                       |        fb1         |
+|                           Percent of fb                            |        pfb1        |
 |                                fb2                                 |        fb2         |
 |                                pfb2                                |        pfb2        |
 |                                fb3                                 |        fb3         |
 |                                pfb3                                |        pfb3        |
 |            Percent reports limited English proficiency             |        plep        |
-|                                plsh                                |        plsh        |
-|                               plsh1                                |       plsh1        |
+|                       Language speak at home                       |        lsh1        |
+|                           Percent of lsh                           |       plsh1        |
 |                                lsh2                                |        lsh2        |
 |                               plsh2                                |       plsh2        |
 |                                lsh3                                |        lsh3        |
@@ -69,14 +69,14 @@ Last updated:  Fri Sep 13 13:08:24 2019
 |                       Percent single parent                        |   pnospouse_kids   |
 | Percent receives SSI, public assistance income, SNAP &/or Medicaid |     psafetynet     |
 |                        Median family income                        | med_fam_income_adj |
-|                                ind1                                |        ind1        |
-|                               pind1                                |       pind1        |
+|                         Most common sector                         |        ind1        |
+|                           Percent of ind                           |       pind1        |
 |                                ind2                                |        ind2        |
 |                               pind2                                |       pind2        |
 |                                ind3                                |        ind3        |
 |                               pind3                                |       pind3        |
-|                                occ1                                |        occ1        |
-|                               pocc1                                |       pocc1        |
+|                       Most common occupation                       |        occ1        |
+|                           Percent of occ                           |       pocc1        |
 |                                occ2                                |        occ2        |
 |                               pocc2                                |       pocc2        |
 |                                occ3                                |        occ3        |
@@ -98,13 +98,13 @@ Variable type: character
 |       ind1       |    3    |   1088   | 1091 | 12  | 36  |   0   |    6     |
 |       ind2       |    3    |   1088   | 1091 | 12  | 36  |   0   |    11    |
 |       ind3       |    3    |   1088   | 1091 | 12  | 36  |   0   |    12    |
+|       lsh1       |    3    |   1088   | 1091 |  4  |  9  |   0   |    4     |
 |       lsh2       |    3    |   1088   | 1091 |  3  | 18  |   0   |    43    |
 |       lsh3       |    3    |   1088   | 1091 |  3  | 47  |   0   |    70    |
 |       occ1       |    3    |   1088   | 1091 |  7  | 33  |   0   |    5     |
 |       occ2       |    3    |   1088   | 1091 |  7  | 35  |   0   |    8     |
 |       occ3       |    3    |   1088   | 1091 |  7  | 37  |   0   |    9     |
 |     pl_name      |    1    |   1090   | 1091 | 10  | 157 |   0   |   132    |
-|       plsh       |    3    |   1088   | 1091 |  4  |  9  |   0   |    4     |
 |    population    |    3    |   1088   | 1091 | 17  | 23  |   0   |    11    |
 | population label |   263   |   828    | 1091 | 30  | 48  |   0   |    7     |
 |    stco_code     |    3    |   1088   | 1091 |  5  |  5  |   0   |   124    |
