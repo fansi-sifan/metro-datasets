@@ -39,7 +39,7 @@ Those clusters are defined as follows:
 (9) 51-64 year olds, associate degree or more
   
 
-Last updated:  Fri Sep 13 11:27:00 2019 
+Last updated:  Fri Sep 13 11:39:57 2019 
 
 
 
@@ -47,6 +47,7 @@ Last updated:  Fri Sep 13 11:27:00 2019
 |--------------------------------------------------------------------|-------------------------|
 |                         5 digit cbsa code                          |        cbsa_code        |
 |                             Cbsa name                              |        cbsa_name        |
+|                      Subset of the population                      |       population        |
 |                          unweighted_total                          |    unweighted_total     |
 |                   Weighted population estimates                    |          total          |
 |                     Percent currently employed                     |        pemployed        |
@@ -86,7 +87,7 @@ Last updated:  Fri Sep 13 11:27:00 2019
 
 Skim summary statistics  
  n obs: 4849    
- n variables: 37    
+ n variables: 38    
 
 Variable type: character
 
@@ -124,6 +125,7 @@ Variable type: numeric
 |          plths          |    0    |   4849   | 4849 |  0.011   |    0.1    |   0   |   0   |   0   |   0   |    1    |
 |          pmale          |    0    |   4849   | 4849 |   0.31   |   0.46    |   0   |   0   |   0   |   1   |    1    |
 |         pmar_1          |    0    |   4849   | 4849 |   0.42   |   0.49    |   0   |   0   |   0   |   1   |    1    |
+|       population        |  1492   |   3357   | 4849 |    5     |   2.58    |   1   |   3   |   5   |   7   |    9    |
 |          ppoor          |    0    |   4849   | 4849 |   0.01   |    0.1    |   0   |   0   |   0   |   0   |    1    |
 |       psafetynet        |    0    |   4849   | 4849 |  0.0066  |   0.081   |   0   |   0   |   0   |   0   |    1    |
 |           psc           |    0    |   4849   | 4849 |   0.23   |   0.42    |   0   |   0   |   0   |   0   |    1    |

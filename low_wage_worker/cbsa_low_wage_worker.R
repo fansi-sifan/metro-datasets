@@ -48,7 +48,7 @@ Those clusters are defined as follows:
 "
 
 # read datasets
-rm_zero <- function(df){df[,!is.na(colSums(df != 0)) & colSums(df != 0) > 0]}
+rm_zero <- function(df){df[,is.na(colSums(df != 0)) | colSums(df != 0) > 0]}
 
 df <- read_csv(source_dir, col_types = cols(CBSA = col_character())) 
 
@@ -236,3 +236,4 @@ save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
           title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
+
