@@ -5,7 +5,7 @@ library(sjlabelled)
 source("R/save_output.R")
 
 # SET UP ====================================
-source_dir <- "source/LWW_Overall_stats_metros.csv"
+source_dir <- "source/Low-wage worker project flat data output.xls"
 folder_name <- "low_wage_worker"
 file_name <- "cbsa_low_wage_worker"
 
@@ -48,11 +48,11 @@ Those clusters are defined as follows:
 "
 
 # read datasets
-rm_zero <- function(df){df[,is.na(colSums(df != 0)) | colSums(df != 0) > 0]}
 
-df <- read_csv(source_dir, col_types = cols(CBSA = col_character())) 
 
-df <- rm_zero(df)
+df <- readxl::read_xls(source_dir, sheet = "Overall stats metros") %>%
+  rename(cbsa_code = cbsa, cbsa_name = metro_name)
+
 
 # variable labels
 set_label(df) <- colnames(df)
