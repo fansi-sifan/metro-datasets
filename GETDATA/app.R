@@ -42,8 +42,9 @@ ui <- navbarPage(
           choices = county_cbsa_st$cbsa_name, multiple = TRUE
         ),
         selectizeInput(
-          "co_datasets", "2. Search and select the datasets:",
-          choices = names(list_all_co), multiple = TRUE, selected = "co_acs"
+          "co_datasets", "2. Search and select the datasets:", 
+          # selected = "co_acs",
+          choices = names(list_all_co), multiple = TRUE
         ),
         actionButton("update_co", "Show county data"),
         downloadButton("download_co", label = "Download csv")
@@ -67,8 +68,9 @@ ui <- navbarPage(
           choices = county_cbsa_st$cbsa_name, multiple = TRUE
         ),
         selectizeInput(
-          "cbsa_datasets", "2. Search and select the datasets:",
-          choices = names(list_all_cbsa), multiple = TRUE, selected = "cbsa_acs"
+          "cbsa_datasets", "2. Search and select the datasets:", 
+          # selected = "cbsa_acs",
+          choices = names(list_all_cbsa), multiple = TRUE
         ),
         actionButton("update_cbsa", "Show metro data"),
         downloadButton("download_cbsa", label = "Download csv")
