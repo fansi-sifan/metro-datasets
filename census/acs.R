@@ -3,8 +3,8 @@
 library(tidycensus)
 library(tidyverse)
 
-source("R/clean_acs.R")
-source("R/acs_var.R")
+source("census/clean_acs.R")
+source("census/acs_var.R")
 
 key <- Sys.getenv("CENSUS_API_KEY")
 
@@ -47,6 +47,7 @@ title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 
 # CALCULATE -------------------
 file_name <- "cbsa_acs"
+# load("census/cbsa_acs_raw.rda")
 df <- df %>% calculate_acs()
 save_datasets(df, folder = folder_name, file = file_name)
 
@@ -61,6 +62,7 @@ save_datasets(df, folder = folder_name, file = file_name)
 
 # CALCULATE -------------------
 file_name <- "co_acs"
+# load("census/co_acs_raw.rda")
 df <- df %>% calculate_acs()
 save_datasets(df, folder = folder_name, file = file_name)
 
