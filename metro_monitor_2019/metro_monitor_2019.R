@@ -60,11 +60,11 @@ cbsa_change <- prosperity_change %>%
   filter(year == "2007-2017") %>% #update year
   rename(cbsa = cbsa_code,
          prosperity_rank = rank)%>%
-  left_join(growth_change, by = c("year", "cbsa")) %>%
+  full_join(growth_change, by = c("year", "cbsa")) %>%
   rename(growth_rank = rank)%>%
-  left_join(inclusion_change, by = c("year", "cbsa")) %>%
+  full_join(inclusion_change, by = c("year", "cbsa")) %>%
   rename(inclusion_rank = rank)%>%
-  left_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
+  full_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
   rename(racial_inclusion_rank = rank)%>%
   select(-contains("score"), -contains("name"))
 
@@ -72,14 +72,14 @@ cbsa_change <- prosperity_change %>%
 cbsa_value <- prosperity_value %>%
   filter(year == "2017") %>% #update year
   rename(cbsa = cbsa_code)%>%
-  left_join(growth_value, by = c("year", "cbsa")) %>%
-  left_join(inclusion_value, by = c("year", "cbsa")) %>%
-  left_join(racial_inclusion_value, by = c("year", "cbsa"))
+  full_join(growth_value, by = c("year", "cbsa")) %>%
+  full_join(inclusion_value, by = c("year", "cbsa")) %>%
+  full_join(racial_inclusion_value, by = c("year", "cbsa"))
   
 # join everything (recoded rank.?.? to the 4 rank categories using Akron as visual sample)
 df <- cbsa_change %>%
   rename(rank_year_range = year)%>%
-  left_join(cbsa_value, by = c("cbsa" = "cbsa")) %>%
+  full_join(cbsa_value, by = c("cbsa" = "cbsa")) %>%
   rename(
     cbsa_code = cbsa,
     value_year = year
@@ -104,24 +104,4 @@ save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
           title = dt_title, contact = dt_contact, source = dt_src, note = dt_notes
 )
-
-# check output
-skim_with_defaults()
-skim(cbsa_metromonitor)
-
-# save output
-dir.create("metro_monitor_2019")
-save(cbsa_metromonitor,file = "metro_monitor_2019/metro_monitor_2019.rda")
-write.csv(cbsa_metromonitor, "metro_monitor_2019/metro_monitor_2019.csv")
-
-# generate metadata
-sink("metro_monitor_2019/metro_monitor_2019.txt")
-skim_with(numeric = list(hist = NULL))
-skim(cbsa_metromonitor)
-sink()
-
-# create README
-sink("metro_monitor_2019/README.md")
-skim(cbsa_metromonitor)%>% kable()
-sink()
 
