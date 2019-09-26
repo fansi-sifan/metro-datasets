@@ -19,14 +19,15 @@ Other jobs do not provide decent pay, benefits, or pathways to good jobs "
 
 
 # TRANSFORM ============================================
-df <- read.csv(source_dir) %>%
+df <- read_csv(source_dir) %>%
   mutate(cbsa_code = as.character(cbsa_code_alt),
-         cbsa_name = cbsa_title)
+         cbsa_name = cbsa_title) %>%
+  select(-cbsa_code_alt, - metdiv_code, -cbsa_title, -metdiv_title)
 
 
 # SAVE OUTPUT
 df <- df %>%
-  select(cbsa_code, everything()) # make sure unique identifier is the left most column
+  select(cbsa_code, cbsa_name, everything()) # make sure unique identifier is the left most column
 
 
 # datasets
@@ -45,9 +46,10 @@ source_dir <- "source/goodjobs.csv"
 file_name <- "cbsa_oppind"
 
 # TRANSFORM ============================================
-df <- read.csv(source_dir) %>%
+df <- read_csv(source_dir) %>%
   mutate(cbsa_code = as.character(CBSA),
-         cbsa_name = CBSA.Title)
+         cbsa_name = `CBSA Title`)%>%
+  select(cbsa_code, cbsa_name, `Good sub-BA jobs`:`Opportunity jobs (high-skill)`)
 
 
 # SAVE OUTPUT
