@@ -49,9 +49,10 @@ get_estimate <- function(df, subj, grade, var, year){
 
 
 
-# math --------------
+# clean ======================
 
-# which grades to include? (choose from "03" to "08", "HS" = high school, and "00" = all)
+# which grades to include? ----------
+# (choose from "03" to "08", "HS" = high school, and "00" = all)
 grades <- str_pad(seq(4,8),2,"left","0") # grades
 
 # which variables to include? (choose from list below) -------
@@ -88,6 +89,7 @@ for(v in vars){
   }
 }
 
+# transform data to tidy form
 school_scores <- full_join(schools_math, schools_RLA, by = c("STNAM", "FIPST","LEAID", "ST_LEAID","ST_SCHID","LEANM", "NCESSCH", "SCHNAM", "DATE_CUR"))%>%
   select(STNAM:DATE_CUR, matches("SCORE")) %>%
   
@@ -117,13 +119,13 @@ final <- school_scores %>%
   unite("var",var:col) %>%
   spread(var, value)
 
-# Load crosswalks =================================
-load("../metro.data/data-raw/NCESSCH2FIPS.rda")
+# Load crosswalk
+load("V:/_metro_data_warehouse/crosswalks/NCESSCH2FIPS.rda")
 # join coordinates to existing school data
 final <- left_join(final, school_coords, by = "NCESSCH")
 save(final, file = "data/school_scores.rda")
 
-# county level summary
+# county level summary ----------------------------------
 co_school_scores <- school_scores %>%
   filter(!grepl("TOTALSCORE", col))%>%
   left_join(school_coords, by = "NCESSCH")%>%
