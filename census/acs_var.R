@@ -1,23 +1,28 @@
 # acs variables list ===============================
 # RACE ---------------
-pop_race_codes <- c("B01003_001", map_chr(seq(1, 3), function(x) paste0("B02001_00", x))) # total population
+pop_race_codes <- map_chr(str_pad(seq(1, 12),2,"left","0"), function(x) paste0("B03002_0", x)) # total population
 
 calculate_pop_race <- function(df) {
   df %>%
     mutate(
-      pop_total = B02001_001E,
-      pop_white = B02001_002E,
-      pop_black = B02001_003E
+      pop_total = B03002_001E,
+      pop_white = B03002_003E,
+      pop_black = B03002_004E,
+      pop_latino = B03002_012E,
+      pop_asian = B03002_006E
     )
 }
 
 
-pov_race_codes <- map_chr(seq(13, 21), function(x) paste0("S1701_C03_0", x)) # poverty status
+pov_race_codes <- c("S1701_C03_001",map_chr(seq(13, 21), function(x) paste0("S1701_C03_0", x))) # poverty status
 calculate_pov_race <- function(df) {
   df %>%
     mutate(
-      pct_belowpoverty_white = S1701_C03_013E / 100,
-      pct_belowpoverty_black = S1701_C03_014E / 100
+      pct_belowpoverty_total = S1701_C03_001E / 100,
+      pct_belowpoverty_white = S1701_C03_021E / 100,
+      pct_belowpoverty_black = S1701_C03_014E / 100,
+      pct_belowpoverty_asian = S1701_C03_016E / 100,
+      pct_belowpoverty_latino = S1701_C03_020E / 100
     )
 }
 
@@ -31,14 +36,24 @@ commute_race_codes <- c(
 calculate_commute_race <- function(df) {
   df %>%
     mutate(
-      commuter_white = S0802_C01_012E * S0802_C01_001E,
+      commuter_total = S0802_C01_001E,
+      commuter_white = S0802_C01_020E * S0802_C01_001E,
       commuter_black = S0802_C01_013E * S0802_C01_001E,
+      commuter_asian = S0802_C01_015E * S0802_C01_001E,
+      commuter_latino =  S0802_C01_019E * S0802_C01_001E,
+      
       pct_drivealone_total = S0802_C02_001E / S0802_C01_001E,
-      pct_drivealone_white = S0802_C02_012E * S0802_C02_001E / commuter_white,
+      pct_drivealone_white = S0802_C02_020E * S0802_C02_001E / commuter_white,
       pct_drivealone_black = S0802_C02_013E * S0802_C02_001E / commuter_black,
+      pct_drivealone_asian = S0802_C02_015E * S0802_C02_001E / commuter_asian,
+      pct_drivealone_latino = S0802_C02_019E * S0802_C02_001E / commuter_latino,
+      
       pct_publictrans_total = S0802_C04_001E / S0802_C01_001E,
-      pct_publictrans_white = S0802_C04_012E * S0802_C04_001E / commuter_white,
-      pct_publictrans_black = S0802_C04_013E * S0802_C04_001E / commuter_black
+      pct_publictrans_white = S0802_C04_020E * S0802_C04_001E / commuter_white,
+      pct_publictrans_black = S0802_C04_013E * S0802_C04_001E / commuter_black,
+      pct_publictrans_asian = S0802_C04_015E * S0802_C04_001E / commuter_asian,
+      pct_publictrans_latino = S0802_C04_019E * S0802_C04_001E / commuter_latino
+      
     ) %>%
     select(-contains("commuter"))
 }
@@ -53,14 +68,23 @@ calculate_emp_race <- function(df) {
   df %>%
     mutate(
       lfp_total = S2301_C02_001E / 100,
-      lfp_white = S2301_C02_012E / 100,
+      lfp_white = S2301_C02_020E / 100,
       lfp_black = S2301_C02_013E / 100,
+      lfp_asian = S2301_C02_015E / 100,
+      lfp_latino = S2301_C02_019E / 100,
+      
+      
       epratio_total = S2301_C03_001E / 100,
-      epratio_white = S2301_C03_012E / 100,
+      epratio_white = S2301_C03_020E / 100,
       epratio_black = S2301_C03_013E / 100,
+      epratio_asian = S2301_C03_015E / 100,
+      epratio_latino = S2301_C03_019E / 100,
+      
       unemp_total = S2301_C04_001E / 100,
-      unemp_white = S2301_C04_012E / 100,
-      unemp_black = S2301_C04_013E / 100
+      unemp_white = S2301_C04_020E / 100,
+      unemp_black = S2301_C04_013E / 100,
+      unemp_asian = S2301_C04_015E / 100,
+      unemp_latino = S2301_C04_019E / 100
     )
 }
 
@@ -84,23 +108,31 @@ edu_race_codes <- c(map_chr(seq(28, 54), function(x) paste0("S1501_C01_0", x))) 
 calculate_edu_race <- function(df) {
   df %>%
     mutate(
-      pct_edu_hsplus_white = S1501_C01_029E / S1501_C01_028E,
+      pct_edu_hsplus_white = S1501_C01_032E / S1501_C01_031E,
       pct_edu_hsplus_black = S1501_C01_035E / S1501_C01_034E,
+      pct_edu_hsplus_asian = S1501_C01_041E / S1501_C01_040E,
+      pct_edu_hsplus_latino = S1501_C01_053E / S1501_C01_052E,
+      
 
-      pct_edu_baplus_white = S1501_C01_030E / S1501_C01_028E,
-      pct_edu_baplus_black = S1501_C01_036E / S1501_C01_034E
+      pct_edu_baplus_white = S1501_C01_033E / S1501_C01_031E,
+      pct_edu_baplus_black = S1501_C01_036E / S1501_C01_034E,
+      pct_edu_baplus_asian = S1501_C01_042E / S1501_C01_040E,
+      pct_edu_baplus_latino = S1501_C01_054E / S1501_C01_052E
     )
 }
 
 income_race_codes <- c("B20017_001", map_chr(LETTERS[1:9], function(x) {
   paste0("B20017", x, "_001")
 })) # median earnings by race
+
 calculate_income_race <- function(df) {
   df %>%
     mutate(
       income_total = B20017_001E,
-      income_white = B20017A_001E,
-      income_black = B20017B_001E
+      income_white = B20017H_001E,
+      income_black = B20017B_001E,
+      income_asian = B20017D_001E,
+      income_black = B20017I_001E
     )
 }
 
