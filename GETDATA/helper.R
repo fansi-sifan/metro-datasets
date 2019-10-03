@@ -3,13 +3,20 @@ source("R/pip.R")
 
 # take out datasets that should not go to the master dataset
 irrelevant <- c("county_cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
-not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "co_oow", "co_oow_young")
+not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker")
 rm(list = not.include)
 rm(list = irrelevant)
 
-# modify datasets to keep industry total only
+# modify datasets
 cbsa_jobdensity <- cbsa_jobdensity %>%
   filter(naics2_code == "00")
+
+co_oow <- co_oow %>%
+  filter(population == "Out-of-work population")%>%
+  select(stco_code,age, population, total,pemployed, pnilf,pmale,
+         med_age, med_fam_income_adj,pwhiteNH, pblackNH, platino,pasianNH,potherNH,
+         pbaplus,phs, pdis,pnospouse_kids,psafetynet )
+
 
 # Select and merge datasets =============================
 dfs <- objects()

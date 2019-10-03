@@ -4,24 +4,46 @@ library(expss)
 source("R/save_output.R")
 
 # SET UP ====================================
-source_dir <- "source/out-of-work_appendix_tables_final.xlsx"
+source_dir1 <- "source/out-of-work_appendix_tables_final.xlsx"
+source_dir2 <- "source/2019.04.09_Brookings-metro_Out-of-work_Data-Appendix_Ross-Holmes.xlsx"
 folder_name <- "out_of_work"
 file_name <- "co_oow"
 
 # metadata
 dt_title <- "Out of work population by group"
-dt_src <- "https://www.brookings.edu/research/meet-the-out-of-work/"
+dt_src <- "https://www.brookings.edu/research/meet-the-out-of-work/ and 
+https://www.brookings.edu/research/young-adults-who-are-out-of-work/"
 dt_contact <- "Martha Ross"
-df_notes <- "130 large cities and counties across the United States, note that LA, Seattle, Chicago, Detroit, etc. are treated separately from their counties"
+df_notes <- "This analysis is based on 2013–2015 three-year American Community Survey (ACS) PublicUse Microdata Samples data. The U.S. Census Bureau ceased production of three-year
+ACS products in fall 2015, so we constructed our own three-year dataset by pooling single year data for 2013, 2014, and 2015, and adjusting weights according to annual change in
+population using Population Estimates Program county population totals. All nominal dollars
+were converted to 2015 dollars.
+In the prior report, we focused on 130 large jurisdictions (counties, cities, and county
+remainders net of large cities) that could be constructed neatly from 2010 Public-Use
+Microdata Areas (PUMAs) and provided sufficient sample size for our analysis. In this
+report we started from the same list of 130 jurisdictions and dropped those with samples
+of fewer than 150 unweighted observations of “out-of-work” individuals, as defined below.
+Consequently, we ended up with 119 jurisdictions with sample populations ranging from
+155 out-of-work individuals (Seattle, Wash.) to 3,249 (Los Angeles County, Calif., net of Los
+Angeles city). (The numbers in the previous sentences refer to unweighted observations from
+the sample, not the estimated number of out-of-work individuals in a given jurisdiction.)."
 
 # FUNCTION load
-df <- readxl::read_xlsx(source_dir, sheet = "Jurisdiction Data", skip = 4) %>%
+df1 <- readxl::read_xlsx(source_dir1, sheet = "Jurisdiction Data", skip = 4) %>%
   mutate(stco_code = str_pad(stco_code, 5, "left", "0"), 
-         cbsa_code = as.character(cbsa_code))
+         cbsa_code = as.character(cbsa_code),
+         age = "25-64",
+         population = case_when(
+           population == "Sample population" ~ "Out-of-work population",
+           TRUE ~ population
+         )) 
 
-# variable labels
-set_label(df) <- colnames(df)
+df2 <- readxl::read_xlsx(source_dir2, sheet = "stats by jurisdiction", skip = 12) %>%
+  mutate(stco_code = str_pad(str_sub(pl_code,1,-2), 5, "left", "0"),
+         age = "18-24") %>%
+  left_join(metro.data::county_cbsa_st[c("stco_code","cbsa_code")], by = "stco_code")
 
+df <- bind_rows(df1,df2)
 
 # variable names
 df <- df %>%
@@ -77,6 +99,9 @@ df <- df %>%
   )
 
 df_labels <- create_labels(df)
+
+df <- select(df, stco_code, age, everything()) %>%
+  filter(!is.na(cbsa_code))
 
 # SAVE OUTPUT
 # datasets

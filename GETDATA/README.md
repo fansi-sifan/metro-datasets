@@ -16,6 +16,7 @@ County&nbsp;&nbsp;&nbsp; | file name | descriptions
 2 | co_export | Export volume and intensity from Export Monitor
 3 | co_jobdensity | Weighted actual job density, (jobs per sq mile)
 4 | co_oic | Indicators from old industrial cities report
+5 | co_oow | Out of Work population charateristics, 18-24 and 25-64, 2018
 7 | co_univ_licensing | University licensing activity and income
 8 | co_univ_rd | University R&D investment, 2017
 9 | co_uspto | Utility patent grants, 2015
