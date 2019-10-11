@@ -6,7 +6,7 @@ source("R/save_output.R")
 # SET UP ====================================
 source_dir <- "co_school_scores.rda" # use "helper.R" file to check the actual data processing. 
 folder_name <- "school proficiency"
-file_name <- "co_school proficiency"
+file_name <- "co_school_proficiency"
 
 # metadata
 dt_title <- "Share of students achieved a passing grade in state MATH and RLA assessment (grade 4-8)"
