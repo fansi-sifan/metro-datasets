@@ -9,7 +9,12 @@ calculate_pop_race <- function(df) {
       pop_white = B03002_003E,
       pop_black = B03002_004E,
       pop_latino = B03002_012E,
-      pop_asian = B03002_006E
+      pop_asian = B03002_006E,
+      pct_white = pop_white/pop_total,
+      pct_black = pop_black/pop_total,
+      pct_latino = pop_latino/pop_total,
+      pct_asian = pop_asian/pop_total
+      
     )
 }
 
