@@ -1,3 +1,4 @@
+library(tidyverse)
 clean_acs <- function(geography, variables, year=2017, span=5, key, short = FALSE, ...) {
 
   # pull data with get_acs function
@@ -52,8 +53,8 @@ clean_acs <- function(geography, variables, year=2017, span=5, key, short = FALS
   }
   
   if (geography == "tract") {
-    output <- output %>% rename(stcotr_code = GEOID,stcotr_name = NAME)}  else if (geo == "county"){
-      output <- output%>% rename(stco_code = GEOID,stco_name = NAME)}else if (geo == "metropolitan statistical area/micropolitan statistical area"){
+    output <- output %>% rename(stcotr_code = GEOID,stcotr_name = NAME)}  else if (geography == "county"){
+      output <- output%>% rename(stco_code = GEOID,stco_name = NAME)}else if (geography == "metropolitan statistical area/micropolitan statistical area"){
         output <- output %>% rename(cbsa_code = GEOID, cbsa_name = NAME)} else {
           output <- output
         }
