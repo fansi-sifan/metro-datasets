@@ -47,7 +47,10 @@ title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 
 # CALCULATE -------------------
 file_name <- "cbsa_acs"
-# load("census/cbsa_acs_raw.rda")
+
+# load("acs5_2017/cbsa_acs_raw.rda")
+# df <- cbsa_acs_raw
+
 df <- df %>% calculate_acs()
 save_datasets(df, folder = folder_name, file = file_name)
 
@@ -62,7 +65,10 @@ save_datasets(df, folder = folder_name, file = file_name)
 
 # CALCULATE -------------------
 file_name <- "co_acs"
-# load("census/co_acs_raw.rda")
+
+# load("acs5_2017//co_acs_raw.rda")
+# df <- co_acs_raw
+
 df <- df %>% calculate_acs()
 save_datasets(df, folder = folder_name, file = file_name)
 

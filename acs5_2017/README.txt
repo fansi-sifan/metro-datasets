@@ -7,7 +7,7 @@ Source:  https://api.census.gov/data/2017/acs/acs5.html
 
 Note:  Statistics calculated from ACS summary tables  
 
-Last updated:  Thu Oct 03 17:26:13 2019 
+Last updated:  Mon Oct 21 16:07:31 2019 
 
 
 
@@ -219,6 +219,18 @@ Last updated:  Thu Oct 03 17:26:13 2019
 |        S1701_C03_020___percent_below_poverty_level__population_for_whom_poverty_status_is_determined__race_and_hispanic_or_latino_origin__hispanic_or_latino_origin__of_any_race__moe        | S1701_C03_020M |
 |        S1701_C03_021___percent_below_poverty_level__population_for_whom_poverty_status_is_determined__race_and_hispanic_or_latino_origin__white_alone_not_hispanic_or_latino_estimate        | S1701_C03_021E |
 |          S1701_C03_021___percent_below_poverty_level__population_for_whom_poverty_status_is_determined__race_and_hispanic_or_latino_origin__white_alone_not_hispanic_or_latino_moe           | S1701_C03_021M |
+|                                                                                 C15010B_001___total_estimate                                                                                 |  C15010B_001E  |
+|                                                                                   C15010B_001___total_moe                                                                                    |  C15010B_001M  |
+|                                                                    C15010B_002___total__science_and_engineering_estimate                                                                     |  C15010B_002E  |
+|                                                                       C15010B_002___total__science_and_engineering_moe                                                                       |  C15010B_002M  |
+|                                                             C15010B_003___total__science_and_engineering_related_fields_estimate                                                             |  C15010B_003E  |
+|                                                               C15010B_003___total__science_and_engineering_related_fields_moe                                                                |  C15010B_003M  |
+|                                                                            C15010B_004___total__business_estimate                                                                            |  C15010B_004E  |
+|                                                                              C15010B_004___total__business_moe                                                                               |  C15010B_004M  |
+|                                                                           C15010B_005___total__education_estimate                                                                            |  C15010B_005E  |
+|                                                                              C15010B_005___total__education_moe                                                                              |  C15010B_005M  |
+|                                                                   C15010B_006___total__arts_humanities_and_other_estimate                                                                    |  C15010B_006E  |
+|                                                                      C15010B_006___total__arts_humanities_and_other_moe                                                                      |  C15010B_006M  |
 |                                                                                 B20004_001___total_estimate                                                                                  |  B20004_001E   |
 |                                                                                    B20004_001___total_moe                                                                                    |  B20004_001M   |
 |                                                                 B20004_002___total__less_than_high_school_graduate_estimate                                                                  |  B20004_002E   |
@@ -355,7 +367,7 @@ Last updated:  Thu Oct 03 17:26:13 2019
 
 Skim summary statistics  
  n obs: 945    
- n variables: 338    
+ n variables: 350    
 
 Variable type: character
 
@@ -500,6 +512,18 @@ Variable type: numeric
 |  B20017H_001M  |    7    |   938    | 945 |  1561.59  |  2535.39   |  129  |   761    |  1136   |  1724.5  |  50459  |
 |  B20017I_001E  |   26    |   919    | 945 | 22178.55  |  4973.32   | 3845  |  19892   |  22217  |  25129   |  48333  |
 |  B20017I_001M  |   26    |   919    | 945 |  4145.17  |  4363.88   |  117  |   1503   |  2731   |   5137   |  46792  |
+|  C15010B_001E  |    0    |   945    | 945 |  5516.04  |  29500.94  |   0   |    55    |   257   |   1326   | 564055  |
+|  C15010B_001M  |    0    |   945    | 945 |   269.3   |   488.06   |   2   |    48    |   116   |   265    |  5642   |
+|  C15010B_002E  |    0    |   945    | 945 |  1683.39  |  9374.82   |   0   |    14    |   77    |   381    | 178355  |
+|  C15010B_002M  |    0    |   945    | 945 |  152.76   |   289.87   |   2   |    24    |   60    |   148    |  3056   |
+|  C15010B_003E  |    0    |   945    | 945 |   567.6   |  3161.02   |   0   |    0     |   20    |   151    |  66653  |
+|  C15010B_003M  |    0    |   945    | 945 |   91.62   |   167.11   |   3   |    22    |   29    |    95    |  1637   |
+|  C15010B_004E  |    0    |   945    | 945 |  1324.64  |  7184.87   |   0   |    6     |   49    |   283    | 124284  |
+|  C15010B_004M  |    0    |   945    | 945 |  129.83   |   250.97   |   2   |    22    |   47    |   127    |  2740   |
+|  C15010B_005E  |    0    |   945    | 945 |  672.82   |   3153.1   |   0   |    0     |   35    |   235    |  56586  |
+|  C15010B_005M  |    0    |   945    | 945 |  100.37   |   166.95   |   2   |    22    |   37    |   107    |  1676   |
+|  C15010B_006E  |    0    |   945    | 945 |  1267.59  |  6826.04   |   0   |    8     |   58    |   323    | 138177  |
+|  C15010B_006M  |    0    |   945    | 945 |  133.92   |   248.09   |   3   |    24    |   50    |   138    |  3091   |
 | S0802_C01_001E |    0    |   945    | 945 | 150266.86 | 523066.77  | 3098  |  17113   |  30567  |  82219   | 9585476 |
 | S0802_C01_001M |    0    |   945    | 945 |  1141.81  |  1184.16   |  197  |   515    |   761   |   1296   |  12184  |
 | S0802_C01_012E |    0    |   945    | 945 |   83.91   |   13.58    | 22.3  |    78    |  88.7   |   94.1   |  98.7   |
