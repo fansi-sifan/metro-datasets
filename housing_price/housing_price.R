@@ -25,6 +25,7 @@ set_label(df) <- colnames(df)
 
 # variable names
 df <- df %>%
+  mutate(pi_map = as.factor(`Map category`))%>%
   select(
     "cbsa_code" = "CBSA",
     "cbsa_name" = "Metro Name",
@@ -37,7 +38,7 @@ df <- df %>%
     "pi_10" = "Under 10th percentile",
     "pi_90" = "Above the 90th percentile",
     "pi_10_90" = "Between 10th-90th percentile"
-  )
+  ) 
 
 # label key
 df_labels <- create_labels(df)
