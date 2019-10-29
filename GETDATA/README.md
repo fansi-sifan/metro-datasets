@@ -9,6 +9,11 @@ This is a tool to look up data from the Metro Data Warehouse. It only includes s
 4. Click **Show data** to display the data table for places and datasets you chose. Employment and population data are automatically attached in the last columns
 5. Click **Download csv** to download a copy of the data table
 
+## Create scatter plot for metro level data
+1. Select the datasets first, then check the "create a scatter plot" box
+2. Select the variables on x axis and y axis
+
+## Appendix
 
 County&nbsp;&nbsp;&nbsp; | file name | descriptions
 -------|-----------|-------------
@@ -17,6 +22,7 @@ County&nbsp;&nbsp;&nbsp; | file name | descriptions
 3 | co_jobdensity | Weighted actual job density, (jobs per sq mile)
 4 | co_oic | Indicators from old industrial cities report
 5 | co_oow | Out of Work population charateristics, 18-24 and 25-64, 2018
+6 | co_school_proficiency | State MATH and RLA assessment (grade 4-8), 2018
 7 | co_univ_licensing | University licensing activity and income
 8 | co_univ_rd | University R&D investment, 2017
 9 | co_uspto | Utility patent grants, 2015
@@ -30,6 +36,7 @@ CBSA&nbsp; &nbsp;&nbsp;| file name | descriptions
 1 | cbsa_acs | Selected indicators calculated from ACS 2017-5 year summary tables
 2 | cbsa_oppind | Opportunity industries share, 2017
 3 | cbsa_export | Export volume and intensity from Export Monitor
+4 | cbsa_job_density | Actual and expected job density, 2015
 5 | cbsa_digitalization | Digitalization scores and share of jobs by digital level
 6 | cbsa_housing_price | Housing-income ratio
 7 | cbsa_univ_licensing | University licensing activity and income

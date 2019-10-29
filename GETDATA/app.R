@@ -8,7 +8,8 @@
 library(dplyr)
 library(shiny)
 library(markdown)
-
+library(ggplot2)
+library(plotly)
 
 load("data/co_all.rda")
 load("data/cbsa_all.rda")
@@ -16,6 +17,21 @@ load("data/list_all_co.rda")
 load("data/list_all_cbsa.rda")
 
 load("data/county_cbsa_st.rda")
+
+
+create_scatter <- function(df, var_x, var_y,...){
+  ggplot(df, aes_string(x = var_x, y = var_y,...))+
+    geom_point(stat = "identity")+
+    geom_smooth(method = "lm")+
+    theme(rect = element_rect(fill = NA, colour=NA),
+          panel.background = element_rect(fill = NA,colour = NA),
+          plot.background = element_rect(fill = NA, colour = NA),
+          panel.grid = element_blank(),
+          legend.background = element_rect(fill = "transparent"),
+          legend.key = element_rect(fill = "transparent", color = NA),
+          legend.box.background = element_rect(fill = "transparent", colour = NA),
+          axis.ticks = element_blank())
+}
 
 # UI design, three tabs, README + County + Metro
 ui <- navbarPage(
@@ -34,7 +50,7 @@ ui <- navbarPage(
     sidebarLayout(
       sidebarPanel(
         selectizeInput(
-          "co_places", "1. Search for the counties:",
+          "co_places", "1. Search for the counties: (or, leave blank to select all)",
           choices = county_cbsa_st$stco_name, multiple = TRUE
         ),
         selectizeInput(
@@ -48,6 +64,7 @@ ui <- navbarPage(
         ),
         actionButton("update_co", "Show county data"),
         downloadButton("download_co", label = "Download csv")
+        
       ),
 
       # Show data table
@@ -63,8 +80,11 @@ ui <- navbarPage(
     # Sidebar
     sidebarLayout(
       sidebarPanel(
+        h3("Data table"),
+        
+        
         selectizeInput(
-          "cbsa_places", "1. Search and select the metros:",
+          "cbsa_places", "1. Search and select the metros: (or, leave blank to select all)",
           choices = county_cbsa_st$cbsa_name, multiple = TRUE
         ),
         selectizeInput(
@@ -73,7 +93,24 @@ ui <- navbarPage(
           choices = names(list_all_cbsa), multiple = TRUE
         ),
         actionButton("update_cbsa", "Show metro data"),
-        downloadButton("download_cbsa", label = "Download csv")
+        downloadButton("download_cbsa", label = "Download csv"),
+        
+        h3("Scatter plot"),
+        checkboxInput("scatter_plot", label = "Create a scatter plot", value = FALSE),
+        
+        conditionalPanel(
+          condition = "input.scatter_plot == true",
+          
+          selectizeInput(
+            "x_var", "varibles on x axis", choices = "cbsa_emp"
+          ),
+          selectizeInput(
+            "y_var", "varibles on y axis", choices = "cbsa_pop"
+          ),
+          
+          plotlyOutput ("Plot")
+        )
+       
       ),
 
 
@@ -88,7 +125,7 @@ ui <- navbarPage(
 
 
 # Define server logic
-server <- function(input, output) {
+server <- function(input, output, session) {
   # update input variables
   info_co <- eventReactive(input$update_co, {
     if (is.null(input$co_places) & is.null(input$cbsa_co_places)) {
@@ -101,6 +138,7 @@ server <- function(input, output) {
     }
 
     co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
+    
     
     co_df <- co_all %>%
       filter(stco_code %in% co_codes) %>%
@@ -119,6 +157,11 @@ server <- function(input, output) {
     }
 
     cbsa_columns <- unlist(list_all_cbsa[input$cbsa_datasets], use.names = F)
+    
+    updateSelectizeInput(session, "x_var", "Choose a variable on x axis ", choices = c(cbsa_columns,"cbsa_pop", "cbsa_emp"), selected = "cbsa_pop")
+    updateSelectizeInput(session, "y_var", "Choose a variable on y axis ", choices = c(cbsa_columns,"cbsa_pop", "cbsa_emp"), selected = "cbsa_emp")
+    
+    
     cbsa_df <- cbsa_all %>%
       filter(cbsa_code %in% cbsa_codes) %>%
       select(cbsa_columns) %>%
@@ -152,6 +195,18 @@ server <- function(input, output) {
       )
     )
   })
+  
+  # info_plot <- eventReactive(input$update_plot, )
+  
+  output$Plot <- renderPlotly({
+    
+    df <- info_cbsa()
+    # var <- info_plot()
+    
+    create_scatter(df, input$x_var, input$y_var, label = "cbsa_name")
+    
+  })
+  
 
   # get download link
   output$download_co <- downloadHandler(
