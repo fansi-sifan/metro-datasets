@@ -14,7 +14,7 @@ dt_src <- "EDFacts"
 dt_contact <- "Sifan"
 df_notes <- "State assessments are designed by each state to measure the content the state has 
 determined appropriate for that grade and subject. As a result, both the content on the tests and 
-achievement standards students must meet to be considered “proficient” vary widely across states. 
+achievement standards students must meet to be considered proficient vary widely across states. 
 Specific proficiency rates for schools in different states should not be considered comparable. "
 
 # FUNCTION load
