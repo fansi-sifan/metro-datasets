@@ -40,12 +40,14 @@ save_meta(df,
 labels = df_labels, folder = folder_name, file = file_name,
 title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
+
 # cbsa expected ------------
 source_dir <- "source/job_density/BMPP-Bass-Center-metro-area-job-density-data-20190618.xlsx"
 file_name <- "cbsa_job_density_expected"
 
 df <- readxl::read_xlsx(source_dir)%>%
-  mutate(cbsa_code = as.character(cbsa))
+  mutate(cbsa_code = as.character(cbsa)) %>%
+  select(cbsa_code, cbsa_name = cbsaname, everything())
 
 df <- df %>% apply_labels(
   density2004 = "Weighted (perceived) actual job density, jobs per sq mile",

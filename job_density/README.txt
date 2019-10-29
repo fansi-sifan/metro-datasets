@@ -1,141 +1,102 @@
-﻿
-Title:  Job density 
 
-Contact:  Joanne Kim 
+Title:  Job density  
 
-Source:  https://www.brookings.edu/research/where-jobs-are-concentrating-why-it-matters-to-cities-and-regions/ 
+Contact:  Joanne Kim  
 
-Note:  
-1. DATA 
-
-   * CBSA definitions: OMB's September 2018 CBSA definitions
-
-   * Jobs: Census LEHD Origin-Destination Employment Statistics (LODES) Version 7
-         - Workplace Area Characteristics (WAC) type data
-    	 - Data are culled using Cecile's R script, "pull_lehd.R". You can find raw LEHD LODES data files here: 
-           V:\LEHD LODES
-         - Coverage: Our data includes only private sector jobs (“JT02” for All Private Jobs), from 2004 to 2015. 
-
-   * Land area: To find the land area of each block group, the authors started with Census Bureau TIGER/Line and 
-	        ESRI shapefiles for block groups, hydrology, and water features. Using ArcGIS software, 
-		the authors removed water features (hydrology) from block groups’ shape and then recalculated 
-		block groups’ land area.
-
-   * County typology: Counties in metro areas are assigned a type according to the share of their population 
-		     that lives in urbanized areas in 2000, which are defined by the U.S. Census Bureau.
-		     - based on Census 2000 Census Summary File
-                     - https://factfinder.census.gov/bkmk/table/1.0/en/DEC/00_SF2/PCT002/0100000US.05000.003
-  
-   * Coverage: 
-		A. Metro areas: The analysis excludes six of the nation’s largest 100 metropolitan areas:
-		Boston; Madison, Wis.; Milwaukee; Springfield, Mass.; Washington; and Worcester, Mass. 
-		Additionally, the Massachusetts portion of the Providence, R.I. metro area and 
-		the Wisconsin portions of the Chicago and Minneapolis-St. Paul metro areas are excluded from 
-		the analysis.
-
-		B. Sectors: Authors exclude jobs in Administrative and Support and Waste Management 
-		and Remediation Services & Public Administration (NAICS sector 56 and 92) from the analysis 
-		as we weren't sure of its reliability. In some cases the Census Bureau has incomplete data or
-		cannot determine the location of jobs for multi-establishment firms. This issue is especially 
-		prevalent in the government, public administration, and administrative services sectors. 
-  
-
-2. METHODS
-
-  * Job density: Actual job-weighted job density 
-	The perceived job density of a metro area is found by (1) calculating the standard job density of each block 
-    	group, (2) weighting the block group by its share of the metro area’s jobs, (3) multiplying each block group’s
-	standard job density by its job weight, and (4) summing the weighted job density of all block areas in the 
-        metro area.
-Last updated:  Mon Jul 15 18:38:28 2019 
-
-
-
-|                           label                           |      names      |
-|-----------------------------------------------------------|-----------------|
-|                                                           |    cbsa_code    |
-|                                                           |    cbsa_name    |
-|                                                           |   naics2_code   |
-|                                                           |   naics2_name   |
-|                                                           |      year       |
-| Weighted (perceived) actual job density, jobs per sq mile | cbsa_jobdensity |
-
-
-Skim summary statistics  
- n obs: 22116    
- n variables: 6    
-
-Variable type: character
-
-|  variable   | missing | complete |   n   | min | max | empty | n_unique |
-|-------------|---------|----------|-------|-----|-----|-------|----------|
-|  cbsa_code  |    0    |  22116   | 22116 |  5  |  5  |   0   |    97    |
-|  cbsa_name  |    0    |  22116   | 22116 |  9  | 29  |   0   |    97    |
-| naics2_code |    0    |  22116   | 22116 |  2  |  2  |   0   |    19    |
-| naics2_name |    0    |  22116   | 22116 |  5  | 18  |   0   |    19    |
-
-Variable type: integer
-
-| variable | missing | complete |   n   |  mean  |  sd  |  p0  |   p25   |  p50   |   p75   | p100 |
-|----------|---------|----------|-------|--------|------|------|---------|--------|---------|------|
-|   year   |    0    |  22116   | 22116 | 2009.5 | 3.45 | 2004 | 2006.75 | 2009.5 | 2012.25 | 2015 |
-
-Variable type: numeric
-
-|    variable     | missing | complete |   n   |  mean   |    sd    |  p0   |   p25   |   p50   |   p75   |   p100    |
-|-----------------|---------|----------|-------|---------|----------|-------|---------|---------|---------|-----------|
-| cbsa_jobdensity |    0    |  22116   | 22116 | 9462.59 | 20324.62 | 25.42 | 2274.79 | 4052.76 | 8072.17 | 318399.94 |
-
-
-Title:   
-
-Contact:   
-
-Source:   
-
-Note:   
-
-Last updated:  Mon Jul 15 18:51:35 2019 
-
-
-
-|                           label                           |       names       |
-|-----------------------------------------------------------|-------------------|
-|                                                           |     cbsa_code     |
-|                                                           |     cbsa_name     |
-|                                                           |     stco_code     |
-|                                                           |     stco_name     |
-|                                                           |    naics2_code    |
-|                                                           |    naics2_name    |
-| UC(Urban COre);ES(Emerging Suburban);MS(Mature Suburban)  |       type        |
-|                                                           |       year        |
-| Weighted (perceived) actual job density, jobs per sq mile | county_jobdensity |
-
-
-Skim summary statistics  
- n obs: 7728    
- n variables: 9    
-
-Variable type: character
-
-|  variable   | missing | complete |  n   | min | max | empty | n_unique |
-|-------------|---------|----------|------|-----|-----|-------|----------|
-|  cbsa_code  |    0    |   7728   | 7728 |  5  |  5  |   0   |    95    |
-|  cbsa_name  |    0    |   7728   | 7728 |  9  | 25  |   0   |    95    |
-| naics2_code |    0    |   7728   | 7728 |  2  |  2  |   0   |    1     |
-| naics2_name |    0    |   7728   | 7728 |  5  |  5  |   0   |    1     |
-|  stco_code  |    0    |   7728   | 7728 |  5  |  5  |   0   |   550    |
-|  stco_name  |    0    |   7728   | 7728 | 11  | 38  |   0   |   549    |
-|    type     |    0    |   7728   | 7728 |  2  |  5  |   0   |    5     |
-
-Variable type: integer
-
-| variable | missing | complete |  n   |  mean  |  sd  |  p0  |   p25   |  p50   |   p75   | p100 |
-|----------|---------|----------|------|--------|------|------|---------|--------|---------|------|
-|   year   |    0    |   7728   | 7728 | 2009.5 | 3.45 | 2004 | 2006.75 | 2009.5 | 2012.25 | 2015 |
-
-Variable type: numeric
-
-|     variable      | missing | complete |  n   |  mean   |    sd    |  p0   |  p25   |   p50   |   p75   |   p100   |
-|-------------------|---------|----------|------|---------|----------|-------|--------|---------|---------|----------|
-| county_jobdensity |    0    |   7728   | 7728 | 4978.82 | 18187.43 | 0.065 | 430.92 | 1591.08 | 4443.74 | 441559.5 |
+Source:  https://www.brookings.edu/research/where-jobs-are-concentrating-why-it-matters-to-cities-and-regions/  
+  [1]         NA         NA         NA         NA         NA         NA         NA   2709.666         NA         NA
+ [11]         NA   7253.473         NA         NA         NA   5325.801         NA         NA         NA         NA
+ [21]   4153.999         NA         NA         NA         NA         NA         NA         NA         NA         NA
+ [31]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+ [41]         NA         NA         NA         NA         NA         NA         NA         NA         NA   8640.875
+ [51]         NA         NA         NA         NA         NA   2221.247         NA         NA   7501.585         NA
+ [61]   2263.282  12396.880         NA         NA         NA         NA         NA         NA         NA         NA
+ [71]         NA   3425.721         NA         NA         NA         NA         NA         NA         NA         NA
+ [81]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+ [91]         NA         NA         NA   3912.802         NA         NA         NA         NA         NA         NA
+[101]         NA         NA         NA   4743.188         NA         NA         NA         NA         NA         NA
+[111]         NA         NA         NA         NA         NA         NA         NA         NA         NA   6801.267
+[121]         NA         NA         NA         NA         NA         NA         NA         NA   4709.737         NA
+[131]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[141]         NA         NA         NA         NA   1694.286         NA         NA         NA         NA         NA
+[151]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[161]         NA         NA   3404.339   8091.985         NA   3393.241         NA  42427.832         NA         NA
+[171]   7484.372         NA         NA         NA         NA         NA         NA         NA  11577.632         NA
+[181]         NA         NA         NA         NA         NA         NA         NA         NA   3180.254         NA
+[191]   4052.114         NA         NA         NA         NA   6999.356         NA         NA         NA         NA
+[201]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[211]         NA         NA         NA         NA         NA         NA         NA   8896.418         NA         NA
+[221]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[231]         NA   1473.901         NA  15258.656         NA   6483.280   8070.953         NA         NA         NA
+[241]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[251]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[261]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[271]         NA   3805.796         NA         NA         NA         NA         NA         NA         NA         NA
+[281]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[291]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[301]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[311]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[321]   4526.615         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[331]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[341]         NA         NA   7179.948         NA         NA         NA         NA         NA         NA         NA
+[351]         NA   2434.711         NA         NA         NA         NA   2391.188         NA         NA         NA
+[361]         NA         NA         NA         NA         NA         NA         NA         NA   3928.371         NA
+[371]         NA  12471.046         NA         NA         NA         NA         NA         NA         NA         NA
+[381]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[391]         NA         NA         NA         NA  12556.155         NA         NA         NA         NA         NA
+[401]         NA         NA         NA         NA         NA         NA   7180.853         NA         NA         NA
+[411]         NA         NA         NA   1773.804         NA         NA         NA   5597.181         NA         NA
+[421]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[431]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[441]   6173.730         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[451]         NA         NA         NA         NA         NA         NA         NA         NA   2385.285         NA
+[461]         NA         NA         NA         NA         NA         NA         NA         NA         NA   2559.518
+[471]         NA         NA         NA         NA         NA         NA         NA  15633.005         NA         NA
+[481]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[491]         NA         NA         NA         NA         NA         NA         NA   3314.608         NA         NA
+[501]         NA         NA         NA         NA         NA         NA  17385.824   7192.347         NA         NA
+[511]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[521]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[531]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[541]         NA         NA         NA         NA         NA   2406.875         NA         NA         NA         NA
+[551]         NA   3875.353         NA         NA         NA         NA         NA         NA   9020.312         NA
+[561]         NA         NA         NA         NA         NA         NA  17631.266         NA         NA         NA
+[571]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[581]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[591]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[601]         NA         NA  10142.918         NA         NA         NA         NA         NA         NA  15000.323
+[611]  11753.712         NA         NA         NA         NA         NA 138541.406         NA         NA         NA
+[621]         NA   2469.209         NA         NA         NA         NA         NA         NA         NA         NA
+[631]   2582.118         NA         NA         NA   5049.604         NA         NA   5262.232         NA         NA
+[641]         NA         NA   5791.267         NA         NA         NA         NA         NA         NA         NA
+[651]         NA         NA         NA         NA   4589.797         NA         NA         NA         NA         NA
+[661]   1699.188         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[671]         NA         NA         NA         NA  25337.729  25337.729   6983.565         NA         NA         NA
+[681]         NA         NA  19319.812         NA         NA         NA         NA         NA         NA         NA
+[691]         NA         NA         NA         NA         NA         NA         NA         NA  12977.854         NA
+[701]         NA         NA         NA         NA         NA         NA   6158.754   5384.167         NA         NA
+[711]         NA         NA         NA   3042.999         NA         NA         NA         NA         NA         NA
+[721]         NA         NA         NA   5071.617         NA         NA   3196.105         NA         NA         NA
+[731]         NA         NA   7635.011         NA         NA         NA         NA         NA         NA         NA
+[741]         NA         NA         NA         NA         NA   4509.869         NA         NA         NA         NA
+[751]         NA   6789.385         NA         NA         NA         NA         NA         NA         NA   5388.632
+[761]         NA   6165.108   7937.188         NA         NA         NA  54374.652         NA  11133.457         NA
+[771]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[781]         NA   2479.476         NA  35122.445         NA         NA         NA         NA         NA         NA
+[791]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[801]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[811]         NA         NA         NA         NA         NA         NA         NA         NA   7193.080         NA
+[821]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[831]         NA         NA         NA   2399.606         NA         NA         NA         NA         NA         NA
+[841]         NA         NA         NA   5738.855         NA         NA         NA   5117.749         NA         NA
+[851]         NA         NA         NA         NA         NA         NA         NA         NA         NA   3358.830
+[861]         NA         NA         NA         NA         NA         NA   2805.252         NA   4249.417         NA
+[871]         NA         NA         NA         NA         NA         NA  51553.750         NA         NA         NA
+[881]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[891]         NA         NA   5229.557         NA         NA         NA         NA         NA         NA         NA
+[901]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[911]         NA         NA         NA         NA         NA         NA         NA         NA         NA         NA
+[921]         NA   2949.796         NA         NA         NA         NA         NA         NA         NA         NA
+[931]         NA         NA   4279.250         NA         NA         NA         NA         NA         NA         NA
+[941]         NA   1642.996         NA         NA         NA         NA
+[1] 946
