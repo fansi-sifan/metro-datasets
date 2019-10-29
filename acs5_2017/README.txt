@@ -7,7 +7,7 @@ Source:  https://api.census.gov/data/2017/acs/acs5.html
 
 Note:  Statistics calculated from ACS summary tables  
 
-Last updated:  Mon Oct 21 16:07:31 2019 
+Last updated:  Tue Oct 29 11:40:01 2019 
 
 
 
@@ -243,26 +243,26 @@ Last updated:  Mon Oct 21 16:07:31 2019
 |                                                                          B20004_005___total__bachelor_s_degree_moe                                                                           |  B20004_005M   |
 |                                                                 B20004_006___total__graduate_or_professional_degree_estimate                                                                 |  B20004_006E   |
 |                                                                   B20004_006___total__graduate_or_professional_degree_moe                                                                    |  B20004_006M   |
-|                                      B20017_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total__dollars__estimate                                       |  B20017_001E   |
-|                                         B20017_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total__dollars__moe                                         |  B20017_001M   |
-|                                           B20017A_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017A_001E  |
-|                                             B20017A_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017A_001M  |
-|                                           B20017B_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017B_001E  |
-|                                             B20017B_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017B_001M  |
-|                                           B20017C_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017C_001E  |
-|                                             B20017C_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017C_001M  |
-|                                           B20017D_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017D_001E  |
-|                                             B20017D_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017D_001M  |
-|                                           B20017E_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017E_001E  |
-|                                             B20017E_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017E_001M  |
-|                                           B20017F_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017F_001E  |
-|                                             B20017F_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017F_001M  |
-|                                           B20017G_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017G_001E  |
-|                                             B20017G_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017G_001M  |
-|                                           B20017H_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017H_001E  |
-|                                             B20017H_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017H_001M  |
-|                                           B20017I_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_estimate                                           |  B20017I_001E  |
-|                                             B20017I_001___median_earnings_in_the_past_12_months__in_2017_inflation_adjusted_dollars___total_moe                                              |  B20017I_001M  |
+|                                           B19013_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013_001E   |
+|                                             B19013_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                              |  B19013_001M   |
+|                                          B19013A_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013A_001E  |
+|                                             B19013A_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013A_001M  |
+|                                          B19013B_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013B_001E  |
+|                                             B19013B_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013B_001M  |
+|                                          B19013C_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013C_001E  |
+|                                             B19013C_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013C_001M  |
+|                                          B19013D_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013D_001E  |
+|                                             B19013D_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013D_001M  |
+|                                          B19013E_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013E_001E  |
+|                                             B19013E_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013E_001M  |
+|                                          B19013F_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013F_001E  |
+|                                             B19013F_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013F_001M  |
+|                                          B19013G_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013G_001E  |
+|                                             B19013G_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013G_001M  |
+|                                          B19013H_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013H_001E  |
+|                                             B19013H_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013H_001M  |
+|                                          B19013I_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__estimate                                           |  B19013I_001E  |
+|                                             B19013I_001___median_household_income_in_the_past_12_months__in_2017_inflation_adjusted_dollars__moe                                             |  B19013I_001M  |
 |                                                                                 B07009_001___total_estimate                                                                                  |  B07009_001E   |
 |                                                                                    B07009_001___total_moe                                                                                    |  B07009_001M   |
 |                                                                 B07009_002___total__less_than_high_school_graduate_estimate                                                                  |  B07009_002E   |
@@ -480,6 +480,26 @@ Variable type: numeric
 |  B08201_001M   |    0    |   945    | 945 |  713.64   |   815.4    |  115  |   335    |   473   |   769    |  12058  |
 |  B08201_002E   |    0    |   945    | 945 | 10784.56  |  75024.62  |  145  |   964    |  1849   |   4730   | 2142670 |
 |  B08201_002M   |    0    |   945    | 945 |  416.76   |   485.8    |  66   |   190    |   280   |   447    |  8633   |
+|  B19013_001E   |    0    |   945    | 945 | 49622.48  |  11136.56  | 11680 |  43097   |  48962  |  54709   | 110190  |
+|  B19013_001M   |    0    |   945    | 945 |  1883.28  |  1062.66   |  188  |   1227   |  1684   |   2299   |  8612   |
+|  B19013A_001E  |    0    |   945    | 945 | 52524.68  |  11315.35  | 11353 |  45760   |  51328  |  57315   | 112044  |
+|  B19013A_001M  |    0    |   945    | 945 |  2159.05  |   1319.6   |  300  |   1363   |  1871   |   2652   |  15495  |
+|  B19013B_001E  |   146   |   799    | 945 | 34311.28  |  15408.11  | 2499  | 25791.5  |  31042  | 39501.5  | 250001  |
+|  B19013B_001M  |   149   |   796    | 945 |  9430.88  |  11296.23  |  216  |   2473   | 5091.5  | 11693.25 |  76878  |
+|  B19013C_001E  |   310   |   635    | 945 | 43719.29  |  18343.8   | 2499  |  32297   |  41484  | 51294.5  | 145163  |
+|  B19013C_001M  |   314   |   631    | 945 | 17857.96  |  15264.19  |  550  |  7665.5  |  13892  | 23006.5  |  1e+05  |
+|  B19013D_001E  |   243   |   702    | 945 | 64379.21  |  30488.43  | 2499  |  48672   |  60436  | 74597.25 | 250001  |
+|  B19013D_001M  |   254   |   691    | 945 | 20643.89  |  19858.65  |  616  |   7155   |  15470  |  27092   |  2e+05  |
+|  B19013E_001E  |   750   |   195    | 945 |  56682.2  |  27881.02  | 2499  |  40180   |  54375  | 70456.5  | 250001  |
+|  B19013E_001M  |   755   |   190    | 945 | 23623.32  |  19530.99  |  569  | 10765.25 |  17531  | 31172.75 | 118361  |
+|  B19013F_001E  |   197   |   748    | 945 |  42316.9  |  17155.83  | 2499  |  32959   |  40906  | 49527.75 | 250001  |
+|  B19013F_001M  |   200   |   745    | 945 | 13963.72  |  13260.5   |  196  |   5132   |  10357  |  18868   | 132548  |
+|  B19013G_001E  |   124   |   821    | 945 | 43923.07  |  16598.43  | 11512 |  32896   |  41429  |  52188   | 167147  |
+|  B19013G_001M  |   124   |   821    | 945 | 14701.74  |  12763.38  |  812  |   6254   |  11212  |  18671   | 111792  |
+|  B19013H_001E  |    7    |   938    | 945 | 54113.48  |  11641.91  | 5962  | 46448.75 | 52502.5 |  59134   | 117009  |
+|  B19013H_001M  |    7    |   938    | 945 |  2447.49  |  2144.92   |  378  |   1419   |  1950   | 2822.75  |  32573  |
+|  B19013I_001E  |   56    |   889    | 945 | 41536.17  |  12032.13  | 9744  |  34245   |  41080  |  47297   | 123047  |
+|  B19013I_001M  |   56    |   889    | 945 |  9826.92  |  10083.53  |  189  |   3477   |  6562   |  12778   | 122049  |
 |  B20004_001E   |    0    |   945    | 945 | 33618.77  |  5277.61   | 14385 |  30831   |  32755  |  36259   |  75446  |
 |  B20004_001M   |    0    |   945    | 945 |  1222.68  |   748.45   |  107  |   710    |  1067   |   1556   |  4834   |
 |  B20004_002E   |    1    |   944    | 945 |  21690.5  |  4190.76   | 4361  | 19329.5  |  21343  | 24031.5  |  46111  |
@@ -492,26 +512,6 @@ Variable type: numeric
 |  B20004_005M   |    0    |   945    | 945 |  3380.85  |   2417.6   |  196  |   1783   |  2841   |   4267   |  20211  |
 |  B20004_006E   |    1    |   944    | 945 | 57623.05  |  8987.52   | 22808 | 51912.25 |  56915  | 62006.75 | 113129  |
 |  B20004_006M   |    1    |   944    | 945 |  5242.52  |  4605.75   |  308  |  2632.5  | 4012.5  |   6343   |  71963  |
-|  B20017_001E   |    0    |   945    | 945 | 28498.77  |  4767.97   | 12256 |  25902   |  28255  |  30953   |  64186  |
-|  B20017_001M   |    0    |   945    | 945 |  1108.3   |   669.24   |  76   |   668    |   996   |   1388   |  5854   |
-|  B20017A_001E  |    0    |   945    | 945 | 30165.12  |  5228.51   | 12286 |  27300   |  30218  |  32238   |  63469  |
-|  B20017A_001M  |    0    |   945    | 945 |  1265.36  |   801.64   |  128  |   731    |  1074   |   1596   |  5459   |
-|  B20017B_001E  |   117   |   828    | 945 | 21525.33  |  10711.37  | 2499  |  17436   |  21282  | 24734.5  | 250001  |
-|  B20017B_001M  |   123   |   822    | 945 |  5079.28  |  5697.89   |  219  | 1634.75  | 3226.5  | 6295.25  |  70201  |
-|  B20017C_001E  |   287   |   658    | 945 | 26160.32  |  10822.03  | 2499  | 20581.5  | 24818.5 |  30354   | 106103  |
-|  B20017C_001M  |   296   |   649    | 945 | 10171.82  |  9393.08   |  438  |   3850   |  7544   |  13385   |  70770  |
-|  B20017D_001E  |   187   |   758    | 945 |  30861.3  |  15717.12  | 2499  |  22676   |  28748  | 35428.75 | 250001  |
-|  B20017D_001M  |   190   |   755    | 945 |  9907.63  |  10422.87  |  230  |  3267.5  |  6856   | 13057.5  | 106053  |
-|  B20017E_001E  |   658   |   287    | 945 |  29012.6  |  13318.59  | 2499  | 21327.5  |  27445  |  35229   |  92188  |
-|  B20017E_001M  |   665   |   280    | 945 | 12399.04  |  10705.54  |  134  | 4139.75  | 9213.5  | 17844.5  |  50762  |
-|  B20017F_001E  |   119   |   826    | 945 | 22663.38  |  7119.52   | 2499  | 18875.5  |  22081  | 25468.5  |  80750  |
-|  B20017F_001M  |   122   |   823    | 945 |  6160.2   |  5832.85   |  204  |  2205.5  |  4448   |   8379   |  51040  |
-|  B20017G_001E  |   127   |   818    | 945 | 21059.26  |  8502.87   | 2499  | 16089.75 |  20698  |  25354   |  95540  |
-|  B20017G_001M  |   133   |   812    | 945 |  7294.86  |  6896.41   |  346  |  3099.5  |  5614   |   9338   |  93743  |
-|  B20017H_001E  |    7    |   938    | 945 | 31729.53  |  6017.68   | 9537  | 28411.5  | 31029.5 | 34302.5  |  78235  |
-|  B20017H_001M  |    7    |   938    | 945 |  1561.59  |  2535.39   |  129  |   761    |  1136   |  1724.5  |  50459  |
-|  B20017I_001E  |   26    |   919    | 945 | 22178.55  |  4973.32   | 3845  |  19892   |  22217  |  25129   |  48333  |
-|  B20017I_001M  |   26    |   919    | 945 |  4145.17  |  4363.88   |  117  |   1503   |  2731   |   5137   |  46792  |
 |  C15010B_001E  |    0    |   945    | 945 |  5516.04  |  29500.94  |   0   |    55    |   257   |   1326   | 564055  |
 |  C15010B_001M  |    0    |   945    | 945 |   269.3   |   488.06   |   2   |    48    |   116   |   265    |  5642   |
 |  C15010B_002E  |    0    |   945    | 945 |  1683.39  |  9374.82   |   0   |    14    |   77    |   381    | 178355  |

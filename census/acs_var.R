@@ -130,23 +130,37 @@ calculate_edu_race <- function(df) {
       pct_edu_baplus_latino = S1501_C01_054E / S1501_C01_052E
     )
 }
+# 
+# earning_race_codes <- c("B20017_001", map_chr(LETTERS[1:9], function(x) {
+#   paste0("B20017", x, "_001")
+# })) # median earnings by race
+# 
+# calculate_earning_race <- function(df) {
+#   df %>%
+#     mutate(
+#       med_earning_total = B20017_001E,
+#       med_earning_white = B20017H_001E,
+#       med_earning_black = B20017B_001E,
+#       med_earning_asian = B20017D_001E,
+#       med_earning_latino = B20017I_001E
+#     )
+# }
 
-income_race_codes <- c("B20017_001", map_chr(LETTERS[1:9], function(x) {
-  paste0("B20017", x, "_001")
-})) # median earnings by race
+
+med_hh_inc_race_codes <- c("B19013_001", map_chr(LETTERS[1:9], function(x) {
+  paste0("B19013", x, "_001")
+})) # median household income
 
 calculate_income_race <- function(df) {
   df %>%
     mutate(
-      income_total = B20017_001E,
-      income_white = B20017H_001E,
-      income_black = B20017B_001E,
-      income_asian = B20017D_001E,
-      income_black = B20017I_001E
+      med_hh_inc_total = B19013_001E,
+      med_hh_inc_white = B19013H_001E,
+      med_hh_inc_black = B19013B_001E,
+      med_hh_inc_asian = B19013D_001E,
+      med_hh_inc_latino = B19013I_001E
     )
 }
-
-
 
 
 # EDU ----------------
@@ -154,16 +168,16 @@ calculate_income_race <- function(df) {
 BA_field_codes <- unlist(map(seq(1,6),
                           function(x)paste0(map(c("","B","D", "H", "I"), function(y)paste0("C15010",y)), "_00",x)))
 
-income_edu_codes <- map_chr(seq(1, 6), function(x) {
+earnings_edu_codes <- map_chr(seq(1, 6), function(x) {
   paste0("B20004_00", x)
-}) # median earnings by education attainment
-calculate_income_edu <- function(df) {
+}) # median earnings for population 25 and older by education attainment
+calculate_earnings_edu <- function(df) {
   df %>%
     mutate(
-      income_total = B20004_001E,
-      income_edu_hs = B20004_003E,
-      income_edu_ba = B20004_005E,
-      income_edu_grad = B20004_006E
+      med_earnings_total = B20004_001E,
+      med_earnings_hs = B20004_003E,
+      med_earnings_ba = B20004_005E,
+      med_earnings_grad = B20004_006E
     )
 }
 
@@ -227,7 +241,7 @@ calculate_pct_acs <- function(df) {
     calculate_pov_race() %>%
     calculate_edu() %>%
     calculate_emp_race() %>%
-    calculate_income_edu() %>%
+    calculate_earnings_edu() %>%
     calculate_commute_race() %>%
 
     # keep only the calculated outputs
@@ -244,7 +258,7 @@ calculate_acs <- function(df) {
     calculate_pov_race() %>%
     calculate_edu() %>%
     calculate_emp_race() %>%
-    calculate_income_edu() %>%
+    calculate_earnings_edu() %>%
     calculate_commute_race() %>%
     
     # keep only the calculated outputs
