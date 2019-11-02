@@ -1,2 +1,5 @@
 # metro-datasets
-[Brookings Metro Data Management Guidelines](https://brookingsinstitution-my.sharepoint.com/:w:/g/personal/sliu_brookings_edu/EVhSEU8LSeRApzU_twnURr4Bw6F8veTL5m-w6lkNrblC3w?e=JAdSGQ)
+data from previously published reports
+
+## Data Management Guide
+[Brookings Metro Data Management Guidelines](https://brookingsinstitution.sharepoint.com/:w:/s/MetroResearch/EcaSb37S2RZHjHdGYD4PUd8BfhKkAcP-CYSNi9VLR1PeeQ?e=oqfKlS)
