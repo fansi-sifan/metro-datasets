@@ -34,24 +34,24 @@ racial_inclusion_change <- read.csv(paste0(source_dir, "Inclusion/Racial Inclusi
 
 # absolute value in 2017 (instead of 2016) and clean names
 growth_value <- read.csv(paste0(source_dir, "Growth Values 2019-03-09 .csv")) %>% 
-  filter(year == 2017) %>%
+  # filter(year == 2017) %>%
   dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
 prosperity_value <- read.csv(paste0(source_dir, "Prosperity Values 2019-03-09 .csv")) %>% 
-  filter(year == 2017) %>%
+  # filter(year == 2017) %>%
   dcast(year + cbsa_code ~ indicator, var.value = "value") %>% #repalce CBSA with cbsa_code 
   janitor::clean_names()
 
 inclusion_value <- read.csv(paste0(source_dir, "Inclusion/Inclusion Values (IS 2018.12.11).csv")) %>% 
-  filter(year == 2017) %>%
+  # filter(year == 2017) %>%
   filter(race == "Total") %>%
   filter(eduatt == "Total") %>%
   dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
 racial_inclusion_value <- read.csv(paste0(source_dir, "Inclusion/Racial Inclusion Values (IS 2019.03.06).csv")) %>% #racial inclusion = new category in 2019
-  filter(year == 2017) %>%
+  # filter(year == 2017) %>%
   dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
@@ -70,16 +70,19 @@ cbsa_change <- prosperity_change %>%
 
 # join all three absolute values
 cbsa_value <- prosperity_value %>%
-  filter(year == "2017") %>% #update year
+  # filter(year == "2017") %>% #update year
   rename(cbsa = cbsa_code)%>%
   full_join(growth_value, by = c("year", "cbsa")) %>%
   full_join(inclusion_value, by = c("year", "cbsa")) %>%
-  full_join(racial_inclusion_value, by = c("year", "cbsa"))
-  
+  full_join(racial_inclusion_value, by = c("year", "cbsa")) 
+
+save(cbsa_value, file = "metro_monitor_2019/metro_monitor_2019_allyear.rda")
+
 # join everything (recoded rank.?.? to the 4 rank categories using Akron as visual sample)
 df <- cbsa_change %>%
   rename(rank_year_range = year)%>%
-  full_join(cbsa_value, by = c("cbsa" = "cbsa")) %>%
+  full_join(cbsa_value %>%
+              filter(year == 2017), by = c("cbsa" = "cbsa")) %>%
   rename(
     cbsa_code = cbsa,
     value_year = year
