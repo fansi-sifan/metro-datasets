@@ -31,10 +31,10 @@ save_meta <- function(df, labels, folder, file, title, contact, source, note = "
     }
 
 
-    print(labels %>% kable())
+    print(labels %>% knitr::kable())
     cat("\n\n")
 
-    skimr::skim(df) %>% kable()
+    skimr::skim(df) %>% knitr::kable()
     sink()
   }
 }
