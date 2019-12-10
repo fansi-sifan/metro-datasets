@@ -1,3 +1,9 @@
+# get multiple year
+
+get_multiyr <- function(yr){
+  get_acs(geo, vars, year = yr, key = Sys.getenv("CENSUS_API_KEY"), output = "wide")  
+}
+
 # acs variables list ===============================
 # RACE ---------------
 pop_race_codes <- map_chr(str_pad(seq(1, 12),2,"left","0"), function(x) paste0("B03002_0", x)) # total population
@@ -205,7 +211,7 @@ calculate_migration <- function(df) {
       pct_newcomer = movein_total / B07009_001E,
       newcomer_pct_edu_baplus = movein_edu_baplus / movein_total
     ) %>%
-    select(-contains("from"))
+    dplyr::select(-tidyr::contains("from"))
 }
 
 
