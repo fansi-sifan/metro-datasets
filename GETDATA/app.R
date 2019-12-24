@@ -66,6 +66,7 @@ ui <- navbarPage(
         
         downloadButton("download_co", label = "Download csv"), 
         
+        h3("codebook"),
         includeMarkdown("county.md")
         
       ),
@@ -98,6 +99,8 @@ ui <- navbarPage(
         actionButton("update_cbsa", "Show metro data"), 
         
         downloadButton("download_cbsa", label = "Download csv"),
+        
+        h3("codebook"),
         
         includeMarkdown("metro.md"),
         
