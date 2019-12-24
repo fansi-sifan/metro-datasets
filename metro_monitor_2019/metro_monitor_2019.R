@@ -24,62 +24,66 @@ Boston-Cambridge-Quincy, MA-NH (Metro Area)"
 
 # TRANSFORM ============================================
 # Metro Monitor ---------------------------------------------------
-
-
 # change in values (ranking) - update to 2019 file paths and add janitor to clean var names
-growth_change <- read.csv(paste0(source_dir, "Growth Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
-prosperity_change <- read.csv(paste0(source_dir, "Prosperity Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
-inclusion_change <- read.csv(paste0(source_dir, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))%>% janitor::clean_names()
-racial_inclusion_change <- read.csv(paste0(source_dir, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names() #racial inclusion = new category in 2019
+growth_rank <- read.csv(paste0(source_dir, "Growth Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+prosperity_rank <- read.csv(paste0(source_dir, "Prosperity Ranks 2019-03-09 .csv")) %>% janitor::clean_names()
+inclusion_rank <- read.csv(paste0(source_dir, "Inclusion/Inclusion Ranks (IS 2018.12.11).csv"))%>% janitor::clean_names()
+racial_inclusion_rank <- read.csv(paste0(source_dir, "Inclusion/Racial Inclusion Ranks (IS 2019.03.06).csv"))%>% janitor::clean_names() #racial inclusion = new category in 2019
 
 # absolute value in 2017 (instead of 2016) and clean names
 growth_value <- read.csv(paste0(source_dir, "Growth Values 2019-03-09 .csv")) %>% 
   # filter(year == 2017) %>%
-  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  reshape2::dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
 prosperity_value <- read.csv(paste0(source_dir, "Prosperity Values 2019-03-09 .csv")) %>% 
   # filter(year == 2017) %>%
-  dcast(year + cbsa_code ~ indicator, var.value = "value") %>% #repalce CBSA with cbsa_code 
+  reshape2::dcast(year + cbsa_code ~ indicator, var.value = "value") %>% #repalce CBSA with cbsa_code 
   janitor::clean_names()
 
 inclusion_value <- read.csv(paste0(source_dir, "Inclusion/Inclusion Values (IS 2018.12.11).csv")) %>% 
   # filter(year == 2017) %>%
   filter(race == "Total") %>%
   filter(eduatt == "Total") %>%
-  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  reshape2::dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
 racial_inclusion_value <- read.csv(paste0(source_dir, "Inclusion/Racial Inclusion Values (IS 2019.03.06).csv")) %>% #racial inclusion = new category in 2019
   # filter(year == 2017) %>%
-  dcast(year + cbsa ~ indicator, var.value = "value") %>% 
+  reshape2::dcast(year + cbsa ~ indicator, var.value = "value") %>% 
   janitor::clean_names()
 
 # join all three changes
-cbsa_change <- prosperity_change %>%
-  filter(year == "2007-2017") %>% #update year
+cbsa_rank <- prosperity_rank %>%
   rename(cbsa = cbsa_code,
+         prosperity_score = score,
          prosperity_rank = rank)%>%
-  full_join(growth_change, by = c("year", "cbsa")) %>%
-  rename(growth_rank = rank)%>%
-  full_join(inclusion_change, by = c("year", "cbsa")) %>%
-  rename(inclusion_rank = rank)%>%
-  full_join(racial_inclusion_change, by = c("year", "cbsa")) %>%
-  rename(racial_inclusion_rank = rank)%>%
-  select(-contains("score"), -contains("name"))
+  full_join(growth_rank, by = c("year", "cbsa", "cbsa_name")) %>%
+  rename(growth_score = score,
+         growth_rank = rank
+         )%>%
+  full_join(inclusion_rank, by = c("year", "cbsa")) %>%
+  rename(inclusion_score = score,
+         inclusion_rank = rank)%>%
+  full_join(racial_inclusion_rank, by = c("year", "cbsa")) %>%
+  rename(racial_inclusion_score = score,
+        racial_inclusion_rank = rank)%>%
+  select(-contains("name."), -count) 
+
+# save(cbsa_rank, file = "metro_monitor_2019/metro_monitor_2019_rank_allyear.rda")
 
 # join all three absolute values
 cbsa_value <- prosperity_value %>%
-  # filter(year == "2017") %>% #update year
   rename(cbsa = cbsa_code)%>%
   full_join(growth_value, by = c("year", "cbsa")) %>%
   full_join(inclusion_value, by = c("year", "cbsa")) %>%
   full_join(racial_inclusion_value, by = c("year", "cbsa")) 
 
-save(cbsa_value, file = "metro_monitor_2019/metro_monitor_2019_allyear.rda")
+# save(cbsa_value, file = "metro_monitor_2019/metro_monitor_2019_allyear.rda")
 
 # join everything (recoded rank.?.? to the 4 rank categories using Akron as visual sample)
-df <- cbsa_change %>%
+df <- cbsa_rank %>%
+  filter(year == "2007-2017")%>%
   rename(rank_year_range = year)%>%
   full_join(cbsa_value %>%
               filter(year == 2017), by = c("cbsa" = "cbsa")) %>%
