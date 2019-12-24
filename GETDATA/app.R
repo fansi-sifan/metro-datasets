@@ -143,8 +143,8 @@ server <- function(input, output, session) {
       )
     }
     
-    if (is.null(input$cbsa_datasets)){
-      validate(need(!is.null(input$cbsa_datasets), "Please choose your datasets"))
+    if (is.null(input$co_datasets)){
+      validate(need(!is.null(input$co_datasets), "Please choose your datasets"))
     } else {
       co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
     }

@@ -3,7 +3,7 @@ source("R/pip.R")
 
 # take out datasets that should not go to the master dataset
 irrelevant <- c("county_cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
-not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "cbsa_agegroup_race", "cbsa_jobdensity")
+not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "cbsa_agegroup_race", "cbsa_jobdensity", "cbsa_change", "cbsa_value")
 rm(list = not.include)
 rm(list = irrelevant)
 
