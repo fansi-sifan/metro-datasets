@@ -1,10 +1,14 @@
 # get multiple year
 
 get_multiyr <- function(yr){
-  get_acs(geo, vars, year = yr, key = Sys.getenv("CENSUS_API_KEY"), output = "wide")  
+  map_dfr(yr,function(x)
+    get_acs(geo, vars, year = x, key = Sys.getenv("CENSUS_API_KEY"), output = "wide") %>%
+      mutate(year = x)
+    )
 }
 
-# acs variables list ===============================
+# acs variables list ==============================
+
 # RACE ---------------
 pop_race_codes <- map_chr(str_pad(seq(1, 12),2,"left","0"), function(x) paste0("B03002_0", x)) # total population
 
@@ -136,6 +140,29 @@ calculate_edu_race <- function(df) {
       pct_edu_baplus_latino = S1501_C01_054E / S1501_C01_052E
     )
 }
+
+edu_birth_codes <- map_chr(str_pad(seq(1,30),3,"left","0"), function(x)paste0("B06009_", x))
+
+calculate_edu_birth <- function(df){
+  df %>%
+    mutate(
+      baplus_instate = B06009_011E + B06009_012E,
+      baplus_outstate = B06009_017E + B06009_018E + B06009_023E + B06009_024E,
+      baplus_fb = B06009_029E + B06009_030E,
+      baplus_total = B06009_005E + B06009_006E,
+      
+      all_instate = B06009_007E,
+      all_outstate = B06009_013E + B06009_019E,
+      all_fb = B06009_025E,
+      all_total = B06009_001E,
+      
+      pct_baplus_instate = baplus_instate/all_instate,
+      pct_baplus_outstate = baplus_outstate/all_outstate,
+      pct_baplus_fb = baplus_fb/all_fb,
+      pct_baplus_total = baplus_total/all_total
+    )
+}
+
 # 
 # earning_race_codes <- c("B20017_001", map_chr(LETTERS[1:9], function(x) {
 #   paste0("B20017", x, "_001")
@@ -173,6 +200,30 @@ calculate_income_race <- function(df) {
 
 BA_field_codes <- unlist(map(seq(1,6),
                           function(x)paste0(map(c("","B","D", "H", "I"), function(y)paste0("C15010",y)), "_00",x)))
+
+calculate_BA_field <- function(df){
+  df %>%
+    mutate(
+      BA_all_total = C15010_001E, 
+      BA_scieng_total = C15010_002E + C15010_003E,
+      
+      BA_all_black = C15010B_001E, 
+      BA_scieng_black = C15010B_002E + C15010B_003E,
+      BA_all_asian = C15010D_001E, 
+      BA_scieng_asian = C15010D_002E + C15010D_003E,
+      BA_all_white = C15010H_001E, 
+      BA_scieng_white = C15010H_002E + C15010H_003E,
+      BA_all_latino = C15010I_001E, 
+      BA_scieng_latino = C15010I_002E + C15010I_003E, 
+      
+      pct_scieng_total = BA_scieng_total/BA_all_total, 
+      pct_scieng_black = BA_scieng_black/BA_all_black, 
+      pct_scieng_asian = BA_scieng_asian/BA_all_asian, 
+      pct_scieng_white = BA_scieng_white/BA_all_white, 
+      pct_scieng_latino = BA_scieng_latino/BA_all_latino
+      
+    )
+}
 
 earnings_edu_codes <- map_chr(seq(1, 6), function(x) {
   paste0("B20004_00", x)
@@ -251,7 +302,7 @@ calculate_pct_acs <- function(df) {
     calculate_commute_race() %>%
 
     # keep only the calculated outputs
-    select(-contains("E", ignore.case = F), -contains("M", ignore.case = F))
+    select(-dplyr::contains("E", ignore.case = F), -dplyr::contains("M", ignore.case = F))
 }
 
 calculate_acs <- function(df) {
@@ -268,5 +319,5 @@ calculate_acs <- function(df) {
     calculate_commute_race() %>%
     
     # keep only the calculated outputs
-    select(-contains("E", ignore.case = F), -contains("M", ignore.case = F))
+    select(-dplyr::contains("E", ignore.case = F), -dplyr::contains("M", ignore.case = F))
 }
