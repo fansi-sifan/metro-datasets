@@ -43,3 +43,27 @@ find_cbsa_counties <- function(msa){
     # select(cbsa_code, cbsa_name, stco_code, co_name) %>%
     unique()
 }
+
+# save file source
+
+github_path <- "https://github.com/fansi-sifan/metro-datasets/tree/master/"
+
+create_link <- function(name){
+  src <- paste0(github_path,gsub(paste0("/",name,".rda"),"",grep(paste0("/",name,".rda"),temp,value = T)))
+  paste0("[",name, "]", "(", src[1],")")
+  
+}
+
+create_md <- function(lt, fl){
+  x <- list(name = names(lt), links = "link")
+  l <- length(x$name)
+  
+  for(i in 1:l){
+    x$links[i] = create_link(x$name[i])
+  }
+
+  sink(paste0("GETDATA/",fl,".md"))
+  print(x$links)
+  sink()
+}
+

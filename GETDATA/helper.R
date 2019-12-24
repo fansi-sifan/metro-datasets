@@ -53,4 +53,7 @@ list_all_co <- map_depth(df_co_all,names,.depth = 1)
 save(list_all_cbsa,file = "GETDATA/data/list_all_cbsa.rda")
 save(list_all_co,file = "GETDATA/data/list_all_co.rda")
 
+# save src to GitHub
 
+create_md(list_all_co, "county")
+create_md(list_all_cbsa, "metro")
