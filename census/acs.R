@@ -10,18 +10,18 @@ key <- Sys.getenv("CENSUS_API_KEY")
 
 # save data to acs folder
 
-library(tidyverse)
 library(skimr)
 library(expss)
+library(tidyverse)
 source("R/save_output.R")
 
 # SET UP ====================================
-folder_name <- "acs5_2017"
+folder_name <- "acs5_2018"
 file_name <- "cbsa_acs_raw"
 
 # metadata
-dt_title <- "Selected statistics from 2017 5 year ACS summary tables"
-dt_src <- "https://api.census.gov/data/2017/acs/acs5.html"
+dt_title <- "Selected statistics from 2018 5 year ACS summary tables"
+dt_src <- "https://api.census.gov/data/2018/acs/acs5.html"
 dt_contact <- "Sifan Liu"
 df_notes <- "Statistics calculated from ACS summary tables"
 
@@ -29,9 +29,12 @@ df_notes <- "Statistics calculated from ACS summary tables"
 geo <- "metropolitan statistical area/micropolitan statistical area"
 vars <- objects()
 var = mget(vars[grep("codes",vars)])
+years <- 2018
 
-df <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, key = key, short = FALSE, cache = T))%>%
-  select(cbsa_code, cbsa_name, contains("S",ignore.case = F),contains("B",ignore.case = F))
+raw <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, year = years, key = key, short = FALSE, cache = T))
+
+df <- raw %>%
+  select(cbsa_code, cbsa_name, dplyr::contains("S",ignore.case = F),dplyr::contains("B",ignore.case = F), dplyr::contains("C", ignore.case = F))
 
 df_labels = create_labels(df)
 
@@ -58,8 +61,10 @@ save_datasets(df, folder = folder_name, file = file_name)
 file_name <- "co_acs_raw"
 geo <- "county"
 
-df <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, key = key, short = FALSE, cache = T))%>%
-  select(stco_code, stco_name, contains("S",ignore.case = F),contains("B",ignore.case = F))
+raw <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, year = years, key = key, short = FALSE, cache = T))
+
+df <- raw %>%
+  select(stco_code, stco_name,dplyr::contains("S",ignore.case = F),dplyr::contains("B",ignore.case = F))
 
 save_datasets(df, folder = folder_name, file = file_name)
 
@@ -90,7 +95,7 @@ geo <- "county" # "state", "county", "tract", "metropolitan statistical area/mic
 # tabl <- "S1701" #if pulling entire table, set variables to NULL
 
 # set year and span -------------
-yr <- 2017 # ACS year
+yr <- 2018 # ACS year
 # span <- 5 # 1-year or 5-year
 
 # set boundary, instead of pulling data for all counties ---
