@@ -16,25 +16,61 @@ get_SBO <- function(...){
                                 "ETH_GROUP","ETH_GROUP_TTL", # ethnicity
                                 "SEX","SEX_TTL", # gender
                                 "VET_GROUP", "VET_GROUP_TTL", # veteran
-                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S", "FIRMPDEMP_F", "FIRMPDEMP_S_F"),
+                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S"),
                        ...,
                        key = key)
 }
 
 # test ---------------------
-# metro
-# df <- get_SBO(region = "metropolitan statistical area/micropolitan statistical area:24340")
 
-# county
-get_sbo_co <- function(stco_code) {
+get_sbo <- function(code, area) {
+  co_code <- paste0("county:",str_sub(code, 3, 5))
+  st_code <- paste0("state:",str_sub(code, 1, 2))
   
-  
-  co_code <- paste0("county:",str_sub(stco_code, 3, 5))
-  st_code <- paste0("state:",str_sub(stco_code, 1, 2))
-  
-  get_SBO(region = co_code, regionin = st_code)
+  if (area == "stco"){
+    get_SBO(region = co_code, regionin = st_code)
+  } else if (area == "cbsa"){
+    get_SBO(region = paste0("metropolitan statistical area/micropolitan statistical area:",code))
+  }
 
-  
 }
 
+# get_sbo("13820", "metro")
+# get_sbo("01073", "county")
 
+summarise_sbo <- function(var, df, area) {
+  var <- rlang::enquo(var)
+  text <- paste0(area,"_code")
+  
+  df %>%
+    mutate(
+      firmdemp = as.numeric(FIRMPDEMP),
+      firmall = as.numeric(FIRMALL),
+      is.traded = ifelse(NAICS2012 %in% traded_code, "traded", "local")
+    ) %>%
+    group_by(GEO_ID, GEO_TTL, !!var, is.traded) %>%
+    summarise(
+      firmdemp = sum(firmdemp),
+      firmall = sum(firmall)
+    ) %>% 
+    ungroup() %>%
+    filter(!!var != "All firms") %>%
+    mutate(GEO_ID = str_sub(trimws(GEO_ID), -5,-1))%>%
+    rename(label = !!var) %>%
+    rename(!!text := GEO_ID)
+}
+
+get_sbo_m <- function(code, area){
+  
+  # get data
+  sbo_df <- purrr::map_df(code, ~get_sbo(., area))
+  
+  # summary table by each demographics
+  bind_rows(list(race = summarise_sbo(RACE_GROUP_TTL, sbo_df, area),
+              ethnicity = summarise_sbo(ETH_GROUP_TTL, sbo_df, area),
+              vet = summarise_sbo(VET_GROUP_TTL, sbo_df, area),
+              sex = summarise_sbo(SEX_TTL, sbo_df, area)))
+}
+
+# tmp <- get_sbo_m(c("13820", "32820"), "cbsa")
+# tmp <- get_sbo_m(c("01073", "28041"), "stco") 
