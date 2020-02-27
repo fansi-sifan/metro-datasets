@@ -2,14 +2,17 @@
 title: "Lousville"
 author: "Sifan"
 date: "2/26/2020"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
+
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, include = T)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, include = T)
 ```
 
-```{r func, include=FALSE}
+```{r func, include=FALSE, echo=F}
 source("R/pip.R")
 
 quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
@@ -33,7 +36,7 @@ quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
 
 ```
 
-```{r target, include=T, echo=T}
+```{r target, include=T}
 
 # change target metro and peers here
 target_cbsa <- "31140"
@@ -82,7 +85,7 @@ emp %>%
 ### Change in share of employment in Advanced Industries--LOU and peers
 
 
-```{r}
+```{r ai}
 emp06 <- read_csv("../../_metro_data_warehouse/data_raw/CBP EMP/efsy_cbp_2006.csv")
 
 pct_ai <- function(df)df%>%
@@ -173,7 +176,7 @@ index %>%
 
 ## Skills
 ### % of population 25+ with AA/BA--LOU and peers
-```{r}
+```{r edu}
 cbsa_output %>%
   select(cbsa_code, cbsa_name, pct_edu_associate, pct_edu_baplus)%>%
   knitr::kable()
@@ -183,7 +186,7 @@ cbsa_output %>%
 
 ### Employment-to-population ratio 18-64--LOU and peers
 
-```{r epratio, echo=F, include=T}
+```{r epratio}
 
 cbsa_output %>% 
   select(cbsa_code, cbsa_name, epratio_total)%>%
@@ -194,9 +197,9 @@ cbsa_output %>%
 
 
 ### Prevalence of health problems--LOU and peers
-```{r}
+```{r health}
 library(RSocrata)
-token <- "4T1vhrRM49HffDDXPFQJfiVhM"
+token <- Sys.getenv("RSocrata_token")
 
 cities <- paste0(gsub("\\,.+","",cbsa_output$cbsa_name_short), collapse = "','")
 
@@ -272,6 +275,11 @@ http://statchatva.org/changing-shape-of-american-cities/
 
 ```{r map, include=FALSE}
 library(sf)
+
+library(tmap)
+tmap_mode("view")
+
+
 map <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = c("KY"), geometry = T)
 map2 <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = c("IN"), geometry = T)
 
@@ -292,12 +300,10 @@ map_health <- rbind(map, map2) %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_health, by = c("GEOID" = "stcotr_code"))
 
-map_health %>%
-  filter(str_sub(GEOID,1,5) %in% target_co)%>%
-  ggplot(aes(fill = MHLTH+PHLTH))+
-  scale_fill_distiller(type = "div")+
-  geom_sf()+
-  coord_sf(crs = 26911) 
+tm_shape(map_health %>%
+  filter(str_sub(GEOID,1,5) %in% target_co))+
+  tm_polygons(c("MHLTH", "PHLTH"), alpha = 0.7)+
+  tm_facets(nrow = 1, sync = T)
 
 ```
 
@@ -327,12 +333,18 @@ map_school <- rbind(map, map2) %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_school, by = c("GEOID" = "stcotr_code"))
 
-map_school %>%
-  filter(str_sub(GEOID,1,5) %in% target_co)%>%
-  ggplot(aes(fill = pct_pass))+
-  scale_fill_distiller(type = "div", palette = "PiYG")+
-  geom_sf()+
-  coord_sf(crs = 26911)
+
+tm_shape(map_school%>%
+  filter(str_sub(GEOID,1,5) %in% target_co) %>%
+    mutate(lab = scales::percent(pct_pass)))+
+  tm_polygons(col = "pct_pass", id = "lab", alpha = 0.7)
+
+# map_school %>%
+#   filter(str_sub(GEOID,1,5) %in% target_co)%>%
+#   ggplot(aes(fill = pct_pass))+
+#   scale_fill_distiller(type = "div", palette = "PiYG")+
+#   geom_sf()+
+#   coord_sf(crs = 26911) 
 
 
 ```
