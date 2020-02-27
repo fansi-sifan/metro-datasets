@@ -1,15 +1,17 @@
 ---
-title: "Lousville"
+title: "Metro market assessment"
 author: "Sifan"
-date: "2/26/2020"
+date: "`r Sys.Date()`"
 output: 
   html_document:
     code_folding: hide
 
+# runtime:shiny
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, include = T)
+# rmarkdown::render("Report-template.Rmd",output_file = paste0(target_cbsa,"_",Sys.Date(),'.html'))
 ```
 
 ```{r func, include=FALSE, echo=F}
@@ -40,27 +42,37 @@ quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
 
 # change target metro and peers here
 target_cbsa <- "31140"
+# target_cbsa <- "47900"
+# peer_cbsa <- c("35620", "16980", "31080", "47900")
+peer_cbsa <- c("13820","16740","17140","18140","24660","26900","28140","34980", "36540", "32820")
+
+
+# get counties
 target_co <- (county_cbsa_st %>%
   filter(cbsa_code == target_cbsa) )[["stco_code"]]
 
-peer_cbsa <- c("13820","16740","17140","18140","24660","26900","28140","34980", "36540", "32820")
 peer_co <- (county_cbsa_st %>%
   filter(cbsa_code %in% peer_cbsa) )[["stco_code"]]
 
+# filter datasets
 cbsa_output <- cbsa_all %>%
   filter(cbsa_code %in% c(target_cbsa, peer_cbsa)) %>%
   left_join(county_cbsa_st[c("cbsa_code", "cbsa_emp")], by = "cbsa_code") %>%
   unique()
+
+# make it a shiny app!
+# selectInput("target_cbsa", "", )
+
 ```
 
 
 ## Dynamism
 
 
-### Shift share (job change by industry above/below national average)--for LOU
+### Shift share (job change by industry above/below national average)--for metro
 It's easier to get from EMSI directly: Industry - Inustry Table - Shiftshare. You can toggle between different industry levels
 
-### Tradable share of employment--LOU and peers
+### Tradable share of employment--metro and peers
 
 ```{r traded}
 
@@ -82,7 +94,7 @@ emp %>%
 
 ```
 
-### Change in share of employment in Advanced Industries--LOU and peers
+### Change in share of employment in Advanced Industries--metro and peers
 
 
 ```{r ai}
@@ -109,7 +121,7 @@ pct_ai(emp06)%>%
 ```
 
 
-### R&D per 1,000 workers--LOU and peers
+### R&D per 1,000 workers--metro and peers
 Annual average R&D expenditure at higher education institutions per 1000 workers, 2012 - 2016
 (plots can be generated for other tables as well, if needed)
 ```{r RD}
@@ -132,16 +144,15 @@ load("univ_rd_detail/univ_rd_18.rda")
 
 univ_rd_18 %>%
   filter(stco_code %in% target_co) %>%
-  filter(univ_name == "University of Louisville")%>%
   select(year, univ_name, field_broad, field_detail, total_rd)%>%
   unique()%>%
   filter(field_detail == "Total") %>%
   pivot_wider(names_from = "year", values_from = "total_rd") %>%
-  knitr::kable()
+  DT::datatable()
 
 ```
 
-### Startups launched at universities--LOU and peers
+### Startups launched at universities--metro and peers
 Number of start-ups launched at universities, 2006 - 2017
 ```{r startups}
 cbsa_output %>%
@@ -150,7 +161,7 @@ cbsa_output %>%
 
 ```
 
-### INC 5000 high growth companies--LOU and peers
+### INC 5000 high growth companies--metro and peers
 Number of Inc.5000 high growth companies per 1M workers, 2011 - 2017
 
 ```{r inc5000}
@@ -160,7 +171,7 @@ cbsa_output %>%
 ```
 
 
-### Startups per 1,000 workers--LOU and peers
+### Startups per 1,000 workers--metro and peers
 ```{r startup}
 load("../crunchbase/cb-result/data/cb_cbsa_index.rda")
 
@@ -175,7 +186,7 @@ index %>%
 ```
 
 ## Skills
-### % of population 25+ with AA/BA--LOU and peers
+### % of population 25+ with AA/BA--metro and peers
 ```{r edu}
 cbsa_output %>%
   select(cbsa_code, cbsa_name, pct_edu_associate, pct_edu_baplus)%>%
@@ -184,7 +195,7 @@ cbsa_output %>%
   
 ```
 
-### Employment-to-population ratio 18-64--LOU and peers
+### Employment-to-population ratio 18-64--metro and peers
 
 ```{r epratio}
 
@@ -196,7 +207,7 @@ cbsa_output %>%
 ```
 
 
-### Prevalence of health problems--LOU and peers
+### Prevalence of health problems--metro and peers
 ```{r health}
 library(RSocrata)
 token <- Sys.getenv("RSocrata_token")
@@ -218,11 +229,11 @@ cityhealth %>%
   knitr::kable()
 ```
 
-### Struggling families? (I think this may not be available?)--LOU and peers
+### Struggling families? (I think this may not be available?)--metro and peers
 
 not available
 
-### Share of workers who are low-wage--LOU and peers
+### Share of workers who are low-wage--metro and peers
 
 ```{r low-wage}
 cbsa_low_wage_worker %>%
@@ -235,24 +246,35 @@ cbsa_low_wage_worker %>%
 ```
 
 
-### Share of population out-of-work--LOU and peers
-only available for core counties
+### Share of population out-of-work--metro and peers
+Note: metro aggregates only include core counties, as listed
 ```{r oow}
+
+names <- co_oow %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa)) %>%
+  select(cbsa_code, cbsa_name, pl_name) %>%
+  unique()%>%
+  group_by(cbsa_code) %>%
+  summarise(cbsa_name = last(cbsa_name),
+            core_counties = paste0(pl_name, collapse = ", "))
+
 
 co_oow %>%
   filter(cbsa_code %in% c(target_cbsa, peer_cbsa))%>%
   filter(population %in% c("Out-of-work population","Universe population")) %>%
   select(stco_code, age, cbsa_code, cbsa_name, pl_name, population, total) %>%
+  group_by(cbsa_code, population, age) %>%
+  summarise(total = sum(total))%>%
   pivot_wider(names_from = "population", values_from = "total") %>%
   mutate(pct_oow = `Out-of-work population`/`Universe population`) %>%
-  select(-contains("name"), -contains("population")) %>%
+  select(-contains("population")) %>%
   pivot_wider(names_from = "age", values_from = "pct_oow")%>%
-  left_join(county_cbsa_st[c("stco_code", "stco_name", "cbsa_name")], by = "stco_code")%>%
+  left_join(names, by = "cbsa_code")%>%
   knitr::kable()
 ```
 
 
-### Digital skills demand, 2002/2016--LOU
+### Digital skills demand, 2002/2016--metro
 
 
 ```{r digital, echo=FALSE}
@@ -263,25 +285,33 @@ cbsa_output %>%
 ```
 
 ## Access
-### Job density change by block group?--LOU
+### Job density change by block group?--metro
 we don't have block group data in the warehouse yet - can ask Joanne
 
-### Geographic of prosperity trend (UVA data)--LOU + MW/Southeastern trendlines
+### Geographic of prosperity trend (UVA data)--metro + MW/Southeastern trendlines
 
 http://statchatva.org/changing-shape-of-american-cities/
 
-### Prevalence of health problems by census tract?--LOU
+### Prevalence of health problems by census tract?--metro
 
 
 ```{r map, include=FALSE}
 library(sf)
-
 library(tmap)
 tmap_mode("view")
 
+state <- county_cbsa_st%>%
+  filter(cbsa_code == target_cbsa)%>%
+  select(st_code)%>%
+  unique()%>%
+  pull(st_code)
 
-map <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = c("KY"), geometry = T)
-map2 <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = c("IN"), geometry = T)
+# test <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = "21", geometry = T)
+# test2 <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = "18", geometry = T)
+# map2 <- rbind_list(list(test, test2))
+map <- purrr::map(state, ~ tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = .x, geometry = T))
+
+map3 <- rbind(map[[1]], map[[2]])
 
 ```
 
@@ -296,18 +326,19 @@ tract_health <- cityhealth %>%
   select(year, stcotr_code, measureid, data_value) %>%
   pivot_wider(names_from = "measureid", values_from = "data_value")
 
-map_health <- rbind(map, map2) %>%
+map_health <- map3 %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_health, by = c("GEOID" = "stcotr_code"))
 
 tm_shape(map_health %>%
-  filter(str_sub(GEOID,1,5) %in% target_co))+
+  filter(stco_code %in% target_co) %>%
+  filter(!is.na(year)))+
   tm_polygons(c("MHLTH", "PHLTH"), alpha = 0.7)+
   tm_facets(nrow = 1, sync = T)
 
 ```
 
-### Number of jobs reachable by travel time (including public transit)--LOU
+### Number of jobs reachable by travel time (including public transit)--metro
 Number of jobs reachable by 30 minutes auto and 30 minutes transit
 ```{r access}
 cbsa_output %>% 
@@ -329,7 +360,7 @@ tract_school <- final %>%
   group_by(stcotr_code) %>%
   summarise(pct_pass = sum(ALL_TOTAL_passed_H)/sum(ALL_TOTAL_total))
 
-map_school <- rbind(map, map2) %>%
+map_school <- map3 %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_school, by = c("GEOID" = "stcotr_code"))
 
@@ -348,4 +379,5 @@ tm_shape(map_school%>%
 
 
 ```
+
 
