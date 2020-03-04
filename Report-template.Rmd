@@ -41,11 +41,13 @@ quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
 ```{r target, include=T}
 
 # change target metro and peers here
-target_cbsa <- "31140"
-# target_cbsa <- "47900"
+# target_cbsa <- "19740"
+# target_cbsa <- "31140"
+target_cbsa <- "24340"
 # peer_cbsa <- c("35620", "16980", "31080", "47900")
-peer_cbsa <- c("13820","16740","17140","18140","24660","26900","28140","34980", "36540", "32820")
-
+peer_cbsa <- ""
+# peer_cbsa <- c("13820","16740","17140","18140","24660","26900","28140","34980", "36540", "32820")
+# peer_cbsa <- c("12420", "33460", "38060", "38900", "41740", "41620", "42660")
 
 # get counties
 target_co <- (county_cbsa_st %>%
@@ -81,7 +83,7 @@ emp <- read_csv("../../_metro_data_warehouse/data_raw/CBP EMP/efsy_cbp_2016.csv"
 emp %>%
   mutate(stco_code = paste0(str_pad(fipstate, 2, "left", "0"), str_pad(fipscty,3,"left",0))) %>%
   filter(stco_code %in% c(target_co, peer_co)) %>%
-  left_join(metro.data::naics6_traded, by = c("naics" = "code_naics6_2017")) %>%
+  left_join(metro.data::naics_xwalk, by = c("naics" = "code_naics6_all")) %>%
   filter(!is.na(traded.naics6)) %>%
   left_join(county_cbsa_st[c("stco_code", "cbsa_code", "cbsa_name")]) %>%
   group_by(cbsa_code, cbsa_name,traded.naics6 ) %>%
@@ -100,22 +102,25 @@ emp %>%
 ```{r ai}
 emp06 <- read_csv("../../_metro_data_warehouse/data_raw/CBP EMP/efsy_cbp_2006.csv")
 
-pct_ai <- function(df)df%>%
+pct_ai <- function(df)df %>%
   mutate(stco_code = paste0(str_pad(fipstate, 2, "left", "0"), str_pad(fipscty,3,"left",0))) %>%
   filter(stco_code %in% c(target_co, peer_co)) %>%
   mutate(naics = gsub("\\/", "", naics))%>%
   filter(str_length(naics)== 4)%>%
-  left_join(metro.data::ai, by = c("naics" = "code_naics4_2017")) %>%
+  left_join(metro.data::naics4_ai, by = c("naics" = "naics4_code")) %>%
+  # mutate(naics4_aitype = ifelse(is.na(naics4_aitype), NA, 1))%>%
   left_join(county_cbsa_st[c("stco_code", "cbsa_code", "cbsa_name")]) %>%
-  group_by(cbsa_code, cbsa_name,is.ai) %>%
+  group_by(cbsa_code, cbsa_name,naics4_aitype) %>%
   summarise(emp = sum(emp)) %>%
-  pivot_wider(names_from = "is.ai", values_from = "emp") %>%
-  mutate(pct_ai = `1`/(`1`+`NA`)) %>%
+  # mutate(pct = emp/sum(emp))
+  pivot_wider(names_from = "naics4_aitype", values_from = "emp") %>%
+  mutate(pct_ai = (aiEnergy + aiMfg + aiServ)/(aiEnergy + aiMfg + aiServ +`NA`)) %>%
   select(cbsa_code, cbsa_name, pct_ai)
 
 pct_ai(emp06)%>%
   rename(pct_ai_06 = pct_ai)%>%
   left_join(pct_ai(emp), by = c("cbsa_code", "cbsa_name")) %>%
+  rename(pct_ai_16 = pct_ai) %>%
   knitr::kable()
 
 ```
@@ -306,12 +311,14 @@ state <- county_cbsa_st%>%
   unique()%>%
   pull(st_code)
 
-# test <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = "21", geometry = T)
+# map <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = state, geometry = T)
 # test2 <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = "18", geometry = T)
 # map2 <- rbind_list(list(test, test2))
-map <- purrr::map(state, ~ tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = .x, geometry = T))
 
-map3 <- rbind(map[[1]], map[[2]])
+map <- purrr::map(state, ~ tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = .x, geometry = T))
+# 
+# length(map)
+map <- rbind(map[[1]], map[[2]])
 
 ```
 
@@ -326,7 +333,7 @@ tract_health <- cityhealth %>%
   select(year, stcotr_code, measureid, data_value) %>%
   pivot_wider(names_from = "measureid", values_from = "data_value")
 
-map_health <- map3 %>%
+map_health <- map %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_health, by = c("GEOID" = "stcotr_code"))
 
@@ -360,7 +367,7 @@ tract_school <- final %>%
   group_by(stcotr_code) %>%
   summarise(pct_pass = sum(ALL_TOTAL_passed_H)/sum(ALL_TOTAL_total))
 
-map_school <- map3 %>%
+map_school <- map %>%
   mutate(stco_code = str_sub(GEOID,1,5)) %>%
   left_join(tract_school, by = c("GEOID" = "stcotr_code"))
 
