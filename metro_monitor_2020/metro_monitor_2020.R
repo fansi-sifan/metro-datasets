@@ -7,7 +7,7 @@ source("R/save_output.R")
 # SET UP ====================================
 source_dir <- "V:/Performance/Project files/Metro Monitor/2020v/Output/Flat Files/"
 folder_name <- "metro_monitor_2020"
-file_name <- "cbsa_metromonitor"
+file_name <- "cbsa_metromonitor_2020"
 
 # metadata
 dt_title <- "Metro monitor, 2008 - 2018"
@@ -66,8 +66,9 @@ df <- df %>%
 save_datasets(df, folder = folder_name, file = file_name)
 
 # meta file
-save_meta(df,
-          labels = df_labels, folder = folder_name, file = file_name,
-          title = dt_title, contact = dt_contact, source = dt_src, note = dt_notes
-)
+# save_meta(df,
+#           labels = df_labels, folder = folder_name, file = file_name,
+#           title = dt_title, contact = dt_contact, source = dt_src, note = dt_notes
+# )
 
+rmarkdown::render("R/codebook_template.Rmd", output_dir = folder_name, output_file = "README")
