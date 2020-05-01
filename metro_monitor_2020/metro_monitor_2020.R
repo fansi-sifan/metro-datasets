@@ -59,6 +59,8 @@ df_labels <- create_labels(df)
 
 # SAVE OUTPUT
 df <- df %>%
+  ungroup()%>%
+  mutate(cbsa_code = as.character(cbsa_code))%>%
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
