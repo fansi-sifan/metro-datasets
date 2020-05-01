@@ -5,6 +5,7 @@ library(tidyverse)
 key <- Sys.getenv("CENSUS_API_KEY")
 
 traded_code <- c("31-33", "51", "52", "54")
+retail_resto <- c("44-45", "72")
 race_code <- c("96", "30", "40")
 
 # func---------------------
@@ -35,8 +36,8 @@ get_sbo <- function(code, area) {
 
 }
 
-# get_sbo("13820", "metro")
-# get_sbo("01073", "county")
+get_sbo("13820", "metro")
+get_sbo("01073", "county")
 
 summarise_sbo <- function(var, df, area) {
   var <- rlang::enquo(var)
@@ -74,3 +75,5 @@ get_sbo_m <- function(code, area){
 
 # tmp <- get_sbo_m(c("13820", "32820"), "cbsa")
 # tmp <- get_sbo_m(c("01073", "28041"), "stco") 
+
+
