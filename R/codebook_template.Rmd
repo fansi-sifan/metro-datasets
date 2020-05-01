@@ -24,7 +24,7 @@ Last Updated: `r date()`
 ## Variables
 
 ```{r variables, echo=FALSE}
-df_labels
+df_labels %>% knitr::kable()
 ```
 
 ## Summary Statistics

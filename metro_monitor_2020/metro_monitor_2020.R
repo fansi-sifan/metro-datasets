@@ -13,8 +13,11 @@ file_name <- "cbsa_metromonitor_2020"
 dt_title <- "Metro monitor, 2008 - 2018"
 dt_src <- "https://www.brookings.edu/interactives/metro-monitor-2020"
 dt_contact <- "Sarah Crump"
-dt_notes <- "This year, for the first time, Metro Monitor measured and ranked the performance of 192 metropolitan areas on each indicator within its population size class: 53 very large metro areas (populations of at least 1 million in 2018); 56 large metro areas (populations of 500,000 to 999,999 in 2018); and 83 midsized metro areas (populations of 250,000 to 499,999 in 2018).
-more details here: https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf"
+dt_notes <- "This year, for the first time, Metro Monitor measured and ranked the performance of 192 metropolitan areas on each indicator within its population size class: 
+53 very large metro areas (populations of at least 1 million in 2018); 
+56 large metro areas (populations of 500,000 to 999,999 in 2018); 
+and 83 midsized metro areas (populations of 250,000 to 499,999 in 2018).
+For more details, please check the methodology document: https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf"
 
 
 # TRANSFORM ============================================
@@ -52,17 +55,25 @@ save(df_list, file = "metro_monitor_2020/metro_monitor_2020_allyear.rda")
 
 # FUNCTION load
 
-df <- cbsa_value %>% apply_labels(
+df_labels <- cbsa_value %>% 
+  expss::apply_labels(
+  `cbsa_code` = "United States = 99999",
+  largest  = "populations of at least 1 million in 2018",
+  large = "populations of 500,000 to 999,999 in 2018",
+  midsized = "populations of 250,000 to 499,999 in 2018",
   `Relative Income Poverty Rate` = "share of people earning less than half of the local median wage"
-)
-df_labels <- create_labels(df)
+) %>% 
+  create_labels()
 
 # SAVE OUTPUT
 df <- df %>%
-  ungroup()%>%
+  ungroup() %>% 
+  filter(!is.na(cbsa_name)) %>%
+  filter(year != 2007) %>% 
   mutate(cbsa_code = as.character(cbsa_code))%>%
-  filter(!is.na(cbsa_name)) %>% 
-  select(cbsa_code, everything()) # make sure unique identifier is the left most column
+  select(cbsa_code, cbsa_name, everything()) %>% 
+  mutate_at(vars(year:midsized), as.factor)
+   # make sure unique identifier is the left most column
 
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
