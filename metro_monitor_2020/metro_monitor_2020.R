@@ -53,7 +53,7 @@ save(df_list, file = "metro_monitor_2020/metro_monitor_2020_allyear.rda")
 # FUNCTION load
 
 df <- cbsa_value %>% apply_labels(
-  relative_income_poverty = "share of people earning less than half of the local median wage"
+  `Relative Income Poverty Rate` = "share of people earning less than half of the local median wage"
 )
 df_labels <- create_labels(df)
 
@@ -62,6 +62,7 @@ df <- df %>%
   ungroup()%>%
   mutate(cbsa_code = as.character(cbsa_code))%>%
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
+
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
 

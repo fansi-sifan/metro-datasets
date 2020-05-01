@@ -24,11 +24,11 @@ Last Updated: `r date()`
 ## Variables
 
 ```{r variables, echo=FALSE}
-knitr::kable(df_labels)
+df_labels
 ```
 
 ## Summary Statistics
-```{r summary, render = knitr::normal_print}
+```{r summary, echo=F}
 skimr::skim(df)
 
 ```
