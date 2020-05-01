@@ -1,79 +1,82 @@
+Descriptions
+------------
 
-Title:  Metro monitor, 2008 - 2018  
+Title: Metro monitor, 2008 - 2018 Source:
+<a href="https://www.brookings.edu/interactives/metro-monitor-2020" class="uri">https://www.brookings.edu/interactives/metro-monitor-2020</a>
+Note: This year, for the first time, Metro Monitor measured and ranked
+the performance of 192 metropolitan areas on each indicator within its
+population size class: 53 very large metro areas (populations of at
+least 1 million in 2018); 56 large metro areas (populations of 500,000
+to 999,999 in 2018); and 83 midsized metro areas (populations of 250,000
+to 499,999 in 2018). more details here:
+<a href="https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf" class="uri">https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf</a>
+Contact: Sarah Crump Last Updated: Fri May 01 17:08:01 2020
 
-Contact:  Sarah Crump  
+Variables
+---------
 
-Source:  https://www.brookings.edu/interactives/metro-monitor-2020  
+| label | names                             |
+|:------|:----------------------------------|
+|       | cbsa\_code                        |
+|       | year                              |
+|       | cbsa\_name                        |
+|       | top100                            |
+|       | keep                              |
+|       | largest                           |
+|       | large                             |
+|       | midsized                          |
+|       | Employment at firms 0-5 years old |
+|       | Jobs                              |
+|       | Real GDP                          |
+|       | Average Annual Wage               |
+|       | Output per Job                    |
+|       | Output per Person                 |
+|       | Median Earnings                   |
+|       | Employment Rate                   |
+|       | Relative Income Poverty Rate      |
 
-Note:  This year, for the first time, Metro Monitor measured and ranked the performance of 192 metropolitan areas on each indicator within its population size class: 53 very large metro areas (populations of at least 1 million in 2018); 56 large metro areas (populations of 500,000 to 999,999 in 2018); and 83 midsized metro areas (populations of 250,000 to 499,999 in 2018).
-more details here: https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf  
+Summary Statistics
+------------------
 
-Last updated:  Sat May 02 07:08:15 2020 
-
-
-
-|label |names                             |
-|:-----|:---------------------------------|
-|      |year                              |
-|      |cbsa_code                         |
-|      |cbsa_name                         |
-|      |top100                            |
-|      |keep                              |
-|      |largest                           |
-|      |large                             |
-|      |midsized                          |
-|      |Employment at firms 0-5 years old |
-|      |Jobs                              |
-|      |Real GDP                          |
-|      |Average Annual Wage               |
-|      |Output per Job                    |
-|      |Output per Person                 |
-|      |Median Earnings                   |
-|      |Employment Rate                   |
-|      |Relative Income Poverty Rate      |
-
-
-```r
-Skim summary statistics
- n obs: 2234 
- n variables: 17 
-
--- Variable type:character -----------------------------------------------------
-  variable missing complete    n min max empty n_unique
- cbsa_code       0     2234 2234   1   5     0      201
- cbsa_name      44     2190 2234  13  76     0      197
-
--- Variable type:numeric -------------------------------------------------------
-                          variable missing complete    n          mean           sd       p0          p25
-               Average Annual Wage      45     2189 2234   48943.52      9388.95    32355.9   43483.63   
- Employment at firms 0-5 years old      99     2135 2234  169770.13    993978.03     5809     13381      
-                   Employment Rate      89     2145 2234       0.7          0.046       0.55      0.67   
-                              Jobs      67     2167 2234 2336992.61         1.4e+07 67995.22 148237.38   
-                              keep      44     2190 2234       1            0           1         1      
-                             large     122     2112 2234       0.29         0.45        0         0      
-                           largest     122     2112 2234       0.28         0.45        0         0      
-                   Median Earnings      23     2211 2234   31895.89      4895.25    17533.77  28889.55   
-                          midsized     122     2112 2234       0.43         0.5         0         0      
-                    Output per Job      45     2189 2234  125016.54     23736.05    75906.88 110432.13   
-                 Output per Person      45     2189 2234   53344.98     14302.36    22478.38  45118.31   
-                          Real GDP      66     2168 2234       3.2e+11      1.9e+12     0         1.7e+10
-      Relative Income Poverty Rate      67     2167 2234       0.27         0.023       0.19      0.25   
-                            top100      66     2168 2234       0.97         0.16        0         1      
-                              year       0     2234 2234    2013            3.16     2007      2010      
-          p50          p75         p100     hist
-  47139.48     52027       133302.34    <U+2585><U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-  22757        52952.5          1.3e+07 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-      0.7          0.73         0.85    <U+2581><U+2582><U+2583><U+2587><U+2587><U+2585><U+2581><U+2581>
- 238560.9     574442.04         1.5e+08 <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-      1            1            1       <U+2581><U+2581><U+2581><U+2587><U+2581><U+2581><U+2581><U+2581>
-      0            1            1       <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2583>
-      0            1            1       <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2583>
-  31470.4      34033.66     58354.38    <U+2581><U+2582><U+2587><U+2585><U+2582><U+2581><U+2581><U+2581>
-      0            1            1       <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2586>
- 121004.32    133935.41     3e+05       <U+2582><U+2587><U+2583><U+2581><U+2581><U+2581><U+2581><U+2581>
-  51370.86     59970.35    166439.27    <U+2582><U+2587><U+2583><U+2581><U+2581><U+2581><U+2581><U+2581>
-      2.8e+10      7.6e+10  2e+13       <U+2587><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581>
-      0.27         0.28         0.37    <U+2581><U+2581><U+2585><U+2587><U+2583><U+2581><U+2581><U+2581>
-      1            1            1       <U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2587>
-   2013         2016         2018       <U+2585><U+2583><U+2587><U+2583><U+2583><U+2587><U+2583><U+2587>
+``` r
+skimr::skim(df)
 ```
+
+|                                                  |      |
+|:-------------------------------------------------|:-----|
+| Name                                             | df   |
+| Number of rows                                   | 2234 |
+| Number of columns                                | 17   |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |      |
+| Column type frequency:                           |      |
+| character                                        | 2    |
+| numeric                                          | 15   |
+| \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ |      |
+| Group variables                                  | None |
+
+**Variable type: character**
+
+| skim\_variable |  n\_missing|  complete\_rate|  min|  max|  empty|  n\_unique|  whitespace|
+|:---------------|-----------:|---------------:|----:|----:|------:|----------:|-----------:|
+| cbsa\_code     |           0|            1.00|    1|    5|      0|        201|           0|
+| cbsa\_name     |          44|            0.98|   13|   76|      0|        197|           0|
+
+**Variable type: numeric**
+
+| skim\_variable                    |  n\_missing|  complete\_rate|          mean|            sd|        p0|           p25|           p50|           p75|          p100| hist  |
+|:----------------------------------|-----------:|---------------:|-------------:|-------------:|---------:|-------------:|-------------:|-------------:|-------------:|:------|
+| year                              |           0|            1.00|  2.013000e+03|  3.160000e+00|   2007.00|  2.010000e+03|  2.013000e+03|  2.016000e+03|  2.018000e+03| ▆▅▅▅▇ |
+| top100                            |          66|            0.97|  9.700000e-01|  1.600000e-01|      0.00|  1.000000e+00|  1.000000e+00|  1.000000e+00|  1.000000e+00| ▁▁▁▁▇ |
+| keep                              |          44|            0.98|  1.000000e+00|  0.000000e+00|      1.00|  1.000000e+00|  1.000000e+00|  1.000000e+00|  1.000000e+00| ▁▁▇▁▁ |
+| largest                           |         122|            0.95|  2.800000e-01|  4.500000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▃ |
+| large                             |         122|            0.95|  2.900000e-01|  4.500000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▃ |
+| midsized                          |         122|            0.95|  4.300000e-01|  5.000000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▆ |
+| Employment at firms 0-5 years old |          99|            0.96|  1.697701e+05|  9.939780e+05|   5809.00|  1.338100e+04|  2.275700e+04|  5.295250e+04|  1.257763e+07| ▇▁▁▁▁ |
+| Jobs                              |          67|            0.97|  2.336993e+06|  1.375028e+07|  67995.22|  1.482374e+05|  2.385609e+05|  5.744420e+05|  1.512215e+08| ▇▁▁▁▁ |
+| Real GDP                          |          66|            0.97|  3.217697e+11|  1.867652e+12|      0.00|  1.679221e+10|  2.767215e+10|  7.583337e+10|  2.010000e+13| ▇▁▁▁▁ |
+| Average Annual Wage               |          45|            0.98|  4.894352e+04|  9.388950e+03|  32355.90|  4.348363e+04|  4.713948e+04|  5.202700e+04|  1.333023e+05| ▇▂▁▁▁ |
+| Output per Job                    |          45|            0.98|  1.250165e+05|  2.373605e+04|  75906.88|  1.104321e+05|  1.210043e+05|  1.339354e+05|  2.983564e+05| ▇▇▁▁▁ |
+| Output per Person                 |          45|            0.98|  5.334498e+04|  1.430236e+04|  22478.38|  4.511831e+04|  5.137086e+04|  5.997035e+04|  1.664393e+05| ▇▇▁▁▁ |
+| Median Earnings                   |          23|            0.99|  3.189589e+04|  4.895250e+03|  17533.77|  2.888955e+04|  3.147040e+04|  3.403366e+04|  5.835438e+04| ▁▇▃▁▁ |
+| Employment Rate                   |          89|            0.96|  7.000000e-01|  5.000000e-02|      0.55|  6.700000e-01|  7.000000e-01|  7.300000e-01|  8.500000e-01| ▁▃▇▅▁ |
+| Relative Income Poverty Rate      |          67|            0.97|  2.700000e-01|  2.000000e-02|      0.19|  2.500000e-01|  2.700000e-01|  2.800000e-01|  3.700000e-01| ▁▆▇▁▁ |
