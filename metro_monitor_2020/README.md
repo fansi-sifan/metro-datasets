@@ -8,7 +8,7 @@ Source:  https://www.brookings.edu/interactives/metro-monitor-2020
 Note:  This year, for the first time, Metro Monitor measured and ranked the performance of 192 metropolitan areas on each indicator within its population size class: 53 very large metro areas (populations of at least 1 million in 2018); 56 large metro areas (populations of 500,000 to 999,999 in 2018); and 83 midsized metro areas (populations of 250,000 to 499,999 in 2018).
 more details here: https://www.brookings.edu/wp-content/uploads/2020/03/2020-Metro-Monitor-Methods-and-Data.pdf  
 
-Last updated:  Sat May 02 06:52:59 2020 
+Last updated:  Sat May 02 07:08:15 2020 
 
 
 
@@ -33,6 +33,7 @@ Last updated:  Sat May 02 06:52:59 2020
 |      |Relative Income Poverty Rate      |
 
 
+```r
 Skim summary statistics
  n obs: 2234 
  n variables: 17 
@@ -75,3 +76,4 @@ Skim summary statistics
       0.27         0.28         0.37    <U+2581><U+2581><U+2585><U+2587><U+2583><U+2581><U+2581><U+2581>
       1            1            1       <U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2581><U+2587>
    2013         2016         2018       <U+2585><U+2583><U+2587><U+2583><U+2583><U+2587><U+2583><U+2587>
+```
