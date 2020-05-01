@@ -11,9 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Descriptions
 Title: `r dt_title`
+
 Source: `r dt_src`
+
 Note: `r dt_notes`
+
 Contact: `r dt_contact`
+
 Last Updated: `r date()`
 
 
@@ -24,7 +28,7 @@ knitr::kable(df_labels)
 ```
 
 ## Summary Statistics
-```{r summary}
+```{r summary, render = knitr::normal_print}
 skimr::skim(df)
 
 ```
