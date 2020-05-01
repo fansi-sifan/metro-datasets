@@ -61,6 +61,7 @@ df_labels <- create_labels(df)
 df <- df %>%
   ungroup()%>%
   mutate(cbsa_code = as.character(cbsa_code))%>%
+  filter(is.na(cbsa_code)) %>% 
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
 # datasets

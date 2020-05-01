@@ -16,7 +16,7 @@ to 499,999 in 2018). more details here:
 
 Contact: Sarah Crump
 
-Last Updated: Fri May 01 17:14:50 2020
+Last Updated: Fri May 01 17:17:28 2020
 
 Variables
 ---------
@@ -46,7 +46,7 @@ Summary Statistics
 |                                                  |      |
 |:-------------------------------------------------|:-----|
 | Name                                             | df   |
-| Number of rows                                   | 2234 |
+| Number of rows                                   | 0    |
 | Number of columns                                | 17   |
 | \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_   |      |
 | Column type frequency:                           |      |
@@ -57,27 +57,27 @@ Summary Statistics
 
 **Variable type: character**
 
-| skim\_variable |  n\_missing|  complete\_rate|  min|  max|  empty|  n\_unique|  whitespace|
-|:---------------|-----------:|---------------:|----:|----:|------:|----------:|-----------:|
-| cbsa\_code     |           0|            1.00|    1|    5|      0|        201|           0|
-| cbsa\_name     |          44|            0.98|   13|   76|      0|        197|           0|
+| skim\_variable |  n\_missing|  complete\_rate| min | max |  empty|  n\_unique|  whitespace|
+|:---------------|-----------:|---------------:|:----|:----|------:|----------:|-----------:|
+| cbsa\_code     |           0|             NaN| NA  | NA  |      0|          0|           0|
+| cbsa\_name     |           0|             NaN| NA  | NA  |      0|          0|           0|
 
 **Variable type: numeric**
 
-| skim\_variable                    |  n\_missing|  complete\_rate|          mean|            sd|        p0|           p25|           p50|           p75|          p100| hist  |
-|:----------------------------------|-----------:|---------------:|-------------:|-------------:|---------:|-------------:|-------------:|-------------:|-------------:|:------|
-| year                              |           0|            1.00|  2.013000e+03|  3.160000e+00|   2007.00|  2.010000e+03|  2.013000e+03|  2.016000e+03|  2.018000e+03| ▆▅▅▅▇ |
-| top100                            |          66|            0.97|  9.700000e-01|  1.600000e-01|      0.00|  1.000000e+00|  1.000000e+00|  1.000000e+00|  1.000000e+00| ▁▁▁▁▇ |
-| keep                              |          44|            0.98|  1.000000e+00|  0.000000e+00|      1.00|  1.000000e+00|  1.000000e+00|  1.000000e+00|  1.000000e+00| ▁▁▇▁▁ |
-| largest                           |         122|            0.95|  2.800000e-01|  4.500000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▃ |
-| large                             |         122|            0.95|  2.900000e-01|  4.500000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▃ |
-| midsized                          |         122|            0.95|  4.300000e-01|  5.000000e-01|      0.00|  0.000000e+00|  0.000000e+00|  1.000000e+00|  1.000000e+00| ▇▁▁▁▆ |
-| Employment at firms 0-5 years old |          99|            0.96|  1.697701e+05|  9.939780e+05|   5809.00|  1.338100e+04|  2.275700e+04|  5.295250e+04|  1.257763e+07| ▇▁▁▁▁ |
-| Jobs                              |          67|            0.97|  2.336993e+06|  1.375028e+07|  67995.22|  1.482374e+05|  2.385609e+05|  5.744420e+05|  1.512215e+08| ▇▁▁▁▁ |
-| Real GDP                          |          66|            0.97|  3.217697e+11|  1.867652e+12|      0.00|  1.679221e+10|  2.767215e+10|  7.583337e+10|  2.010000e+13| ▇▁▁▁▁ |
-| Average Annual Wage               |          45|            0.98|  4.894352e+04|  9.388950e+03|  32355.90|  4.348363e+04|  4.713948e+04|  5.202700e+04|  1.333023e+05| ▇▂▁▁▁ |
-| Output per Job                    |          45|            0.98|  1.250165e+05|  2.373605e+04|  75906.88|  1.104321e+05|  1.210043e+05|  1.339354e+05|  2.983564e+05| ▇▇▁▁▁ |
-| Output per Person                 |          45|            0.98|  5.334498e+04|  1.430236e+04|  22478.38|  4.511831e+04|  5.137086e+04|  5.997035e+04|  1.664393e+05| ▇▇▁▁▁ |
-| Median Earnings                   |          23|            0.99|  3.189589e+04|  4.895250e+03|  17533.77|  2.888955e+04|  3.147040e+04|  3.403366e+04|  5.835438e+04| ▁▇▃▁▁ |
-| Employment Rate                   |          89|            0.96|  7.000000e-01|  5.000000e-02|      0.55|  6.700000e-01|  7.000000e-01|  7.300000e-01|  8.500000e-01| ▁▃▇▅▁ |
-| Relative Income Poverty Rate      |          67|            0.97|  2.700000e-01|  2.000000e-02|      0.19|  2.500000e-01|  2.700000e-01|  2.800000e-01|  3.700000e-01| ▁▆▇▁▁ |
+| skim\_variable                    |  n\_missing|  complete\_rate|  mean|   sd|   p0|  p25|  p50|  p75|  p100| hist |
+|:----------------------------------|-----------:|---------------:|-----:|----:|----:|----:|----:|----:|-----:|:-----|
+| year                              |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| top100                            |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| keep                              |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| largest                           |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| large                             |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| midsized                          |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Employment at firms 0-5 years old |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Jobs                              |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Real GDP                          |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Average Annual Wage               |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Output per Job                    |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Output per Person                 |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Median Earnings                   |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Employment Rate                   |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
+| Relative Income Poverty Rate      |           0|             NaN|   NaN|  NaN|   NA|   NA|   NA|   NA|    NA|      |
