@@ -61,15 +61,16 @@ df_labels <- create_labels(df)
 df <- df %>%
   ungroup()%>%
   mutate(cbsa_code = as.character(cbsa_code))%>%
+  filter(!is.na(cbsa_name)) %>% 
   select(cbsa_code, everything()) # make sure unique identifier is the left most column
 
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
 
 # meta file
-# save_meta(df,
+rmarkdown::render("R/codebook_template.Rmd", output_dir = folder_name, output_file = "README")
+
+#[depreciated] save_meta(df,
 #           labels = df_labels, folder = folder_name, file = file_name,
 #           title = dt_title, contact = dt_contact, source = dt_src, note = dt_notes
 # )
-
-rmarkdown::render("R/codebook_template.Rmd", output_dir = folder_name, output_file = "README")
