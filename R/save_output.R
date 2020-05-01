@@ -33,8 +33,16 @@ save_meta <- function(df, labels, folder, file, title, contact, source, note = "
 
     print(labels %>% knitr::kable())
     cat("\n\n")
+    
+    cat("```r")
+    cat("\n")
 
-    skimr::skim(df) %>% knitr::kable()
+    df %>%
+      skimr::skim()%>%
+      knitr::normal_print()
+    
+    cat("```")
+    
     sink()
   }
 }
