@@ -1,0 +1,35 @@
+---
+title: "codebook"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descriptions
+Title: `r dt_title`
+
+Source: `r dt_src`
+
+Note: `r dt_notes`
+
+Contact: `r dt_contact`
+
+Last Updated: `r date()`
+
+
+## Variables
+
+```{r variables, echo=FALSE}
+df_labels %>% knitr::kable()
+```
+
+## Summary Statistics
+```{r summary, echo=F}
+skimr::skim(df)
+
+```
+

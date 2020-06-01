@@ -18,26 +18,24 @@ df_notes <- ""
 df <- read_csv(source_dir)
 
 df <- df %>%
-  filter(round == "Total VC" ) %>%
-  filter(measure == "Capital Invested ($ M) per 1M Residents") %>%
+  select(-rank,-X1)%>%
   filter(period == "2015-17") %>%
   mutate(cbsa_code = as.character(cbsa13)) %>%
   janitor::clean_names()%>%
-  mutate(cbsa_name = as.character(msa),
-         rank = as.numeric(rank))%>%
-  select(cbsa_code, cbsa_name,
-         year_range = period,
-         vc_per_m_pop = value)%>%
+  mutate(cbsa_name = as.character(msa))%>%
+  unite(var,round, measure)%>%
+  spread(var, value)%>%
   apply_labels(year_range = "time period of investment",
-               vc_per_m_pop = "capital invested (in_millions) per 1M residents", 
                cbsa_code = "cbsa code", 
                cbsa_name = "cbsa name")
 
-df_labels <- create_labels(df)
 
 # SAVE OUTPUT
 df <- df %>%
-select(cbsa_code, everything()) # make sure unique identifier is the left most column
+select(cbsa_code, everything(),-msa, -country, -latitude, -longitude,-cbsa13) # make sure unique identifier is the left most column
+
+df_labels <- create_labels(df)
+
 # datasets
 save_datasets(df, folder = folder_name, file = file_name)
 
