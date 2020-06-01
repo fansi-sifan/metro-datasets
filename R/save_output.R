@@ -14,7 +14,7 @@ save_datasets <- function(..., folder, file) {
 
 
 save_meta <- function(df, labels, folder, file, title, contact, source, note = "", apd = F) {
-  skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
+  # skimr::skim_with(numeric = list(hist = NULL), integer = list(hist = NULL))
 
   for (type in c(".txt", ".md")) {
     sink(paste0(folder, "\\/README", type), append = apd)
@@ -31,10 +31,18 @@ save_meta <- function(df, labels, folder, file, title, contact, source, note = "
     }
 
 
-    print(labels %>% kable())
+    print(labels %>% knitr::kable())
     cat("\n\n")
+    
+    cat("```r")
+    cat("\n")
 
-    skimr::skim(df) %>% kable()
+    df %>%
+      skimr::skim()%>%
+      knitr::normal_print()
+    
+    cat("```")
+    
     sink()
   }
 }

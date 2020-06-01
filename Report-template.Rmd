@@ -1,0 +1,390 @@
+---
+title: "Metro market assessment"
+author: "Sifan"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    code_folding: hide
+
+# runtime:shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, include = T)
+# rmarkdown::render("Report-template.Rmd",output_file = paste0(target_cbsa,"_",Sys.Date(),'.html'))
+```
+
+```{r func, include=FALSE, echo=F}
+source("R/pip.R")
+
+quick_bar = function(df, var,HL = "0",wt = F, scale = 1, acc = 0.1){
+  df <- df %>% 
+    mutate_(value = var) %>%
+    mutate(value = value*scale) %>%
+    mutate(highlight = (cbsa_code == HL))
+  
+  if (wt) {df <- df %>% mutate(value = value/cbsa_emp)}
+  
+  metro.data::bbplot(df,aes(x = reorder(cbsa_name,value), y = value, 
+                label = scales::comma(value,acc), fill = highlight))+
+  geom_col()+
+  geom_text()+
+  scale_fill_brewer(palette = "Set3", guide = F)+
+  coord_flip()+
+  ggtitle(var)
+  
+  # return(df)
+}
+
+```
+
+```{r target, include=T}
+
+# change target metro and peers here
+# target_cbsa <- "19740"
+# target_cbsa <- "31140"
+target_cbsa <- "24340"
+# peer_cbsa <- c("35620", "16980", "31080", "47900")
+peer_cbsa <- ""
+# peer_cbsa <- c("13820","16740","17140","18140","24660","26900","28140","34980", "36540", "32820")
+# peer_cbsa <- c("12420", "33460", "38060", "38900", "41740", "41620", "42660")
+
+# get counties
+target_co <- (county_cbsa_st %>%
+  filter(cbsa_code == target_cbsa) )[["stco_code"]]
+
+peer_co <- (county_cbsa_st %>%
+  filter(cbsa_code %in% peer_cbsa) )[["stco_code"]]
+
+# filter datasets
+cbsa_output <- cbsa_all %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa)) %>%
+  left_join(county_cbsa_st[c("cbsa_code", "cbsa_emp")], by = "cbsa_code") %>%
+  unique()
+
+# make it a shiny app!
+# selectInput("target_cbsa", "", )
+
+```
+
+
+## Dynamism
+
+
+### Shift share (job change by industry above/below national average)--for metro
+It's easier to get from EMSI directly: Industry - Inustry Table - Shiftshare. You can toggle between different industry levels
+
+### Tradable share of employment--metro and peers
+
+```{r traded}
+
+emp <- read_csv("../../_metro_data_warehouse/data_raw/CBP EMP/efsy_cbp_2016.csv")
+
+emp %>%
+  mutate(stco_code = paste0(str_pad(fipstate, 2, "left", "0"), str_pad(fipscty,3,"left",0))) %>%
+  filter(stco_code %in% c(target_co, peer_co)) %>%
+  left_join(metro.data::naics_xwalk, by = c("naics" = "code_naics6_all")) %>%
+  filter(!is.na(traded.naics6)) %>%
+  left_join(county_cbsa_st[c("stco_code", "cbsa_code", "cbsa_name")]) %>%
+  group_by(cbsa_code, cbsa_name,traded.naics6 ) %>%
+  summarise(emp = sum(emp)) %>%
+  pivot_wider(names_from = "traded.naics6", values_from = "emp") %>%
+  mutate(pct_traded = Traded/(Traded+Local)) %>%
+  knitr::kable()
+  
+
+
+```
+
+### Change in share of employment in Advanced Industries--metro and peers
+
+
+```{r ai}
+emp06 <- read_csv("../../_metro_data_warehouse/data_raw/CBP EMP/efsy_cbp_2006.csv")
+
+pct_ai <- function(df)df %>%
+  mutate(stco_code = paste0(str_pad(fipstate, 2, "left", "0"), str_pad(fipscty,3,"left",0))) %>%
+  filter(stco_code %in% c(target_co, peer_co)) %>%
+  mutate(naics = gsub("\\/", "", naics))%>%
+  filter(str_length(naics)== 4)%>%
+  left_join(metro.data::naics4_ai, by = c("naics" = "naics4_code")) %>%
+  # mutate(naics4_aitype = ifelse(is.na(naics4_aitype), NA, 1))%>%
+  left_join(county_cbsa_st[c("stco_code", "cbsa_code", "cbsa_name")]) %>%
+  group_by(cbsa_code, cbsa_name,naics4_aitype) %>%
+  summarise(emp = sum(emp)) %>%
+  # mutate(pct = emp/sum(emp))
+  pivot_wider(names_from = "naics4_aitype", values_from = "emp") %>%
+  mutate(pct_ai = (aiEnergy + aiMfg + aiServ)/(aiEnergy + aiMfg + aiServ +`NA`)) %>%
+  select(cbsa_code, cbsa_name, pct_ai)
+
+pct_ai(emp06)%>%
+  rename(pct_ai_06 = pct_ai)%>%
+  left_join(pct_ai(emp), by = c("cbsa_code", "cbsa_name")) %>%
+  rename(pct_ai_16 = pct_ai) %>%
+  knitr::kable()
+
+```
+
+
+### R&D per 1,000 workers--metro and peers
+Annual average R&D expenditure at higher education institutions per 1000 workers, 2012 - 2016
+(plots can be generated for other tables as well, if needed)
+```{r RD}
+
+cbsa_output %>%
+  select(cbsa_code, cbsa_name, rd_total, cbsa_emp) %>%
+  mutate(rd_per_1000worker = rd_total/cbsa_emp * 1000/5) %>%
+  knitr::kable()
+
+quick_bar(cbsa_output, "rd_total",HL = target_cbsa, wt = T, scale = 200)
+
+```
+
+
+### Do we have rankings for UofL by research focus similar to UAB stats?
+
+Annual R&D expenditure at UofL, thousand US dollar
+```{r RD univ}
+load("univ_rd_detail/univ_rd_18.rda")
+
+univ_rd_18 %>%
+  filter(stco_code %in% target_co) %>%
+  select(year, univ_name, field_broad, field_detail, total_rd)%>%
+  unique()%>%
+  filter(field_detail == "Total") %>%
+  pivot_wider(names_from = "year", values_from = "total_rd") %>%
+  DT::datatable()
+
+```
+
+### Startups launched at universities--metro and peers
+Number of start-ups launched at universities, 2006 - 2017
+```{r startups}
+cbsa_output %>%
+  select(cbsa_code, cbsa_name, tot_st) %>%
+  knitr::kable()
+
+```
+
+### INC 5000 high growth companies--metro and peers
+Number of Inc.5000 high growth companies per 1M workers, 2011 - 2017
+
+```{r inc5000}
+cbsa_output %>%
+  select(cbsa_code, cbsa_name, i5hgc_density) %>%
+  knitr::kable()
+```
+
+
+### Startups per 1,000 workers--metro and peers
+```{r startup}
+load("../crunchbase/cb-result/data/cb_cbsa_index.rda")
+
+index %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa))%>%
+  select(cbsa_code, cbsa_name, msa_total, SCI = div) %>%
+  unique()%>%
+  left_join(cbsa_output[c("cbsa_code", "cbsa_emp")], by = "cbsa_code") %>%
+  mutate(startup_per_million = msa_total/cbsa_emp*1000000)%>%
+  knitr::kable()
+
+```
+
+## Skills
+### % of population 25+ with AA/BA--metro and peers
+```{r edu}
+cbsa_output %>%
+  select(cbsa_code, cbsa_name, pct_edu_associate, pct_edu_baplus)%>%
+  knitr::kable()
+  
+  
+```
+
+### Employment-to-population ratio 18-64--metro and peers
+
+```{r epratio}
+
+cbsa_output %>% 
+  select(cbsa_code, cbsa_name, epratio_total)%>%
+  knitr::kable()
+
+
+```
+
+
+### Prevalence of health problems--metro and peers
+```{r health}
+library(RSocrata)
+token <- Sys.getenv("RSocrata_token")
+
+cities <- paste0(gsub("\\,.+","",cbsa_output$cbsa_name_short), collapse = "','")
+
+cityhealth <- read.socrata(paste0("https://chronicdata.cdc.gov/resource/csmm-fdhi.csv?category=Health Outcomes&$where=cityname in",
+                                  "('",cities,"')"),token)
+
+# peer comparison
+cityhealth %>% 
+  filter(measureid %in% c("MHLTH", "PHLTH")) %>%
+  filter(geographiclevel == "City") %>%
+  filter(datavaluetypeid == "AgeAdjPrv") %>%
+  select(cityname, measure, data_value, year) %>%
+  group_by(cityname, measure)%>%
+  summarise(data_value = mean(data_value))%>%
+  pivot_wider(names_from = "measure", values_from = "data_value") %>%
+  knitr::kable()
+```
+
+### Struggling families? (I think this may not be available?)--metro and peers
+
+not available
+
+### Share of workers who are low-wage--metro and peers
+
+```{r low-wage}
+cbsa_low_wage_worker %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa)) %>%
+  filter(population %in% c("Low-wage workers","Workers"))%>%
+  select(cbsa_code, cbsa_name, population, total)%>%
+  pivot_wider(names_from = "population", values_from = "total") %>%
+  mutate(pct_low_wage = `Low-wage workers`/`Workers`) %>%
+  knitr::kable()
+```
+
+
+### Share of population out-of-work--metro and peers
+Note: metro aggregates only include core counties, as listed
+```{r oow}
+
+names <- co_oow %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa)) %>%
+  select(cbsa_code, cbsa_name, pl_name) %>%
+  unique()%>%
+  group_by(cbsa_code) %>%
+  summarise(cbsa_name = last(cbsa_name),
+            core_counties = paste0(pl_name, collapse = ", "))
+
+
+co_oow %>%
+  filter(cbsa_code %in% c(target_cbsa, peer_cbsa))%>%
+  filter(population %in% c("Out-of-work population","Universe population")) %>%
+  select(stco_code, age, cbsa_code, cbsa_name, pl_name, population, total) %>%
+  group_by(cbsa_code, population, age) %>%
+  summarise(total = sum(total))%>%
+  pivot_wider(names_from = "population", values_from = "total") %>%
+  mutate(pct_oow = `Out-of-work population`/`Universe population`) %>%
+  select(-contains("population")) %>%
+  pivot_wider(names_from = "age", values_from = "pct_oow")%>%
+  left_join(names, by = "cbsa_code")%>%
+  knitr::kable()
+```
+
+
+### Digital skills demand, 2002/2016--metro
+
+
+```{r digital, echo=FALSE}
+cbsa_output %>% 
+  select(cbsa_code, cbsa_name,contains("cbsa_pct"), -cbsa_pct_exports_gdp)%>%
+  knitr::kable()
+
+```
+
+## Access
+### Job density change by block group?--metro
+we don't have block group data in the warehouse yet - can ask Joanne
+
+### Geographic of prosperity trend (UVA data)--metro + MW/Southeastern trendlines
+
+http://statchatva.org/changing-shape-of-american-cities/
+
+### Prevalence of health problems by census tract?--metro
+
+
+```{r map, include=FALSE}
+library(sf)
+library(tmap)
+tmap_mode("view")
+
+state <- county_cbsa_st%>%
+  filter(cbsa_code == target_cbsa)%>%
+  select(st_code)%>%
+  unique()%>%
+  pull(st_code)
+
+# map <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = state, geometry = T)
+# test2 <- tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = "18", geometry = T)
+# map2 <- rbind_list(list(test, test2))
+
+map <- purrr::map(state, ~ tidycensus::get_acs(geography = "tract", variables = "B01003_001", state = .x, geometry = T))
+# 
+# length(map)
+map <- rbind(map[[1]], map[[2]])
+
+```
+
+
+Only available for core city
+```{r}
+
+tract_health <- cityhealth %>%
+  filter(measureid %in% c("MHLTH", "PHLTH")) %>%
+  filter(geographiclevel == "Census Tract") %>%
+  mutate(stcotr_code = str_pad(tractfips, 11, "left","0"))%>%
+  select(year, stcotr_code, measureid, data_value) %>%
+  pivot_wider(names_from = "measureid", values_from = "data_value")
+
+map_health <- map %>%
+  mutate(stco_code = str_sub(GEOID,1,5)) %>%
+  left_join(tract_health, by = c("GEOID" = "stcotr_code"))
+
+tm_shape(map_health %>%
+  filter(stco_code %in% target_co) %>%
+  filter(!is.na(year)))+
+  tm_polygons(c("MHLTH", "PHLTH"), alpha = 0.7)+
+  tm_facets(nrow = 1, sync = T)
+
+```
+
+### Number of jobs reachable by travel time (including public transit)--metro
+Number of jobs reachable by 30 minutes auto and 30 minutes transit
+```{r access}
+cbsa_output %>% 
+  select(cbsa_code, cbsa_name,auto_30, transit_30, ratio_30)%>%
+  knitr::kable()
+```
+
+
+map: http://access.umn.edu/research/america/transit/2018/maps/index.html
+
+### Are the NCES data behind the proficiency map downloaded and generally available, or did you do those special for BHM?
+You can download school level data from NCES. we aggregated school level data to various geography. 
+```{r school}
+
+tract_school <- final %>%
+  mutate(stco_code = str_sub(fips,1,5)) %>%
+  filter(stco_code %in% target_co) %>%
+  mutate(stcotr_code = str_sub(fips, 1,11)) %>%
+  group_by(stcotr_code) %>%
+  summarise(pct_pass = sum(ALL_TOTAL_passed_H)/sum(ALL_TOTAL_total))
+
+map_school <- map %>%
+  mutate(stco_code = str_sub(GEOID,1,5)) %>%
+  left_join(tract_school, by = c("GEOID" = "stcotr_code"))
+
+
+tm_shape(map_school%>%
+  filter(str_sub(GEOID,1,5) %in% target_co) %>%
+    mutate(lab = scales::percent(pct_pass)))+
+  tm_polygons(col = "pct_pass", id = "lab", alpha = 0.7)
+
+# map_school %>%
+#   filter(str_sub(GEOID,1,5) %in% target_co)%>%
+#   ggplot(aes(fill = pct_pass))+
+#   scale_fill_distiller(type = "div", palette = "PiYG")+
+#   geom_sf()+
+#   coord_sf(crs = 26911) 
+
+
+```
+
+

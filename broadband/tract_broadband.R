@@ -17,7 +17,7 @@ df_notes <- ""
 # FUNCTION load
 df <- readxl::read_xlsx(source_dir)%>%
   janitor::clean_names() %>%
-  mutate(stcotract_code = as.character(str_sub(tract, -6, -1))) %>%
+  mutate(stcotract_code = str_pad(tract, 11, "left", "0")) %>%
   select(
     -v1,
     -tract,

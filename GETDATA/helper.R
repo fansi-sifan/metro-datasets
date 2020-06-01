@@ -3,7 +3,7 @@ source("R/pip.R")
 
 # take out datasets that should not go to the master dataset
 irrelevant <- c("county_cbsa_st","co_all","cbsa_all","find_cbsa_counties", "cbsa_acs_raw","co_acs_raw")
-not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "cbsa_agegroup_race", "cbsa_jobdensity")
+not.include<- c("cbsa_shiftshare", "cbsa_oppind_race", "cbsa_low_wage_worker", "cbsa_agegroup_race", "cbsa_jobdensity", "cbsa_change", "cbsa_value")
 rm(list = not.include)
 rm(list = irrelevant)
 
@@ -53,4 +53,8 @@ list_all_co <- map_depth(df_co_all,names,.depth = 1)
 save(list_all_cbsa,file = "GETDATA/data/list_all_cbsa.rda")
 save(list_all_co,file = "GETDATA/data/list_all_co.rda")
 
+# create_md(list_all_co, "county")
+# create_md(list_all_cbsa, "metro")
 
+# load("V:/Sifan/metro.data/data/county_cbsa_st.rda")
+save(county_cbsa_st, file = "GETDATA/data/county_cbsa_st.rda")

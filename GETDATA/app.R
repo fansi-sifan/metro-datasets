@@ -15,8 +15,8 @@ load("data/co_all.rda")
 load("data/cbsa_all.rda")
 load("data/list_all_co.rda")
 load("data/list_all_cbsa.rda")
-
 load("data/county_cbsa_st.rda")
+
 
 
 create_scatter <- function(df, var_x, var_y,...){
@@ -63,7 +63,11 @@ ui <- navbarPage(
           choices = names(list_all_co), multiple = TRUE
         ),
         actionButton("update_co", "Show county data"),
-        downloadButton("download_co", label = "Download csv")
+        
+        downloadButton("download_co", label = "Download csv"), 
+        
+        h3("codebook"),
+        includeMarkdown("county.md")
         
       ),
 
@@ -92,8 +96,13 @@ ui <- navbarPage(
           # selected = "cbsa_acs",
           choices = names(list_all_cbsa), multiple = TRUE
         ),
-        actionButton("update_cbsa", "Show metro data"),
+        actionButton("update_cbsa", "Show metro data"), 
+        
         downloadButton("download_cbsa", label = "Download csv"),
+        
+        h3("codebook"),
+        
+        includeMarkdown("metro.md"),
         
         h3("Scatter plot"),
         checkboxInput("scatter_plot", label = "Create a scatter plot", value = FALSE),
@@ -136,16 +145,20 @@ server <- function(input, output, session) {
         (county_cbsa_st %>% filter(cbsa_name %in% input$cbsa_co_places))$stco_code
       )
     }
+    
+    if (is.null(input$co_datasets)){
+      validate(need(!is.null(input$co_datasets), "Please choose your datasets"))
+    } else {
+      co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
+    }
 
-    co_columns <- unlist(list_all_co[input$co_datasets], use.names = F)
-    
-    
+ 
     co_df <- co_all %>%
       filter(stco_code %in% co_codes) %>%
       select(co_columns) %>%
-      filter_all(all_vars(!is.na(.)))%>%
-      left_join(county_cbsa_st %>% select(contains("co_"),"cbsa_code","cbsa_name") %>% unique(), by = "stco_code")%>%
+      # filter_all(all_vars(!is.na(.)))%>%
       unique() %>%
+      left_join(county_cbsa_st %>% select(dplyr::contains("co_"),"cbsa_code","cbsa_name") %>% unique(), by = "stco_code")%>%
       mutate_if(is.numeric, ~ round(., 2))
   })
 
@@ -155,8 +168,12 @@ server <- function(input, output, session) {
     } else {
       (cbsa_codes <- (county_cbsa_st %>% filter(cbsa_name %in% input$cbsa_places))$cbsa_code)
     }
-
-    cbsa_columns <- unlist(list_all_cbsa[input$cbsa_datasets], use.names = F)
+    
+    if (is.null(input$cbsa_datasets)){
+      validate(need(!is.null(input$cbsa_datasets), "Please choose your datasets"))
+    } else{
+      cbsa_columns <- unlist(list_all_cbsa[input$cbsa_datasets], use.names = F)
+    }
     
     updateSelectizeInput(session, "x_var", "Choose a variable on x axis ", choices = c(cbsa_columns,"cbsa_pop", "cbsa_emp"), selected = "cbsa_pop")
     updateSelectizeInput(session, "y_var", "Choose a variable on y axis ", choices = c(cbsa_columns,"cbsa_pop", "cbsa_emp"), selected = "cbsa_emp")
@@ -165,9 +182,9 @@ server <- function(input, output, session) {
     cbsa_df <- cbsa_all %>%
       filter(cbsa_code %in% cbsa_codes) %>%
       select(cbsa_columns) %>%
-      filter_all(all_vars(!is.na(.)))%>%
+      # filter_all(all_vars(!is.na(.)))%>%
       unique() %>%
-      left_join(county_cbsa_st %>% select(contains("cbsa_"),-cbsa_name) %>% unique(), by = "cbsa_code") %>%
+      left_join(county_cbsa_st %>% select(dplyr::contains("cbsa_"),-cbsa_name) %>% unique(), by = "cbsa_code") %>%
       mutate_if(is.numeric, ~ round(., 2))
   })
 
