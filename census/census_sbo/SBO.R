@@ -22,8 +22,6 @@ get_SBO <- function(...){
                        key = key)
 }
 
-# test ---------------------
-
 get_sbo <- function(code, area) {
   co_code <- paste0("county:",str_sub(code, 3, 5))
   st_code <- paste0("state:",str_sub(code, 1, 2))
@@ -36,6 +34,9 @@ get_sbo <- function(code, area) {
 
 }
 
+# test ---------------------
+sbo_us <- get_SBO(region = "us:*")
+save(sbo_us, file = "census/census_sbo/sbo_us.rda")
 get_sbo("13820", "metro")
 get_sbo("01073", "county")
 
