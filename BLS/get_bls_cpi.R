@@ -3,7 +3,7 @@ library(blscrapeR)
 library(tidyverse)
 library(tidylog)
 
-
+# annual cpi 
 area_code <- read.delim("https://download.bls.gov/pub/time.series/cw/cw.area")
 area_code <- area_code %>%
   mutate(cpi_code = paste0("CWUS",area_code, "SA0"))
@@ -46,4 +46,21 @@ job_monthly_cbsa53 <- bls_api(area_code$series_U, startyear = 1990, endyear = 20
 save(job_monthly_cbsa53, file = "census/job_monthly_cbsa_53.rda")
 
 # search_ids(c("employment", "atlanta"))
+
+# employment by industry
+naics_xwalk <- read_delim("https://download.bls.gov/pub/time.series/ce/ce.industry", delim = "\t")
+emp_naics_2020 <- readxl::read_excel("BLS/SeriesReport-20200603112833_1e751b.xlsx", skip = 3) %>%
+  janitor::clean_names()
+
+emp_naics3_2020 <- emp_naics_2020 %>% 
+  select(series_id,jan_2020,feb_2020,mar_2020,apr_2020) %>% 
+  mutate(industry_code = str_sub(series_id,4,11)) %>% 
+  left_join(naics_xwalk, by = "industry_code") %>% 
+  filter(display_level == 4)
+
+emp_naics_2020
+emp_naics3_2020 %>% 
+  summarise_if(is.numeric, sum,na.rm = T)
+
+save(emp_naics3_2020, file = "BLS/emp_naics3_2020.rda")  
 
