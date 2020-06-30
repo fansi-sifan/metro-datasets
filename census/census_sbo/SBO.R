@@ -17,7 +17,8 @@ get_SBO <- function(...){
                                 "ETH_GROUP","ETH_GROUP_TTL", # ethnicity
                                 "SEX","SEX_TTL", # gender
                                 "VET_GROUP", "VET_GROUP_TTL", # veteran
-                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S"),
+                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S",
+                                "PAYANN", "RCPALL", "RCPNOPD", "RCPPDEMP"),
                        ...,
                        key = key)
 }
@@ -37,6 +38,42 @@ get_sbo <- function(code, area) {
 # test ---------------------
 sbo_us <- get_SBO(region = "us:*")
 save(sbo_us, file = "census/census_sbo/sbo_us.rda")
+
+
+# sbo
+# us_naics_demo_12 <- sbo_us %>% 
+#   filter(VET_GROUP %in% c("096","001")) %>% 
+#   
+#   mutate(demo = paste0(SEX_TTL, ETH_GROUP_TTL, RACE_GROUP_TTL, VET_GROUP_TTL)) %>%
+#   mutate(demo = gsub("All firms", "", demo)) %>% 
+#   mutate(demo = ifelse(demo == "", "Total", demo)) %>%
+#   mutate(demo = ifelse(demo == " classifiable by gender, ethnicity, race, and veteran status", "classifiable", demo)) %>%
+#   mutate(demo = ifelse(demo == "Publicly held and other firms not classifiable by gender, ethnicity, race, and veteran status", "not classifiable", demo)) %>%
+#   
+#   # mutate(FIRMPDEMP = ifelse(FIRMPDEMP == "0", NA, as.numeric(FIRMPDEMP))) %>% 
+#   mutate(FIRMPDEMP = as.numeric(FIRMPDEMP)) %>% 
+#   
+#   select(-SEX, -SEX_TTL, -ETH_GROUP, -ETH_GROUP_TTL, -RACE_GROUP, -RACE_GROUP_TTL, -VET_GROUP, -VET_GROUP_TTL, -FIRMALL, -FIRMPDEMP_S) %>% 
+#   unique() %>% 
+#   pivot_wider(names_from = "demo", values_from = "FIRMPDEMP") %>% 
+#   mutate(total = classifiable) %>%
+#   select(
+#     naics6_code = NAICS2012, 
+#     NAICS2012_TTL,
+#     # EMPSZFI,
+#     # EMPSZFI_TTL,
+#     total,
+#     male = `Male-owned`, 
+#     black = `Black or African American`,
+#     nonminority = Nonminority
+#   )  %>% 
+#   mutate(naics_level = ifelse(grepl("-",naics6_code),2,
+#                               str_length(naics6_code))) 
+# 
+# save(us_naics_demo_12, file = "../metro-datasets/census/census_sbo/us_naics_demo_12.rda")
+
+
+# metro and county
 get_sbo("13820", "metro")
 get_sbo("01073", "county")
 
