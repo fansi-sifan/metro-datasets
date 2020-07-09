@@ -156,7 +156,7 @@ server <- function(input, output, session) {
     co_df <- co_all %>%
       filter(stco_code %in% co_codes) %>%
       select(co_columns) %>%
-      # filter_all(all_vars(!is.na(.)))%>%
+      tidyr::drop_na(-all_of(contains("stco_"))) %>% 
       unique() %>%
       left_join(county_cbsa_st %>% select(dplyr::contains("co_"),"cbsa_code","cbsa_name") %>% unique(), by = "stco_code")%>%
       mutate_if(is.numeric, ~ round(., 2))
@@ -182,7 +182,7 @@ server <- function(input, output, session) {
     cbsa_df <- cbsa_all %>%
       filter(cbsa_code %in% cbsa_codes) %>%
       select(cbsa_columns) %>%
-      # filter_all(all_vars(!is.na(.)))%>%
+      tidyr::drop_na(-all_of(contains("cbsa_"))) %>% 
       unique() %>%
       left_join(county_cbsa_st %>% select(dplyr::contains("cbsa_"),-cbsa_name) %>% unique(), by = "cbsa_code") %>%
       mutate_if(is.numeric, ~ round(., 2))
