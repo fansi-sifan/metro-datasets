@@ -49,16 +49,15 @@ save(job_monthly_cbsa53, file = "census/job_monthly_cbsa_53.rda")
 
 # employment by industry
 naics_xwalk <- read_delim("https://download.bls.gov/pub/time.series/ce/ce.industry", delim = "\t")
-emp_naics_2020 <- readxl::read_excel("BLS/SeriesReport-20200603112833_1e751b.xlsx", skip = 3) %>%
+emp_naics_2020 <- readxl::read_excel("BLS/SeriesReport-20200624110728_f4c7f3.xlsx", skip = 3) %>%
   janitor::clean_names()
 
 emp_naics3_2020 <- emp_naics_2020 %>% 
-  select(series_id,jan_2020,feb_2020,mar_2020,apr_2020) %>% 
+  select_if(~sum(!is.na(.)) > 0) %>% 
   mutate(industry_code = str_sub(series_id,4,11)) %>% 
   left_join(naics_xwalk, by = "industry_code") %>% 
   filter(display_level == 4)
 
-emp_naics_2020
 emp_naics3_2020 %>% 
   summarise_if(is.numeric, sum,na.rm = T)
 
