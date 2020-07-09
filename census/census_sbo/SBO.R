@@ -17,7 +17,7 @@ get_SBO <- function(...){
                                 "ETH_GROUP","ETH_GROUP_TTL", # ethnicity
                                 "SEX","SEX_TTL", # gender
                                 "VET_GROUP", "VET_GROUP_TTL", # veteran
-                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S",
+                                "FIRMALL", "FIRMPDEMP", "FIRMPDEMP_S", "EMP","ESTAB",
                                 "PAYANN", "RCPALL", "RCPNOPD", "RCPPDEMP"),
                        ...,
                        key = key)
