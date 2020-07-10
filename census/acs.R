@@ -12,7 +12,6 @@ key <- Sys.getenv("CENSUS_API_KEY")
 
 library(skimr)
 library(expss)
-library(tidyverse)
 source("R/save_output.R")
 
 # SET UP ====================================
@@ -141,3 +140,5 @@ yr <- 2018 # ACS year
 #                 year = yr, span = span,
 #                 key = key, short = TRUE)
 
+zip_acs <- get_acs(geography = "zcta",variables = c(pop_race_codes,pov_race_codes),key = key)
+save(zip_acs,file = "census/zip_acs.rda")

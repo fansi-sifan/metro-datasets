@@ -1,3 +1,20 @@
+load("GETDATA/data/cbsa_all.rda")
+load("GETDATA/data/list_all_cbsa.rda")
+
+# load new
+load("metro_monitor_2020/cbsa_metromonitor_2020.rda")
+
+new <- cbsa_metromonitor_2020 %>% 
+  filter(year == "2018") %>% 
+  select(-cbsa_name, -year)
+
+cbsa_all <- cbsa_all %>% 
+  left_join(new, by = c("cbsa_code"))
+
+list_all_cbsa[["cbsa_metromonitor_2020"]] <- names(cbsa_metromonitor_2020)
+
+# ARCHIVED ===============
+
 # load all datasets into the environment
 source("R/pip.R")
 
