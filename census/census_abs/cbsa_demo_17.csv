@@ -1,0 +1,382 @@
+"","cbsa_code","cbsa_name","cbsa_type","cbsa_pop","cbsa_emp","cbsa_is.top100","cbsa_size","total","male","black","black_male","hispanic","asian","nonminority","male_nonminority"
+"1","32580","McAllen-Edinburg-Mission, TX","metro",849389,198978,TRUE,"large metros",8551,5312,118,0,4835,557,2709,1949
+"2","32780","Medford, OR","metro",214267,75967,FALSE,"small metros",4694,2736,0,0,189,149,4168,2509
+"3","32820","Memphis, TN-MS-AR","metro",1337738,539734,TRUE,"very large metros",15276,10305,1124,598,222,1295,12375,8627
+"4","32900","Merced, CA","metro",269075,45686,FALSE,"midsized metros",2292,1471,0,0,367,374,1503,967
+"5","33100","Miami-Fort Lauderdale-Pompano Beach, FL","metro",6070944,2214596,TRUE,"very large metros",159809,98885,5189,2740,45760,7988,96148,63380
+"6","33140","Michigan City-La Porte, IN","metro",110552,35742,FALSE,"small metros",1509,983,0,NA,0,0,1411,924
+"7","33220","Midland, MI","metro",83389,36436,FALSE,"small metros",1487,963,0,0,0,0,1410,903
+"8","33260","Midland, TX","metro",169808,87328,FALSE,"small metros",3897,2442,0,0,419,184,3163,2031
+"9","33340","Milwaukee-Waukesha, WI","metro",1575907,783764,TRUE,"very large metros",26142,16861,788,350,542,1461,23066,15167
+"10","33460","Minneapolis-St. Paul-Bloomington, MN-WI","metro",3542616,1804390,TRUE,"very large metros",68578,44182,945,617,914,3414,62483,41155
+"11","33540","Missoula, MT","metro",115983,50107,FALSE,"small metros",3207,1905,0,0,0,62,3033,1850
+"12","33660","Mobile, AL","metro",431302,156341,FALSE,"midsized metros",5566,3914,198,110,95,350,4908,3532
+"13","33700","Modesto, CA","metro",539301,142929,FALSE,"large metros",6737,0,0,0,1153,908,4358,0
+"14","33740","Monroe, LA","metro",204542,72184,FALSE,"small metros",3249,2078,0,0,32,0,2863,1895
+"15","33780","Monroe, MI","metro",149699,37086,FALSE,"small metros",1672,1058,0,NA,0,41,1592,984
+"16","33860","Montgomery, AL","metro",373589,130956,FALSE,"midsized metros",4875,3395,239,149,0,540,4014,2794
+"17","34060","Morgantown, WV","metro",139089,53463,FALSE,"small metros",2033,1410,0,0,0,54,1933,1352
+"18","34100","Morristown, TN","metro",140000,42419,FALSE,"small metros",1336,882,0,0,0,84,1230,794
+"19","23420","Fresno, CA","metro",978130,261800,TRUE,"large metros",12851,8464,182,0,1730,2166,8310,5675
+"20","23460","Gadsden, AL","metro",102939,30604,FALSE,"small metros",1305,864,0,0,32,0,1147,761
+"21","23540","Gainesville, FL","metro",320724,102732,FALSE,"midsized metros",4629,2868,0,0,210,304,3840,2426
+"22","23580","Gainesville, GA","metro",195961,77461,FALSE,"small metros",3371,2240,0,0,178,262,2860,1952
+"23","23900","Gettysburg, PA","metro",102023,29070,FALSE,"small metros",1593,1093,NA,NA,0,34,1513,1049
+"24","24020","Glens Falls, NY","metro",126308,42072,FALSE,"small metros",2614,1664,0,NA,0,0,2449,1566
+"25","24140","Goldsboro, NC","metro",124002,33960,FALSE,"small metros",1362,880,83,57,0,0,1153,739
+"26","24220","Grand Forks, ND-MN","metro",101991,42714,FALSE,"small metros",1799,1208,0,0,0,43,1709,1152
+"27","24260","Grand Island, NE","metro",75551,33756,FALSE,"small metros",1996,1193,0,0,22,0,1921,1141
+"28","24300","Grand Junction, CO","metro",149998,52848,FALSE,"small metros",3171,1992,0,0,155,56,2879,1836
+"29","24340","Grand Rapids-Kentwood, MI","metro",1054559,503115,TRUE,"very large metros",17094,12340,131,64,323,524,15980,11772
+"30","24420","Grants Pass, OR","metro",85481,23460,FALSE,"small metros",1451,865,0,0,0,66,1319,825
+"31","24500","Great Falls, MT","metro",81746,30445,FALSE,"small metros",1901,1097,NA,NA,0,56,1770,1031
+"32","24540","Greeley, CO","metro",295123,85076,FALSE,"midsized metros",4870,3042,46,39,252,118,4268,2726
+"33","24580","Green Bay, WI","metro",317702,156929,FALSE,"midsized metros",5706,3475,0,0,48,105,5491,3376
+"34","24660","Greensboro-High Point, NC","metro",757810,323805,TRUE,"large metros",12072,7630,563,0,335,938,10061,6597
+"35","24780","Greenville, NC","metro",177372,60749,FALSE,"small metros",2451,1560,106,0,108,105,2085,1320
+"36","24860","Greenville-Anderson, SC","metro",883853,340562,TRUE,"large metros",13495,9192,279,108,377,788,11914,8319
+"37","25180","Hagerstown-Martinsburg, MD-WV","metro",280930,87342,FALSE,"midsized metros",3250,2084,52,0,0,178,2939,1871
+"38","25220","Hammond, LA","metro",130504,36408,FALSE,"small metros",1669,1123,0,0,0,0,1511,1018
+"39","25260","Hanford-Corcoran, CA","metro",150075,25053,FALSE,"small metros",1016,692,0,0,0,0,709,517
+"40","25420","Harrisburg-Carlisle, PA","metro",567872,277210,TRUE,"large metros",8701,5916,145,82,118,763,7596,5232
+"41","25500","Harrisonburg, VA","metro",132835,51926,FALSE,"small metros",2272,1371,0,0,0,0,2072,1243
+"42","25540","Hartford-East Hartford-Middletown, CT","metro",1209367,549925,TRUE,"very large metros",19954,14188,393,215,621,1685,17043,12454
+"43","25620","Hattiesburg, MS","metro",167859,55470,FALSE,"small metros",2210,1517,0,0,0,101,1970,1362
+"44","25860","Hickory-Lenoir-Morganton, NC","metro",365339,135351,FALSE,"midsized metros",5142,3424,0,0,53,0,4767,3228
+"45","25940","Hilton Head Island-Bluffton, SC","metro",210558,63557,FALSE,"small metros",4422,2760,111,43,158,141,3908,2539
+"46","25980","Hinesville, GA","metro",80264,12320,FALSE,"small metros",656,416,0,0,0,114,481,284
+"47","34580","Mount Vernon-Anacortes, WA","metro",123907,43053,FALSE,"small metros",2792,1498,0,0,115,214,2380,1292
+"48","34620","Muncie, IN","metro",115616,42508,FALSE,"small metros",1427,923,0,0,23,53,1341,875
+"49","34740","Muskegon, MI","metro",173043,52096,FALSE,"small metros",2018,1376,0,0,0,0,1848,1283
+"50","34820","Myrtle Beach-Conway-North Myrtle Beach, SC-NC","metro",447775,138378,FALSE,"midsized metros",8703,5577,125,53,0,399,7904,5204
+"51","34900","Napa, CA","metro",140530,64132,FALSE,"small metros",3434,1970,0,0,409,278,2611,1534
+"52","34940","Naples-Marco Island, FL","metro",363922,131871,FALSE,"midsized metros",9881,6182,113,89,1043,246,8310,5284
+"53","34980","Nashville-Davidson--Murfreesboro--Franklin, TN","metro",1839460,855849,TRUE,"very large metros",27978,18883,661,422,743,1903,24305,16529
+"54","35100","New Bern, NC","metro",125519,31352,FALSE,"small metros",1684,1035,33,0,23,0,1519,909
+"55","35300","New Haven-Milford, CT","metro",859339,340724,TRUE,"large metros",14323,10056,0,0,422,1404,12201,8752
+"56","35380","New Orleans-Metairie, LA","metro",1263635,494676,TRUE,"very large metros",22326,14020,952,566,688,1603,18657,12100
+"57","35620","New York-Newark-Jersey City, NY-NJ-PA","metro",19318471,8166817,TRUE,"very large metros",462989,320142,13218,7441,29760,84753,332810,241685
+"58","35660","Niles, MI","metro",154807,54568,FALSE,"small metros",2253,1508,0,0,0,48,2100,1397
+"59","35840","North Port-Sarasota-Bradenton, FL","metro",785997,247805,TRUE,"large metros",18373,11508,148,0,1007,836,16142,10139
+"60","35980","Norwich-New London, CT","metro",268881,105456,FALSE,"midsized metros",3902,2622,0,0,51,369,3400,2362
+"61","25060","Gulfport-Biloxi, MS","metro",409668,132684,FALSE,"midsized metros",4713,3070,127,68,116,381,4036,2711
+"62","26140","Homosassa Springs, FL","metro",143087,30047,FALSE,"small metros",2398,1418,0,NA,50,179,2122,1287
+"63","26300","Hot Springs, AR","metro",98296,34587,FALSE,"small metros",2151,1290,0,0,52,95,1968,1171
+"64","26380","Houma-Thibodaux, LA","metro",210801,70218,FALSE,"small metros",3151,2026,57,20,0,64,2887,1899
+"65","26420","Houston-The Woodlands-Sugar Land, TX","metro",6779104,2599675,TRUE,"very large metros",101206,63078,3869,1959,10562,18132,66216,42843
+"66","26580","Huntington-Ashland, WV-KY-OH","metro",364446,114510,FALSE,"midsized metros",4169,2958,0,0,0,156,3937,2774
+"67","26620","Huntsville, AL","metro",450612,181686,FALSE,"midsized metros",6658,4486,236,120,127,437,5706,3920
+"68","26820","Idaho Falls, ID","metro",142968,54007,FALSE,"small metros",3311,1936,0,0,85,27,3137,1845
+"69","26900","Indianapolis-Carmel-Anderson, IN","metro",2007497,911388,TRUE,"very large metros",30236,19666,705,372,598,1603,27007,17773
+"70","26980","Iowa City, IA","metro",169144,70971,FALSE,"small metros",2707,1688,0,0,26,93,2554,1593
+"71","36100","Ocala, FL","metro",348371,81985,FALSE,"midsized metros",5809,3669,0,0,0,427,4838,3118
+"72","36140","Ocean City, NJ","metro",93705,26890,FALSE,"small metros",3243,2043,0,0,0,113,3042,1927
+"73","36220","Odessa, TX","metro",158342,59190,FALSE,"small metros",2536,1808,25,0,433,181,1852,1370
+"74","36260","Ogden-Clearfield, UT","metro",652744,192865,TRUE,"large metros",11502,7287,48,32,346,293,10670,6848
+"75","36420","Oklahoma City, OK","metro",1369759,506241,TRUE,"very large metros",25959,16538,456,187,945,1432,21558,14093
+"76","36500","Olympia-Lacey-Tumwater, WA","metro",274684,73630,FALSE,"midsized metros",4925,2812,0,0,208,485,4035,2343
+"77","36540","Omaha-Council Bluffs, NE-IA","metro",922891,419890,TRUE,"large metros",16717,10199,191,120,446,478,15415,9439
+"78","36740","Orlando-Kissimmee-Sanford, FL","metro",2450261,1072635,TRUE,"very large metros",47519,29035,1864,1028,6190,4019,34609,22030
+"79","36780","Oshkosh-Neenah, WI","metro",169926,85726,FALSE,"small metros",2225,1419,0,0,25,0,2082,1344
+"80","36980","Owensboro, KY","metro",117987,47181,FALSE,"small metros",1645,1073,0,0,0,82,1550,997
+"81","37100","Oxnard-Thousand Oaks-Ventura, CA","metro",848112,258166,TRUE,"large metros",16261,9941,122,107,1747,1820,11860,7505
+"82","37340","Palm Bay-Melbourne-Titusville, FL","metro",576808,185134,TRUE,"large metros",10695,6651,269,150,0,828,8862,5558
+"83","37460","Panama City, FL","metro",182482,63126,FALSE,"small metros",3305,2104,0,0,153,251,2757,1794
+"84","37620","Parkersburg-Vienna, WV","metro",91353,30200,FALSE,"small metros",1356,982,0,NA,0,79,1222,892
+"85","37860","Pensacola-Ferry Pass-Brent, FL","metro",481964,133544,FALSE,"midsized metros",6621,4149,174,73,151,300,5872,3796
+"86","37900","Peoria, IL","metro",409844,163411,FALSE,"midsized metros",5860,3909,0,0,100,322,5376,3576
+"87","37980","Philadelphia-Camden-Wilmington, PA-NJ-DE-MD","metro",6069448,2628893,TRUE,"very large metros",105310,73936,3059,1738,2534,11399,87516,63403
+"88","38060","Phoenix-Mesa-Chandler, AZ","metro",4673634,1726596,TRUE,"very large metros",69156,39553,942,492,4494,4257,57196,33457
+"89","38220","Pine Bluff, AR","metro",92345,21677,FALSE,"small metros",938,610,60,27,0,109,761,512
+"90","38300","Pittsburgh, PA","metro",2339941,1103495,TRUE,"very large metros",38308,27018,540,312,300,1584,35676,25356
+"91","38340","Pittsfield, MA","metro",127328,53882,FALSE,"small metros",2813,2006,0,0,0,110,2642,1940
+"92","38540","Pocatello, ID","metro",92778,26946,FALSE,"small metros",1574,906,0,0,28,23,1483,866
+"93","38860","Portland-South Portland, ME","metro",529323,238275,FALSE,"large metros",13561,8459,67,23,70,309,13002,8186
+"94","38900","Portland-Vancouver-Hillsboro, OR-WA","metro",2417931,1047457,TRUE,"very large metros",51050,29216,533,319,1857,4077,43305,25685
+"95","38940","Port St. Lucie, FL","metro",463172,117217,FALSE,"midsized metros",8722,5604,158,93,602,423,7393,4797
+"96","39300","Providence-Warwick, RI-MA","metro",1615516,637255,TRUE,"very large metros",30733,21019,386,250,741,1314,28155,19521
+"97","39340","Provo-Orem, UT","metro",601388,215315,TRUE,"large metros",11481,7251,35,21,273,293,10728,6889
+"98","39380","Pueblo, CO","metro",164685,50879,FALSE,"small metros",2032,1280,0,0,174,69,1702,1095
+"99","39460","Punta Gorda, FL","metro",176954,39311,FALSE,"small metros",3217,1996,0,0,0,90,2903,1842
+"100","39540","Racine, WI","metro",195398,66364,FALSE,"small metros",2842,1817,0,0,0,0,2548,1639
+"101","39580","Raleigh-Cary, NC","metro",1302632,520170,TRUE,"very large metros",24239,15657,971,558,907,2013,19925,13113
+"102","39660","Rapid City, SD","metro",136718,54904,FALSE,"small metros",3828,2233,0,0,0,61,3645,2176
+"103","39740","Reading, PA","metro",416642,153071,FALSE,"midsized metros",6115,4139,73,32,131,402,5457,3791
+"104","39820","Redding, CA","metro",179085,50261,FALSE,"small metros",3276,2038,0,0,117,240,2784,1751
+"105","39900","Reno, NV","metro",454427,195817,FALSE,"midsized metros",9258,5677,50,22,541,619,7780,4951
+"106","40060","Richmond, VA","metro",1258398,541040,TRUE,"very large metros",21928,14588,1120,724,515,1795,18118,12226
+"107","40140","Riverside-San Bernardino-Ontario, CA","metro",4518699,1179496,TRUE,"very large metros",54985,34254,0,0,8679,10199,33237,21612
+"108","40220","Roanoke, VA","metro",313291,140143,FALSE,"midsized metros",5576,3666,0,100,0,282,5007,3322
+"109","40340","Rochester, MN","metro",216035,113762,FALSE,"small metros",3550,2244,0,0,0,113,3339,2156
+"110","40380","Rochester, NY","metro",1074667,453814,TRUE,"very large metros",17773,12790,358,168,257,959,16126,11808
+"111","40420","Rockford, IL","metro",339780,134942,FALSE,"midsized metros",4879,3277,50,36,215,0,4246,2876
+"112","40580","Rocky Mount, NC","metro",147335,48269,FALSE,"small metros",1759,1172,135,69,0,0,1518,1039
+"113","40660","Rome, GA","metro",96824,36648,FALSE,"small metros",1409,1072,0,0,0,168,1169,910
+"114","40900","Sacramento-Roseville-Folsom, CA","metro",2291738,743106,TRUE,"very large metros",35428,21195,562,328,2423,6351,24959,15406
+"115","40980","Saginaw, MI","metro",192778,80324,FALSE,"small metros",2808,1813,36,30,60,192,2457,1619
+"116","41060","St. Cloud, MN","metro",196598,100928,FALSE,"small metros",3860,2443,0,0,0,120,3673,2353
+"117","41100","St. George, UT","metro",160537,50267,FALSE,"small metros",4286,2800,20,0,0,0,4018,2646
+"118","41140","St. Joseph, MO-KS","metro",126779,48854,FALSE,"small metros",2092,1098,0,0,0,31,1937,1032
+"119","41180","St. Louis, MO-IL","metro",2805551,1249653,TRUE,"very large metros",53118,32125,6208,2619,656,2666,42959,27407
+"120","41420","Salem, OR","metro",416980,121784,FALSE,"midsized metros",7395,4489,55,47,556,388,6186,3902
+"121","41500","Salinas, CA","metro",433212,113209,FALSE,"midsized metros",6867,4145,56,43,1067,1004,4501,2857
+"122","41540","Salisbury, MD-DE","metro",399013,128997,FALSE,"midsized metros",7597,5123,145,115,161,448,6784,4563
+"123","41620","Salt Lake City, UT","metro",1185990,608961,TRUE,"very large metros",24620,16369,109,96,922,1023,22037,14948
+"124","41660","San Angelo, TX","metro",120131,40571,FALSE,"small metros",2015,1259,0,0,181,0,1687,1072
+"125","41700","San Antonio-New Braunfels, TX","metro",2426204,876237,TRUE,"very large metros",30973,19053,489,233,6574,2592,20293,12885
+"126","41740","San Diego-Chula Vista-Carlsbad, CA","metro",3302833,1266620,TRUE,"very large metros",65333,40383,651,373,7427,8391,46760,30104
+"127","41860","San Francisco-Oakland-Berkeley, CA","metro",4673221,2167508,TRUE,"very large metros",96753,59897,1485,859,5955,26509,59540,39146
+"128","41940","San Jose-Sunnyvale-Santa Clara, CA","metro",1981616,1068403,TRUE,"very large metros",36608,22467,257,152,2847,13145,19320,12812
+"129","42660","Seattle-Tacoma-Bellevue, WA","metro",3809717,1726886,TRUE,"very large metros",77313,43217,1061,671,2865,11756,59192,34589
+"130","42680","Sebastian-Vero Beach, FL","metro",150984,45434,FALSE,"small metros",3532,2019,0,0,0,0,3152,1794
+"131","42700","Sebring-Avon Park, FL","metro",102101,20766,FALSE,"small metros",1440,859,0,0,0,75,1148,727
+"132","42020","San Luis Obispo-Paso Robles, CA","metro",281455,91732,FALSE,"midsized metros",6770,3870,0,0,584,470,5391,3179
+"133","42100","Santa Cruz-Watsonville, CA","metro",273765,79038,FALSE,"midsized metros",5688,3452,0,0,515,465,4449,2832
+"134","42140","Santa Fe, NM","metro",148917,46842,FALSE,"small metros",3596,1961,0,0,606,98,2722,1470
+"135","42200","Santa Maria-Santa Barbara, CA","metro",443738,149750,FALSE,"midsized metros",9150,5540,0,0,1065,0,7118,4480
+"136","42220","Santa Rosa-Petaluma, CA","metro",501317,173035,FALSE,"large metros",11318,6870,0,0,749,907,9206,5882
+"137","42340","Savannah, GA","metro",381623,151691,FALSE,"midsized metros",6389,4113,226,0,227,629,5231,3365
+"138","42540","Scranton--Wilkes-Barre, PA","metro",556926,237277,TRUE,"large metros",9225,6467,44,33,88,402,8655,6122
+"139","43100","Sheboygan, WI","metro",115205,53151,FALSE,"small metros",1983,1305,0,0,0,0,1892,1261
+"140","43300","Sherman-Denison, TX","metro",128560,39443,FALSE,"small metros",1936,1231,0,0,50,139,1653,1076
+"141","43340","Shreveport-Bossier City, LA","metro",401708,140406,FALSE,"midsized metros",6396,4173,233,120,85,306,5683,3772
+"142","43420","Sierra Vista-Douglas, AZ","metro",126279,24819,FALSE,"small metros",1433,720,0,0,182,81,1122,592
+"143","43580","Sioux City, IA-NE-SD","metro",143638,67718,FALSE,"small metros",3202,1973,0,0,98,67,2990,1850
+"144","43620","Sioux Falls, SD","metro",255438,143288,FALSE,"midsized metros",5865,3709,0,0,61,69,5659,3612
+"145","43780","South Bend-Mishawaka, IN-MI","metro",320700,129862,FALSE,"midsized metros",4273,2804,43,0,0,169,3925,2637
+"146","43900","Spartanburg, SC","metro",302195,128430,FALSE,"midsized metros",4369,3002,93,0,0,375,3805,2636
+"147","44060","Spokane-Spokane Valley, WA","metro",542089,199588,FALSE,"large metros",10080,5502,80,0,234,320,9213,5048
+"148","44100","Springfield, IL","metro",210028,85368,FALSE,"small metros",3404,2218,0,0,0,0,3197,2086
+"149","44140","Springfield, MA","metro",701210,242907,TRUE,"large metros",9314,6561,168,103,191,645,8212,5892
+"150","44180","Springfield, MO","metro",458834,187570,FALSE,"midsized metros",8395,4691,175,72,125,293,7648,4356
+"151","44220","Springfield, OH","metro",135198,41243,FALSE,"small metros",1521,1074,0,0,0,129,1377,1006
+"152","44300","State College, PA","metro",161443,46119,FALSE,"small metros",2209,1576,0,NA,0,97,2082,1495
+"153","44420","Staunton, VA","metro",121079,40023,FALSE,"small metros",1970,1338,0,0,0,0,1854,1260
+"154","44700","Stockton, CA","metro",732212,190958,TRUE,"large metros",8611,5368,164,71,0,1638,5317,3438
+"155","44940","Sumter, SC","metro",141012,36794,FALSE,"small metros",1278,872,69,39,0,0,1085,765
+"156","45060","Syracuse, NY","metro",654705,259742,TRUE,"large metros",10522,7565,0,58,92,497,9764,7104
+"157","45220","Tallahassee, FL","metro",380101,110687,FALSE,"midsized metros",6463,4011,337,157,0,409,5434,3498
+"158","45300","Tampa-St. Petersburg-Clearwater, FL","metro",3030047,1120203,TRUE,"very large metros",58651,36871,1255,723,5183,3923,46909,30121
+"159","45460","Terre Haute, IN","metro",187309,59212,FALSE,"small metros",2326,1412,0,0,21,121,2155,1303
+"160","45500","Texarkana, TX-AR","metro",150034,48004,FALSE,"small metros",2007,1371,0,0,44,0,1799,1235
+"161","45540","The Villages, FL","metro",120999,22470,FALSE,"small metros",1070,658,0,0,0,0,941,601
+"162","45780","Toledo, OH","metro",645329,275095,TRUE,"large metros",8290,6017,169,0,177,361,7515,5625
+"163","45820","Topeka, KS","metro",233260,85514,FALSE,"small metros",3256,2047,23,0,67,99,3007,1893
+"164","45940","Trenton-Princeton, NJ","metro",368762,196384,FALSE,"midsized metros",7031,4988,135,97,382,1335,5099,3771
+"165","46060","Tucson, AZ","metro",1019722,320502,TRUE,"very large metros",13933,7574,185,115,1312,743,11054,6149
+"166","46140","Tulsa, OK","metro",985233,401196,TRUE,"large metros",17607,11124,244,126,502,866,14478,9407
+"167","46220","Tuscaloosa, AL","metro",249824,85304,FALSE,"small metros",3097,2264,85,60,0,0,2756,2013
+"168","46300","Twin Falls, ID","metro",107097,37498,FALSE,"small metros",2647,1477,0,0,106,0,2439,1393
+"169","46340","Tyler, TX","metro",225015,89833,FALSE,"small metros",4062,2568,0,0,250,0,3525,2227
+"170","46520","Urban Honolulu, HI","metro",987638,366570,TRUE,"large metros",14379,8927,76,51,206,8705,4403,2897
+"171","46540","Utica-Rome, NY","metro",293287,100149,FALSE,"midsized metros",4380,3043,0,0,0,240,3982,2768
+"172","46660","Valdosta, GA","metro",144564,44264,FALSE,"small metros",2022,1452,92,54,21,146,1754,1282
+"173","46700","Vallejo, CA","metro",438530,111931,FALSE,"midsized metros",4905,3058,85,39,452,1093,3076,2055
+"174","47260","Virginia Beach-Norfolk-Newport News, VA-NC","metro",1758598,621229,TRUE,"very large metros",24903,15660,1465,785,556,2360,20027,12874
+"175","47300","Visalia, CA","metro",460477,96618,FALSE,"midsized metros",5054,3193,25,22,1046,553,3289,2192
+"176","47380","Waco, TX","metro",265728,105047,FALSE,"midsized metros",3456,2264,0,0,176,249,2961,1931
+"177","47460","Walla Walla, WA","metro",60236,20322,FALSE,"small metros",1214,643,0,0,0,54,1055,578
+"178","47580","Warner Robins, GA","metro",178648,45297,FALSE,"small metros",2075,1344,0,0,57,328,1569,1019
+"179","47900","Washington-Arlington-Alexandria, DC-VA-MD-WV","metro",6151521,2676308,TRUE,"very large metros",102264,65883,6981,3823,6783,19717,66895,45930
+"180","47940","Waterloo-Cedar Falls, IA","metro",170132,75798,FALSE,"small metros",2852,1930,0,0,0,77,2739,1828
+"181","47020","Victoria, TX","metro",99501,33922,FALSE,"small metros",1738,1135,0,0,170,162,1324,890
+"182","47220","Vineland-Bridgeton, NJ","metro",153400,47231,FALSE,"small metros",2247,1540,0,0,150,0,1750,1218
+"183","48060","Watertown-Fort Drum, NY","metro",114448,29772,FALSE,"small metros",1560,1029,0,NA,41,0,1431,968
+"184","48140","Wausau-Weston, WI","metro",163112,73859,FALSE,"small metros",2275,1480,0,NA,NA,61,2202,1467
+"185","48260","Weirton-Steubenville, WV-OH","metro",119338,33975,FALSE,"small metros",1438,957,0,0,0,0,1400,925
+"186","48300","Wenatchee, WA","metro",117128,37026,FALSE,"small metros",3099,1556,0,0,0,0,2699,1319
+"187","48540","Wheeling, WV-OH","metro",142664,54735,FALSE,"small metros",1820,1242,0,0,0,0,1700,1162
+"188","48620","Wichita, KS","metro",636295,261264,TRUE,"large metros",10311,6411,152,88,503,468,9017,5622
+"189","48660","Wichita Falls, TX","metro",150994,46665,FALSE,"small metros",2479,1589,0,0,0,112,2192,1430
+"190","48700","Williamsport, PA","metro",114859,43915,FALSE,"small metros",1950,1350,0,NA,0,0,1878,1336
+"191","48900","Wilmington, NC","metro",283251,108659,FALSE,"midsized metros",6466,4149,0,0,65,0,6055,3909
+"192","49020","Winchester, VA-WV","metro",136305,55560,FALSE,"small metros",2188,1353,0,0,57,0,1933,1218
+"193","49180","Winston-Salem, NC","metro",661798,237640,TRUE,"large metros",8967,5882,268,149,197,535,7891,5280
+"194","49340","Worcester, MA-CT","metro",938818,337022,TRUE,"large metros",14773,10706,0,0,0,1102,13168,9661
+"195","49420","Yakima, WA","metro",249325,70083,FALSE,"small metros",3576,2004,0,0,400,222,2837,1600
+"196","49620","York-Hanover, PA","metro",444014,167130,FALSE,"midsized metros",5926,4171,31,0,0,229,5536,3933
+"197","49660","Youngstown-Warren-Boardman, OH-PA","metro",545488,192993,FALSE,"large metros",8278,5662,67,36,89,289,7767,5384
+"198","49700","Yuba City, CA","metro",171365,32176,FALSE,"small metros",2033,1511,0,0,0,385,1422,1068
+"199","49740","Yuma, AZ","metro",207829,45094,FALSE,"small metros",2147,1269,0,0,585,94,1325,812
+"200","10180","Abilene, TX","metro",170009,58400,FALSE,"small metros",2479,1504,0,0,0,103,2224,1379
+"201","10420","Akron, OH","metro",704454,296361,TRUE,"large metros",11148,7997,232,127,70,411,10373,7558
+"202","10500","Albany, GA","metro",149912,46015,FALSE,"small metros",2131,1462,172,93,0,177,1715,1234
+"203","10540","Albany-Lebanon, OR","metro",122870,36602,FALSE,"small metros",2068,1230,NA,NA,0,0,1898,1133
+"204","10580","Albany-Schenectady-Troy, NY","metro",880481,353006,TRUE,"large metros",14783,10450,0,0,309,1186,13058,9333
+"205","10740","Albuquerque, NM","metro",910012,303614,TRUE,"large metros",12655,7077,76,54,2465,565,8825,5079
+"206","10780","Alexandria, LA","metro",153894,47260,FALSE,"small metros",2138,1366,0,38,63,0,1863,1206
+"207","10900","Allentown-Bethlehem-Easton, PA-NJ","metro",834615,331950,TRUE,"large metros",12796,8995,122,83,355,1007,11242,8074
+"208","11020","Altoona, PA","metro",123842,52981,FALSE,"small metros",2010,1323,0,0,0,0,1915,1243
+"209","11100","Amarillo, TX","metro",263412,95807,FALSE,"midsized metros",4565,2686,0,0,0,204,3948,2397
+"210","11180","Ames, IA","metro",123321,38790,FALSE,"small metros",1464,911,0,0,0,77,1338,852
+"211","11260","Anchorage, AK","metro",399576,162723,FALSE,"midsized metros",7499,4233,110,60,240,544,6179,3601
+"212","11460","Ann Arbor, MI","metro",365961,152087,FALSE,"midsized metros",6363,4217,136,68,116,511,5536,3784
+"213","11500","Anniston-Oxford, AL","metro",115098,36301,FALSE,"small metros",1386,1080,0,0,0,100,1215,957
+"214","11540","Appleton, WI","metro",234561,115721,FALSE,"small metros",4306,2898,0,0,0,91,4123,2790
+"215","11700","Asheville, NC","metro",449937,172341,FALSE,"midsized metros",9570,5722,0,0,305,296,8754,5273
+"216","12020","Athens-Clarke County, GA","metro",205303,65041,FALSE,"small metros",3501,2451,0,0,0,306,3029,2163
+"217","12060","Atlanta-Sandy Springs-Alpharetta, GA","metro",5779463,2352106,TRUE,"very large metros",102913,66678,6795,3633,4020,14629,76153,51166
+"218","12100","Atlantic City-Hammonton, NJ","metro",268539,103653,FALSE,"midsized metros",4791,3134,133,0,299,545,3781,2571
+"219","12220","Auburn-Opelika, AL","metro",159287,46327,FALSE,"small metros",1900,1279,37,31,0,142,1649,1136
+"220","12260","Augusta-Richmond County, GA-SC","metro",594300,187081,TRUE,"large metros",7271,4785,0,0,122,599,6109,4080
+"221","12420","Austin-Round Rock-Georgetown, TX","metro",2058351,836997,TRUE,"very large metros",36840,22243,450,241,3245,3498,28761,17751
+"222","12540","Bakersfield, CA","metro",883053,189762,TRUE,"large metros",9612,5887,0,83,1741,1250,6175,3883
+"223","12580","Baltimore-Columbia-Towson, MD","metro",2793250,1181547,TRUE,"very large metros",48412,32788,2770,1467,1040,6277,37831,26316
+"224","12620","Bangor, ME","metro",151748,56958,FALSE,"small metros",2881,1807,0,0,0,58,2788,1759
+"225","12700","Barnstable Town, MA","metro",213690,78050,FALSE,"small metros",6755,4271,60,49,0,258,6314,3992
+"226","12940","Baton Rouge, LA","metro",852356,346458,TRUE,"large metros",12399,8109,516,274,332,882,10550,7124
+"227","12980","Battle Creek, MI","metro",134473,53335,FALSE,"small metros",1606,1106,0,0,0,0,1503,1065
+"228","14010","Bloomington, IL","metro",173219,71642,FALSE,"small metros",2679,1711,36,0,0,163,2416,1573
+"229","14020","Bloomington, IN","metro",166281,53709,FALSE,"small metros",2308,1419,0,0,46,123,2078,1288
+"230","14100","Bloomsburg-Berwick, PA","metro",84514,36923,FALSE,"small metros",1226,856,NA,NA,0,60,1162,818
+"231","14260","Boise City, ID","metro",693952,254357,TRUE,"large metros",13772,7882,0,0,514,0,12473,7241
+"232","14460","Boston-Cambridge-Newton, MA-NH","metro",4811732,2534539,TRUE,"very large metros",92859,65470,1434,987,2108,8078,80228,57945
+"233","14500","Boulder, CO","metro",321030,153690,FALSE,"midsized metros",9992,6092,39,0,306,457,9010,5598
+"234","14540","Bowling Green, KY","metro",172088,61626,FALSE,"small metros",2464,1548,39,20,0,117,2231,1385
+"235","14740","Bremerton-Silverdale-Port Orchard, WA","metro",262475,59021,FALSE,"midsized metros",4749,2513,0,52,133,397,3983,2154
+"236","14860","Bridgeport-Stamford-Norwalk, CT","metro",944348,429679,TRUE,"large metros",20175,14127,328,177,870,1738,16926,12266
+"237","13020","Bay City, MI","metro",104786,29870,FALSE,"small metros",1561,1052,0,0,0,0,1475,982
+"238","13140","Beaumont-Port Arthur, TX","metro",395636,132171,FALSE,"midsized metros",5152,3190,137,64,269,814,3852,2373
+"239","13220","Beckley, WV","metro",120358,33038,FALSE,"small metros",1592,1103,0,0,0,57,1470,1036
+"240","13380","Bellingham, WA","metro",216812,75103,FALSE,"small metros",5165,2807,0,0,154,368,4527,2535
+"241","13460","Bend, OR","metro",180640,68342,FALSE,"small metros",6098,3281,0,0,170,201,5607,3032
+"242","13740","Billings, MT","metro",177772,74052,FALSE,"small metros",4548,2653,0,0,72,59,4326,2549
+"243","13780","Binghamton, NY","metro",243447,79415,FALSE,"small metros",3223,2299,0,0,26,239,2922,2135
+"244","13820","Birmingham-Hoover, AL","metro",1082561,436077,TRUE,"very large metros",17248,11848,555,335,276,1055,15229,10726
+"245","13900","Bismarck, ND","metro",126118,56813,FALSE,"small metros",2707,1644,0,0,0,0,2632,1604
+"246","13980","Blacksburg-Christiansburg, VA","metro",166675,48889,FALSE,"small metros",2440,1657,0,0,41,0,2208,1528
+"247","16020","Cape Girardeau, MO-IL","metro",97137,39925,FALSE,"small metros",1905,1242,0,0,0,0,1775,1131
+"248","16060","Carbondale-Marion, IL","metro",138452,43560,FALSE,"small metros",1893,1373,0,0,0,0,1728,1283
+"249","16180","Carson City, NV","metro",54467,20905,FALSE,"small metros",1392,929,0,0,101,70,1171,799
+"250","16220","Casper, WY","metro",80610,31203,FALSE,"small metros",2091,1266,0,0,51,42,1936,1178
+"251","16300","Cedar Rapids, IA","metro",268315,129218,FALSE,"midsized metros",4837,3233,0,0,62,110,4644,3100
+"252","16540","Chambersburg-Waynesboro, PA","metro",153751,50967,FALSE,"small metros",1942,1350,0,NA,0,0,1773,1238
+"253","16580","Champaign-Urbana, IL","metro",225875,71668,FALSE,"small metros",3334,2109,0,0,51,253,2977,1972
+"254","16620","Charleston, WV","metro",267408,92295,FALSE,"midsized metros",3006,2200,35,23,26,154,2761,2041
+"255","16700","Charleston-North Charleston, SC","metro",759247,286757,TRUE,"large metros",13500,8696,420,232,281,551,12070,7889
+"256","16740","Charlotte-Concord-Gastonia, NC-SC","metro",2498431,1058398,TRUE,"very large metros",42563,27615,1621,915,1690,2621,36073,23964
+"257","16820","Charlottesville, VA","metro",213901,84420,FALSE,"small metros",4585,3053,44,32,0,229,4168,2825
+"258","16860","Chattanooga, TN-GA","metro",552043,221608,TRUE,"large metros",7381,4977,143,0,143,518,6498,4407
+"259","16940","Cheyenne, WY","metro",97692,32827,FALSE,"small metros",2558,1453,0,0,85,87,2311,1328
+"260","16980","Chicago-Naperville-Elgin, IL-IN-WI","metro",9536428,4165528,TRUE,"very large metros",186037,124992,4106,2084,13195,19545,146971,101276
+"261","15380","Buffalo-Cheektowaga, NY","metro",1131570,482984,TRUE,"very large metros",19278,13739,398,185,245,1043,17482,12651
+"262","15500","Burlington, NC","metro",160576,59276,FALSE,"small metros",2053,1335,63,0,0,123,1778,1183
+"263","15540","Burlington-South Burlington, VT","metro",218042,102620,FALSE,"small metros",5074,3191,0,0,0,128,4872,3068
+"264","15680","California-Lexington Park, MD","metro",111531,32376,FALSE,"small metros",1316,821,0,0,22,80,1105,722
+"265","15940","Canton-Massillon, OH","metro",401053,150465,FALSE,"midsized metros",5766,3771,43,0,0,167,5406,3574
+"266","15980","Cape Coral-Fort Myers, FL","metro",718679,216916,TRUE,"large metros",14950,9290,319,177,1234,559,12586,7925
+"267","15180","Brownsville-Harlingen, TX","metro",421750,107239,FALSE,"midsized metros",4218,2713,0,0,2159,243,1624,1145
+"268","15260","Brunswick, GA","metro",116655,35077,FALSE,"small metros",2169,1408,59,21,24,84,1924,1275
+"269","17020","Chico, CA","metro",227075,62600,FALSE,"small metros",3546,2096,0,0,179,267,2873,1796
+"270","17140","Cincinnati, OH-KY-IN","metro",2191667,946308,TRUE,"very large metros",29803,20786,517,231,385,1455,27199,19388
+"271","17300","Clarksville, TN-KY","metro",296295,73140,FALSE,"midsized metros",2938,1975,77,0,33,429,2382,1597
+"272","17420","Cleveland, TN","metro",121339,40497,FALSE,"small metros",1413,921,NA,NA,0,120,1245,807
+"273","17460","Cleveland-Elyria, OH","metro",2061766,918152,TRUE,"very large metros",34307,23519,752,453,345,1732,31159,21694
+"274","17660","Coeur d'Alene, ID","metro",153605,52930,FALSE,"small metros",3818,2124,NA,NA,0,77,3510,2011
+"275","17780","College Station-Bryan, TX","metro",253946,75731,FALSE,"midsized metros",3815,2405,0,0,307,371,3045,1937
+"276","17820","Colorado Springs, CO","metro",712266,248023,TRUE,"large metros",13136,7773,0,66,489,662,11538,7002
+"277","17860","Columbia, MO","metro",204250,85884,FALSE,"small metros",3247,2075,73,46,0,119,2948,1892
+"278","17900","Columbia, SC","metro",816664,295371,TRUE,"large metros",11049,7421,601,347,0,725,9447,6421
+"279","17980","Columbus, GA-AL","metro",320144,99653,FALSE,"midsized metros",3702,0,188,103,95,411,2941,0
+"280","27060","Ithaca, NY","metro",102962,48258,FALSE,"small metros",1636,1022,0,0,0,0,1523,962
+"281","27100","Jackson, MI","metro",158913,50191,FALSE,"small metros",2179,1471,26,0,0,0,2041,1407
+"282","27140","Jackson, MS","metro",598355,224030,TRUE,"large metros",8633,5949,508,268,0,573,7426,5184
+"283","27180","Jackson, TN","metro",178506,70348,FALSE,"small metros",1866,1308,35,0,0,127,1677,1202
+"284","27260","Jacksonville, FL","metro",1475386,577874,TRUE,"very large metros",27521,17481,991,525,1180,1974,22838,14920
+"285","27340","Jacksonville, NC","metro",193912,35541,FALSE,"small metros",1928,1168,0,0,63,91,1676,1030
+"286","27500","Janesville-Beloit, WI","metro",161769,59475,FALSE,"small metros",2189,1302,0,0,28,0,2036,1230
+"287","27620","Jefferson City, MO","metro",151157,53991,FALSE,"small metros",2361,1392,0,0,0,80,2193,1306
+"288","27740","Johnson City, TN","metro",201226,65563,FALSE,"small metros",2455,1695,0,0,0,45,2361,1624
+"289","27780","Johnstown, PA","metro",134550,46317,FALSE,"small metros",2185,1496,0,NA,0,0,2130,1467
+"290","27860","Jonesboro, AR","metro",129755,46190,FALSE,"small metros",1845,1303,0,0,0,50,1754,1253
+"291","27900","Joplin, MO","metro",177440,70980,FALSE,"small metros",2687,1420,0,0,51,74,2468,1321
+"292","27980","Kahului-Wailuku-Lahaina, HI","metro",165281,64947,FALSE,"small metros",3127,1971,0,0,0,951,1852,1262
+"293","28020","Kalamazoo-Portage, MI","metro",261573,109826,FALSE,"midsized metros",4797,3226,49,44,42,187,4455,3014
+"294","28100","Kankakee, IL","metro",111061,36747,FALSE,"small metros",1578,952,0,0,0,0,1448,872
+"295","28140","Kansas City, MO-KS","metro",2106632,954263,TRUE,"very large metros",36923,22690,1413,774,921,1661,32268,20087
+"296","18020","Columbus, IN","metro",81893,48314,FALSE,"small metros",1169,797,0,0,0,77,1069,731
+"297","18140","Columbus, OH","metro",2054062,874951,TRUE,"very large metros",27562,18872,871,541,0,1913,24236,16893
+"298","18580","Corpus Christi, TX","metro",427532,155845,FALSE,"midsized metros",6613,4336,0,0,1360,477,4466,2951
+"299","18700","Corvallis, OR","metro",89780,28322,FALSE,"small metros",1469,747,0,0,0,135,1271,661
+"300","18880","Crestview-Fort Walton Beach-Destin, FL","metro",266595,82799,FALSE,"midsized metros",5528,3531,36,0,0,0,4861,3116
+"301","19060","Cumberland, MD-WV","metro",99255,29972,FALSE,"small metros",1169,805,0,0,0,0,1092,734
+"302","19100","Dallas-Fort Worth-Arlington, TX","metro",7189384,3127419,TRUE,"very large metros",112980,70546,3358,1912,7861,16502,82525,52929
+"303","19140","Dalton, GA","metro",143406,55284,FALSE,"small metros",1730,1233,0,0,86,144,1477,1025
+"304","19180","Danville, IL","metro",78407,24093,FALSE,"small metros",948,532,0,0,0,0,886,505
+"305","19300","Daphne-Fairhope-Foley, AL","metro",208107,61792,FALSE,"small metros",3919,2399,30,0,0,152,3600,2231
+"306","19340","Davenport-Moline-Rock Island, IA-IL","metro",382720,157879,FALSE,"midsized metros",5846,3917,48,38,150,239,5346,3577
+"307","19460","Decatur, AL","metro",152293,46522,FALSE,"small metros",2279,1569,0,0,0,0,2066,1425
+"308","19500","Decatur, IL","metro",106512,44389,FALSE,"small metros",1621,1065,0,0,0,0,1483,955
+"309","19660","Deltona-Daytona Beach-Ormond Beach, FL","metro",634773,168368,TRUE,"large metros",11158,6918,0,0,590,654,9557,5964
+"310","19740","Denver-Aurora-Lakewood, CO","metro",2850221,1280402,TRUE,"very large metros",63671,39725,846,579,3266,3773,54525,34711
+"311","19780","Des Moines-West Des Moines, IA","metro",671092,329004,TRUE,"large metros",11147,7130,64,26,239,322,10415,6697
+"312","19820","Detroit-Warren-Dearborn, MI","metro",4317179,1761974,TRUE,"very large metros",73420,51299,2005,981,1130,4726,64865,46689
+"313","28420","Kennewick-Richland, WA","metro",284828,87957,FALSE,"midsized metros",4269,2390,21,0,486,241,3349,1930
+"314","28660","Killeen-Temple, TX","metro",438265,106123,FALSE,"midsized metros",4260,2620,117,0,293,448,3243,2016
+"315","28700","Kingsport-Bristol, TN-VA","metro",306394,104278,FALSE,"midsized metros",3760,2642,0,0,0,108,3548,2490
+"316","28740","Kingston, NY","metro",179303,46244,FALSE,"small metros",3944,2566,0,0,100,238,3512,2323
+"317","28940","Knoxville, TN","metro",845486,334884,TRUE,"large metros",11734,7720,135,66,163,701,10647,7068
+"318","29020","Kokomo, IN","metro",82387,31996,FALSE,"small metros",1116,734,0,0,0,0,1042,688
+"319","29100","La Crosse-Onalaska, WI-MN","metro",136513,68320,FALSE,"small metros",2443,1648,0,0,0,47,2367,1593
+"320","29180","Lafayette, LA","metro",488969,180677,FALSE,"midsized metros",10148,6465,283,0,0,342,9213,6020
+"321","29200","Lafayette-West Lafayette, IN","metro",226202,77501,FALSE,"small metros",2812,1946,0,0,0,200,2536,1758
+"322","29340","Lake Charles, LA","metro",207050,79000,FALSE,"small metros",3608,2175,125,75,61,254,3114,1885
+"323","29420","Lake Havasu City-Kingman, AZ","metro",206064,41986,FALSE,"small metros",2751,1589,0,0,138,81,2449,1477
+"324","29460","Lakeland-Winter Haven, FL","metro",668671,182922,TRUE,"large metros",8222,5502,196,99,627,657,6638,4539
+"325","29540","Lancaster, PA","metro",538347,235331,FALSE,"large metros",9117,6578,0,0,128,407,8457,6201
+"326","29620","Lansing-East Lansing, MI","metro",545108,183895,FALSE,"large metros",6500,4544,136,0,164,246,5869,4225
+"327","29700","Laredo, TX","metro",272053,78875,FALSE,"midsized metros",4289,2824,0,0,2905,183,1020,744
+"328","29740","Las Cruces, NM","metro",215338,52980,FALSE,"small metros",2484,1505,30,23,701,84,1527,0
+"329","29820","Las Vegas-Henderson-Paradise, NV","metro",2141574,857591,TRUE,"very large metros",32857,20145,697,444,2482,4385,24139,15460
+"330","29940","Lawrence, KS","metro",119319,40467,FALSE,"small metros",1986,1185,0,0,0,107,1815,1092
+"331","30020","Lawton, OK","metro",128490,32718,FALSE,"small metros",1379,809,44,29,0,0,1160,707
+"332","30140","Lebanon, PA","metro",138674,46303,FALSE,"small metros",1887,1314,NA,NA,0,0,1785,1255
+"333","30300","Lewiston, ID-WA","metro",62492,22882,FALSE,"small metros",1093,617,0,0,0,0,1036,579
+"334","30340","Lewiston-Auburn, ME","metro",107444,45507,FALSE,"small metros",2030,1309,0,0,0,0,1955,1252
+"335","20020","Dothan, AL","metro",147967,50838,FALSE,"small metros",2267,1555,44,0,0,63,2106,1474
+"336","20100","Dover, DE","metro",174822,52481,FALSE,"small metros",2684,1805,89,43,46,313,2167,1485
+"337","20220","Dubuque, IA","metro",96802,54767,FALSE,"small metros",2292,1540,0,0,0,58,2183,1459
+"338","20260","Duluth, MN-WI","metro",289591,114815,FALSE,"midsized metros",4546,2908,0,0,0,100,4339,2819
+"339","20500","Durham-Chapel Hill, NC","metro",617365,274514,TRUE,"large metros",9056,5721,488,216,419,713,7379,4830
+"340","20700","East Stroudsburg, PA","metro",167586,49290,FALSE,"small metros",2597,1738,0,43,0,198,2261,1591
+"341","20740","Eau Claire, WI","metro",166626,72741,FALSE,"small metros",2832,1797,0,0,0,0,2715,1726
+"342","20940","El Centro, CA","metro",180216,32109,FALSE,"small metros",1850,1288,0,NA,0,171,0,0
+"343","21060","Elizabethtown-Fort Knox, KY","metro",150577,42854,FALSE,"small metros",1903,1197,22,0,0,199,1636,1025
+"344","21140","Elkhart-Goshen, IN","metro",203604,132095,FALSE,"small metros",3406,2412,33,28,30,129,3166,2264
+"345","21300","Elmira, NY","metro",85740,30377,FALSE,"small metros",1229,845,NA,NA,0,67,1158,793
+"346","21340","El Paso, TX","metro",841752,237730,TRUE,"large metros",10092,6604,204,137,5000,504,3948,2683
+"347","21420","Enid, OK","metro",62190,21514,FALSE,"small metros",1147,736,NA,NA,0,0,1024,669
+"348","21500","Erie, PA","metro",275972,115178,FALSE,"midsized metros",3842,2660,0,0,26,154,3595,2520
+"349","21660","Eugene-Springfield, OR","metro",368882,125153,FALSE,"midsized metros",7523,4451,0,0,185,401,6678,4064
+"350","21780","Evansville, IN-KY","metro",314967,144467,FALSE,"midsized metros",4748,2991,23,0,0,204,4381,2817
+"351","21820","Fairbanks, AK","metro",99653,27095,FALSE,"small metros",1925,1142,0,0,59,82,1686,1050
+"352","30460","Lexington-Fayette, KY","metro",506786,228183,FALSE,"large metros",8578,5523,160,109,176,339,7802,5015
+"353","30620","Lima, OH","metro",103642,46478,FALSE,"small metros",1667,1236,33,0,0,0,1551,1163
+"354","30700","Lincoln, NE","metro",327221,144760,FALSE,"midsized metros",6448,4053,22,0,92,219,6025,3807
+"355","30780","Little Rock-North Little Rock-Conway, AR","metro",734502,283598,TRUE,"large metros",12516,7921,336,178,0,689,11192,7136
+"356","30860","Logan, UT-ID","metro",135615,44906,FALSE,"small metros",3295,2040,0,0,49,0,3109,1960
+"357","30980","Longview, TX","metro",284503,96956,FALSE,"midsized metros",3658,2386,0,0,94,163,3249,2139
+"358","31020","Longview, WA","metro",105112,32299,FALSE,"small metros",1592,798,0,NA,0,98,1383,705
+"359","31080","Los Angeles-Long Beach-Anaheim, CA","metro",13262234,5324257,TRUE,"very large metros",293516,182881,5096,3066,28202,73837,177925,116579
+"360","31140","Louisville/Jefferson County, KY-IN","metro",1252890,577816,TRUE,"very large metros",19601,12693,434,201,304,940,17682,11597
+"361","31180","Lubbock, TX","metro",313123,115372,FALSE,"midsized metros",5749,3534,0,0,354,293,4964,3108
+"362","31340","Lynchburg, VA","metro",260668,99184,FALSE,"midsized metros",4307,2668,144,67,0,208,3844,2452
+"363","31420","Macon-Bibb County, GA","metro",229676,84303,FALSE,"small metros",3216,2376,210,0,0,442,2495,1894
+"364","31460","Madera, CA","metro",155013,26755,FALSE,"small metros",1566,902,0,0,276,307,888,532
+"365","31540","Madison, WI","metro",647281,333811,TRUE,"large metros",12300,7867,51,23,168,443,11540,7533
+"366","31700","Manchester-Nashua, NH","metro",411087,186614,FALSE,"midsized metros",7781,5435,21,0,90,374,7248,5082
+"367","31740","Manhattan, KS","metro",133736,38483,FALSE,"small metros",1494,892,0,0,0,38,1412,844
+"368","31860","Mankato, MN","metro",100105,50288,FALSE,"small metros",2075,1326,0,0,0,0,2028,1296
+"369","31900","Mansfield, OH","metro",121324,41099,FALSE,"small metros",1664,1083,0,0,0,0,1503,973
+"370","22020","Fargo, ND-MN","metro",237003,122574,FALSE,"small metros",5087,3471,39,0,0,108,4871,3347
+"371","22140","Farmington, NM","metro",127455,34753,FALSE,"small metros",1741,987,0,NA,144,0,1381,846
+"372","22180","Fayetteville, NC","metro",515706,120741,FALSE,"large metros",3763,2406,342,0,71,276,2962,1952
+"373","22220","Fayetteville-Springdale-Rogers, AR","metro",503585,210590,FALSE,"large metros",7940,4772,41,0,185,264,7310,4449
+"374","22380","Flagstaff, AZ","metro",140217,53114,FALSE,"small metros",2563,1452,0,0,159,175,2122,1194
+"375","22420","Flint, MI","metro",409361,121169,FALSE,"midsized metros",5352,3738,129,89,77,269,4799,3438
+"376","22500","Florence, SC","metro",205814,75608,FALSE,"small metros",2831,2044,120,75,35,224,2425,1752
+"377","22520","Florence-Muscle Shoals, AL","metro",147080,49018,FALSE,"small metros",2070,1478,0,0,0,0,1928,1385
+"378","22540","Fond du Lac, WI","metro",102315,43479,FALSE,"small metros",1500,856,NA,NA,0,0,1462,840
+"379","22660","Fort Collins, CO","metro",338161,126470,FALSE,"midsized metros",8752,5230,28,0,249,283,7984,4862
+"380","22900","Fort Smith, AR-OK","metro",249072,91556,FALSE,"small metros",3967,2490,28,0,0,187,3469,2166
+"381","23060","Fort Wayne, IN","metro",403665,189684,FALSE,"midsized metros",7321,4976,65,0,95,349,6776,4685
