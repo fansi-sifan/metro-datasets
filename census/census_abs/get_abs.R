@@ -2,6 +2,9 @@
 library(tidyverse)
 library(censusapi)
 
+# install metro.data R package from remote GitHub
+# devtools::install_github("BrookingsInstitution/metro-data-warehouse")
+
 # define API endpoints ============
 var_base <- c("GEO_ID", "NAICS2017", "NAICS2017_LABEL", "FIRMPDEMP", "RCPPDEMP", "EMP", "PAYANN")
 var_firm <- c("EMPSZFI", "EMPSZFI_LABEL", "YIBSZFI", "YIBSZFI_LABEL", "RCPSZFI", "RCPSZFI_LABEL")
@@ -13,6 +16,10 @@ abs_var <- c(var_base, var_firm, var_owner)
 # company summary  * NAICS all level * all
 # US total --------------------
 us_abs_naics6 <- getCensus(
+
+# note: censusapi::getCensus has an known issue that coerce NAICS2017 LABELS to numeric variables. see the bug report here: 
+# https://github.com/hrecht/censusapi/pull/65/files
+  
   name = "abscs",
   vintage = 2017,
   vars = abs_var,
@@ -58,6 +65,8 @@ abs_sum_fsize <- function(df) {
       EMPSZFI %in% c("652", "654", "656", "657", "661", "671", "672", "680") ~ "> 250 employees"
     )) 
 }
+
+# TODO: summarise by firm age and receipt size
 
 # test
 us_abs_naics6 %>% 
