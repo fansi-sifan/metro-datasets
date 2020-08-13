@@ -1,5 +1,6 @@
 # get ABS data
 library(tidyverse)
+# devtools::install_github("https://github.com/hrecht/censusapi")
 library(censusapi)
 
 # install metro.data R package from remote GitHub
@@ -17,9 +18,6 @@ abs_var <- c(var_base, var_firm, var_owner)
 # US total --------------------
 us_abs_naics6 <- getCensus(
 
-# note: censusapi::getCensus has an known issue that coerce NAICS2017 LABELS to numeric variables. see the bug report here: 
-# https://github.com/hrecht/censusapi/pull/65/files
-  
   name = "abscs",
   vintage = 2017,
   vars = abs_var,
@@ -185,3 +183,35 @@ us_naics_demo_17 %>%
   mutate(pct = `Firms with no employees` / `All firms`) %>%
   left_join(metro.data::naics[c("naics_code", "naics_name")], by = c("naics6_code" = "naics_code")) %>%
   write.csv("employer_0EMP.csv")
+
+
+# 3. WMBE in leisure and hospitality
+df <- us_naics_demo_17 %>% 
+  filter(naics_level == 2) %>% 
+  filter(YIBSZFI == "001" & RCPSZFI == "001") %>% 
+  filter(name == "FIRMPDEMP") %>% 
+  mutate_at(vars(total, nonminority, male, male_nonminority), as.numeric) %>% 
+  mutate(fsize = case_when(EMPSZFI == "001" ~ "all",
+                           EMPSZFI %in% c("611","612","620", "630","641","642","651","652") ~ "small",
+                           EMPSZFI == "657" ~ "large")) %>% 
+  group_by(naics6_code, fsize) %>% 
+  summarise_if(is.numeric, sum) 
+
+df %>% 
+  mutate(WMBE = total-male_nonminority,
+        pct_WMBE = WMBE/total,
+        pct_minority = 1-nonminority/total,
+        pct_female = 1-male/total) %>% 
+  select(naics6_code, fsize, total, WMBE, contains("pct")) %>% 
+  # filter(naics6_code %in% c("71","72")) %>% 
+  filter(fsize == "small") %>% 
+  arrange(-pct_WMBE)
+
+df %>% 
+  ungroup() %>% 
+  filter(fsize == "small") %>% 
+  mutate(WMBE = total - male_nonminority,
+         pct_WMBE = WMBE/sum(WMBE),
+         pct_total = total/sum(total)) %>% 
+  select(naics6_code, fsize, WMBE, pct_WMBE, pct_total)
+
