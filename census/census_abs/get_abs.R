@@ -119,7 +119,7 @@ cbsa_naics_demo_17 <- cbsa_abs_naics %>%
   clean_naics_demo(cbsa_code)
 
 save(cbsa_naics_demo_17, file = "census/census_abs/cbsa_naics_demo_17.rda")
-save(us_naics_demo_17, file = "../metro-datasets/census/census_abs/us_naics_demo_17.rda")
+save(us_naics_demo_17, file = "census/census_abs/us_naics_demo_17.rda")
 
 
 # get metro level details -----

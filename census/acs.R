@@ -140,5 +140,16 @@ yr <- 2018 # ACS year
 #                 year = yr, span = span,
 #                 key = key, short = TRUE)
 
-zip_acs <- get_acs(geography = "zcta",variables = c(pop_race_codes,pov_race_codes),key = key)
+zip_acs <- get_acs(geography = "zcta",
+                   variables = c(pop_race_codes,pov_race_codes),
+                   output = "wide",
+                   geometry = T,
+                   key = key)
+
+zip_acs_cleaned <- zip_acs %>% 
+  calculate_pop_race() %>% 
+  calculate_pov_race() %>% 
+  select(GEOID, contains("pop"), contains("pct"))
+
 save(zip_acs,file = "census/zip_acs.rda")
+save(zip_acs_cleaned,file = "census/zip_acs_cleaned.rda")
