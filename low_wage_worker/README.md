@@ -3,7 +3,7 @@ Title:  Low Wage Worker Clusters and Demographics and Across Metro Areas
 
 Contact:  Nicole Bateman and Martha Ross  
 
-Source:  Not yet published, find additional data in V:/Human Capital/Google  
+Source:  https://www.brookings.edu/research/meet-the-low-wage-workforce  
 
 Note:  We used ACS, 5-year, 2012-2016 microdata to create clusters of low-wage workers
 in order to compare the unique circumstances of various population subsets at the national, state, 
