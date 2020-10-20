@@ -26,7 +26,7 @@ merge_co <- function(list){
 # keep latest year
 keep_latest <- function(df){
   if ("year" %in% names(df)){
-    df <- filter(df,year == max(year))
+    df <- filter(df,year == max(as.numeric(year)))
     return(df)
   } else{return(df)}
   

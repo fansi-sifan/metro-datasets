@@ -2,18 +2,16 @@ load("GETDATA/data/cbsa_all.rda")
 load("GETDATA/data/list_all_cbsa.rda")
 
 # load new
-load("metro_monitor_2020/cbsa_metromonitor_2020.rda")
+# load("metro_monitor_2020/cbsa_metromonitor_2020.rda")
 
-new <- cbsa_metromonitor_2020 %>% 
-  filter(year == "2018") %>% 
-  select(-cbsa_name, -year)
+new <- cbsa_rental 
 
 cbsa_all <- cbsa_all %>% 
   left_join(new, by = c("cbsa_code"))
 
-list_all_cbsa[["cbsa_metromonitor_2020"]] <- names(cbsa_metromonitor_2020)
+list_all_cbsa[["cbsa_rental"]] <- names(cbsa_rental)
 
-# ARCHIVED ===============
+# Or, start from scratch ===============
 
 # load all datasets into the environment
 source("R/pip.R")
@@ -38,17 +36,24 @@ co_oow <- co_oow %>%
          med_age, med_fam_income_adj,pwhiteNH, pblackNH, platino,pasianNH,potherNH,
          pbaplus,phs, pdis,pnospouse_kids,psafetynet )
 
-cbsa_metromonitor <- cbsa_metromonitor %>%
-  filter(rank_year_range == "2007-2017")
+# cbsa_metromonitor <- cbsa_metromonitor %>%
+#   filter(rank_year_range == "2007-2017"
+
+cbsa_metromonitor_2020 <- cbsa_metromonitor_2020 %>% 
+  filter(year == 2018)
 
 # Select and merge datasets =============================
 dfs <- objects()
 
 df_cbsa_all <- mget(dfs[grep("cbsa_",dfs)])
+names(df_cbsa_all)
 df_co_all <- mget(dfs[grep("county_|co_",dfs)])
 
 # merge metro level datasets, and check if the length looks weird (>1000)
-cbsa_all <- merge_cbsa(lapply(df_cbsa_all, keep_latest))%>%
+cbsa_all <- df_cbsa_all %>% 
+  map(keep_latest) %>% 
+  map(mutate, cbsa_code = as.character(cbsa_code)) %>% 
+  reduce(full_join, by = "cbsa_code")%>%
   filter(!is.na(pop_total))
 
 nrow(cbsa_all)
