@@ -167,8 +167,14 @@ cbsa_access <- cbsa_output %>%
         `Median rental price-income ratio` = `Med rent/med inc`
          )
 
+# 4. Metro monitor ------
+cbsa_metromonitor <- cbsa_metromonitor_2020 %>% 
+  filter(cbsa_code %in% c(peer_cbsa, target_cbsa)) %>% 
+  filter(year == 2018)
+
 # SAVE =========
 result <- list(
+  outcome = cbsa_metromonitor,
   dynamism = cbsa_dynamism,
   talent = cbsa_talent,
   access = cbsa_access
