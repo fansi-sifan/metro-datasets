@@ -15,12 +15,12 @@ library(expss)
 source("R/save_output.R")
 
 # SET UP ====================================
-folder_name <- "acs5_2018"
+folder_name <- "acs1_2019"
 file_name <- "cbsa_acs_raw"
 
 # metadata
-dt_title <- "Selected statistics from 2018 5 year ACS summary tables"
-dt_src <- "https://api.census.gov/data/2018/acs/acs5.html"
+dt_title <- "Selected statistics from 2019 1 year ACS summary tables"
+dt_src <- "https://api.census.gov/data/2019/acs/acs1.html"
 dt_contact <- "Sifan Liu"
 df_notes <- "Statistics calculated from ACS summary tables"
 
@@ -28,12 +28,21 @@ df_notes <- "Statistics calculated from ACS summary tables"
 geo <- "metropolitan statistical area/micropolitan statistical area"
 vars <- objects()
 var = mget(vars[grep("codes",vars)])
-years <- 2018
+years <- 2019
+spans <- 1
 
-raw <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, year = years, key = key, short = FALSE, cache = T))
+raw <- map_dfc(var, function(x)clean_acs(geography = geo, 
+                                         variables = x, 
+                                         year = years, 
+                                         span = spans,
+                                         key = key, 
+                                         short = FALSE, 
+                                         cache = T))
 
 df <- raw %>%
-  select(cbsa_code, cbsa_name, dplyr::contains("S",ignore.case = F),dplyr::contains("B",ignore.case = F), dplyr::contains("C", ignore.case = F))
+  select(cbsa_code = cbsa_code...1, 
+         cbsa_name = cbsa_name...2, 
+         dplyr::contains("S",ignore.case = F),dplyr::contains("B",ignore.case = F), dplyr::contains("C", ignore.case = F))
 
 df_labels = create_labels(df)
 
@@ -60,10 +69,18 @@ save_datasets(df, folder = folder_name, file = file_name)
 file_name <- "co_acs_raw"
 geo <- "county"
 
-raw <- map_dfc(var, function(x)clean_acs(geography = geo, variables = x, year = years, key = key, short = FALSE, cache = T))
+raw <- map_dfc(var, function(x)clean_acs(geography = geo, 
+                                         variables = x, 
+                                         year = years, 
+                                         span = spans,
+                                         key = key, 
+                                         short = FALSE, cache = T))
 
 df <- raw %>%
-  select(stco_code, stco_name,dplyr::contains("S",ignore.case = F),dplyr::contains("B",ignore.case = F))
+  select(stco_code = stco_code...1, 
+         stco_name = stco_name...2,
+         dplyr::contains("S",ignore.case = F),
+         dplyr::contains("B",ignore.case = F))
 
 save_datasets(df, folder = folder_name, file = file_name)
 
