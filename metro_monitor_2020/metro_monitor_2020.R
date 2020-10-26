@@ -30,6 +30,13 @@ inclusion_value <- read_csv(paste0(source_dir, "Inclusion Values (SC 2020.02.04)
 racial_inclusion_value <- read_csv(paste0(source_dir, "Racial Inclusion Values (SC 2020.02.03).csv"))
 geographic_inclusion_value <- read_csv(paste0(source_dir, "Geographic Inclusion Values (SC 2020.01.22).csv"))
 
+# change from 2008 - 2018
+growth_change <- read_csv(paste0(source_dir, "Growth Change (SC 2020.01.22) .csv"))
+prosperity_change<- read_csv(paste0(source_dir, "Prosperity Change (SC 2020.01.22).csv")) 
+inclusion_change <- read_csv(paste0(source_dir, "Inclusion Change (SC 2020.02.03).csv"))
+racial_inclusion_change <- read_csv(paste0(source_dir, "Racial Inclusion Change (SC 2020.02.03).csv"))
+geographic_inclusion_change <- read_csv(paste0(source_dir, "Geographic Inclusion Change (SC 2020.01.22).csv"))
+
 # join all three absolute values
 cbsa_value <- growth_value %>%
   filter(keep == 1)%>%
@@ -51,7 +58,10 @@ cbsa_value <- growth_value %>%
 
 dfs <- objects()
 df_list <- mget(dfs[grep("_value", dfs)])
+df_change <- mget(dfs[grep("_change", dfs)])
+
 save(df_list, file = "metro_monitor_2020/metro_monitor_2020_allyear.rda")
+save(df_change, file = "metro_monitor_2020/metro_monitor_2020_change.rda")
 
 # FUNCTION load
 
