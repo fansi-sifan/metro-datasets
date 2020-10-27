@@ -1,9 +1,9 @@
 
 Title:  Rental housing affordability  
 
-Contact:  Jenny  
+Contact:  Jenny Schuetz
 
-Source:  Jenny, not published yet  
+Source:  https://www.brookings.edu/blog/up-front/2020/07/16/exclusive-communities-deepen-inequality-in-every-metro-area/ 
 
 Note:  Housing affordability measure by race  
 
