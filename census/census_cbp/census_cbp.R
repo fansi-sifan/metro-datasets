@@ -17,6 +17,10 @@ df_notes <- "2-, 3-, 4- and 6-digit NAICS code"
 library(censusapi)
 cbp_year <- "2018"
 vars <- c("GEO_ID","NAICS2017", "NAICS2017_LABEL","EMP", "ESTAB")
+
+cbp_year <- "2014"
+vars <- c("GEO_ID","NAICS2012", "NAICS2012_TTL","EMP", "ESTAB")
+
 geo <- "metropolitan statistical area/micropolitan statistical area"
 
 df <- getCensus(

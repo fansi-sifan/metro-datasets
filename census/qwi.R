@@ -11,7 +11,7 @@ get_qwi <- function(st_code) {
     vars = c("Emp", "EarnS", "race"),
     year = 2019,
     quarter = 4,
-    industry = "541",
+    # industry = "541",
     ownercode = "A05", # all private
     seasonadj = "U",
     key = key
