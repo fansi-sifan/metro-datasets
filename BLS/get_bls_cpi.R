@@ -17,12 +17,9 @@ area_cpi <- df %>%
   summarise(value = mean(value))
 
 # monthly jobs by metro ===============
-load("metro_monitor_2020/cbsa_metromonitor_2020.rda")
-
-cbsa_53 <- cbsa_metromonitor_2020 %>%
-  filter(largest == 1) %>%
-  select(cbsa_code) %>%
-  unique()
+cbsa_53 <- metro.data::cbsa_18 %>%
+  filter(cbsa_size == "very large metros") %>%
+  pull(cbsa_code)
 
 area_code <- read_delim("https://download.bls.gov/pub/time.series/la/la.area", delim = "\t") %>%
   filter(area_type_code == "B") %>%
@@ -34,7 +31,7 @@ area_code <- read_delim("https://download.bls.gov/pub/time.series/la/la.area", d
   # left_join(metro.data::cbsa_st[c("cbsa_code", "cbsa_is.top100")], by = "cbsa_code") %>%
   # unique() %>%
   # filter(cbsa_is.top100 | is.na(cbsa_is.top100)) %>%
-  filter(cbsa_code %in% cbsa_53$cbsa_code)
+  filter(cbsa_code %in% cbsa_53)
 
 
 # df <- bind_rows(bls_api(area_code[c(1:50),c("series")], startyear = 2007, endyear = 2019, registrationKey = Sys.getenv("BLS_key")),

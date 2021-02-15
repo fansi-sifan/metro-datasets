@@ -123,22 +123,38 @@ calculate_edu <- function(df) {
     )
 }
 
-edu_race_codes <- c(map_chr(seq(28, 54), function(x) paste0("S1501_C01_0", x))) # education attainment
+# edu_race_codes <- c(map_chr(seq(28, 54), function(x) paste0("S1501_C01_0", x))) # education attainment
+# 
+# calculate_edu_race <- function(df) {
+#   df %>%
+#     mutate(
+#       pct_edu_hsplus_white = S1501_C01_032E / S1501_C01_031E,
+#       pct_edu_hsplus_black = S1501_C01_035E / S1501_C01_034E,
+#       pct_edu_hsplus_asian = S1501_C01_041E / S1501_C01_040E,
+#       pct_edu_hsplus_latino = S1501_C01_053E / S1501_C01_052E,
+#       
+# 
+#       pct_edu_baplus_white = S1501_C01_033E / S1501_C01_031E,
+#       pct_edu_baplus_black = S1501_C01_036E / S1501_C01_034E,
+#       pct_edu_baplus_asian = S1501_C01_042E / S1501_C01_040E,
+#       pct_edu_baplus_latino = S1501_C01_054E / S1501_C01_052E
+#     )
+# }
 
-calculate_edu_race <- function(df) {
-  df %>%
-    mutate(
-      pct_edu_hsplus_white = S1501_C01_032E / S1501_C01_031E,
-      pct_edu_hsplus_black = S1501_C01_035E / S1501_C01_034E,
-      pct_edu_hsplus_asian = S1501_C01_041E / S1501_C01_040E,
-      pct_edu_hsplus_latino = S1501_C01_053E / S1501_C01_052E,
-      
+edu_race_codes <- paste0("C15002_0", str_pad(seq(1,11), 2, "left","0"),"E")
 
-      pct_edu_baplus_white = S1501_C01_033E / S1501_C01_031E,
-      pct_edu_baplus_black = S1501_C01_036E / S1501_C01_034E,
-      pct_edu_baplus_asian = S1501_C01_042E / S1501_C01_040E,
-      pct_edu_baplus_latino = S1501_C01_054E / S1501_C01_052E
-    )
+
+for (i in LETTERS[1:9]) {
+  new <- paste0("C15002", i, "_0", str_pad(seq(1,11), 2, "left","0"),"E")
+  edu_race_codes <- c(edu_race_codes, new)
+}
+
+
+calculate_edu_race <- function(df, code){
+  df %>% 
+    mutate(pct_edu_hs = C15002_004E + C15002_009E, 
+           pct_edu_aa = C15002_005E + C15002_010E, 
+           pct_edu_ba = C15002_006E + C15002_011E)
 }
 
 edu_birth_codes <- map_chr(str_pad(seq(1,30),3,"left","0"), function(x)paste0("B06009_", x))
@@ -233,6 +249,7 @@ calculate_earnings_edu <- function(df) {
     mutate(
       med_earnings_total = B20004_001E,
       med_earnings_hs = B20004_003E,
+      med_earnings_aa = B2004_004E,
       med_earnings_ba = B20004_005E,
       med_earnings_grad = B20004_006E
     )
