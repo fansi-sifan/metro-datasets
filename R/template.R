@@ -29,7 +29,10 @@ df_labels <- create_labels(df)
 save_datasets(df, folder = folder_name, file = file_name)
 
 # meta file
-save_meta(df,
-          labels = df_labels, folder = folder_name, file = file_name,
-          title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
-)
+rmarkdown::render("R/codebook_template.Rmd", output_dir = folder_name, output_file = "README")
+
+#[depreciated] meta file
+# save_meta(df,
+#           labels = df_labels, folder = folder_name, file = file_name,
+#           title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
+# )
