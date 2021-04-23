@@ -53,3 +53,18 @@ save_meta(df,
           labels = df_labels, folder = folder_name, file = file_name,
           title = dt_title, contact = dt_contact, source = dt_src, note = df_notes
 )
+
+
+# Alabama
+load("~/GitHub/metro-datasets/census/census_abs/cbsa_fair_17.rda")
+
+code <- metro.data::cbsa %>%
+  filter(str_detect(cbsa_name, "AL")) %>% 
+  select(cbsa_code, cbsa_name, cbsa_size)
+
+code %>% 
+  left_join(cbsa_fair_17, by = "cbsa_code") %>% 
+  select(cbsa_code, cbsa_name, cbsa_size, pct_black, pct_biz_black_17, fshare_black_17) %>% 
+  mutate(across(where(is.numeric), ~ifelse(. == 0, NA, .))) %>% 
+  write.csv("fair_ownership/fairshare_AL_cbsa.csv")
+
