@@ -8,18 +8,18 @@ folder_name <- "census/census_cbp"
 file_name <- "cbp_cbsa_naics_emp"
 
 # metadata
-dt_title <- "Employment by industry from County Business Pattern, 2018"
-dt_src <- "https://www.census.gov/data/datasets/2018/econ/cbp/2018-cbp.html"
+dt_title <- "Employment by industry from County Business Pattern, 2019"
+dt_src <- "http://www.census.gov/programs-surveys/cbp/data/datasets.html"
 dt_contact <- "Sifan Liu"
 df_notes <- "2-, 3-, 4- and 6-digit NAICS code"
 
 # FUNCTION load
 library(censusapi)
-cbp_year <- "2018"
+cbp_year <- "2019"
 vars <- c("GEO_ID","NAICS2017", "NAICS2017_LABEL","EMP", "ESTAB")
 
-cbp_year <- "2014"
-vars <- c("GEO_ID","NAICS2012", "NAICS2012_TTL","EMP", "ESTAB")
+# cbp_year <- "2014"
+# vars <- c("GEO_ID","NAICS2012", "NAICS2012_TTL","EMP", "ESTAB")
 
 geo <- "metropolitan statistical area/micropolitan statistical area"
 
